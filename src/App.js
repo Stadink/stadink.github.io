@@ -11,6 +11,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
 
         actually this is very cool
+        so how fast can I do this actually hm?
 
         <Contact />
         <Clock />
