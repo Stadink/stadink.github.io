@@ -12,7 +12,6 @@ function App() {
 
         actually this is very cool
         so how fast can I do this actually hm?
-
         <Contact />
         <Clock />
       </header>
