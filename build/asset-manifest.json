@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/react/static/css/main.6299f90d.chunk.css",
-    "main.js": "/react/static/js/main.eccd78a0.chunk.js",
-    "main.js.map": "/react/static/js/main.eccd78a0.chunk.js.map",
-    "runtime-main.js": "/react/static/js/runtime-main.b110a0c3.js",
-    "runtime-main.js.map": "/react/static/js/runtime-main.b110a0c3.js.map",
-    "static/js/2.8497aecd.chunk.js": "/react/static/js/2.8497aecd.chunk.js",
-    "static/js/2.8497aecd.chunk.js.map": "/react/static/js/2.8497aecd.chunk.js.map",
-    "static/js/3.0ac73154.chunk.js": "/react/static/js/3.0ac73154.chunk.js",
-    "static/js/3.0ac73154.chunk.js.map": "/react/static/js/3.0ac73154.chunk.js.map",
-    "index.html": "/react/index.html",
-    "static/css/main.6299f90d.chunk.css.map": "/react/static/css/main.6299f90d.chunk.css.map",
-    "static/js/2.8497aecd.chunk.js.LICENSE.txt": "/react/static/js/2.8497aecd.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/react/static/media/logo.6ce24c58.svg",
-    "static/media/shrek.f3acf6cd.png": "/react/static/media/shrek.f3acf6cd.png"
+    "main.css": "/static/css/main.d085cc09.chunk.css",
+    "main.js": "/static/js/main.97feb7df.chunk.js",
+    "main.js.map": "/static/js/main.97feb7df.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5207b5fa.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5207b5fa.js.map",
+    "static/js/2.48973d0f.chunk.js": "/static/js/2.48973d0f.chunk.js",
+    "static/js/2.48973d0f.chunk.js.map": "/static/js/2.48973d0f.chunk.js.map",
+    "static/js/3.c4c4cc0f.chunk.js": "/static/js/3.c4c4cc0f.chunk.js",
+    "static/js/3.c4c4cc0f.chunk.js.map": "/static/js/3.c4c4cc0f.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.d085cc09.chunk.css.map": "/static/css/main.d085cc09.chunk.css.map",
+    "static/js/2.48973d0f.chunk.js.LICENSE.txt": "/static/js/2.48973d0f.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/static/media/logo.6ce24c58.svg",
+    "static/media/shrek.f3acf6cd.png": "/static/media/shrek.f3acf6cd.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.b110a0c3.js",
-    "static/js/2.8497aecd.chunk.js",
-    "static/css/main.6299f90d.chunk.css",
-    "static/js/main.eccd78a0.chunk.js"
+    "static/js/runtime-main.5207b5fa.js",
+    "static/js/2.48973d0f.chunk.js",
+    "static/css/main.d085cc09.chunk.css",
+    "static/js/main.97feb7df.chunk.js"
   ]
 }
