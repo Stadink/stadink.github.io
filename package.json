@@ -1,5 +1,6 @@
 {
-  "name": "myfirstreactapp",
+  "name": "sandbox",
+  "homepage": "http://willthisdofor.art/react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

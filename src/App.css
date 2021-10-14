@@ -9,7 +9,7 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    animation: App-logo-spin infinite 0.04s linear;
   }
 }
 
@@ -35,4 +35,58 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.button {
+  width: 120px;
+  height: 70px;
+  border-radius: 5px;
+  padding: 16px 5px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  font-family: 'Carter One', cursive;
+}
+
+.button1 {
+  background-color: #52c156; 
+  color: white; 
+  border: 2px solid green;
+  text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
+  letter-spacing: 1px;
+}
+
+.button1:hover {
+  background-color: green;
+  color: white;
+}
+
+.button2 {
+  background-color: #ad2e25; 
+  color: white; 
+  border: 2px solid #7d1f18;
+  text-shadow: -1px 0 #7d1f18, 0 1px #7d1f18, 1px 0 #7d1f18, 0 -1px #7d1f18;
+
+}
+
+.button2:hover {
+  background-color: #7d1f18;
+  color: white;
+}
+
+#artImgDiv {
+  display: block;
+  text-align: center;
+  margin-top: 0px;
+}
+
+#artImg {
+  max-height: 550px;
+  max-width: 94%;
+  border: 2px solid rgb(62, 62, 62);
 }
