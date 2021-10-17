@@ -90,3 +90,11 @@
   max-width: 94%;
   border: 2px solid rgb(62, 62, 62);
 }
+
+a {
+  color: white
+}
+
+#chemical {
+  color: black;
+}

@@ -43,7 +43,11 @@ export class Chemistry extends React.Component {
   render() {
     return (
         <div id="chemistry">
-            <img src={this.state.src}/>
+            <img src={this.state.src}/> <br />
+
+            <a id="chemical"
+                href={'https://psychonautwiki.org/wiki/'+this.state.chemical}
+                target="_blank" >{this.state.chemical}</a> <br />
 
             <form action="#" onSubmit={this.setChemical}>
                 <input 
@@ -53,9 +57,7 @@ export class Chemistry extends React.Component {
                 />
                 <input type="submit" />
             </form>
-            <a 
-                href={'https://psychonautwiki.org/wiki/'+this.state.chemical}
-                target="_blank" >{this.state.chemical}</a> <br />
+
             <button onClick={this.getRandomChemical}>Random</button>
 
         </div>

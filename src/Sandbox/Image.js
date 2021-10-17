@@ -44,7 +44,13 @@ export class Image extends React.Component {
   render() {
     return (
       <div id="image">
-          {this.state.num}. {this.state.company} [{this.state.symbol}] <br />
+          {this.state.num}_
+          
+          <a    
+                href={'https://www.google.com/search?q='+this.state.company}
+                target="_blank" >{this.state.company}</a> 
+          
+          _[{this.state.symbol}] <br />
           <img onClick={this.setRandomNum} id="artImg" src={this.state.src} />
       
           <div id="answerButtons">
