@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ColorPicker from './ColorPicker';
 import { Image } from './Image';
 import { Buttons } from './Buttons'
+import { Chemistry } from './Chemistry';
 
 export class Sandbox extends React.Component {
   render() {
@@ -17,6 +18,7 @@ export class Sandbox extends React.Component {
         <div id="test"></div>
         <ColorPicker />
         <hr />
+
       </div>
     );
   }

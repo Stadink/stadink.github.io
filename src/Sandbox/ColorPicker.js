@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Chemistry } from './Chemistry';
+
 
 const colorNames = ['Aquamarine', 'BlueViolet', 'Chartreuse', 'CornflowerBlue', 'Thistle', 'SpringGreen', 'SaddleBrown', 'PapayaWhip', 'MistyRose'];
 
@@ -10,6 +12,7 @@ export default function ColorPicker() {
   return (
     <div style={divStyle}>
       <p>Selected color: {color}</p>
+      <Chemistry />
       {colorNames.map((colorName)=>(
         <button 
           onClick={() => setColor(colorName)} 
