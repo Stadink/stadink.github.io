@@ -4,6 +4,7 @@ import ColorPicker from './ColorPicker';
 import { Image } from './Image';
 import { Buttons } from './Buttons'
 import { Chemistry } from './Chemistry';
+import { Counter } from './Counter';
 
 export class Sandbox extends React.Component {
   render() {
@@ -11,6 +12,7 @@ export class Sandbox extends React.Component {
       <div id="sandbox">
         <hr/>
         Let's create
+        <Counter />
         <br/><br/>
         <Image />
         {/* <Buttons /> */}
