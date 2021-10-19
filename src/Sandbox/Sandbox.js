@@ -5,6 +5,8 @@ import { Image } from './Image';
 import { Buttons } from './Buttons'
 import { Chemistry } from './Chemistry';
 import { Counter } from './Counter';
+import { Notepad } from './Notepad';
+import { Motivation } from './Motivation';
 
 export class Sandbox extends React.Component {
   render() {
@@ -18,20 +20,15 @@ export class Sandbox extends React.Component {
             <Image />
           </div>
           <div class="Motivation">
-            Motivation
+            <h4>Motivation</h4>
+            <Motivation />
           </div>
           <div class="Clock">
-            Let's create
+            <h2>Let's create</h2>
             <Counter />
+            <Notepad />
           </div>
         </div>
-
-
-
-
-        <hr/>
-
-        <br/><br/>
 
         {/* <Buttons /> */}
 

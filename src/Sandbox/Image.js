@@ -54,13 +54,13 @@ export class Image extends React.Component {
                 href={'https://www.google.com/search?q='+this.state.symbol}
                 target="_blank" >{this.state.symbol}</a> ] 
           <br />
-          <img onClick={this.setRandomNum} id="artImg" src={this.state.src} />
+          <img onClick={this.setRandomNum} id="stockImg" src={this.state.src} />
       
           <div id="answerButtons">
             <button onClick={this.setRandomImage} id="artButton" class="button button1">Art</button>
             <button id="notArtButton" class="button button2">Not Art</button>
           </div>
-
+          <br/>graph here would be really nice
       </div>
     );
   }
