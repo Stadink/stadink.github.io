@@ -63,4 +63,11 @@ export class Chemistry extends React.Component {
         </div>
     );
   }
+  componentDidMount() {
+    // Paste your code here.
+    const delay = 3000;
+    setInterval(() => {
+        this.getRandomChemical();
+    }, delay);
+  }
 }
