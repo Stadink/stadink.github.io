@@ -64,11 +64,11 @@ export class Image extends React.Component {
       </div>
     );
   }
-  componentDidMount() {
-    // Paste your code here.
-    const delay = 3000;
-    setInterval(() => {
-      this.setRandomImage();
-    }, delay);
-  }
+  // componentDidMount() {
+  //   // Paste your code here.
+  //   const delay = 3000;
+  //   setInterval(() => {
+  //     this.setRandomImage();
+  //   }, delay);
+  // }
 }

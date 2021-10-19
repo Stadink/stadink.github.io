@@ -10,15 +10,32 @@ export class Sandbox extends React.Component {
   render() {
     return (
       <div id="sandbox">
+        <div class="container">
+          <div class="Main">
+            <ColorPicker />
+          </div>
+          <div class="Stocks">
+            <Image />
+          </div>
+          <div class="Motivation">
+            Motivation
+          </div>
+          <div class="Clock">
+            Let's create
+            <Counter />
+          </div>
+        </div>
+
+
+
+
         <hr/>
-        Let's create
-        <Counter />
+
         <br/><br/>
-        <Image />
+
         {/* <Buttons /> */}
 
         <div id="test"></div>
-        <ColorPicker />
         <hr />
 
       </div>

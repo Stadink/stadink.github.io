@@ -54,7 +54,7 @@
 }
 
 .button1 {
-  background-color: #52c156; 
+  background-color: #061a72; 
   color: white; 
   border: 2px solid green;
   text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
@@ -97,4 +97,48 @@ a {
 
 #chemical {
   color: black;
+}
+
+.imgChemical {
+  height: 100%; 
+  width: 100%; 
+  object-fit: contain;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Motivation Motivation Clock"
+    "Main Main Stocks"
+    "Main Main Drugs";
+}
+
+.Main { 
+  grid-area: Main; 
+  border:1px solid black;
+  max-height: 100px;
+}
+
+.Stocks { 
+  grid-area: Stocks; 
+  border:1px solid green;
+
+}
+
+.Drugs { grid-area: Drugs; }
+
+.Motivation { 
+  grid-area: Motivation;
+  max-height: 300;
+  border:1px solid blue;
+}
+
+.Clock { 
+  grid-area: Clock;
+  border:1px solid red;
+
 }
