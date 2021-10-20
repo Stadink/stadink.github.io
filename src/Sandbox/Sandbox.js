@@ -7,6 +7,8 @@ import { Chemistry } from './Chemistry';
 import { Counter } from './Counter';
 import { Notepad } from './Notepad';
 import { Motivation } from './Motivation';
+import Pfive from './Pfive';
+import Squares from './Squares';
 
 export class Sandbox extends React.Component {
   render() {
@@ -34,7 +36,9 @@ export class Sandbox extends React.Component {
 
         <div id="test"></div>
         <hr />
-
+        
+        <Pfive />
+        <Squares />
       </div>
     );
   }

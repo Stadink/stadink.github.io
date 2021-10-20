@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 
-const toDoList = ['Make auto-toggle', 'Eat', 'Shit', 'Die'];
+const toDoList = ['Make auto-toggle', 'Scrape ladirna.cz plants'];
 
 export default function ToDoList() {
   return (
     <div id='toDoList'>
-      <p>To-do list:</p>
+      <p><b><u>To-do list:</u></b></p>
       {toDoList.map((item)=>(
 
         <label>
