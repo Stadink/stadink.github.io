@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import moment from 'moment'
+import DatabaseAxios from './DatabaseAxios';
 
 
 export class EjaculationTimer extends React.Component {
@@ -43,6 +44,7 @@ export class EjaculationTimer extends React.Component {
             Time since last 💦: <br/>  
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
+            <DatabaseAxios />
         </div>
     );
   }
