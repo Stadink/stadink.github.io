@@ -5,7 +5,7 @@ import moment from 'moment'
 export class EjaculationTimer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lastTime: "2021-10-21 15:01" };
+    this.state = { lastTime: "2021-10-23 15:00" };
   }
 
   getTimePassed(lastTime) {
