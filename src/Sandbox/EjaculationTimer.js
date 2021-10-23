@@ -5,29 +5,25 @@ import moment from 'moment'
 export class EjaculationTimer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { time: 0 };
+    this.state = { lastTime: "2021-10-21 15:01" };
   }
 
- sukaBlyat() {
-  var now = moment(new Date()); //todays date
-  var end = moment("2021-10-23 15:01"); // another date
-  var duration = moment.duration(now.diff(end));
-  var seconds = duration.asSeconds();
+  getTimePassed(lastTime) {
+    var now = moment(new Date()); //todays date
+    var last = moment(lastTime); // another date
+    var d = moment.duration(now.diff(last));
 
-  var minutes = Math.trunc(seconds/(60))
-  var hours = Math.trunc(seconds/(60*60))
-  var days = Math.trunc(seconds/(60*60*24))
+    var timePassed = d.days() + ' days ' 
+                    + d.hours() + ' hours ' 
+                    + d.minutes() + ' minutes ' 
+                    + d.seconds() + ' seconds'
 
-  var timePassed = 'Days: ' + days + ' hours: ' + hours + ' minutes: ' + minutes 
+    // let goodTime; ????????
+    // d.days() > 0 ? goodTime = d.days() + ' days ' : '' ;
+    // d.hours() > 0 ? goodTime = d.hours() + ' hours ' : '' ;
 
-  return timePassed
- }
-
-  getTimePassed(lastTime){
-    const total = Date.parse(new Date()) - Date.parse(lastTime);
-    const days = Math.floor( total/(1000*60*60*24) );
-    return days
-}
+    return timePassed
+  }
 
   incrementSeconds() {
     this.setState((prevState, props) => ({
@@ -37,17 +33,16 @@ export class EjaculationTimer extends React.Component {
 
   reset() {
     this.setState({
-      time: 0
+      lastTime: new Date()
     })
   }
 
   render() {
     return (
         <div id="ejaculationTimer">
-            Time since last 💦: {this.state.time} <br/>
+            Time since last 💦: <br/>  
+            {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
-            {/* Days passed #{ this.getTimePassed('October 18, 2021 15:19:40 GMT+01:00') } */}
-            {this.sukaBlyat()}
         </div>
     );
   }
