@@ -9,6 +9,7 @@ import { Notepad } from './Notepad';
 import { Motivation } from './Motivation';
 import Pfive from './Pfive';
 import Squares from './Squares';
+import { EjaculationTimer } from './EjaculationTimer';
 
 export class Sandbox extends React.Component {
   render() {
@@ -20,6 +21,8 @@ export class Sandbox extends React.Component {
           </div>
           <div class="Stocks">
             <Image />
+            <br />
+            <EjaculationTimer />
           </div>
           <div class="Motivation">
             <h4>Motivation</h4>

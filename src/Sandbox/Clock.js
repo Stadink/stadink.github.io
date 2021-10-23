@@ -6,7 +6,7 @@ export class Clock extends React.Component {
     this.state = { date: new Date() };
   }
   render() {
-    return <div><br />{this.state.date.toLocaleTimeString()}</div>;
+    return <div><br/>{this.state.date.toLocaleTimeString()}</div>;
   }
   componentDidMount() {
     // Paste your code here.

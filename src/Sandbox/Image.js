@@ -62,7 +62,7 @@ export class Image extends React.Component {
             <button onClick={this.setRandomImage} id="artButton" class="button button1">Art</button>
             <button id="notArtButton" class="button button2">Not Art</button>
           </div>
-          <br/>graph here would be really nice
+          <br/>[graph here would be really nice]
           
       </div>
     );

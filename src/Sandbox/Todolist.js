@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 
-const toDoList = ['Make auto-toggle', 'Scrape ladirna.cz plants'];
+const toDoList = ['Make auto-toggle', 'Scrape ladirna.cz plants & add to Anki'];
 
 export default function ToDoList() {
   return (
