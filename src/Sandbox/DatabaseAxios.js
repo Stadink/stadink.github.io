@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 
 // const baseURL = "https://jsonplaceholder.typicode.com/posts/1";
-const baseURL = "http://localhost:3001/idk";
+const baseURL = "http://localhost:3002/time";
 
 export default function App() {
   const [post, setPost] = React.useState(null);
@@ -21,7 +21,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>{post.idk}</h1>
+      <h1>{post}</h1>
       {/* <p>{post.body}</p> */}
     </div>
   );

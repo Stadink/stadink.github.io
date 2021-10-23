@@ -1,6 +1,10 @@
 // Entry Point of the API Server
 var cors = require('cors')
 const express = require('express');
+const bodyParser = require('body-parser')
+
+const repo = require('./repository')
+const updateTemplet = require('./updateRecordForm')
 
 /* Creates an Express application.
 The express() function is a top-level
@@ -24,7 +28,6 @@ is used, Generally used to extract the
 entire body portion of an incoming
 request stream and exposes it on req.body
 */
-const bodyParser = require('body-parser');
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
@@ -57,6 +60,25 @@ app.get('/idk', (req, res, next) => {
 	console.log("TEST DATA :");
 	res.send({'idk': 7});
 })
+
+ 
+// Get route to show update form
+app.get('/update/:id', async (req, res) => {
+	const id = req.params.id
+	const temp = await (updateTemplet({id}))
+	res.send(temp)
+  })
+	
+  // Post route to update record
+  app.post('/update/:id', async (req, res) => {
+	const id = req.params.id
+	const record = await repo.update(id, req.body)
+	console.log(`Record Updated : 
+	  \n${JSON.stringify(record, null, 2)}`)
+	res.send('Record Updated')
+  })
+
+app.post('/')
 
 // Require the Routes API
 // Create a Server and run it on the port 3000
