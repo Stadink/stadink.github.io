@@ -10,13 +10,14 @@ export class EjaculationTimer extends React.Component {
 
  sukaBlyat() {
   var now = moment(new Date()); //todays date
-  var end = moment("2021-10-23"); // another date
+  var end = moment("2021-10-23 15:01"); // another date
   var duration = moment.duration(now.diff(end));
   var seconds = duration.asSeconds();
 
   var minutes = Math.trunc(seconds/(60))
   var hours = Math.trunc(seconds/(60*60))
   var days = Math.trunc(seconds/(60*60*24))
+
   var timePassed = 'Days: ' + days + ' hours: ' + hours + ' minutes: ' + minutes 
 
   return timePassed
