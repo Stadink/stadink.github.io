@@ -1,12 +1,25 @@
 import React, { useState } from 'react';
 import moment from 'moment'
 import DatabaseAxios from './DatabaseAxios';
+import axios from "axios";
 
 
 export class EjaculationTimer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lastTime: "2021-10-23 15:00" };
+    let timeBackend = 'aaa'
+    axios.get('http://localhost:3001/timeSaved').then((response) => {
+      console.log(response.data)
+      this.setState( {lastTimeBackend: response.data})
+      console.log(timeBackend)
+
+    });
+
+    // this.state = { lastTime: "2021-10-23 15:00" };
+    this.state = { 
+      lastTime: "2021-10-23 15:00",
+    };
+
   }
 
   getTimePassed(lastTime) {
@@ -38,13 +51,22 @@ export class EjaculationTimer extends React.Component {
     })
   }
 
+  dontRefersh(e) {
+      e.preventDefault();
+  }
+
   render() {
     return (
         <div id="ejaculationTimer">
+            TimeBackend: {this.state.lastTimeBackend}
             Time since last 💦: <br/>  
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
             <DatabaseAxios />
+            <form method='GET' action='http://localhost:3001/setTime' /*onSubmit={this.dontRefersh}*/>
+              <input type='submit' name='email' value="set time" for='time' />
+            </form>
+    `
         </div>
     );
   }

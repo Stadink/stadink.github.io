@@ -1,10 +1,13 @@
 // Entry Point of the API Server
 var cors = require('cors')
+var fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser')
 
 const repo = require('./repository')
 const updateTemplet = require('./updateRecordForm')
+const datastore = require('./datastore.json');
+const timeFile = require('./time.json');
 
 /* Creates an Express application.
 The express() function is a top-level
@@ -54,6 +57,53 @@ app.get('/testdata', (req, res, next) => {
 			console.log(testData);
 			res.send(testData.rows);
 		})
+})
+
+app.get('/time', (req, res) => {
+    const id = '32b3a9f5d8f33a8d'
+    const currentTime = new Date()
+    console.log(currentTime)
+    res.send(`
+        <form method='POST' action='./update/${id}'>
+        <button>Set time</button>
+        <input type='hidden' name='email' value=${JSON.stringify(currentTime)} for='time'>
+        </form>
+    `)
+})
+
+app.get('/setTime', (req, res) => {
+    const currentTime = new Date()
+    console.log(currentTime)
+	fs.writeFile ("input.json", JSON.stringify(currentTime), function(err) {
+		if (err) throw err;
+		console.log('complete');
+		})
+	res.send(`
+i don't fucking know if this worked whatever
+}
+`)
+})
+
+app.post('/setTime', (req, res) => {
+    const currentTime = new Date()
+    console.log(currentTime)
+	fs.writeFile ("input.json", JSON.stringify(currentTime), function(err) {
+		if (err) throw err;
+		console.log('complete');
+		})
+	res.send(`
+i don't fucking know if this worked whatever
+}
+`)
+})
+
+app.get('/timeSaved', async (req, res) => {
+	const timeFileOK = require('./input.json');
+	time = JSON.stringify(timeFileOK)
+	console.log(time)
+    res.send(`
+		{${time}}
+    `)
 })
 
 app.get('/idk', (req, res, next) => {

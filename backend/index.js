@@ -31,7 +31,7 @@ app.get('/time', (req, res) => {
         <input type='hidden' name='email' value=${JSON.stringify(currentTime)} for='time'>
         </form>
     `)
-    })
+})
 
 // app.post('/update/:id', (req, res) => {
 //     const id = '32b3a9f5d8f33a8d'
