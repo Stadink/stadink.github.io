@@ -13,7 +13,7 @@ export class Sandbox extends React.Component {
         <hr/>
         Let's create
         <Counter />
-        <br/><br/>
+        <br/>
         <Image />
         {/* <Buttons /> */}
 
