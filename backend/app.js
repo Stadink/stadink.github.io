@@ -79,8 +79,7 @@ app.get('/setTime', (req, res) => {
 		console.log('complete');
 		})
 	res.send(`
-i don't fucking know if this worked whatever
-}
+{ "i don't fucking know if this worked whatever" }
 `)
 })
 
@@ -92,8 +91,7 @@ app.post('/setTime', (req, res) => {
 		console.log('complete');
 		})
 	res.send(`
-i don't fucking know if this worked whatever
-}
+{"i don't fucking know if this worked whatever"}
 `)
 })
 

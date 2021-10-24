@@ -55,6 +55,11 @@ export class EjaculationTimer extends React.Component {
       e.preventDefault();
   }
 
+  setTime(){
+    fetch('http://localhost:3001/setTime')
+      .then(data => console.log(JSON.stringify(data)));;
+  }
+
   render() {
     return (
         <div id="ejaculationTimer">
@@ -62,11 +67,8 @@ export class EjaculationTimer extends React.Component {
             Time since last 💦: <br/>  
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
-            <DatabaseAxios />
-            <form method='GET' action='http://localhost:3001/setTime' /*onSubmit={this.dontRefersh}*/>
-              <input type='submit' name='email' value="set time" for='time' />
-            </form>
-    `
+            {/* <DatabaseAxios /> */}
+            <button onClick={ () => this.setTime()}>FETCH</button>
         </div>
     );
   }
