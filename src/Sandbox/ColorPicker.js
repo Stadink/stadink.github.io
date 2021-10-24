@@ -10,7 +10,7 @@ export default function ColorPicker() {
  const divStyle = {backgroundColor: color};
 
   return (
-    <div style={divStyle}>
+    <div id='colorPicker' style={divStyle}>
       <p>Selected color: {color}</p>
       <Chemistry />
       {colorNames.map((colorName)=>(

@@ -43,7 +43,7 @@ export class Chemistry extends React.Component {
   render() {
     return (
         <div id="chemistry">
-            <img src={this.state.src}/> <br />
+            <img id="imgChemical" src={this.state.src}/> <br />
 
             <a id="chemical"
                 href={'https://psychonautwiki.org/wiki/'+this.state.chemical}
@@ -63,4 +63,11 @@ export class Chemistry extends React.Component {
         </div>
     );
   }
+  // componentDidMount() {
+  //   // Paste your code here.
+  //   const delay = 3000;
+  //   setInterval(() => {
+  //       this.getRandomChemical();
+  //   }, delay);
+  // }
 }

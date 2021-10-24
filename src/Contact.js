@@ -47,31 +47,12 @@ export class Contact extends React.Component {
     </form>
   )
   
-
-  const contactInfo = (
-    <ul>
-      <Sandbox />
-      <li>
-        client@example.com
-      </li>
-      <li>
-        555.555.5555
-      </li>
-    </ul>
-  );
     return (
       <div id="authorization">
         <h1 id="title">{this.state.authorized ? 'Welcome' : 'Enter the Password'}</h1>
-        {this.state.authorized ? contactInfo : login}
+        {this.state.authorized ? <Sandbox /> : login}
         {this.state.authorized ? this.removeSpinner() : null }
-
-
       </div>
     );
   }
 }
-
-// ReactDOM.render(
-//   <Contact />, 
-//   document.getElementById('app')
-// );
