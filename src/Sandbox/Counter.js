@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export class Counter extends React.Component {
     getTimeRemaining(endtime){
         const total = Date.parse(endtime) - Date.parse(new Date());
@@ -8,7 +9,7 @@ export class Counter extends React.Component {
     }
     render() {
         return (
-            <p>Day #{ this.getTimeRemaining('May 18, 2045') }</p>
+            <div>Day #<u>{ this.getTimeRemaining('May 18, 2045')}</u></div>
         );
   }
 }

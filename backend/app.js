@@ -14,16 +14,16 @@ The express() function is a top-level
 function exported by the express module.
 */
 const app = express();
-const Pool = require('pg').Pool;
+// const Pool = require('pg').Pool;
 
-const pool = new Pool({
-	user: 'egor',
-	host: 'localhost',
-	database: 'gfgbackend',
-	password: 'egor',
-	dialect: 'postgres',
-	port: 5432
-});
+// const pool = new Pool({
+// 	user: 'egor',
+// 	host: 'localhost',
+// 	database: 'gfgbackend',
+// 	password: 'egor',
+// 	dialect: 'postgres',
+// 	port: 5432
+// });
 
 
 /* To handle the HTTP Methods Body Parser
@@ -35,20 +35,20 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors())
 
-pool.connect((err, client, release) => {
-	if (err) {
-		return console.error(
-			'Error acquiring client', err.stack)
-	}
-	client.query('SELECT NOW()', (err, result) => {
-		release()
-		if (err) {
-			return console.error(
-				'Error executing query', err.stack)
-		}
-		console.log("Connected to Database !")
-	})
-})
+// pool.connect((err, client, release) => {
+// 	if (err) {
+// 		return console.error(
+// 			'Error acquiring client', err.stack)
+// 	}
+// 	client.query('SELECT NOW()', (err, result) => {
+// 		release()
+// 		if (err) {
+// 			return console.error(
+// 				'Error executing query', err.stack)
+// 		}
+// 		console.log("Connected to Database !")
+// 	})
+// })
 
 app.get('/testdata', (req, res, next) => {
 	console.log("TEST DATA :");
