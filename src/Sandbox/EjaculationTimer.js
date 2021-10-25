@@ -56,8 +56,13 @@ export class EjaculationTimer extends React.Component {
   }
 
   setTime(){
-    fetch('http://localhost:3001/setTime')
-      .then(data => console.log(JSON.stringify(data)));;
+    // fetch('http://localhost:3001/setTime')
+    // fetch('https://jsonplaceholder.typicode.com/todos/1')
+    fetch('http://willthisdofor.art/api.html')
+      // .then(data => console.log('WTF: ' + JSON.stringify(data)));;
+      .then(response => response.json())
+      .then(json => console.log(JSON.stringify(json)))
+      // .then(json => console.log(json))
   }
 
   render() {
