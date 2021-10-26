@@ -71,7 +71,7 @@ export class EjaculationTimer extends React.Component {
     // fetch('http://localhost:3001/setTime')
     // fetch('https://jsonplaceholder.typicode.com/todos/1', {
     // fetch('http://willthisdofor.art/api/no-cors.php?url=asdf', {
-    fetch('http://willthisdofor.art/api.php', {
+    fetch('http://willthisdofor.art/api/getTime.php', {
       method: 'GET',
       // mode: 'no-cors',
       // body: JSON.stringify(object),
@@ -82,7 +82,7 @@ export class EjaculationTimer extends React.Component {
       // .then(data => console.log('WTF: ' + JSON.stringify(data)));;
       // .then(response => response.json())
       .then(res => res.json())
-      .then(data => timeFromWtdfa = data.time)
+      .then(data => timeFromWtdfa = data)
       // .then(json => console.log(JSON.stringify(json)))
       .then(() => console.log('time from WTDFA is: ' + JSON.stringify(timeFromWtdfa)))
       // .then(return json)
@@ -99,7 +99,7 @@ export class EjaculationTimer extends React.Component {
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
             {/* <DatabaseAxios /> */}
-            {/* <button onClick={ () => this.setTime()}>FETCH</button> */}
+            <button onClick={ () => this.setTime()}>FETCH</button>
         </div>
     );
   }
