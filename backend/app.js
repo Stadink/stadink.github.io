@@ -8,6 +8,7 @@ const repo = require('./repository')
 const updateTemplet = require('./updateRecordForm')
 const datastore = require('./datastore.json');
 const timeFile = require('./time.json');
+import { Helmet } from "react-helmet";
 
 /* Creates an Express application.
 The express() function is a top-level
