@@ -8,22 +8,24 @@ export class EjaculationTimer extends React.Component {
   constructor(props) {
     super(props);
     let timeBackend = 'aaa'
-    axios.get('http://willthisdofor.art/api.php').then((response) => {
-      console.log('Response constructor: ' + JSON.stringify(response.data.time))
-      this.setState( {lastTime: response.data.time})
+    // axios.get('http://willthisdofor.art/api.php').then((response) => {
+    axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
+      console.log('Response constructor: ' + JSON.stringify(response.data))
+      this.setState( {lastTime: response.data})
       console.log(timeBackend)
 
     });
 
     // this.state = { lastTime: "2021-10-23 15:00" };
     this.state = { 
-      lastTime: "2021-10-26 10:06",
+      // lastTime: "2021-10-26 10:06",
     };
 
   }
 
   getTimePassed(lastTime) {
     var now = moment(new Date()); //todays date
+    console.log('TIME NOW IS: ' + new Date() )
     var last = moment(lastTime); // another date
     var d = moment.duration(now.diff(last));
 
@@ -46,9 +48,16 @@ export class EjaculationTimer extends React.Component {
   }
 
   reset() {
-    this.setState({
-      lastTime: new Date()
-    })
+    // this.setState({
+    //   lastTime: new Date()
+    // })
+    const newTime = new Date()
+
+    var timeFromWtdfa;
+
+    fetch('http://willthisdofor.art/api/saveTime.php?time=' + newTime)
+      .then(() => console.log('time from WTDFA is: ' + JSON.stringify(timeFromWtdfa)))
+
   }
 
   dontRefersh(e) {
@@ -67,12 +76,13 @@ export class EjaculationTimer extends React.Component {
   // }
 
   setTime(){
+    const newTime = new Date()
     var timeFromWtdfa;
     // fetch('http://localhost:3001/setTime')
     // fetch('https://jsonplaceholder.typicode.com/todos/1', {
     // fetch('http://willthisdofor.art/api/no-cors.php?url=asdf', {
-    fetch('http://willthisdofor.art/api/getTime.php', {
-      method: 'GET',
+    fetch('http://willthisdofor.art/api/setTime.php?time=' + newTime, {
+      // method: 'GET',
       // mode: 'no-cors',
       // body: JSON.stringify(object),
       // headers: {
@@ -99,7 +109,7 @@ export class EjaculationTimer extends React.Component {
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
             {/* <DatabaseAxios /> */}
-            <button onClick={ () => this.setTime()}>FETCH</button>
+            {/* <button onClick={ () => this.setTime()}>FETCH</button> */}
         </div>
     );
   }
