@@ -26,8 +26,9 @@ export class EjaculationTimer extends React.Component {
   getTimePassed(lastTime) {
     var now = moment(new Date()); //todays date
     console.log('TIME NOW IS: ' + new Date() )
-    var last = moment(lastTime); // another date
+    var last = lastTime; // another date
     var d = moment.duration(now.diff(last));
+    console.log('D is: ' + d.hours())
 
     var timePassed = d.days() + ' days ' 
                     + d.hours() + ' hours ' 
@@ -76,7 +77,7 @@ export class EjaculationTimer extends React.Component {
   // }
 
   setTime(){
-    const newTime = new Date()
+    const newTime = moment(new Date())
     var timeFromWtdfa;
     // fetch('http://localhost:3001/setTime')
     // fetch('https://jsonplaceholder.typicode.com/todos/1', {
