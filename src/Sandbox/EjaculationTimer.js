@@ -11,7 +11,10 @@ export class EjaculationTimer extends React.Component {
     // axios.get('http://willthisdofor.art/api.php').then((response) => {
     axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
       console.log('Response constructor: ' + JSON.stringify(response.data))
-      this.setState( {lastTime: response.data})
+      let time = JSON.stringify(response.data)
+      // console.log('TIME ISSSSSSS: ' + time)
+      time = time.replace("GMT 0200", "GMT+0200")
+      this.setState( {lastTime: time})
       console.log(timeBackend)
 
     });
@@ -25,10 +28,14 @@ export class EjaculationTimer extends React.Component {
   }
 
   getTimePassed(lastTime) {
-    var now = moment(new Date()); //todays date
-    console.log('TIME NOW IS: ' + new Date() )
+    var nowMoment = moment(new Date()); //todays date
+    var now = new Date(); //todays date
+    // console.log('TIME NOW IS: ' + new Date() )
     var last = lastTime; // another date
-    var d = moment.duration(now.diff(last));
+    var d = moment.duration(nowMoment.diff(last));
+
+    console.log('Now is: ' + now)
+    console.log('Last is: ' + last)
     console.log('D is: ' + d.hours())
 
     var timePassed = d.days() + ' days ' 
@@ -62,7 +69,14 @@ export class EjaculationTimer extends React.Component {
 
     axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
       console.log('Response reset function: ' + JSON.stringify(response.data))
-      this.setState( {lastTime: response.data})
+      let time = JSON.stringify(response.data)
+      console.log('TIME ISSSSSSS: ' + time)
+      time = time.replace("GMT 0200", "GMT+0200")
+
+      console.log('TIME ISSSSSSS after: ' + time)
+
+
+      this.setState( {lastTime: time})
       // console.log(timeBackend)
 
     });
