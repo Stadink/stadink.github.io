@@ -17,7 +17,7 @@ export class EjaculationTimer extends React.Component {
 
     // this.state = { lastTime: "2021-10-23 15:00" };
     this.state = { 
-      lastTime: "2021-10-23 15:00",
+      lastTime: "2021-10-26 10:06",
     };
 
   }
@@ -57,11 +57,21 @@ export class EjaculationTimer extends React.Component {
 
   setTime(){
     // fetch('http://localhost:3001/setTime')
-    // fetch('https://jsonplaceholder.typicode.com/todos/1')
-    fetch('http://willthisdofor.art/api.html')
+    fetch('https://jsonplaceholder.typicode.com/todos/1', {
+    // fetch('http://willthisdofor.art/api/no-cors.php?url=asdf', {
+    // fetch('http://willthisdofor.art/api.php', {
+      method: 'GET',
+      mode: 'no-cors',
+      // body: JSON.stringify(object),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
       // .then(data => console.log('WTF: ' + JSON.stringify(data)));;
-      .then(response => response.json())
+      // .then(response => response.json())
+      .then(response => console.log(response))
       .then(json => console.log(JSON.stringify(json)))
+      // .reject('Idk something fucked up')
       // .then(json => console.log(json))
   }
 
