@@ -18,7 +18,7 @@ export class EjaculationTimer extends React.Component {
 
     // this.state = { lastTime: "2021-10-23 15:00" };
     this.state = { 
-      // lastTime: "2021-10-26 10:06",
+      lastTime: "2021-10-26 10:06",
     };
 
   }
