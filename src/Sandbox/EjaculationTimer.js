@@ -11,7 +11,10 @@ export class EjaculationTimer extends React.Component {
     // axios.get('http://willthisdofor.art/api.php').then((response) => {
     axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
       console.log('Response constructor: ' + JSON.stringify(response.data))
-      this.setState( {lastTime: response.data})
+      let time = JSON.stringify(response.data)
+      // console.log('TIME ISSSSSSS: ' + time)
+      time = time.replace("GMT 0200", "GMT+0200")
+      this.setState( {lastTime: time})
       console.log(timeBackend)
 
     });
@@ -19,15 +22,20 @@ export class EjaculationTimer extends React.Component {
     // this.state = { lastTime: "2021-10-23 15:00" };
     this.state = { 
       lastTime: "2021-10-26 10:06",
+      reload: 'idk whatever'
     };
 
   }
 
   getTimePassed(lastTime) {
-    var now = moment(new Date()); //todays date
-    console.log('TIME NOW IS: ' + new Date() )
+    var nowMoment = moment(new Date()); //todays date
+    var now = new Date(); //todays date
+    // console.log('TIME NOW IS: ' + new Date() )
     var last = lastTime; // another date
-    var d = moment.duration(now.diff(last));
+    var d = moment.duration(nowMoment.diff(last));
+
+    console.log('Now is: ' + now)
+    console.log('Last is: ' + last)
     console.log('D is: ' + d.hours())
 
     var timePassed = d.days() + ' days ' 
@@ -59,6 +67,22 @@ export class EjaculationTimer extends React.Component {
     fetch('http://willthisdofor.art/api/saveTime.php?time=' + newTime)
       .then(() => console.log('time from WTDFA is: ' + JSON.stringify(timeFromWtdfa)))
 
+    axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
+      console.log('Response reset function: ' + JSON.stringify(response.data))
+      let time = JSON.stringify(response.data)
+      console.log('TIME ISSSSSSS: ' + time)
+      time = time.replace("GMT 0200", "GMT+0200")
+
+      console.log('TIME ISSSSSSS after: ' + time)
+
+
+      this.setState( {lastTime: time})
+      // console.log(timeBackend)
+
+    });
+    
+
+    // this.setState( {reload: 'whatever'})
   }
 
   dontRefersh(e) {
@@ -106,7 +130,7 @@ export class EjaculationTimer extends React.Component {
     return (
         <div id="ejaculationTimer">
             {/* TimeBackend: {this.state.lastTimeBackend} */}
-            last time: { this.state.lastTime }
+            {/* last time: { this.state.lastTime } */}
             Time since last 💦: <br/>  
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>

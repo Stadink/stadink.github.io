@@ -11,6 +11,7 @@ export class Motivation extends React.Component {
             <input type="checkbox"  /> SDS
             <ToDoList />
             <p>Week #1 Thoughts/emotions/perceptions?</p>
+            What can I do today to 📈 my self-esteem?
         </div>
     );
   }
