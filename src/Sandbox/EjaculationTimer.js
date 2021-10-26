@@ -74,7 +74,7 @@ export class EjaculationTimer extends React.Component {
   //     //   // 'Content-Type': 'application/json'
   //     // }
   //   })
-  // }
+  // } whatever delete this dead code anyway
 
   setTime(){
     const newTime = moment(new Date())
