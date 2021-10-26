@@ -106,6 +106,7 @@ export class EjaculationTimer extends React.Component {
     return (
         <div id="ejaculationTimer">
             {/* TimeBackend: {this.state.lastTimeBackend} */}
+            last time: { this.state.lastTime }
             Time since last 💦: <br/>  
             {this.getTimePassed(this.state.lastTime)} <br />
             <button onClick={() => this.reset()}>Reset</button>
