@@ -24,7 +24,7 @@ export class EjaculationTimer extends React.Component {
       lastTime: "2021-10-26 10:06",
       reload: 'idk whatever'
     };
-
+    this.reset = this.reset.bind(this);
   }
 
   getTimePassed(lastTime) {
