@@ -16,8 +16,6 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <Contact />
-        stadnego@hotmail.com <br />
-        Barbariska1
         <Clock />
       </header>
     </div>
