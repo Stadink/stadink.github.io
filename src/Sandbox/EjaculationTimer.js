@@ -21,13 +21,17 @@ export class EjaculationTimer extends React.Component {
   }
 
   getTimePassed() {
-    var nowMoment = moment(new Date()); //todays date ////////////wtf
+    var nowMoment = moment(new Date()); //todays date
     var last = this.state.lastTime; // another date
     var d = moment.duration(nowMoment.diff(last));
 
-    var timePassed = d.days() + ' days ' 
-                    + d.hours() + ' hours ' 
-                    + d.minutes() + ' minutes ' 
+    let days = d.days();
+    let hours = d.hours();
+    let minutes = d.minutes();
+
+    var timePassed = days > 0 ?  days + ' days ' :
+                    hours > 0 ? hours + ' hours ' :
+                    minutes > 0 ? minutes + ' minutes ' : +
                     + d.seconds() + ' seconds'
                     
     return timePassed
