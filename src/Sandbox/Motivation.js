@@ -10,7 +10,7 @@ export class Motivation extends React.Component {
             <input type="checkbox"  /> <a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a> <br/>
             <input type="checkbox"  /> SDS
             <ToDoList />
-            <p>Week #1 Thoughts/emotions/perceptions?</p>
+            <p>Week #2 Belief or experience?</p>
             What can I do today to 📈 my self-esteem?
         </div>
     );

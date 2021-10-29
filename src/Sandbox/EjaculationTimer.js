@@ -17,7 +17,7 @@ export class EjaculationTimer extends React.Component {
       lastTime: "2021-10-26 10:06",
       reload: 'idkz whatever'
     };
-
+    this.reset = this.reset.bind(this);
   }
 
   getTimePassed() {
@@ -57,6 +57,20 @@ export class EjaculationTimer extends React.Component {
       e.preventDefault();
   }
 
+<<<<<<< HEAD
+=======
+  // getTimeFromWtdfa() {
+  //   fetch('http://willthisdofor.art/api.php', {
+  //     method: 'GET',
+  //     // mode: 'no-cors',
+  //     // body: JSON.stringify(object),
+  //     // headers: {
+  //     //   // 'Content-Type': 'application/json'
+  //     // }
+  //   })
+  // } whatever delete this dead code anyway
+
+>>>>>>> a580289aaeb290bd92f963288fb84473982010da
   setTime(){
     const newTime = moment(new Date())
     var timeFromWtdfa;
