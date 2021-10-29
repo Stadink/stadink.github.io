@@ -28,12 +28,15 @@ export class EjaculationTimer extends React.Component {
     let days = d.days();
     let hours = d.hours();
     let minutes = d.minutes();
+    let seconds = d.seconds();
 
-    var timePassed = days > 0 ?  days + ' days ' :
-                    hours > 0 ? hours + ' hours ' :
-                    minutes > 0 ? minutes + ' minutes ' : +
-                    + d.seconds() + ' seconds'
-                    
+    var daysPassed = days > 0 ?  days + ' days ' : '';
+    var hoursPassed = hours > 0 ?  hours + ' hours ' : '';
+    var minutesPassed = minutes > 0 ?  minutes + ' minutes ' : '';
+    var secondsPassed = days + hours + minutes === 0 ?  seconds + ' seconds ' : '';
+
+    const timePassed = daysPassed + hoursPassed + minutesPassed + secondsPassed;
+    
     return timePassed
   }
 
