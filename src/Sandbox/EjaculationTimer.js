@@ -36,7 +36,7 @@ export class EjaculationTimer extends React.Component {
     var secondsPassed = days + hours + minutes === 0 ?  seconds + ' seconds ' : '';
 
     const timePassed = daysPassed + hoursPassed + minutesPassed + secondsPassed;
-    
+
     return timePassed
   }
 
@@ -50,27 +50,6 @@ export class EjaculationTimer extends React.Component {
     const newTime = new Date()
     fetch('http://willthisdofor.art/api/saveTime.php?time=' + newTime)
     this.setState( {lastTime: newTime})
-
-    // I don't think there's a need for that here, right?
-    // axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
-    //   let time = JSON.stringify(response.data)
-    //   time = time.replace("GMT 0200", "GMT+0200")
-
-    //   this.setState( {lastTime: time})
-    // });
-  }
-
-  dontRefersh(e) {
-      e.preventDefault();
-  }
-
-  setTime(){
-    const newTime = moment(new Date())
-    var timeFromWtdfa;
-    fetch('http://willthisdofor.art/api/setTime.php?time=' + newTime, {
-    })
-      .then(res => res.json())
-      .then(data => timeFromWtdfa = data)
   }
 
   render() {
