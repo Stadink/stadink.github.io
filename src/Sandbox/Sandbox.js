@@ -25,7 +25,7 @@ export class Sandbox extends React.Component {
             <EjaculationTimer />
           </div>
           <div class="Motivation">
-            <h4>Motivation</h4>
+            <h4>Remember</h4>
             <Motivation />
           </div>
           <div class="Clock">
