@@ -14,7 +14,8 @@ export class TS extends React.Component {
   render() {
     return (
         <div id="TS">
-          <button onClick={ () => this.printLesson() }>TS</button>
+            <h3>Week #2 Belief or experience?</h3>
+            <button onClick={ () => this.printLesson() }>TS</button>
         </div>
     );
   }
