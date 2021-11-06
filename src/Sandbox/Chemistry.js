@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import chemicals from './chemicals.json';
+const axios = require('axios');
 
 
 export class Chemistry extends React.Component {
@@ -14,20 +15,16 @@ export class Chemistry extends React.Component {
         this.getRandomChemical = this.getRandomChemical.bind(this) 
       }
 
-    //   const [input, setInput] = useState(chemical);
-
-    //   const changeHandle = e => {
-    //       setInput(e.target.value)
-    //   }
-
       getRandomChemical(){
         const randomNum = Math.floor(Math.random()*650);
         const chemicalName = chemicals[randomNum].Lysergamides;
         console.log(chemicalName)
+        console.log(`https://psychonautwiki.org/w/thumb.php?f=${chemicalName}.svg&width=960`)
         this.setState({
             chemical: chemicalName,
             src: `https://psychonautwiki.org/w/thumb.php?f=${chemicalName}.svg&width=960`
         })
+        // console.log('AAAAAaaaaaaaaaaa' + document.getElementById('imgChemical'))
       }
 
       setChemical(e){
@@ -40,34 +37,35 @@ export class Chemistry extends React.Component {
         e.preventDefault();
       }
 
-  render() {
-    return (
-        <div id="chemistry">
-            <img id="imgChemical" src={this.state.src}/> <br />
+    render() {
+        return (
+            <div id="chemistry">
+                <img id="imgChemical" src={this.state.src}/> <br />
 
-            <a id="chemical"
-                href={'https://psychonautwiki.org/wiki/'+this.state.chemical}
-                target="_blank" >{this.state.chemical}</a> <br />
+                <a id="chemical"
+                    href={'https://psychonautwiki.org/wiki/'+this.state.chemical}
+                    target="_blank" >{this.state.chemical}</a> <br />
 
-            <form action="#" onSubmit={this.setChemical}>
-                <input 
-                    type="chemical" 
-                    defaultValue={this.state.chemical} 
-                    onChange={e => this.setState({ text: e.target.value })}
-                />
-                <input type="submit" />
-            </form>
+                <form action="#" onSubmit={this.setChemical}>
+                    <input 
+                        type="chemical" 
+                        defaultValue={this.state.chemical} 
+                        onChange={e => this.setState({ text: e.target.value })}
+                    />
+                    <input type="submit" />
+                </form>
 
-            <button onClick={this.getRandomChemical}>Random</button>
+                <button onClick={this.getRandomChemical}>Random</button>
 
-        </div>
-    );
-  }
-  // componentDidMount() {
-  //   // Paste your code here.
-  //   const delay = 3000;
-  //   setInterval(() => {
-  //       this.getRandomChemical();
-  //   }, delay);
-  // }
+            </div>
+        );
+    }
+    componentDidMount() {
+        // var image = document.getElementById('imgChemical')
+        // var isLoaded = image.complete && image.naturalHeight !== 0;
+        // console.log('IMG is loaded ? ' + isLoaded)
+        // while(!isLoaded) { 
+        //     this.getRandomChemical();
+        // }
+    }
 }

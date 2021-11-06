@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ColorPicker from './ColorPicker';
-import { Image } from './Image';
+import { Stocks } from './Stocks';
 import { Buttons } from './Buttons'
 import { Chemistry } from './Chemistry';
 import { Counter } from './Counter';
@@ -22,12 +22,12 @@ export class Sandbox extends React.Component {
             <TS />
           </div>
           <div class="Stocks">
-            <Image />
+            <Stocks />
             <br />
             <EjaculationTimer />
           </div>
           <div class="Motivation">
-            <h4>Motivation</h4>
+            <h4>Remember</h4>
             <Motivation />
           </div>
           <div class="Clock">

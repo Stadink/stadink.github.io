@@ -12,6 +12,7 @@ export class Motivation extends React.Component {
             <ToDoList />
             <p>Week #2 Belief or experience?</p>
             What can I do today to 📈 my self-esteem?
+            <div style={{'text-align' : 'right'}}>...to be honest</div>
         </div>
     );
   }
