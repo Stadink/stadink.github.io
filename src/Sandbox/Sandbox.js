@@ -10,6 +10,7 @@ import { Motivation } from './Motivation';
 import Pfive from './Pfive';
 import Squares from './Squares';
 import { EjaculationTimer } from './EjaculationTimer';
+import { TS } from './TS';
 
 export class Sandbox extends React.Component {
   render() {
@@ -18,6 +19,7 @@ export class Sandbox extends React.Component {
         <div class="container">
           <div class="Main">
             <ColorPicker />
+            <TS />
           </div>
           <div class="Stocks">
             <Image />
