@@ -34,7 +34,7 @@ export class Contact extends React.Component {
   removeSpinner() {
     const element = document.querySelector('.App-logo');
     element.style.display = 'none';
-    document.title = "Sandbox";
+    document.title = "Dashboard";
   }
 
   render() {
