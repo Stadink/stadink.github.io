@@ -11,6 +11,7 @@ import Pfive from './Pfive';
 import Squares from './Squares';
 import { EjaculationTimer } from './EjaculationTimer';
 import { TS } from './TS';
+import visionBoard from '../img/VisionBoard.png';
 
 export class Sandbox extends React.Component {
   render() {
@@ -45,6 +46,7 @@ export class Sandbox extends React.Component {
         
         <Pfive />
         <Squares />
+        <img src={visionBoard} alt="visionBoard" />
       </div>
     );
   }
