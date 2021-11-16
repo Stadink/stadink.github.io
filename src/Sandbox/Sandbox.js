@@ -12,7 +12,7 @@ import Squares from './Squares';
 import { EjaculationTimer } from './EjaculationTimer';
 import { TS } from './TS';
 import { Remember } from './ Remember';
-import visionBoard from '../img/VisionBoard.png';
+import { VisionBoard } from './Vision Board';
 
 export class Sandbox extends React.Component {
   render() {
@@ -48,7 +48,7 @@ export class Sandbox extends React.Component {
         
         <Pfive />
         <Squares />
-        <img src={visionBoard} alt="visionBoard" />
+        <VisionBoard />
       </div>
     );
   }
