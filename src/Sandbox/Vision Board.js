@@ -6,7 +6,7 @@ export class VisionBoard extends React.Component {
   render() {
     return (
         <div id="VisionBoard">
-          <a href={visionBoard}>
+          <a href={visionBoard} target="_blank">
             <img id="VisionBoardImg" src={visionBoard} alt="visionBoard" />
           </a>
         </div>
