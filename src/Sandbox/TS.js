@@ -28,7 +28,7 @@ export class TS extends React.Component {
   render() {
     return (
         <div id="TS">
-            <h3>Week #4 BEING AT EFFECT ANOTHER LOOK</h3>
+            <h3>Week #5 FEAR</h3>
             <button onClick={ () => this.printTask() }>Week Task</button>
             <button onClick={ () => this.printLesson() }>Day Lesson</button>
         </div>

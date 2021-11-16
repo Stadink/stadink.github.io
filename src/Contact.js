@@ -52,6 +52,9 @@ export class Contact extends React.Component {
         <h1 id="title">{this.state.authorized ? 'Welcome' : 'Enter the Password'}</h1>
         {this.state.authorized ? <Sandbox /> : login}
         {this.state.authorized ? this.removeSpinner() : null }
+
+        
+
       </div>
     );
   }
