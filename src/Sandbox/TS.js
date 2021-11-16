@@ -9,7 +9,7 @@ export class TS extends React.Component {
         const weekday = new Array(7);
         weekday[0] = "Sunday";
         weekday[1] = "Monday";
-        weekday[2] = "Tuesday";
+        weekday[2] = "Tuesday"; aaa
         weekday[3] = "Wednesday";
         weekday[4] = "Thursday";
         weekday[5] = "Friday";
