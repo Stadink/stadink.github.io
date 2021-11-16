@@ -167,6 +167,8 @@ a {
 
 .react-p5 {
   display: inline;
+  max-width: 10px;
+  width: 10px;
 }
 
 #defaultCanvas0 {

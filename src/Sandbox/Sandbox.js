@@ -45,10 +45,10 @@ export class Sandbox extends React.Component {
 
         <div id="test"></div>
         <hr />
-        
+        <VisionBoard />
+
         <Pfive />
         <Squares />
-        <VisionBoard />
       </div>
     );
   }
