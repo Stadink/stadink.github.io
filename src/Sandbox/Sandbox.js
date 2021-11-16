@@ -25,19 +25,19 @@ export class Sandbox extends React.Component {
           <div class="Stocks">
             <Stocks />
             <br />
-            <EjaculationTimer />
           </div>
           <div class="Motivation">
-            <h4>Remember</h4>
+            <h1>Remember</h1>
+            <VisionBoard />
             <Remember />
-            <Motivation />
-            
-            <TS />
           </div>
           <div class="Clock">
             <h2>Let's create</h2>
             <Counter />
             <Notepad />
+
+            <Motivation />
+            <EjaculationTimer />
           </div>
         </div>
 
@@ -45,7 +45,6 @@ export class Sandbox extends React.Component {
 
         <div id="test"></div>
         <hr />
-        <VisionBoard />
 
         <Pfive />
         <Squares />
