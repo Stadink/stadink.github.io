@@ -49,7 +49,6 @@ export class Sandbox extends React.Component {
         <Pfive />
         <Squares />
         <img src={visionBoard} alt="visionBoard" />
-        fuck yes bitches
       </div>
     );
   }
