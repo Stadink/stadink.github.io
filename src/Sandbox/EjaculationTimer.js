@@ -9,7 +9,7 @@ export class EjaculationTimer extends React.Component {
     super(props);
     axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
       let time = JSON.stringify(response.data)
-      time = time.replace("GMT 0200", "GMT+0200")
+      time = time.replace("GMT 0100", "GMT+0100")
       this.setState( {lastTime: time})
     });
 
