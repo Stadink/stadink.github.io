@@ -13,7 +13,7 @@ export class RandomIdea extends React.Component {
   render() {
     return (
         <div id="randomIdea">
-            <button id="randomIdeaButton" onClick={() => this.handleIdea()}>Random Idea 💡</button>
+            <button id="randomIdeaButton" onClick={() => this.handleIdea()}>Random Idea💡</button>
             <a id="ideasFile" href="https://willthisdofor.art/api/RandomIdeas.txt" target='_blank'>ideas</a>
         </div>
     );
