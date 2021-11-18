@@ -47,9 +47,15 @@ export class EjaculationTimer extends React.Component {
   }
 
   reset() {
-    const newTime = new Date()
-    fetch('http://willthisdofor.art/api/saveTime.php?time=' + newTime)
-    this.setState( {lastTime: newTime})
+    let feedback;
+    let data = prompt("Jerked off or had sex? How was it? Satisfied or Disappointed? Good use of energy?", '|10');
+    if (data != null) {
+      feedback = data == "" ? "no comment" : data;
+
+      const newTime = new Date()
+      fetch('http://willthisdofor.art/api/saveTime.php?time=' + newTime +  '&feedback=' + feedback)
+      this.setState( {lastTime: newTime})
+    }
   }
 
   render() {
