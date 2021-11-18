@@ -14,6 +14,7 @@ import { TS } from './TS';
 import { Remember } from './ Remember';
 import { VisionBoard } from './Vision Board';
 import { RandomIdea } from './RandomIdea';
+import  shit from './Playground';
 
 export class Sandbox extends React.Component {
   render() {
@@ -22,6 +23,7 @@ export class Sandbox extends React.Component {
         <div class="container">
           <div class="Main">
             <ColorPicker />
+            {shit()}
           </div>
           <div class="Stocks">
             <Stocks />
