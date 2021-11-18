@@ -38,8 +38,8 @@ export class Sandbox extends React.Component {
             <Notepad />
 
             <Motivation />
-            <EjaculationTimer />
             <RandomIdea />
+            <EjaculationTimer />
           </div>
         </div>
 
