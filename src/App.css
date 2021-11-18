@@ -215,4 +215,25 @@ a {
   transition-duration: 0.4s;
 
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  transition-duration: 0.4s;
+}
+
+#randomIdeaButton:hover {
+  background-color: rgb(2, 97, 2); /* Green */
+  color: white;
+}
+
+#ideasFile {
+  font-size: 15px;
+  text-align: left;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  /* margin: 0 auto; */
+  /* padding-top: 30px; */
+}
+
+#randomIdea {
+  /* text-align: center;
+  margin-top: 10px;
+  border: 1px solid red; */
 }
