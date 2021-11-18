@@ -13,6 +13,7 @@ import { EjaculationTimer } from './EjaculationTimer';
 import { TS } from './TS';
 import { Remember } from './ Remember';
 import { VisionBoard } from './Vision Board';
+import { RandomIdea } from './RandomIdea';
 
 export class Sandbox extends React.Component {
   render() {
@@ -38,6 +39,7 @@ export class Sandbox extends React.Component {
 
             <Motivation />
             <EjaculationTimer />
+            <RandomIdea />
           </div>
         </div>
 
