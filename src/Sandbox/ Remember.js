@@ -11,7 +11,8 @@ export class Remember extends React.Component {
             <br/><br/>
             What can I do today to be satisfied with this day ending? <br/>
             <input type="checkbox"  /> <a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a> <br/>
-            <input type="checkbox"  /> SDS
+            <input type="checkbox"  /> SDS <br/>
+            <input type="checkbox"  /> 10 mins of random Obsidian <br/>
 
             <TS />
         </div>
