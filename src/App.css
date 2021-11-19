@@ -158,6 +158,9 @@ a {
   border:1px solid white;
   height: 300px;
   background-color: rgb(28, 33, 54);
+  color: white;
+  font-size: 30px;
+  text-align: center;
 }
 
 #motivation {
