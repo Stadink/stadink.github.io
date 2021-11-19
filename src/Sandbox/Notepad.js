@@ -21,8 +21,6 @@ export class Notepad extends React.Component {
   }
   
   async handleNew() {
-    // const notepadText = await document.querySelector('#notepad').innerHTML;
-
     const docRef = doc(db, "SDSlog", moment().toString());
     const payload = {idea: this.state.value}
     await setDoc(docRef, payload);
