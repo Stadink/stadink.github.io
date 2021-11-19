@@ -12,6 +12,10 @@ export class Notepad extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  getText() {
+    return this.state.value;
+  }
+
   handleChange(event) {    
     this.setState({value: event.target.value});  
   }
@@ -23,13 +27,16 @@ export class Notepad extends React.Component {
     const payload = {idea: this.state.value}
     await setDoc(docRef, payload);
 
+    // this.setState({value: "Saved! Anything else?"});  
+    document.querySelector('#notepad').value = "Saved! Anything else?";
   }
 
   render() {
     return (
       <div id="notepadSection">
         <textarea id="notepad" contenteditable="true" autocomplete="off" onChange={this.handleChange}>
-          {this.state.value}
+          {this.getText()}
+
         </textarea> <br/>
         <button className="button" onClick={this.handleNew}>New</button>
       </div>
