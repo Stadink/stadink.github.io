@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Chemistry } from './Chemistry';
+// import  Shit from './Playground';
 
 
 const colorNames = ['Aquamarine', 'BlueViolet', 'Chartreuse', 'CornflowerBlue', 'Thistle', 'SpringGreen', 'SaddleBrown', 'PapayaWhip', 'MistyRose'];
@@ -20,6 +21,7 @@ export default function ColorPicker() {
        	     {colorName}
       	</button>
       ))}
+      {/* <Shit /> */}
     </div>
   );
 }

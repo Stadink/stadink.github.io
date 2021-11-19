@@ -1,35 +1,28 @@
 import { collection, onSnapshot } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import db from './firebase';
-// import firebase from 'firebase/compat/app';
 
-export default function Shit() {
-    // useEffect(
-    //     () =>
-    //       onSnapshot(collection(db, "colors"), (snapshot) =>
-    //         // setColors(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    //         console.log(snapshot)
-    //       ),
-    //     []
-    //   );
-        // const [SDSlog, setSDSlog] = useState([]);
-        // const [loading, setLoading] = useState(false);
+function Playground() {
+    const [data, setData] = useState([{ idea: "Loading...", id: "initial" }]);
 
-        // const ref = firebase.firestore().collection('SDSlog');
-
-        // if(loading) {
-        //     return <p>Loading...</p>;
-        // }
+    useEffect(
+      () =>
+        onSnapshot(collection(db, "SDSlog"), (snapshot) =>
+          // setColors(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+          // console.log(snapshot.docs.map(doc => doc.data()))
+          setData(snapshot.docs.map(doc => doc.data()))
+        ),
+      []
+    );
 
         return (
-            // <div>
+            <div>
                 <h1>IDK</h1>
-            //     {ref.map((idk) => (
-            //         <div key={idk.day}>
-            //             {idk.day}
-            //         </div>
-            //     ))}
-            // </div>
+                {data.map(item => (
+                    <h1>{item.idea}</h1>
+                ))}
+            </div>
         )
     }
 
+export default Playground;

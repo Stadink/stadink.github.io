@@ -4,13 +4,14 @@ import { Contact } from './Contact';
 import { Sandbox } from './Sandbox/Sandbox';
 import { Clock } from './Sandbox/Clock';
 import { Helmet } from 'react-helmet';
-import { collection, onSnapshot } from '@firebase/firestore';
+import { collection, onSnapshot, setDoc, doc } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import db from './Sandbox/firebase';
+import moment from 'moment';
 
 function App() {
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([{ idea: "Loading...", id: "initial" }]);
 
   useEffect(
     () =>
@@ -21,6 +22,15 @@ function App() {
       ),
     []
   );
+
+  const handleNew = async () => {
+    const notepadText = document.querySelector('#notepad').innerHTML;
+
+    const docRef = doc(db, "SDSlog", moment().toString());
+    const payload = {idea: notepadText}
+    await setDoc(docRef, payload);
+
+  }
 
   return (
     <div className="App">
@@ -34,6 +44,9 @@ function App() {
         <Contact />
         <Clock />
       </header>
+      {/* <button onClick={() => db.collection("SDSlog").add({ idea: "New Idea" })}>Add</button>  // good try copilot, but it didn't work*/}
+
+      <button className="button" onClick={handleNew}>New</button>
       {data.map(item => (
         <h1>{item.idea}</h1>
       ))}
