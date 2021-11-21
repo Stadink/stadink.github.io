@@ -4,7 +4,7 @@ import { Contact } from './Contact';
 import { Sandbox } from './Sandbox/Sandbox';
 import { Clock } from './Sandbox/Clock';
 import { Helmet } from 'react-helmet';
-import { collection, onSnapshot, setDoc, doc } from '@firebase/firestore';
+import { collection, onSnapshot, setDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import db from './Sandbox/firebase';
 import moment from 'moment';
@@ -13,9 +13,11 @@ function App() {
 
   const [data, setData] = useState([{ idea: "Loading...", id: "initial" }]);
 
-  useEffect(
-    () =>
-      onSnapshot(collection(db, "SDSlog"), (snapshot) =>
+  const collectionRef = collection(db, "SDSlog");
+  const q = query(collectionRef, orderBy("timestamp", "desc"));
+
+  useEffect(() => 
+      onSnapshot(q, (snapshot) =>
         // setColors(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
         // console.log(snapshot.docs.map(doc => doc.data()))
         setData(snapshot.docs.map(doc => doc.data()))
@@ -27,7 +29,7 @@ function App() {
     const notepadText = document.querySelector('#notepad').innerHTML;
 
     const docRef = doc(db, "SDSlog", moment().toString());
-    const payload = {idea: notepadText}
+    const payload = {idea: notepadText, timestamp: 'aaa'}
     await setDoc(docRef, payload);
 
   }
@@ -46,7 +48,8 @@ function App() {
       </header>
       {/* <button onClick={() => db.collection("SDSlog").add({ idea: "New Idea" })}>Add</button>  // good try copilot, but it didn't work*/}
 
-      <button className="button" onClick={handleNew}>New</button>
+      {/* <button className="button" onClick={handleNew}>New</button> */}
+      <u><h1>Firebase ideas:</h1></u>
       {data.map(item => (
         <h1>{item.idea}</h1>
       ))}

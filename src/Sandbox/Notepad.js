@@ -1,4 +1,4 @@
-import { collection, onSnapshot, setDoc, doc } from '@firebase/firestore';
+import { collection, onSnapshot, setDoc, doc, serverTimestamp } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import db from './firebase';
 import moment from 'moment';
@@ -22,7 +22,7 @@ export class Notepad extends React.Component {
   
   async handleNew() {
     const docRef = doc(db, "SDSlog", moment().toString());
-    const payload = {idea: this.state.value}
+    const payload = {idea: this.state.value, timestamp: serverTimestamp()}
     await setDoc(docRef, payload);
 
     // this.setState({value: "Saved! Anything else?"});  
