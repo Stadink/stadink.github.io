@@ -34,6 +34,11 @@ function App() {
 
   }
 
+  // const something=(event)=> {
+  //   if (event.keyCode === 13) {
+  //       console.log('enter')
+  //   }
+
   return (
     <div className="App">
       <Helmet>
@@ -49,7 +54,7 @@ function App() {
       {/* <button onClick={() => db.collection("SDSlog").add({ idea: "New Idea" })}>Add</button>  // good try copilot, but it didn't work*/}
 
       {/* <button className="button" onClick={handleNew}>New</button> */}
-      <u><h1>Firebase ideas:</h1></u>
+      <h1>💡<u> Firebase ideas:</u></h1>
       {data.map(item => (
         <h1>{item.idea}</h1>
       ))}
