@@ -26,14 +26,15 @@ export class Notepad extends React.Component {
     await setDoc(docRef, payload);
 
     // this.setState({value: "Saved! Anything else?"});  
-    document.querySelector('#notepad').value = "Saved! Anything else?";
+    document.querySelector('#notepad').value = "";
+    document.querySelector('#notepad').placeholder = "Saved! Anything else?";
   }
 
   render() {
     return (
       <div id="notepadSection">
-        <textarea id="notepad" contenteditable="true" autocomplete="off" onChange={this.handleChange}>
-          {this.getText()}
+        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange}>
+          
 
         </textarea> <br/>
         <button className="button" onClick={this.handleNew}>New</button>

@@ -39,6 +39,8 @@ function App() {
   //       console.log('enter')
   //   }
 
+  const elementExists = document.getElementById("VisionBoard")
+
   return (
     <div className="App">
       <Helmet>
@@ -55,9 +57,13 @@ function App() {
 
       {/* <button className="button" onClick={handleNew}>New</button> */}
       <h1>💡<u> Firebase ideas:</u></h1>
-      {data.map(item => (
-        <h1>{item.idea}</h1>
-      ))}
+
+      {
+        // document.getElementById("VisionBoard") &&
+        data.map(item => (
+          <h1>{item.idea}</h1>
+        ))
+      }
     </div>
   );
 }
