@@ -37,6 +37,15 @@ export class Notepad extends React.Component {
           
 
         </textarea> <br/>
+          <input type="radio" id="idea" name="fav_language" value="HTML"/>
+          <label for="idea">💡</label>
+
+          <input type="radio" id="toDo" name="fav_language" value="CSS"/>
+          <label for="toDo">✅</label>
+
+          <input type="radio" id="starred" name="fav_language" value="HTML"/>
+          <label for="starred">⭐</label><br/>
+
         <button className="button" onClick={this.handleNew}>Add</button>
       </div>
         
