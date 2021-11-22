@@ -7,7 +7,7 @@ import moment from 'moment';
 export class Notepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'Use me'};
+    this.state = {value: 'Any ideas or To-dos?'};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -37,7 +37,7 @@ export class Notepad extends React.Component {
           
 
         </textarea> <br/>
-        <button className="button" onClick={this.handleNew}>New</button>
+        <button className="button" onClick={this.handleNew}>Add</button>
       </div>
         
     );
