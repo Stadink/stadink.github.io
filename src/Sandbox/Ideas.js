@@ -8,7 +8,8 @@ export default function Ideas() {
 
     const [data, setData] = useState([{ idea: "Loading...", id: "initial" }]);
 
-    const collectionRef = collection(db, "SDSlog");
+    const collectionRef = collection(db, "ideas");
+    // const collectionRef = collection(db, "SDSlog");
   
     const q = query(collectionRef, orderBy("timestamp", "desc"));
 

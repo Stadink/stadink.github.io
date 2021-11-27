@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, setDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
+import { collection, onSnapshot, setDoc, doc, query, orderBy, where, serverTimestamp } from '@firebase/firestore';
 import db from './firebase';
 
 const toDoList = ['Make auto-toggle', 'Scrape ladirna.cz plants & add to Anki'];
@@ -12,7 +12,7 @@ export default function ToDoList() {
   const toDosCollectionRef = collection(db, "toDo");
 
   const qTodo = query(toDosCollectionRef, orderBy("timestamp", "desc"));
-  const qDone = query(toDosCollectionRef, orderBy("done", "desc"));
+  const qDone = query(toDosCollectionRef, where("done", ">", 0), orderBy("done", "desc"));
 
   useEffect(() => 
       onSnapshot(qTodo, (snapshotTodo) =>
@@ -43,12 +43,12 @@ export default function ToDoList() {
 
   return (
     <div id='toDoList'>
-      <p><b><u>To-do list:</u></b></p>
+      <h2>✅ <b><u>To-do list:</u></b></h2>
 
       {
         toDos.map(item => (
           // <div><input type="checkbox" onChange={setDone.bind(this)} value={ item.toDoItem }/> { item.toDoItem } </div>
-          <div><input type="checkbox" onClick={() => setDone(item.id, item.toDoItem)} /> { item.toDoItem } </div>
+          <h3><input type="checkbox" onClick={() => setDone(item.id, item.toDoItem)} /> { item.toDoItem } </h3>
         ))
       } <br />
 
