@@ -15,6 +15,7 @@ import { Remember } from './ Remember';
 import { VisionBoard } from './Vision Board';
 import { RandomIdea } from './RandomIdea';
 import  Playground from './Playground';
+import Ideas from './Ideas';
 
 export class Sandbox extends React.Component {
   render() {
@@ -23,8 +24,6 @@ export class Sandbox extends React.Component {
         <div class="container">
           <div class="Main">
             <ColorPicker />
-            {/* {Playground()}  */}
-                                    {/* WHY THE FUCK CAN'T I USE DB HERE I'M SO FUCKING FURIOUS!!! */}
           </div>
           <div class="Stocks">
             <Stocks />
@@ -54,6 +53,8 @@ export class Sandbox extends React.Component {
 
         <Pfive />
         <Squares />
+
+        <Ideas />
       </div>
     );
   }

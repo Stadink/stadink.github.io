@@ -6,6 +6,7 @@ export class Remember extends React.Component {
   render() {
     return (
         <div id="Remember">
+          💯% <br/>
             ⭐ Switch to thoughts in English
 
             <br/><br/>

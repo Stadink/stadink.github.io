@@ -7,7 +7,7 @@ import moment from 'moment';
 export class Notepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'Any ideas or To-dos?'};
+    this.state = {value: 'Any ideas or To-dos?', dbName: "Idk"};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -21,8 +21,16 @@ export class Notepad extends React.Component {
   }
   
   async handleNew() {
-    const docRef = doc(db, "SDSlog", moment().toString());
-    const payload = {idea: this.state.value, timestamp: serverTimestamp()}
+    const dbName = this.state.dbName;
+    const docRef = doc(db, dbName, moment().toString());
+    let payload;
+
+    if (dbName === "toDo") {
+      payload = {toDoItem: this.state.value, done: 0, timestamp: serverTimestamp()};
+    } else {
+      payload = {idea: this.state.value, timestamp: serverTimestamp()};
+    }
+
     await setDoc(docRef, payload);
 
     // this.setState({value: "Saved! Anything else?"});  
@@ -30,22 +38,26 @@ export class Notepad extends React.Component {
     document.querySelector('#notepad').placeholder = "Saved! Anything else?";
   }
 
+  setDatabaseName(event) {
+    console.log(event.target.value);
+    this.setState({dbName: event.target.value}); 
+  }
+
   render() {
     return (
       <div id="notepadSection">
-        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange}>
-          
+        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> <br />
+        saving to: {this.state.dbName}
+          <div onChange={this.setDatabaseName.bind(this)}>
+            <input type="radio" id="idea" name="fav_language" value="ideas"/>
+            <label for="idea">💡</label>
 
-        </textarea> <br/>
-          <input type="radio" id="idea" name="fav_language" value="HTML"/>
-          <label for="idea">💡</label>
+            <input type="radio" id="toDo" name="fav_language" value="toDo"/>
+            <label for="toDo">✅</label>
 
-          <input type="radio" id="toDo" name="fav_language" value="CSS"/>
-          <label for="toDo">✅</label>
-
-          <input type="radio" id="starred" name="fav_language" value="HTML"/>
-          <label for="starred">⭐</label><br/>
-
+            <input type="radio" id="starred" name="fav_language" value="starred"/>
+            <label for="starred">⭐</label><br/>
+          </div>
         <button className="button" onClick={this.handleNew}>Add</button>
       </div>
         

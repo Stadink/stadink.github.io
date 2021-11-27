@@ -14,6 +14,7 @@ function App() {
   const [data, setData] = useState([{ idea: "Loading...", id: "initial" }]);
 
   const collectionRef = collection(db, "SDSlog");
+
   const q = query(collectionRef, orderBy("timestamp", "desc"));
 
   useEffect(() => 
@@ -25,22 +26,9 @@ function App() {
     []
   );
 
-  const handleNew = async () => {
-    const notepadText = document.querySelector('#notepad').innerHTML;
-
-    const docRef = doc(db, "SDSlog", moment().toString());
-    const payload = {idea: notepadText, timestamp: 'aaa'}
-    await setDoc(docRef, payload);
-
-  }
-
-  // const something=(event)=> {
-  //   if (event.keyCode === 13) {
-  //       console.log('enter')
-  //   }
-
-  const elementExists = document.getElementById("VisionBoard")
-
+  // async setDone setDone() => {
+    
+  // }
   return (
     <div className="App">
       <Helmet>
@@ -53,17 +41,14 @@ function App() {
         <Contact />
         <Clock />
       </header>
-      {/* <button onClick={() => db.collection("SDSlog").add({ idea: "New Idea" })}>Add</button>  // good try copilot, but it didn't work*/}
-
-      {/* <button className="button" onClick={handleNew}>New</button> */}
+{/* 
       <h1>💡<u> Firebase ideas:</u></h1>
 
       {
-        // document.getElementById("VisionBoard") &&
         data.map(item => (
           <h1>{item.idea}</h1>
         ))
-      }
+      } */}
     </div>
   );
 }
