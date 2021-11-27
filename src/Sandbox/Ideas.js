@@ -25,7 +25,7 @@ export default function Ideas() {
 
     {
         data.map(item => (
-            <h2>{item.idea}</h2>
+            <h3>{item.idea}</h3>
         ))
     }
     </div>

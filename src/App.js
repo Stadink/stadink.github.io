@@ -11,24 +11,7 @@ import moment from 'moment';
 
 function App() {
 
-  const [data, setData] = useState([{ idea: "Loading...", id: "initial" }]);
 
-  const collectionRef = collection(db, "SDSlog");
-
-  const q = query(collectionRef, orderBy("timestamp", "desc"));
-
-  useEffect(() => 
-      onSnapshot(q, (snapshot) =>
-        // setColors(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-        // console.log(snapshot.docs.map(doc => doc.data()))
-        setData(snapshot.docs.map(doc => doc.data()))
-      ),
-    []
-  );
-
-  // async setDone setDone() => {
-    
-  // }
   return (
     <div className="App">
       <Helmet>
@@ -41,14 +24,6 @@ function App() {
         <Contact />
         <Clock />
       </header>
-{/* 
-      <h1>💡<u> Firebase ideas:</u></h1>
-
-      {
-        data.map(item => (
-          <h1>{item.idea}</h1>
-        ))
-      } */}
     </div>
   );
 }
