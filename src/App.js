@@ -8,6 +8,8 @@ import { collection, onSnapshot, setDoc, doc, query, orderBy, serverTimestamp } 
 import React, { useEffect, useState } from 'react';
 import db from './Sandbox/firebase';
 import moment from 'moment';
+import Tarot from './Tarot/Tarot';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
 
@@ -19,11 +21,24 @@ function App() {
         {/* <title>My Title</title> */}
         {/* <link rel="canonical" href="http://mysite.com/example" /> */}
       </Helmet>
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Contact />
-        <Clock />
-      </header>
+
+
+      <BrowserRouter>
+        <Switch>
+          <Route path="/">
+            <header className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <Contact />
+              <Clock />
+            </header>
+            <Tarot />
+          </Route>
+          <Route path="/tarot">
+            <Tarot />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+
     </div>
   );
 }

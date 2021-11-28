@@ -16,6 +16,7 @@ import { VisionBoard } from './Vision Board';
 import { RandomIdea } from './RandomIdea';
 import  Playground from './Playground';
 import Ideas from './Ideas';
+import Tarot from '../Tarot/Tarot';
 
 export class Sandbox extends React.Component {
   render() {
@@ -55,6 +56,7 @@ export class Sandbox extends React.Component {
         <Squares />
 
         <Ideas />
+        {/* <Tarot /> */}
       </div>
     );
   }
