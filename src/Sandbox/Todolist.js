@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, setDoc, doc, query, orderBy, where, serverTimestamp } from '@firebase/firestore';
+import { collection, onSnapshot, setDoc, updateDoc, doc, query, orderBy, where, serverTimestamp } from '@firebase/firestore';
 import db from './firebase';
 
 const toDoList = ['Make auto-toggle', 'Scrape ladirna.cz plants & add to Anki'];
@@ -41,6 +41,12 @@ export default function ToDoList() {
     setDoc(docRef, payload);
   }
 
+  const hideDoneItem = async (toDoItem) => {
+    console.log(toDoItem.id)
+    const docRef = doc(db, "toDo", toDoItem.id);
+    updateDoc(docRef, { hide: 1 });
+  }
+
   return (
     <div id='toDoList'>
       <h2>✅ <b><u>To-do list:</u></b></h2>
@@ -56,8 +62,7 @@ export default function ToDoList() {
         <summary>Done</summary>
         {
           done.map(item => (
-            // <div><input type="checkbox" onChange={setDone.bind(this)} value={ item.toDoItem }/> { item.toDoItem } </div>
-            <div><input type="checkbox" checked/> { item.toDoItem } </div>
+            item.hide == 1 ? null : <div><input type="checkbox" checked/> { item.toDoItem } <button onClick={() => hideDoneItem(item)}>×</button> </div>
           ))
         }
       </details> <br />
