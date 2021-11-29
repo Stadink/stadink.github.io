@@ -7,7 +7,7 @@ import moment from 'moment';
 export class Notepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'Any ideas or To-dos?', dbName: "Idk"};
+    this.state = {value: 'Any ideas or To-dos?', dbName: "ideas"};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -28,7 +28,7 @@ export class Notepad extends React.Component {
     if (dbName === "toDo") {
       payload = {toDoItem: this.state.value, done: 0, timestamp: serverTimestamp()};
     } else {
-      payload = {idea: this.state.value, timestamp: serverTimestamp()};
+      payload = {idea: this.state.value, timestamp: serverTimestamp(), hide: 0};
     }
 
     await setDoc(docRef, payload);

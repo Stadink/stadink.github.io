@@ -36,7 +36,7 @@ export default function ToDoList() {
     // console.log(id)
     const docRef = doc(db, "toDo", id);
 
-    const payload = {toDoItem: toDoItem, timestampDone: serverTimestamp(), done: 1}
+    const payload = {toDoItem: toDoItem, timestampDone: serverTimestamp(), done: 1, hide: 0};
 
     setDoc(docRef, payload);
   }
