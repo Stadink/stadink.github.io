@@ -54,8 +54,6 @@ export class Sandbox extends React.Component {
 
         <Pfive />
         <Squares />
-
-        <Ideas />
         {/* <Tarot /> */}
       </div>
     );
