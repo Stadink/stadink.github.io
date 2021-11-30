@@ -11,11 +11,11 @@ export default function Ideas() {
     const q = query(collectionRef, orderBy("timestamp", "desc"));
 
     useEffect(() => 
-    onSnapshot(q, (snapshot) =>
-      setData(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
-    ),
-  []
-);
+        onSnapshot(q, (snapshot) =>
+          setData(snapshot.docs.map(doc => ({...doc.data(), id: doc.id})))
+        ),
+      []
+    );
 
   const hideIdea = async (idea) => {
     console.log(idea)
