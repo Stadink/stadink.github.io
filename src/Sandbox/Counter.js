@@ -1,5 +1,5 @@
 import db from './firebase';
-import { collection, onSnapshot, setDoc, updateDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
+import { collection, onSnapshot, setDoc, updateDoc, doc, query, orderBy, serverTimestamp, getDoc } from '@firebase/firestore';
 import React, { useState, useEffect } from 'react';
 
 
@@ -70,10 +70,20 @@ export class Counter extends React.Component {
         await setDoc(docRef, payload);
       }
 
+
+    async getItemsDone() {
+        const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
+        const docSnapshot = await getDoc(docRef)
+        const data = docSnapshot.data();
+        console.log(data.done)
+        return data.done;
+    }
+
     render() {
         return (
             <div> <button onClick={()=>{this.addDayToFirebase()}}>Add</button> 
                 | Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()} 
+                <button onClick={()=>{this.getItemsDone()}}>Get</button>
             
                <br/> 
             
