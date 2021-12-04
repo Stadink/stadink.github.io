@@ -12,25 +12,10 @@ export class Counter extends React.Component {
 
     checkboxesCrossed() {
         let checkboxesCrossed = 0;
-        let itemsDone = [];
+        let itemsDone = this.itemsDone();
+            
+        checkboxesCrossed = itemsDone.length;
 
-        if(document.getElementById('Obsidian') !== null) {
-            // checkboxesCrossed = document.getElementById('Codecademy').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-            // checkboxesCrossed = document.getElementById('SDS').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-            // checkboxesCrossed = document.getElementById('Sport').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-            // checkboxesCrossed = document.getElementById('Obsidian').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-
-            let idk;
-            idk = document.getElementById('Codecademy').checked ? itemsDone.push('Codecademy') : null;
-            idk = document.getElementById('SDS').checked ? itemsDone.push('SDS') : null;
-            idk = document.getElementById('Sport').checked ? itemsDone.push('Sport') : null;
-            idk = document.getElementById('Obsidian').checked ? itemsDone.push('Obsidian') : null;
-
-            // checkboxesCrossed = document.getElementById('SDS').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-            // checkboxesCrossed = document.getElementById('Sport').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-            // checkboxesCrossed = document.getElementById('Obsidian').checked ? checkboxesCrossed+1 : checkboxesCrossed;
-            checkboxesCrossed = itemsDone.length;
-        }
         return checkboxesCrossed;
     }
 
@@ -43,6 +28,7 @@ export class Counter extends React.Component {
             idk = document.getElementById('SDS').checked ? itemsDone.push('SDS') : null;
             idk = document.getElementById('Sport').checked ? itemsDone.push('Sport') : null;
             idk = document.getElementById('Obsidian').checked ? itemsDone.push('Obsidian') : null;
+            idk = document.getElementById('Read').checked ? itemsDone.push('Read') : null;
         }
         return itemsDone;
     }
@@ -54,19 +40,6 @@ export class Counter extends React.Component {
 
         payload = {PM: this.checkboxesCrossed(), done: this.itemsDone(), timestamp: serverTimestamp()};
     
-        // if (dbName === "toDo") {
-        //   payload = {toDoItem: this.state.value, done: 0, timestamp: serverTimestamp()};
-        // } else {
-        //   payload = {idea: this.state.value, timestamp: serverTimestamp(), hide: 0};
-        // }
-    
-        // await setDoc(docRef, payload);
-    
-        // // this.setState({value: "Saved! Anything else?"});  
-        // document.querySelector('#notepad').value = "";
-        // document.querySelector('#notepad').placeholder = "Saved! Anything else?";
-        // console.log('docRef is: ' + docRef.data())
-        // return docRef
         await setDoc(docRef, payload);
       }
 
