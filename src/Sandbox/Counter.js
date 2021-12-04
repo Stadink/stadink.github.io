@@ -81,9 +81,7 @@ export class Counter extends React.Component {
 
     render() {
         return (
-            <div> <button onClick={()=>{this.addDayToFirebase()}}>Add</button> 
-                | Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()} 
-                <button onClick={()=>{this.getItemsDone()}}>Get</button>
+            <div> Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()} 
             
                <br/> 
             
