@@ -47,7 +47,7 @@ export class Notepad extends React.Component {
     return (
       <div id="notepadSection">
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> <br />
-        saving to: {this.state.dbName}
+        {/* saving to: {this.state.dbName} */}
           <div onChange={this.setDatabaseName.bind(this)}>
             <input type="radio" id="idea" name="fav_language" value="ideas"/>
             <label for="idea">💡</label>
