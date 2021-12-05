@@ -59,7 +59,7 @@ export default function ToDoList() {
       } <br />
 
       <details>
-        <summary>Done</summary>
+        <summary>Done ▼</summary>
         {
           done.map(item => (
             item.hide == 1 ? null : <div><input type="checkbox" checked/> { item.toDoItem } <button onClick={() => hideDoneItem(item)}>×</button> </div>

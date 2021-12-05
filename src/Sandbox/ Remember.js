@@ -113,8 +113,7 @@ export class Remember extends React.Component {
     return (
         <div id="Remember">
           <details open>
-            <summary></summary>
-              💯% <br/>
+            <summary>◭ 💯%</summary>
               ⭐ Switch to thoughts in English <br/><br/>
 
               What can I do today to be satisfied with this day ending? <br/>

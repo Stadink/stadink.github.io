@@ -7,7 +7,7 @@ export class Motivation extends React.Component {
     return (
         <div id="motivation">
                 <details>
-                  <summary>Important</summary>
+                  <summary>Important ▼</summary>
                   What can I do today to 📈 my self-esteem?
                   <div style={{'text-align' : 'right'}}>...to be honest</div>
 
