@@ -54,7 +54,7 @@ export class Counter extends React.Component {
 
     render() {
         return (
-            <div> Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()} 
+            <div> Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10
             
                <br/> 
             

@@ -42,8 +42,12 @@ export default function Tarot() {
       <h1><u>Tarot</u></h1>
         <img id='cardImg' src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br />
         <button class='button' onClick={() => newCard()}>new</button>
-        <p id="card">idk</p>
-        <p id="meaning">idk</p>
+        <h1 id="card">idk</h1>
+        <details>
+          <h2 id="meaning">idk</h2>
+        </details>
+        <br /><br /><br /><br />
+
     </div> 
   );
 }
