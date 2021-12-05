@@ -134,6 +134,8 @@ export class Remember extends React.Component {
   }
 
   componentDidMount() {
+    setInterval(() => {
       this.wtf()
+    }, 1500);
   }
 }
