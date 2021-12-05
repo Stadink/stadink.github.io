@@ -25,13 +25,17 @@ export default function Ideas() {
 
   return (
     <div id='Ideas'>
-      <h1>💡<u> Firebase ideas:</u></h1>
+      < br />
+      <details open>
+        <summary><b style={{fontSize : '2em'}}>💡<u> Firebase ideas:</u></b></summary>
+            {
+            data.map(item => (
+                item.hide == 0 ? <h3>{item.idea} <button onClick={() => hideIdea(item)}>×</button></h3> : null
+            ))
+        }
+      </details>
 
-    {
-        data.map(item => (
-            item.hide == 0 ? <h3>{item.idea} <button onClick={() => hideIdea(item)}>×</button></h3> : null
-        ))
-    }
+
     </div>
   );
 }

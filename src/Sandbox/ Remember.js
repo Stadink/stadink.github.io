@@ -113,12 +113,12 @@ export class Remember extends React.Component {
     return (
         <div id="Remember">
           <details open>
-            <summary>Important</summary>
+            <summary></summary>
               💯% <br/>
-              ⭐ Switch to thoughts in English
+              ⭐ Switch to thoughts in English <br/><br/>
 
-              <br/><br/>
               What can I do today to be satisfied with this day ending? <br/>
+
               <input id='Codecademy' checked={this.isDone('Codecademy')} type="checkbox" onChange={()=>{this.handleCheck('Codecademy')}} /> <a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a> <br/>
               <input id='SDS' checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> SDS <br/>
               <input id='Sport' checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> Sport <br/>
@@ -126,7 +126,8 @@ export class Remember extends React.Component {
               <input id='Read' checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read <br/>
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
-            {/* <TS /> */}
+
+
             <TranscendingSelf />
             <Ideas />
         </div>
