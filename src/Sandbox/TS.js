@@ -28,6 +28,7 @@ export class TS extends React.Component {
     getWeekNumber() {
         const total = Date.parse(new Date()) - Date.parse('Oct 19, 2021');
         const days = Math.floor( total/(1000*60*60*24*7) );
+        console.log(days)
         return days
     }
     getDayNumber() {
@@ -41,7 +42,7 @@ export class TS extends React.Component {
         <div id="TS">
             <h3>Week #{this.getWeekNumber()}</h3>
             <h3>Day {this.getDayNumber()}</h3>
-            <button onClick={ () => this.printTask() }>Week Task</button>
+            <button onClick={ () => this.getWeekNumber() }>Week Task</button>
             <button onClick={ () => this.printLesson() }>Day Lesson</button>
         </div>
     );
