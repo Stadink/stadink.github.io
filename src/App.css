@@ -52,6 +52,10 @@
   cursor: pointer;
   font-family: 'Carter One', cursive;
 }
+.button:hover {
+  background-color: rgb(66, 76, 121);
+  color: white;
+}
 
 .button1 {
   background-color: #061a72; 
