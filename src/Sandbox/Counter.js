@@ -52,12 +52,30 @@ export class Counter extends React.Component {
         return data.done;
     }
 
+    async get10DayAvg() {
+        let total = 0;
+        for(let i = 0; i < 10; i++) {
+            const docRef = doc(db, 'Days', `#${this.getTimeRemaining() + i }`);
+            const docSnapshot = await getDoc(docRef)
+            const data = docSnapshot.data();
+
+            console.log(`Data ${i}: ` + JSON.stringify(data))
+            if(JSON.stringify(data) !== undefined) {
+                total += data.PM;
+            }
+        }
+        console.log(`Total: ${total}`)
+        document.getElementById('lol').innerHTML = total/10;
+        return '4';
+    }
+
     render() {
         return (
-            <div> Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10
-            
-               <br/> 
-            
+            <div> 
+                <details onChange={this.get10DayAvg()}>
+                    <summary>Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10</summary>
+                    10 day avg: <b id='lol'>3</b>
+                </details>            
             </div>
         );
     }
