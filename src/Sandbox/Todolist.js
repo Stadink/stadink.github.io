@@ -49,14 +49,19 @@ export default function ToDoList() {
 
   return (
     <div id='toDoList'>
-      <h2>✅ <b><u>To-do list:</u></b></h2>
+      <details open>
+      <summary><h2>✅ <b><u>To-do list:</u></b></h2></summary>
 
-      {
-        toDos.map(item => (
-          // <div><input type="checkbox" onChange={setDone.bind(this)} value={ item.toDoItem }/> { item.toDoItem } </div>
-          <h3><input type="checkbox" onClick={() => setDone(item.id, item.toDoItem)} /> { item.toDoItem } </h3>
-        ))
-      } <br />
+        {
+          toDos.map(item => (
+            // <div><input type="checkbox" onChange={setDone.bind(this)} value={ item.toDoItem }/> { item.toDoItem } </div>
+            <h3><input type="checkbox" onClick={() => setDone(item.id, item.toDoItem)} /> { item.toDoItem } </h3>
+          ))
+        } 
+        
+        </details>
+        
+        <br />
 
       <details>
         <summary>Done ▼</summary>
