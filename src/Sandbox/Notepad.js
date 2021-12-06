@@ -51,7 +51,7 @@ export class Notepad extends React.Component {
     this.setState({text: ''}); 
     this.setState({placeholder: `saving to: ${event.target.value}`}); 
 
-    document.querySelector('#notepad').value = "";
+    // document.querySelector('#notepad').value = "";
   }
 
   getTimeRemaining(){
