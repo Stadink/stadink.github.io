@@ -21,7 +21,7 @@ export default function TranscendingSelf() {
     const getWeekNumber = () => {
         const total = Date.parse(new Date()) - Date.parse('Oct 17, 2021');
         const days = Math.floor( total/(1000*60*60*24*7) );
-        console.log('days' + days);
+
         return days
     }
     const getDayNumber = () => {

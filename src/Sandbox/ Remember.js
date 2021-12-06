@@ -37,7 +37,7 @@ export class Remember extends React.Component {
     // console.log(lol.includes('aa'))
     // const checked = await done.includes(item) ? 'true' : 'false';
     // console.log(`wtf why ${item} ` + checked)
-    console.log(done)
+    // console.log(done)
     return this.state.checked.includes(item)
   }
 
@@ -135,7 +135,8 @@ export class Remember extends React.Component {
 
   componentDidMount() {
     setInterval(() => {
-      this.wtf()
+      // this.wtf() // can I leave this like this for sync or should I just 
+      this.setState({ date: new Date() }); 
     }, 1500);
   }
 }

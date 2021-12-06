@@ -72,9 +72,10 @@ export class Counter extends React.Component {
     render() {
         return (
             <div> 
-                <details onChange={this.get10DayAvg()}>
+                <details onClick={() => { this.get10DayAvg() }}>
                     <summary>Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
-                    10 day avg: <b id='lol'>loading...</b>
+                    10 day avg: <b id='lol'>calculating...</b>
+                    {/* <button onClick={this.get10DayAvg}>Get 10 day avg</button> */}
                 </details>            
             </div>
         );
