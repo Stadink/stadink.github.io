@@ -1,4 +1,4 @@
-import { collection, onSnapshot, setDoc, doc, serverTimestamp, updateDoc } from '@firebase/firestore';
+import { collection, onSnapshot, getDoc, setDoc, doc, serverTimestamp, updateDoc } from '@firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import db from './firebase';
 import moment from 'moment';
@@ -7,17 +7,17 @@ import moment from 'moment';
 export class Notepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'Any ideas or To-dos?', dbName: "ideas"};
+    this.state = {placeholder: 'Any ideas or To-dos?', text: ' ', dbName: "ideas"};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   getText() {
-    return this.state.value;
+    return this.state.placeholder;
   }
 
   handleChange(event) {    
-    this.setState({value: event.target.value});
+    this.setState({text: event.target.value});
   }
   
   async handleNew() {
@@ -27,21 +27,20 @@ export class Notepad extends React.Component {
 
     switch(dbName) {
       case "ideas":
-        payload = {idea: this.state.value, timestamp: serverTimestamp(), hide: 0};
+        payload = {idea: this.state.text, timestamp: serverTimestamp(), hide: 0};
         await setDoc(docRef, payload);
         break;
       case "toDo":
-        payload = {toDoItem: this.state.value, done: 0, timestamp: serverTimestamp()};
+        payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
         await setDoc(docRef, payload);
         break;
       case 'dayNote':
-        payload = {note: this.state.value};
-        await updateDoc(docRef, payload);
+        this.addDayNote();
         break;
     }
-    this.setState({value: ''});
+    this.setState({text: ''});
+    this.setState({placeholder: 'Saved! Anything else?'});
     
-    // this.setState({value: "Saved! Anything else?"});  
     document.querySelector('#notepad').value = "";
     document.querySelector('#notepad').placeholder = "Saved! Anything else?";
   }
@@ -59,13 +58,25 @@ export class Notepad extends React.Component {
   }
 
   async addDayNote() {
-    const day = this.getTimeRemaining();
-    const docRef = doc(db, 'Days', `#${day.toString()}`);
+    const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
     let payload;
 
-    payload = {note: this.state.value, timestamp: serverTimestamp()};
+    payload = {note: this.state.text, timestamp: serverTimestamp()};
     
     await updateDoc(docRef, payload);
+  }
+
+  async getDayNote() {
+    const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
+    const docSnapshot = await getDoc(docRef)
+    const data = docSnapshot.data();
+    const dayNote = data.note;
+
+    console.log('Day note is: ' + dayNote);
+    this.setState({placeholder: ''});
+    this.setState({text: dayNote});
+    document.querySelector('#notepad').value = dayNote;
+
   }
 
   render() {
@@ -82,7 +93,7 @@ export class Notepad extends React.Component {
             <input type="radio" id="starred" name="fav_language" value="starred"/>
             <label for="starred">⭐</label> */}
 
-            <input type="radio" id="starred" name="fav_language" value="dayNote"/>
+            <input onClick={() => this.getDayNote()} type="radio" id="starred" name="fav_language" value="dayNote"/>
             <label for="starred">📝</label><br/>
           </div>
         <button className="button" onClick={this.handleNew}>Add</button>

@@ -25,7 +25,10 @@ export class Remember extends React.Component {
     const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
     const docSnapshot = await getDoc(docRef)
     const data = docSnapshot.data();
-    return data.done;
+    console.log('DATA IS: ' + JSON.stringify(data))
+    const items = data.done;
+    this.setState({checked: items}); 
+    return items;
   }
 
   isDone(item){
@@ -33,6 +36,7 @@ export class Remember extends React.Component {
     // const idk = await this.getItemsDone();
     // console.log(this.state.checked)
     const done = this.state.checked
+    console.log('DONE is: ' + done)
     // console.log(lol)
     // console.log(lol.includes('aa'))
     // const checked = await done.includes(item) ? 'true' : 'false';
@@ -41,12 +45,12 @@ export class Remember extends React.Component {
     return this.state.checked.includes(item)
   }
 
-  async wtf(){
-    // console.log('this.state.checked is ' + this.state.checked)
-    const items = await this.getItemsDone()
-    // console.log(items)
-    this.setState({checked: items}); 
-  }
+  // async wtf(){
+  //   // console.log('this.state.checked is ' + this.state.checked)
+  //   const items = await this.getItemsDone()
+  //   // console.log(items)
+  //   this.setState({checked: items}); 
+  // }
 
   async handleCheck(item){
     this.setState(prevState => ({
@@ -92,6 +96,7 @@ export class Remember extends React.Component {
   async addDayToFirebase() {
       const day = this.getTimeRemaining();
       const docRef = doc(db, 'Days', `#${day.toString()}`);
+      console.log('docRef is ' + docRef)
       let payload;
 
       payload = {PM: this.checkboxesCrossed(), done: this.itemsDone(), timestamp: serverTimestamp()};
@@ -100,13 +105,13 @@ export class Remember extends React.Component {
     }
 
 
-  async getItemsDone() {
-      const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
-      const docSnapshot = await getDoc(docRef)
-      const data = docSnapshot.data();
-      console.log(data.done)
-      return data.done;
-  }
+  // async getItemsDone() {
+  //     const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
+  //     const docSnapshot = await getDoc(docRef)
+  //     const data = docSnapshot.data();
+  //     console.log(data.done)
+  //     return data.done;
+  // }
 
 
   render() {
@@ -134,9 +139,11 @@ export class Remember extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(() => {
-      // this.wtf() // can I leave this like this for sync or should I just 
-      this.setState({ date: new Date() }); 
-    }, 1500);
+    this.getItemsDone();
+    // this.wtf()
+    // setInterval(() => {
+    //   this.wtf() // can I leave this like this for sync or should I just // ok I guess this is necesasry lol
+    //   // this.setState({ date: new Date() }); 
+    // }, 1500);
   }
 }
