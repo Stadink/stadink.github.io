@@ -93,6 +93,7 @@ export class Remember extends React.Component {
           idk = document.getElementById('Sport').checked ? itemsDone.push('Sport') : null;
           idk = document.getElementById('Obsidian').checked ? itemsDone.push('Obsidian') : null;
           idk = document.getElementById('Read').checked ? itemsDone.push('Read') : null;
+          idk = document.getElementById('Anki').checked ? itemsDone.push('Anki') : null;
       }
       return itemsDone;
   }
@@ -143,6 +144,7 @@ export class Remember extends React.Component {
               <input id='Sport' checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> Sport <br/>
               <input id='Obsidian' checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian <br/>
               <input id='Read' checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read <br/>
+              <input id='Anki' checked={this.isDone('Anki')} onChange={()=>{this.handleCheck('Anki')}} type="checkbox"  /> Anki <br/>
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
 
