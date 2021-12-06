@@ -32,6 +32,8 @@ export class Counter extends React.Component {
             idk = document.getElementById('Obsidian').checked ? itemsDone.push('Obsidian') : null;
             idk = document.getElementById('Read').checked ? itemsDone.push('Read') : null;
             idk = document.getElementById('Anki').checked ? itemsDone.push('Anki') : null;
+            idk = document.getElementById('Affirmation').checked ? itemsDone.push('Affirmation') : null;
+            idk = document.getElementById('SelfInquiry').checked ? itemsDone.push('SelfInquiry') : null;
         }
         return itemsDone;
     }

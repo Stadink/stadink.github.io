@@ -94,6 +94,8 @@ export class Remember extends React.Component {
           idk = document.getElementById('Obsidian').checked ? itemsDone.push('Obsidian') : null;
           idk = document.getElementById('Read').checked ? itemsDone.push('Read') : null;
           idk = document.getElementById('Anki').checked ? itemsDone.push('Anki') : null;
+          idk = document.getElementById('Affirmation').checked ? itemsDone.push('Affirmation') : null;
+          idk = document.getElementById('SelfInquiry').checked ? itemsDone.push('Self-Inquiry') : null;
       }
       return itemsDone;
   }
@@ -145,6 +147,8 @@ export class Remember extends React.Component {
               <input id='Obsidian' checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian <br/>
               <input id='Read' checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read <br/>
               <input id='Anki' checked={this.isDone('Anki')} onChange={()=>{this.handleCheck('Anki')}} type="checkbox"  /> Anki <br/>
+              <input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation  <br/>
+              <input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry  <br/>
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
 
