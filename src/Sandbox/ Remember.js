@@ -26,9 +26,13 @@ export class Remember extends React.Component {
     const docSnapshot = await getDoc(docRef)
     const data = docSnapshot.data();
     console.log('DATA IS: ' + JSON.stringify(data))
+    if (JSON.stringify(data) === undefined) {
+      this.addDayToFirebase();
+    } else {
     const items = data.done;
     this.setState({checked: items}); 
     return items;
+    }
   }
 
   isDone(item){
@@ -56,12 +60,12 @@ export class Remember extends React.Component {
     this.setState(prevState => ({
       checked: [...prevState.checked, item]
     }))
-    this.addDayToFirebase()
+    this.updateDayInFirebase()
   }
 
   reset(){
     this.setState({checked: []});
-    this.addDayToFirebase(); 
+    this.updateDayInFirebase(); 
   }
 
     getTimeRemaining(){
@@ -102,6 +106,17 @@ export class Remember extends React.Component {
       payload = {PM: this.checkboxesCrossed(), done: this.itemsDone(), timestamp: serverTimestamp()};
       
       await setDoc(docRef, payload);
+    }
+
+  async updateDayInFirebase() {
+      const day = this.getTimeRemaining();
+      const docRef = doc(db, 'Days', `#${day.toString()}`);
+      console.log('docRef is ' + docRef)
+      let payload;
+
+      payload = {PM: this.checkboxesCrossed(), done: this.itemsDone(), timestamp: serverTimestamp()};
+      
+      await updateDoc(docRef, payload);
     }
 
 

@@ -48,7 +48,8 @@ export class Notepad extends React.Component {
   setDatabaseName(event) {
     console.log(event.target.value);
     this.setState({dbName: event.target.value}); 
-    this.setState({value: `saving to: ${event.target.value}`}); 
+    this.setState({text: ''}); 
+    this.setState({placeholder: `saving to: ${event.target.value}`}); 
   }
 
   getTimeRemaining(){
@@ -70,13 +71,14 @@ export class Notepad extends React.Component {
     const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
     const docSnapshot = await getDoc(docRef)
     const data = docSnapshot.data();
-    const dayNote = data.note;
+    let dayNote = data.note;
 
     console.log('Day note is: ' + dayNote);
+    dayNote = dayNote === undefined ? '🤔' : dayNote;
+
     this.setState({placeholder: ''});
     this.setState({text: dayNote});
     document.querySelector('#notepad').value = dayNote;
-
   }
 
   render() {
