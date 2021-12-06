@@ -6,6 +6,8 @@ import React, { useState, useEffect } from 'react';
 export class Counter extends React.Component {
     getTimeRemaining(){
         const total = Date.parse('May 18, 2045') - Date.parse(new Date());
+        // console.log('NEW DATE IS: ' + new Date());
+        console.log('Time left lol: ' + total/(1000*60*60*24));
         const days = Math.floor( total/(1000*60*60*24) );
         return days
     }
