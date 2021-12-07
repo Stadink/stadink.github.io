@@ -37,9 +37,20 @@ export default function Tarot() {
     }
 
     const editMeaning = () => {
-        document.getElementById('meaningTarot').contentEditable = true;
-        document.getElementById('meaningTarot').style['text-decoration']='underline';
-        document.getElementById('saveButton').innerHTML = '💾'
+        let editing = document.getElementById('meaningTarot').contentEditable;
+
+        if (editing == 'false') {
+          document.getElementById('meaningTarot').contentEditable = true;
+          console.log('2. editing is: ' + editing);
+          document.getElementById('meaningTarot').style['text-decoration']='underline';
+          document.getElementById('saveButton').innerHTML = '💾'
+        } else {
+          document.getElementById('meaningTarot').contentEditable = false;
+          console.log('3. editing is: ' + editing);
+          document.getElementById('meaningTarot').style['text-decoration']='none';
+          document.getElementById('saveButton').innerHTML = '✏️'
+        }
+
     }
 
 
@@ -51,7 +62,7 @@ export default function Tarot() {
         <h1 id="card">idk</h1>
         <details open>
           <summary>▼</summary> <br />
-          <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={editMeaning}>✏️</button>
+          <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
         </details>
         <br /><br /><br /><br />
 
