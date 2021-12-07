@@ -37,20 +37,20 @@ export default function Tarot() {
     }
 
     const editMeaning = () => {
-        let editing = document.getElementById('meaningTarot').contentEditable;
-
-        if (editing == 'false') {
-          document.getElementById('meaningTarot').contentEditable = true;
-          console.log('2. editing is: ' + editing);
-          document.getElementById('meaningTarot').style['text-decoration']='underline';
-          document.getElementById('saveButton').innerHTML = '💾'
-        } else {
-          document.getElementById('meaningTarot').contentEditable = false;
-          console.log('3. editing is: ' + editing);
-          document.getElementById('meaningTarot').style['text-decoration']='none';
-          document.getElementById('saveButton').innerHTML = '✏️'
-        }
-
+      var meaning = document.getElementById("meaningTarot");
+      var saveButton = document.getElementById('saveButton');
+      
+      if (meaning.contentEditable == 'false') {
+        meaning.contentEditable = true;
+        meaning.style['text-decoration']='underline';
+        meaning.style.fontWeight = 'normal';
+        saveButton.innerHTML = '💾'
+      } else {
+        meaning.contentEditable = false;
+        meaning.style['text-decoration']='none';
+        meaning.style.fontWeight = 'bold';
+        saveButton.innerHTML = '✏️'
+      }
     }
 
 
