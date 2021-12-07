@@ -40,8 +40,8 @@ export default function Tarot() {
   return (
     <div id='Tarot'>
       <h1><u>Tarot</u></h1>
-        <img id='cardImg' src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br />
-        <button class='button' onClick={() => newCard()}>new</button>
+        <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br />
+        {/* <button class='button' onClick={() => newCard()}>new</button> */}
         <h1 id="card">idk</h1>
         <details>
           <h2 id="meaning">idk</h2>
