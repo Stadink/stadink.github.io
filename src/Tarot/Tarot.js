@@ -44,6 +44,7 @@ export default function Tarot() {
         {/* <button class='button' onClick={() => newCard()}>new</button> */}
         <h1 id="card">idk</h1>
         <details>
+          <summary>▼</summary>
           <h2 id="meaning">idk</h2>
         </details>
         <br /><br /><br /><br />
