@@ -33,7 +33,13 @@ export default function Tarot() {
 
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${card}.jpg`;
         document.getElementById('card').innerHTML = card;
-        document.getElementById('meaning').innerHTML = meaning;
+        document.getElementById('meaningTarot').innerHTML = meaning;
+    }
+
+    const editMeaning = () => {
+        document.getElementById('meaningTarot').contentEditable = true;
+        document.getElementById('meaningTarot').style['text-decoration']='underline';
+        document.getElementById('saveButton').innerHTML = '💾'
     }
 
 
@@ -43,9 +49,9 @@ export default function Tarot() {
         <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br />
         {/* <button class='button' onClick={() => newCard()}>new</button> */}
         <h1 id="card">idk</h1>
-        <details>
-          <summary>▼</summary>
-          <h2 id="meaning">idk</h2>
+        <details open>
+          <summary>▼</summary> <br />
+          <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={editMeaning}>✏️</button>
         </details>
         <br /><br /><br /><br />
 
