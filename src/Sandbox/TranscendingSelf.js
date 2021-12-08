@@ -19,9 +19,10 @@ export default function TranscendingSelf() {
     );
 
     const getWeekNumber = () => {
-        const total = Date.parse(new Date()) - Date.parse('Oct 17, 2021');
-        const days = Math.floor( total/(1000*60*60*24*7) );
-
+        const total = Date.parse(new Date()) - Date.parse('Oct 19, 2021');
+        const days = Math.floor(1 + (total/(1000*60*60*24*7)) );
+        // console.log('days is: ' + total/1000/60/60/24/7)
+        console.log(days)
         return days
     }
     const getDayNumber = () => {
@@ -38,19 +39,24 @@ export default function TranscendingSelf() {
     }
 
     const getWeekLesson = async () => {
-        const docRef = doc(db, 'Transcending Self', `Week #${getWeekNumber()}`);
+        // const docRef = doc(db, 'Transcending Self', `Week #${getWeekNumber()}`);
+        const docRef = doc(db, 'Transcending Self', `Week #8`);
         const docSnapshot = await getDoc(docRef)
+        const data = docSnapshot.data();
         // const data = await docSnapshot.data();
-        console.log('data is: ' + JSON.stringify(data))
-        return data;
+        // console.log('data is: ' + JSON.stringify(data))
+        console.log('data is: ' + JSON.stringify(data.lesson))
+        setData({lesson: 'idk'})
+        return data.id;
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
             <h3>Week #{getWeekNumber()}: {data.map(item => (<b>{item.Lesson}</b> ))}</h3> 
-
+            <button onClick={()=>getWeekNumber()}>getWeekNumber</button>
             {/* {data.map(item => (<b>{item[`day ${getDayNumber}`]}</b> ))} */}
             {data.map(item => (<h2>{item.task}</h2> ))}
+            {/* <h2>{getWeekLesson()}()</h2> */}
 
             {/* {console.log('Data is: ' + JSON.stringify(data))} */}
 
