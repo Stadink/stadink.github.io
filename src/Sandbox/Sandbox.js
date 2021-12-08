@@ -17,6 +17,7 @@ import { RandomIdea } from './RandomIdea';
 import  Playground from './Playground';
 import Ideas from './Ideas';
 import Tarot from '../Tarot/Tarot';
+import { Goals } from './Goals';
 
 export class Sandbox extends React.Component {
   render() {
@@ -41,7 +42,8 @@ export class Sandbox extends React.Component {
             <Notepad />
 
             <Motivation />
-            <RandomIdea />
+            <Goals />
+            {/* <RandomIdea /> */}
             <h3>Sexual energy is creative energy.</h3>
             <EjaculationTimer />
           </div>
