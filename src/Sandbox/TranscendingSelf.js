@@ -38,6 +38,11 @@ export default function TranscendingSelf() {
         console.log()
     }
 
+    const getURL = () => { 
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtZ09LVkcxT1lpdkU/view?mc_cid=d452140545&mc_eid=1f0a85948e&resourcekey=0-Uv9Zx996pCMAW67aizGM2A";
+        return URL
+    }
+
     const getWeekLesson = async () => {
         // const docRef = doc(db, 'Transcending Self', `Week #${getWeekNumber()}`);
         const docRef = doc(db, 'Transcending Self', `Week #11`);
@@ -53,7 +58,7 @@ export default function TranscendingSelf() {
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: {data.map(item => (<text>{item.Lesson11}</text> )) }</h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.Lesson11}</text> )) }</a> </h3> 
 
         <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
