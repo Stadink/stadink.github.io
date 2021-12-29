@@ -40,33 +40,28 @@ export default function TranscendingSelf() {
 
     const getWeekLesson = async () => {
         // const docRef = doc(db, 'Transcending Self', `Week #${getWeekNumber()}`);
-        const docRef = doc(db, 'Transcending Self', `Week #8`);
+        const docRef = doc(db, 'Transcending Self', `Week #11`);
         const docSnapshot = await getDoc(docRef)
         const data = docSnapshot.data();
         // const data = await docSnapshot.data();
         // console.log('data is: ' + JSON.stringify(data))
-        console.log('data is: ' + JSON.stringify(data.lesson))
-        setData({lesson: 'idk'})
-        return data.id;
+        console.log('data is: ' + JSON.stringify(data.Lesson))
+        // setData({lesson: 'idk'})
+        // return data.id;
+        return JSON.stringify(data.Lesson)
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-            <h3>Week #{getWeekNumber()}: {data.map(item => (<b>{item.Lesson}</b> ))}</h3> 
-            <button onClick={()=>getWeekNumber()}>getWeekNumber</button>
-            {/* {data.map(item => (<b>{item[`day ${getDayNumber}`]}</b> ))} */}
-            {data.map(item => (<h2>{item.task}</h2> ))}
-            {/* <h2>{getWeekLesson()}()</h2> */}
+        <h3>Week #{getWeekNumber()}: {data.map(item => (<text>{item.Lesson11}</text> )) }</h3> 
 
-            {/* {console.log('Data is: ' + JSON.stringify(data))} */}
+        <details>
+            <summary><b><u>Day {getDayNumber()}:</u></b></summary>
+            <h1>{JSON.stringify(data)}</h1>
+            <button onClick={ () => getWeekLesson() }>Console log</button>
+        </details>
 
-            <details>
-                <summary><b><u>Day {getDayNumber()}:</u></b></summary>
-                <h1>{JSON.stringify(data)}</h1>
-                <button onClick={ () => getWeekLesson() }>Console log</button>
-            </details>
-            {/* { parseData()} */}
-            <br/>
+        {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))}
     </div>
   );
 }
