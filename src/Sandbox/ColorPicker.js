@@ -16,6 +16,7 @@ export default function ColorPicker() {
       <Chemistry />
       {colorNames.map((colorName)=>(
         <button 
+          style={{'background-color': colorName}}
           onClick={() => setColor(colorName)} 
           key={colorName}>
        	     {colorName}
