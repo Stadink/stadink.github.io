@@ -27,7 +27,9 @@ export default function TranscendingSelf() {
     }
     const getDayNumber = () => {
         const total = Date.parse(new Date()) - Date.parse('Oct 19, 2021');
-        const days = Math.floor( total/(1000*60*60*24) % 7 );
+        let days = Math.floor( total/(1000*60*60*24) % 7 );
+        
+        days = days === 0 ? 7 : days;
         return days
     }
     // const parseData = () => {
