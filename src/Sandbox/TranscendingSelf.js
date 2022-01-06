@@ -41,7 +41,7 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtZ09LVkcxT1lpdkU/view?mc_cid=d452140545&mc_eid=1f0a85948e&resourcekey=0-Uv9Zx996pCMAW67aizGM2A";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtcGFjNDZUWTNJWjQ/view?mc_cid=35abcbdbbb&mc_eid=1f0a85948e&resourcekey=0-Ox-TXPkU-3HQVtzoGNvZNA";
         return URL
     }
 
@@ -60,15 +60,24 @@ export default function TranscendingSelf() {
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.Lesson11}</text> )) }</a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.Lesson12}</text> )) }</a> </h3> 
 
-        <details>
+        {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
             <h1>{JSON.stringify(data)}</h1>
             <button onClick={ () => getWeekLesson() }>Console log</button>
-        </details>
+        </details> */}
 
-        {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))}
+        {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
+        <b>WEEK WORK:</b> <br />
+            A. Notice all your thoughts and feelings about the world (reality). <br /><br />
+            B. Every once in a while, stop having them. At least once every day, notice your
+            thoughts and feelings about something; then stop them. Do your best to be conscious of
+            that something without having any thoughts and feelings about it.
+            <br /><br />
+            C. Keep the open question: what is the purpose for having these thoughts and feelings? <br /><br />
+            Day Seven: Writing exercise on this week's work <br /><br />
+
     </div>
   );
 }
