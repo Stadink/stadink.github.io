@@ -41,7 +41,7 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtcGFjNDZUWTNJWjQ/view?mc_cid=35abcbdbbb&mc_eid=1f0a85948e&resourcekey=0-Ox-TXPkU-3HQVtzoGNvZNA";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWteG1xZi1hU3ljUDg/view?mc_cid=b0ac365ac0&mc_eid=1f0a85948e&resourcekey=0-LNZpCN1MLVqDXwtWEG_5KA";
         return URL
     }
 
@@ -70,13 +70,21 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK WORK:</b> <br />
-            A. Notice all your thoughts and feelings about the world (reality). <br /><br />
-            B. Every once in a while, stop having them. At least once every day, notice your
-            thoughts and feelings about something; then stop them. Do your best to be conscious of
-            that something without having any thoughts and feelings about it.
+            A. From time to time, challenge the belief that there is such a thing as a mind, and notice what happens when you do.  <br /><br />
+            B. Consider the statement: the world is held as your thoughts and feelings about it, and those are held to be correct. Open up to the possibility that what is real and occurring may not be what you think and feel it is.
             <br /><br />
-            C. Keep the open question: what is the purpose for having these thoughts and feelings? <br /><br />
+            C. Main work: Notice that the feedback you get (judgements, assessments, interpretations) from your interactions reinforces where you are coming from. Try to work out and become conscious of this reinforcing cycle as it occurs within your daily experience.  <br /><br />
+
+            D. Special Assignment: Once during the week, find some shit (actual excrement) and
+notice any repulsion to it. Then concentrate on it until you can create the feeling of
+desire in relation to the shit. Notice what you go through to do so, and what happens
+when you do. Don't try to fit this into any framework or the rest of your week's work, just
+do it and observe what happens. <br /><br />
+
             Day Seven: Writing exercise on this week's work <br /><br />
+
+
+            <br /><br />
 
     </div>
   );
