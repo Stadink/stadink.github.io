@@ -53,6 +53,18 @@ export default function Tarot() {
       }
     }
 
+    const randomColor = () => {
+        var color = '#';
+        var letters = '0123456789ABCDEF';
+        
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        console.log(color);
+        // document.body.style.backgroundColor = color;
+        document.getElementById("Tarot").style.backgroundColor = color;
+    }
+
 
   return (
     <div id='Tarot'>
@@ -65,6 +77,7 @@ export default function Tarot() {
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
         </details>
         <br /><br /><br /><br />
+        <button onClick={() => randomColor()}>Random color</button>
 
     </div> 
   );
