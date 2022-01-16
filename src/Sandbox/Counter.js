@@ -76,10 +76,14 @@ export class Counter extends React.Component {
         return '4';
     }
 
+    copyToClipboard() {
+        navigator.clipboard.writeText('\nDay #' + this.getTimeRemaining() + '\n\n\n---\n');
+    }
+
     render() {
         return (
             <div> 
-                <details onClick={() => { this.get10DayAvg() }}>
+                <details onClick={() => { this.get10DayAvg(); this.copyToClipboard() }}>
                     <summary>Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b>
                     {/* <button onClick={this.get10DayAvg}>Get 10 day avg</button> */}
