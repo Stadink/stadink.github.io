@@ -77,7 +77,7 @@ export class Counter extends React.Component {
     }
 
     copyToClipboard() {
-        navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n');
+        navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
     }
 
     render() {
