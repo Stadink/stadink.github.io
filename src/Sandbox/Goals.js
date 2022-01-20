@@ -15,6 +15,7 @@ export class Goals extends React.Component {
         <div style={{'border' : '1px solid white', 'margin-left' : '10px'}} id="Goals">
             <h1><u>Goals</u></h1>
 
+            <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >OWN some Bitcoin</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Learn React & NodeJS</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Ralston's CAP while it's possible...</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Own 1 share of Tesla</h2><br />

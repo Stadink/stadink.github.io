@@ -41,13 +41,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWteG1xZi1hU3ljUDg/view?mc_cid=b0ac365ac0&mc_eid=1f0a85948e&resourcekey=0-LNZpCN1MLVqDXwtWEG_5KA";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtMzZHRHhuUm4tZDg/view?mc_cid=4419719211&mc_eid=1f0a85948e&resourcekey=0-waIGiY-OGLdX9g-Vft_MlA";
         return URL
     }
 
     const getWeekLesson = async () => {
         // const docRef = doc(db, 'Transcending Self', `Week #${getWeekNumber()}`);
-        const docRef = doc(db, 'Transcending Self', `Week #11`);
+        const docRef = doc(db, 'Transcending Self', `Lessons`);
         const docSnapshot = await getDoc(docRef)
         const data = docSnapshot.data();
         // const data = await docSnapshot.data();
@@ -60,7 +60,7 @@ export default function TranscendingSelf() {
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.Lesson13}</text> )) }</a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.lesson14}</text> )) }</a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,16 +70,14 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK WORK:</b> <br />
-            A. From time to time, challenge the belief that there is such a thing as a mind, and notice what happens when you do.  <br /><br />
-            B. Consider the statement: the world is held as your thoughts and feelings about it, and those are held to be correct. Open up to the possibility that what is real and occurring may not be what you think and feel it is.
+            1. Make the above distinctions about desire in your life.
             <br /><br />
-            C. Main work: Notice that the feedback you get (judgements, assessments, interpretations) from your interactions reinforces where you are coming from. Try to work out and become conscious of this reinforcing cycle as it occurs within your daily experience.  <br /><br />
+            2. Notice everything you are attracted to and repulsed by
 
-            D. Special Assignment: Once during the week, find some shit (actual excrement) and
-notice any repulsion to it. Then concentrate on it until you can create the feeling of
-desire in relation to the shit. Notice what you go through to do so, and what happens
-when you do. Don't try to fit this into any framework or the rest of your week's work, just
-do it and observe what happens. <br /><br />
+            *Make sure to also look at the little things. Notice if those little things are in fact just the
+            tip of the iceberg. They may reveal some larger dynamic in how you operate.
+            Day Seven: Writing exercise on this week's work.
+            <br /><br />
 
             Day Seven: Writing exercise on this week's work <br /><br />
 
