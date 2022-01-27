@@ -41,7 +41,7 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtMzZHRHhuUm4tZDg/view?mc_cid=4419719211&mc_eid=1f0a85948e&resourcekey=0-waIGiY-OGLdX9g-Vft_MlA";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtbFNKRUlxTkZEZkk/view?mc_cid=3c1591c020&mc_eid=1f0a85948e&resourcekey=0--1VI7sgsEUygWMRLsoMMhw";
         return URL
     }
 
@@ -60,7 +60,7 @@ export default function TranscendingSelf() {
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.lesson14}</text> )) }</a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.lesson15}</text> )) }</a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,13 +70,13 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK WORK:</b> <br />
-            1. Make the above distinctions about desire in your life.
+            1. Study the above points and questions. 
             <br /><br />
-            2. Notice everything you are attracted to and repulsed by
+            2. Question daily: What are attraction and repulsion? 
 
-            *Make sure to also look at the little things. Notice if those little things are in fact just the
-            tip of the iceberg. They may reveal some larger dynamic in how you operate.
-            Day Seven: Writing exercise on this week's work.
+            Observe being attracted to or repulsed by everything you encounter, and ask: What is
+            this activity? What's going on? What does it serve? Why do it? What "is" being attracted
+            or repulsed? Where do these come from? Why do they exist?
             <br /><br />
 
             Day Seven: Writing exercise on this week's work <br /><br />
