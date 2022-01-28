@@ -153,9 +153,12 @@ export class Remember extends React.Component {
 
               <details>
                 <summary><input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼ <br/></summary>
+                <marquee width="60%" direction="left" height="40px">
+                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
+                </marquee>
                 <Timer />
               </details>
-              
+
               <input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry  <br/>
               <input id='MarxCapital' checked={this.isDone('MarxCapital')} onChange={()=>{this.handleCheck('MarxCapital')}} type="checkbox"  /> Marx Capital  <br/>
               <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation <br/>
