@@ -73,7 +73,7 @@ export default function TranscendingSelf() {
             1. Do all of the exercises above and contemplate the questions.
             <br /><br />
             2. Question daily: What are attraction and repulsion? 
-            <br />
+            <br /><br />
             3. Choose a day (or two) and attempt to not act out or suppress anything that comes up
 for you. Try to fully feel and experience whatever arises internally for you without
 suppressing it, ignoring it, or acting on it (i.e. saying something to someone as a
