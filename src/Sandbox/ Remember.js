@@ -153,15 +153,22 @@ export class Remember extends React.Component {
 
               <details>
                 <summary><input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼ <br/></summary>
-                <marquee width="60%" direction="left" height="40px">
+                <marquee width="60%" direction="left" height="40px" scrollamount="12">
+                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
+                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
+                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
                   Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
                 </marquee>
                 <Timer />
               </details>
 
-              <input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry  <br/>
+              <details>
+                <summary><input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry ▼  <br/></summary>
+                Who am I? What am I? <br/>
+                <input type="text" id="WhoIamInput"></input> <br/>
+              </details>
               <input id='MarxCapital' checked={this.isDone('MarxCapital')} onChange={()=>{this.handleCheck('MarxCapital')}} type="checkbox"  /> Marx Capital  <br/>
-              <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation <br/>
+              <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/>
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
 
@@ -174,6 +181,8 @@ export class Remember extends React.Component {
 
   componentDidMount() {
     this.getItemsDone();
+    document.addEventListener("keydown", (e) => 
+        e.code === "Enter" && alert('yeah well, but who is aware of ' + document.getElementById('WhoIamInput').value));
     // this.wtf()
     // setInterval(() => {
     //   this.wtf() // can I leave this like this for sync or should I just // ok I guess this is necesasry lol
