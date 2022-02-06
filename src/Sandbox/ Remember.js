@@ -153,11 +153,30 @@ export class Remember extends React.Component {
 
               <details>
                 <summary><input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼ <br/></summary>
-                <marquee width="60%" direction="left" height="40px" scrollamount="12">
+                <marquee width="60%" direction="left" height="40px" scrollamount="18">
                   Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
                   Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
                   Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
                   Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
+
+                  Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
+                  Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
+                  Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
+
+                  Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. 
+                  Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. 
+                  Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. 
+
+                  I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. 
+                  I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. 
+
+
+                  I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others.
+                  I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others.
+                  I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others.
+
+                  Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. 
+                  Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. 
                 </marquee>
                 <Timer />
               </details>
