@@ -299,3 +299,13 @@ div#Tarot {background-color: aliceblue;}
   text-align: center;
   font-size: 16px;
 }
+
+/* Table 10-day-avg */
+table, th, td {
+  border: 1px solid white;
+}
+
+#table {
+  text-align: center;
+  width: 100%;
+}

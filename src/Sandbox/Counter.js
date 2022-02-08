@@ -80,14 +80,84 @@ export class Counter extends React.Component {
         navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
     }
 
+    fillValues() {
+        for(let i = 0; i < 10; i++) {
+            return <td>❌</td>
+        }
+    }
+
     render() {
         return (
             <div> 
                 <details onClick={() => { this.get10DayAvg(); this.copyToClipboard() }}>
                     <summary>Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b>
-                    {/* <button onClick={this.get10DayAvg}>Get 10 day avg</button> */}
-                </details>            
+
+                    <table  id="table">
+                        <tr>
+                            <th></th>
+                            <th>8510</th>
+                            <th>8509</th>
+                            <th>8508</th>
+                            <th>8507</th>
+                            <th>8506</th>
+                            <th>8505</th>
+                            <th>8504</th>
+                            <th>8503</th>
+                            <th>8502</th>
+                            <th>8501</th>
+                        </tr>
+                        <tr>
+                            <td>Codecademy</td>
+                            <td>✅</td>
+                            <td>❌</td>
+                        </tr>
+                            <tr>
+                            <td>SDS</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Sport</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Obsidian</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Read</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Anki</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Affirmation</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Self-enquiry</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                        <tr>
+                            <td>Marx Capital</td>
+                            <td>❌</td>
+                            <td>✅</td>
+                        </tr>
+                            <tr>
+                                <td>Contemplation</td>
+                                {this.fillValues()}
+                            </tr>
+                    </table>
+                </details>
             </div>
         );
     }
