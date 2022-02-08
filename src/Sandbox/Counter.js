@@ -76,6 +76,24 @@ export class Counter extends React.Component {
         return '4';
     }
 
+    async get10DayDone() {
+        let stuffDone = [];
+        for(let i = 0; i < 10; i++) {
+            const docRef = doc(db, 'Days', `#${this.getTimeRemaining() + i }`);
+            const docSnapshot = await getDoc(docRef)
+            const data = docSnapshot.data();
+
+            console.log(`Data ${i}: ` + JSON.stringify(data))
+            if(JSON.stringify(data) !== undefined) {
+                stuffDone.push(data.done);
+            }
+        }
+        console.log(`StuffDone: ${stuffDone}`)
+        return '4';
+    }
+
+
+
     copyToClipboard() {
         navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
     }
@@ -89,9 +107,9 @@ export class Counter extends React.Component {
     render() {
         return (
             <div> 
-                <details onClick={() => { this.get10DayAvg(); this.copyToClipboard() }}>
+                <details onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
                     <summary>Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
-                    10 day avg: <b id='lol'>calculating...</b>
+                    10 day avg: <b id='lol'>calculating...</b> <br/><br/>
 
                     <table  id="table">
                         <tr>
