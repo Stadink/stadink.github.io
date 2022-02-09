@@ -132,16 +132,16 @@ export class Counter extends React.Component {
                     <table  id="table">
                         <tr>
                             <th></th>
-                            <th>8510</th>
-                            <th>8509</th>
-                            <th>8508</th>
-                            <th>8507</th>
-                            <th>8506</th>
-                            <th>8505</th>
-                            <th>8504</th>
-                            <th>8503</th>
-                            <th>8502</th>
-                            <th>8501</th>
+                            <th>{ this.getTimeRemaining()+9 }</th>
+                            <th>{ this.getTimeRemaining()+8 }</th>
+                            <th>{ this.getTimeRemaining()+7 }</th>
+                            <th>{ this.getTimeRemaining()+6 }</th>
+                            <th>{ this.getTimeRemaining()+5 }</th>
+                            <th>{ this.getTimeRemaining()+4 }</th>
+                            <th>{ this.getTimeRemaining()+3 }</th>
+                            <th>{ this.getTimeRemaining()+2 }</th>
+                            <th>{ this.getTimeRemaining()+1 }</th>
+                            <th>{ this.getTimeRemaining() }</th>
                         </tr>
                         <tr>
                             <td>Codecademy</td>
