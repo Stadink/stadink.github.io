@@ -118,7 +118,11 @@ export class Counter extends React.Component {
         if(this.state.stuffDone[day].toString().includes(task)) {
             return '✅';
         } else {
-            return '❌';
+            if(day == 0){
+                return '⬜';
+            } else {
+                return '❌';
+            }
         }
     }
 
