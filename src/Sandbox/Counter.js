@@ -126,6 +126,19 @@ export class Counter extends React.Component {
         }
     }
 
+    getDayNumber(offset) {
+        const day = this.getTimeRemaining() + offset;
+        let daySelected;;
+        if(document.getElementById('DayNum') !== null){
+            daySelected = document.getElementById('DayNum').innerHTML;
+        }
+        if (daySelected === day.toString()) {
+            return <u><b><i>{day}</i></b></u>;
+        } else {
+            return day;
+        }
+    }
+
     render() {
         return (
             <div> 
@@ -136,16 +149,16 @@ export class Counter extends React.Component {
                     <table  id="table">
                         <tr>
                             <th></th>
-                            <th>{ this.getTimeRemaining()+9 }</th>
-                            <th>{ this.getTimeRemaining()+8 }</th>
-                            <th>{ this.getTimeRemaining()+7 }</th>
-                            <th>{ this.getTimeRemaining()+6 }</th>
-                            <th>{ this.getTimeRemaining()+5 }</th>
-                            <th>{ this.getTimeRemaining()+4 }</th>
-                            <th>{ this.getTimeRemaining()+3 }</th>
-                            <th>{ this.getTimeRemaining()+2 }</th>
-                            <th>{ this.getTimeRemaining()+1 }</th>
-                            <th>{ this.getTimeRemaining() }</th>
+                            <th>{ this.getDayNumber(9) }</th>
+                            <th>{ this.getDayNumber(8) }</th>
+                            <th>{ this.getDayNumber(7) }</th>
+                            <th>{ this.getDayNumber(6) }</th>
+                            <th>{ this.getDayNumber(5) }</th>
+                            <th>{ this.getDayNumber(4) }</th>
+                            <th>{ this.getDayNumber(3) }</th>
+                            <th>{ this.getDayNumber(2) }</th>
+                            <th>{ this.getDayNumber(1) }</th>
+                            <th>{ this.getDayNumber(0) }</th>
                         </tr>
                         <tr>
                             <td>Codecademy</td>

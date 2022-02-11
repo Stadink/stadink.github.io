@@ -87,6 +87,7 @@ export class Notepad extends React.Component {
     this.setState({placeholder: ''});
     this.setState({text: dayNote});
     document.querySelector('#notepad').value = dayNote;
+    // document.querySelector("//th[contains(.,'8496')]").innerHtml = 'Nice';
   }
 
   render() {
