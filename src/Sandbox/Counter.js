@@ -279,6 +279,8 @@ export class Counter extends React.Component {
                                 <td>{this.getStatus('Contemplation', 0)}</td>
                             </tr>
                     </table>
+                <button>←</button>
+                <button>→</button>
                 </details>
             </div>
         );
