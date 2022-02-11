@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtS2ppS1k1c0hkNUE/view?mc_cid=74ec7d4aab&mc_eid=1f0a85948e&resourcekey=0-RXJnpZig3vQ4213TnXqMfA";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtc254TUVZR3R6a1U/view?usp=drivesdk&resourcekey=0-8XHtJ0Y9Un9-cyRSb-_veQ";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> {data.map(item => (<text>{item.lesson16}</text> )) }</a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank"> CONFUSION</a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,19 +70,16 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK WORK:</b> <br />
-            1. Do all of the exercises above and contemplate the questions.
+            1. Observe "confusion" in your life.
             <br /><br />
-            2. Question daily: What are attraction and repulsion? 
+                        Notice whenever you're fusing one thing with another, or whenever you are adding
+            something on top of what's simply there. This is true a lot, so there's no need to search
+            very hard.<br /><br />
+            (Notice assumptions and meanings being fused with events, adding concepts to
+            everything, confusing people with judgments, etc.)
             <br /><br />
-            3. Choose a day (or two) and attempt to not act out or suppress anything that comes up
-for you. Try to fully feel and experience whatever arises internally for you without
-suppressing it, ignoring it, or acting on it (i.e. saying something to someone as a
-reaction to what they said or did or what you felt, or making gestures, pouting,
-screaming, leaving, slamming the door, mumbling, throwing a tantrum, dramatizing your
-"suffering," making a comment, etc. etc. etc.). Remember not to suppress these
-impulses either, don't try to "be good" or put on an "act" of not acting out, even subtly.
-You may communicate or take action, but these have to be distinct from being motivated
-by positive or negative emotional or reactive impulses (acting out).
+            2. Whenever you have the thought that you are confused, see if you can find what in
+your mind you are fusing together (confusing).
             <br /><br />
 
             Day Seven: Writing exercise on this week's work <br /><br />

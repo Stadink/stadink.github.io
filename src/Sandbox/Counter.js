@@ -4,6 +4,11 @@ import React, { useState, useEffect } from 'react';
 
 
 export class Counter extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { stuffDone: [] };
+      }
+      
     getTimeRemaining(){
         const total = Date.parse('May 18, 2045') - Date.parse(new Date());
         // console.log('NEW DATE IS: ' + new Date());
@@ -89,6 +94,7 @@ export class Counter extends React.Component {
             }
         }
         console.log(`StuffDone: ${JSON.stringify(stuffDone)}`)
+        this.setState({stuffDone: stuffDone})
         return '4';
     }
 
@@ -104,77 +110,177 @@ export class Counter extends React.Component {
         }
     }
 
+    getStatus(task, day) {
+        // console.log('Stuff done is: ' + this.state.stuffDone)
+        if(this.state.stuffDone[day] === undefined) {
+            return '⬜'
+        }
+        if(this.state.stuffDone[day].toString().includes(task)) {
+            return '✅';
+        } else {
+            if(day == 0){
+                return '⬜';
+            } else {
+                return '❌';
+            }
+        }
+    }
+
     render() {
         return (
             <div> 
                 <details onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
-                    <summary>Day #<u>{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
+                    <summary>Day #<u id="DayNum">{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b> <br/><br/>
 
                     <table  id="table">
                         <tr>
                             <th></th>
-                            <th>8510</th>
-                            <th>8509</th>
-                            <th>8508</th>
-                            <th>8507</th>
-                            <th>8506</th>
-                            <th>8505</th>
-                            <th>8504</th>
-                            <th>8503</th>
-                            <th>8502</th>
-                            <th>8501</th>
+                            <th>{ this.getTimeRemaining()+9 }</th>
+                            <th>{ this.getTimeRemaining()+8 }</th>
+                            <th>{ this.getTimeRemaining()+7 }</th>
+                            <th>{ this.getTimeRemaining()+6 }</th>
+                            <th>{ this.getTimeRemaining()+5 }</th>
+                            <th>{ this.getTimeRemaining()+4 }</th>
+                            <th>{ this.getTimeRemaining()+3 }</th>
+                            <th>{ this.getTimeRemaining()+2 }</th>
+                            <th>{ this.getTimeRemaining()+1 }</th>
+                            <th>{ this.getTimeRemaining() }</th>
                         </tr>
                         <tr>
                             <td>Codecademy</td>
-                            <td>✅</td>
-                            <td>❌</td>
+                            <td>{this.getStatus('Codecademy', 9)}</td>
+                            <td>{this.getStatus('Codecademy', 8)}</td>
+                            <td>{this.getStatus('Codecademy', 7)}</td>
+                            <td>{this.getStatus('Codecademy', 6)}</td>
+                            <td>{this.getStatus('Codecademy', 5)}</td>
+                            <td>{this.getStatus('Codecademy', 4)}</td>
+                            <td>{this.getStatus('Codecademy', 3)}</td>
+                            <td>{this.getStatus('Codecademy', 2)}</td>
+                            <td>{this.getStatus('Codecademy', 1)}</td>
+                            <td>{this.getStatus('Codecademy', 0)}</td>
+
                         </tr>
                             <tr>
                             <td>SDS</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('SDS', 9)}</td>
+                            <td>{this.getStatus('SDS', 8)}</td>
+                            <td>{this.getStatus('SDS', 7)}</td>
+                            <td>{this.getStatus('SDS', 6)}</td>
+                            <td>{this.getStatus('SDS', 5)}</td>
+                            <td>{this.getStatus('SDS', 4)}</td>
+                            <td>{this.getStatus('SDS', 3)}</td>
+                            <td>{this.getStatus('SDS', 2)}</td>
+                            <td>{this.getStatus('SDS', 1)}</td>
+                            <td>{this.getStatus('SDS', 0)}</td>
                         </tr>
                         <tr>
                             <td>Sport</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('Sport', 9)}</td>
+                            <td>{this.getStatus('Sport', 8)}</td>
+                            <td>{this.getStatus('Sport', 7)}</td>
+                            <td>{this.getStatus('Sport', 6)}</td>
+                            <td>{this.getStatus('Sport', 5)}</td>
+                            <td>{this.getStatus('Sport', 4)}</td>
+                            <td>{this.getStatus('Sport', 3)}</td>
+                            <td>{this.getStatus('Sport', 2)}</td>
+                            <td>{this.getStatus('Sport', 1)}</td>
+                            <td>{this.getStatus('Sport', 0)}</td>
                         </tr>
                         <tr>
                             <td>Obsidian</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('Obsidian', 9)}</td>
+                            <td>{this.getStatus('Obsidian', 8)}</td>
+                            <td>{this.getStatus('Obsidian', 7)}</td>
+                            <td>{this.getStatus('Obsidian', 6)}</td>
+                            <td>{this.getStatus('Obsidian', 5)}</td>
+                            <td>{this.getStatus('Obsidian', 4)}</td>
+                            <td>{this.getStatus('Obsidian', 3)}</td>
+                            <td>{this.getStatus('Obsidian', 2)}</td>
+                            <td>{this.getStatus('Obsidian', 1)}</td>
+                            <td>{this.getStatus('Obsidian', 0)}</td>
                         </tr>
                         <tr>
                             <td>Read</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('Read', 9)}</td>
+                            <td>{this.getStatus('Read', 8)}</td>
+                            <td>{this.getStatus('Read', 7)}</td>
+                            <td>{this.getStatus('Read', 6)}</td>
+                            <td>{this.getStatus('Read', 5)}</td>
+                            <td>{this.getStatus('Read', 4)}</td>
+                            <td>{this.getStatus('Read', 3)}</td>
+                            <td>{this.getStatus('Read', 2)}</td>
+                            <td>{this.getStatus('Read', 1)}</td>
+                            <td>{this.getStatus('Read', 0)}</td>
                         </tr>
                         <tr>
                             <td>Anki</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('Anki', 9)}</td>
+                            <td>{this.getStatus('Anki', 8)}</td>
+                            <td>{this.getStatus('Anki', 7)}</td>
+                            <td>{this.getStatus('Anki', 6)}</td>
+                            <td>{this.getStatus('Anki', 5)}</td>
+                            <td>{this.getStatus('Anki', 4)}</td>
+                            <td>{this.getStatus('Anki', 3)}</td>
+                            <td>{this.getStatus('Anki', 2)}</td>
+                            <td>{this.getStatus('Anki', 1)}</td>
+                            <td>{this.getStatus('Anki', 0)}</td>
                         </tr>
                         <tr>
                             <td>Affirmation</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('Affirmation', 9)}</td>
+                            <td>{this.getStatus('Affirmation', 8)}</td>
+                            <td>{this.getStatus('Affirmation', 7)}</td>
+                            <td>{this.getStatus('Affirmation', 6)}</td>
+                            <td>{this.getStatus('Affirmation', 5)}</td>
+                            <td>{this.getStatus('Affirmation', 4)}</td>
+                            <td>{this.getStatus('Affirmation', 3)}</td>
+                            <td>{this.getStatus('Affirmation', 2)}</td>
+                            <td>{this.getStatus('Affirmation', 1)}</td>
+                            <td>{this.getStatus('Affirmation', 0)}</td>
                         </tr>
                         <tr>
                             <td>Self-enquiry</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('Self-Inquiry', 9)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 8)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 7)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 6)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 5)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 4)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 3)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 2)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 1)}</td>
+                            <td>{this.getStatus('Self-Inquiry', 0)}</td>
                         </tr>
                         <tr>
                             <td>Marx Capital</td>
-                            <td>❌</td>
-                            <td>✅</td>
+                            <td>{this.getStatus('MarxCapital', 9)}</td>
+                            <td>{this.getStatus('MarxCapital', 8)}</td>
+                            <td>{this.getStatus('MarxCapital', 7)}</td>
+                            <td>{this.getStatus('MarxCapital', 6)}</td>
+                            <td>{this.getStatus('MarxCapital', 5)}</td>
+                            <td>{this.getStatus('MarxCapital', 4)}</td>
+                            <td>{this.getStatus('MarxCapital', 3)}</td>
+                            <td>{this.getStatus('MarxCapital', 2)}</td>
+                            <td>{this.getStatus('MarxCapital', 1)}</td>
+                            <td>{this.getStatus('MarxCapital', 0)}</td>
                         </tr>
                             <tr>
                                 <td>Contemplation</td>
-                                {this.fillValues()}
+                                <td>{this.getStatus('Contemplation', 9)}</td>
+                                <td>{this.getStatus('Contemplation', 8)}</td>
+                                <td>{this.getStatus('Contemplation', 7)}</td>
+                                <td>{this.getStatus('Contemplation', 6)}</td>
+                                <td>{this.getStatus('Contemplation', 5)}</td>
+                                <td>{this.getStatus('Contemplation', 4)}</td>
+                                <td>{this.getStatus('Contemplation', 3)}</td>
+                                <td>{this.getStatus('Contemplation', 2)}</td>
+                                <td>{this.getStatus('Contemplation', 1)}</td>
+                                <td>{this.getStatus('Contemplation', 0)}</td>
                             </tr>
                     </table>
+                {/* <button>←</button>
+                <button>→</button> */}
                 </details>
             </div>
         );
