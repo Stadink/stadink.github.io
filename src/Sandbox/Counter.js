@@ -88,7 +88,7 @@ export class Counter extends React.Component {
                 stuffDone.push(data.done);
             }
         }
-        console.log(`StuffDone: ${stuffDone}`)
+        console.log(`StuffDone: ${JSON.stringify(stuffDone)}`)
         return '4';
     }
 
