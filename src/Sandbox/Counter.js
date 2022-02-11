@@ -113,7 +113,7 @@ export class Counter extends React.Component {
     getStatus(task, day) {
         console.log('Stuff done is: ' + this.state.stuffDone)
         if(this.state.stuffDone[day] === undefined) {
-            return 'wtf'
+            return '⬜'
         }
         if(this.state.stuffDone[day].toString().includes(task)) {
             return '✅';
