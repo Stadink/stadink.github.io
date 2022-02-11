@@ -7,7 +7,7 @@ import moment from 'moment';
 export class Notepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {placeholder: 'Any ideas or To-dos?', text: ' ', dbName: "ideas"};
+    this.state = {placeholder: 'Any ideas or To-dos?', text: ' ', dbName: "ideas", day: 0};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -69,11 +69,17 @@ export class Notepad extends React.Component {
     await updateDoc(docRef, payload);
   }
 
-  async getDayNote() {
-    const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
+  async getDayNote(day) {
+    document.getElementById('DayNum').innerHTML = this.getTimeRemaining()+day;
+    const docRef = doc(db, 'Days', `#${this.getTimeRemaining()+day}`);
+    console.log('Daily note from Day #' + (this.getTimeRemaining()+day));
+    // console.log('Type is' + typeof (this.getTimeRemaining()+day));
     const docSnapshot = await getDoc(docRef)
     const data = docSnapshot.data();
-    let dayNote = data.note;
+    let dayNote;
+    if(data !== undefined) {
+      dayNote = data.note;
+    }
 
     console.log('Day note is: ' + dayNote);
     dayNote = dayNote === undefined ? '🤔' : dayNote;
@@ -86,6 +92,10 @@ export class Notepad extends React.Component {
   render() {
     return (
       <div id="notepadSection">
+        <button onClick={() => {this.getDayNote(this.state.day + 1);this.setState({ day: this.state.day + 1}) }}>←</button>
+        <button onClick={() => {this.getDayNote(this.state.day - 1);this.setState({ day: this.state.day - 1}) }}>→</button><br />
+        {/* {this.getTimeRemaining()+this.state.day} */}
+
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> <br />
           <div onChange={this.setDatabaseName.bind(this)}>
             <input type="radio" id="idea" name="fav_language" value="ideas"/>
@@ -97,7 +107,7 @@ export class Notepad extends React.Component {
             <input type="radio" id="starred" name="fav_language" value="starred"/>
             <label for="starred">⭐</label> */}
 
-            <input onClick={() => this.getDayNote()} type="radio" id="starred" name="fav_language" value="dayNote"/>
+            <input onClick={() => this.getDayNote(0)} type="radio" id="starred" name="fav_language" value="dayNote"/>
             <label for="starred">📝</label><br/>
           </div>
         <button className="button" onClick={this.handleNew}>Add</button>
