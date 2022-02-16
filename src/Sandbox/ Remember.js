@@ -186,7 +186,7 @@ export class Remember extends React.Component {
                 Who am I? What am I? <br/>
                 <input type="text" id="WhoIamInput"></input> <br/>
               </details>
-              <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  />Writing<br/>
+              <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  /><abbr title="~Honest externalization, so anyway... 🤔">Writing</abbr><br/>
               <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/>
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
