@@ -97,7 +97,7 @@ export class Remember extends React.Component {
           idk = document.getElementById('Anki').checked ? itemsDone.push('Anki') : null;
           idk = document.getElementById('Affirmation').checked ? itemsDone.push('Affirmation') : null;
           idk = document.getElementById('SelfInquiry').checked ? itemsDone.push('Self-Inquiry') : null;
-          idk = document.getElementById('MarxCapital').checked ? itemsDone.push('MarxCapital') : null;
+          idk = document.getElementById('Writing').checked ? itemsDone.push('Writing') : null;
           idk = document.getElementById('Contemplation').checked ? itemsDone.push('Contemplation') : null;
       }
       return itemsDone;
@@ -186,7 +186,7 @@ export class Remember extends React.Component {
                 Who am I? What am I? <br/>
                 <input type="text" id="WhoIamInput"></input> <br/>
               </details>
-              <input id='MarxCapital' checked={this.isDone('MarxCapital')} onChange={()=>{this.handleCheck('MarxCapital')}} type="checkbox"  /> Marx Capital  <br/>
+              <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  />Writing<br/>
               <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/>
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />

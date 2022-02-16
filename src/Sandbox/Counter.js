@@ -39,8 +39,8 @@ export class Counter extends React.Component {
             idk = document.getElementById('Anki').checked ? itemsDone.push('Anki') : null;
             idk = document.getElementById('Affirmation').checked ? itemsDone.push('Affirmation') : null;
             idk = document.getElementById('SelfInquiry').checked ? itemsDone.push('SelfInquiry') : null;
-            idk = document.getElementById('MarxCapital').checked ? itemsDone.push('MarxCapital') : null;
-            idk = document.getElementById('Contemplation').checked ? itemsDone.push('MarxCapital') : null;
+            idk = document.getElementById('Writing').checked ? itemsDone.push('Writing') : null;
+            idk = document.getElementById('Contemplation').checked ? itemsDone.push('Contemplation') : null;
         }
         return itemsDone;
     }
@@ -266,17 +266,17 @@ export class Counter extends React.Component {
                             <td>{this.getStatus('Self-Inquiry', 0)}</td>
                         </tr>
                         <tr>
-                            <td>Marx Capital</td>
-                            <td>{this.getStatus('MarxCapital', 9)}</td>
-                            <td>{this.getStatus('MarxCapital', 8)}</td>
-                            <td>{this.getStatus('MarxCapital', 7)}</td>
-                            <td>{this.getStatus('MarxCapital', 6)}</td>
-                            <td>{this.getStatus('MarxCapital', 5)}</td>
-                            <td>{this.getStatus('MarxCapital', 4)}</td>
-                            <td>{this.getStatus('MarxCapital', 3)}</td>
-                            <td>{this.getStatus('MarxCapital', 2)}</td>
-                            <td>{this.getStatus('MarxCapital', 1)}</td>
-                            <td>{this.getStatus('MarxCapital', 0)}</td>
+                            <td>Writing</td>
+                            <td>{this.getStatus('Writing', 9)}</td>
+                            <td>{this.getStatus('Writing', 8)}</td>
+                            <td>{this.getStatus('Writing', 7)}</td>
+                            <td>{this.getStatus('Writing', 6)}</td>
+                            <td>{this.getStatus('Writing', 5)}</td>
+                            <td>{this.getStatus('Writing', 4)}</td>
+                            <td>{this.getStatus('Writing', 3)}</td>
+                            <td>{this.getStatus('Writing', 2)}</td>
+                            <td>{this.getStatus('Writing', 1)}</td>
+                            <td>{this.getStatus('Writing', 0)}</td>
                         </tr>
                             <tr>
                                 <td>Contemplation</td>
