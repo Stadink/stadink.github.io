@@ -39,6 +39,8 @@ function App() {
         </Switch>
       </BrowserRouter>
 
+      I can do whatever here and it won't break stuff hehehe
+
     </div>
   );
 }
