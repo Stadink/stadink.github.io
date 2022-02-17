@@ -9,22 +9,24 @@ import React, { useEffect, useState } from 'react';
 import db from './Sandbox/firebase';
 import moment from 'moment';
 import Tarot from './Tarot/Tarot';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
 
 
   return (
-    <div className="App">
-      <Helmet>
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-        {/* <title>My Title</title> */}
-        {/* <link rel="canonical" href="http://mysite.com/example" /> */}
-      </Helmet>
-
-
-      <BrowserRouter>
+    <Router>
+          <div className="App">
+            <Helmet>
+              <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+              {/* <title>My Title</title> */}
+              {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+            </Helmet>
         <Switch>
+          <Route path="/tarot">
+            <Tarot />
+          </Route>
+
           <Route path="/">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
@@ -33,13 +35,10 @@ function App() {
             </header>
             <Tarot />
           </Route>
-          <Route path="/tarot">
-            <Tarot />
-          </Route>
+          
         </Switch>
-      </BrowserRouter>
-
     </div>
+    </Router>
   );
 }
 
