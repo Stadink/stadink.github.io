@@ -1,3 +1,9 @@
+# This is my Dashboard
+there are many like it, but this one is mine.
+it's unique.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
