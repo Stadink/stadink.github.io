@@ -22,7 +22,8 @@ export const Footer = () => {
       <Link to="/tarot">Tarot</Link>   | 
       <Link to="/chemistry">Chemistry</Link> |
       <Link to="/stocks">Stocks</Link> |
-      <Link to="/whatEats">WhatEats</Link>
+      <Link to="/whatEats">WhatEats</Link> |
+      <Link to="/dreams">Dreams</Link> |
       <br />
       <br />
       <button onClick={() => randomColor()}>Random color</button>
