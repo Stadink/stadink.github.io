@@ -15,8 +15,6 @@ export class Motivation extends React.Component {
                   <br/>
                   ⭐ Я люблю себя, хочу для себя лучшего, поэтому...
                 </details> <br />
-
-                <Link to="/tarot">Tarot</Link>
             <ToDoList />
         </div>
     );

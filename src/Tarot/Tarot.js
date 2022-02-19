@@ -53,22 +53,21 @@ export default function Tarot() {
       }
     }
 
-    const randomColor = () => {
-        var color = '#';
-        var letters = '0123456789ABCDEF';
+    // const randomColor = () => {
+    //     var color = '#';
+    //     var letters = '0123456789ABCDEF';
         
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        console.log(color);
-        // document.body.style.backgroundColor = color;
-        document.getElementById("Tarot").style.backgroundColor = color;
-    }
+    //     for (var i = 0; i < 6; i++) {
+    //         color += letters[Math.floor(Math.random() * 16)];
+    //     }
+    //     console.log(color);
+    //     // document.body.style.backgroundColor = color;
+    //     document.getElementById("Tarot").style.backgroundColor = color;
+    // }
 
 
   return (
-    <div id='Tarot'>
-      <h1><u>Tarot</u></h1>
+    <div id='Tarot'><br />
         <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br />
         {/* <button class='button' onClick={() => newCard()}>new</button> */}
         <h1 id="card">idk</h1>
@@ -77,7 +76,9 @@ export default function Tarot() {
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
         </details>
         <br /><br /><br /><br />
-        <button onClick={() => randomColor()}>Random color</button>
+        {/* <button onClick={() => randomColor()}>Random color</button> */}
+        <br />
+        <br />
 
     </div> 
   );

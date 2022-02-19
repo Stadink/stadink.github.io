@@ -25,7 +25,7 @@ export class Sandbox extends React.Component {
       <div id="sandbox">
         <div class="container">
           <div class="Main">
-            <ColorPicker />
+            <Chemistry />
           </div>
           <div class="Stocks">
             <Stocks />

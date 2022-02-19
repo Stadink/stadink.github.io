@@ -269,7 +269,10 @@ details > summary::-webkit-details-marker {
   display: inline;
 }
 
-div#Tarot {background-color: aliceblue;}
+div#Tarot {
+  /* background-color: aliceblue; */
+  margin-top: 3px;
+}
 
 /* Affirmation timer stuff */
 
@@ -309,4 +312,13 @@ table, th, td {
   text-align: center;
   width: 100%;
   margin-left: 1%;
+}
+
+#footer {
+  background-color: black;
+  margin-top: 3px;
+
+  /* position: fixed;
+  bottom: 0;
+  width: 100%; */
 }
