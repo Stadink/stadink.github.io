@@ -1,23 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ColorPicker from './ColorPicker';
-import { Stocks } from './Stocks';
-import { Buttons } from './Buttons'
-import { Chemistry } from './Chemistry';
-import { Counter } from './Counter';
-import { Notepad } from './Notepad';
-import { Motivation } from './Motivation';
-import Pfive from './Pfive';
-import Squares from './Squares';
-import { EjaculationTimer } from './EjaculationTimer';
-import { TS } from './TS';
-import { Remember } from './ Remember';
-import { VisionBoard } from './Vision Board';
-import { RandomIdea } from './RandomIdea';
-import  Playground from './Playground';
-import Ideas from './Ideas';
-import Tarot from '../Tarot/Tarot';
-import { Goals } from './Goals';
+import React from "react";
+import ReactDOM from "react-dom";
+import ColorPicker from "./ColorPicker";
+import { Stocks } from "./Stocks";
+import { Buttons } from "./Buttons";
+import { Chemistry } from "./Chemistry";
+import { Counter } from "./Counter";
+import { Notepad } from "./Notepad";
+import { Motivation } from "./Motivation";
+import Pfive from "./Pfive";
+import Squares from "./Squares";
+import { EjaculationTimer } from "./EjaculationTimer";
+import { TS } from "./TS";
+import { Remember } from "./ Remember";
+import { VisionBoard } from "./Vision Board";
+import { RandomIdea } from "./RandomIdea";
+import Playground from "./Playground";
+import Ideas from "./Ideas";
+import Tarot from "../Tarot/Tarot";
+import { Goals } from "./Goals";
 
 export class Sandbox extends React.Component {
   render() {

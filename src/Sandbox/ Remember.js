@@ -154,11 +154,11 @@ export class Remember extends React.Component {
               <details>
                 <summary><input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼ <br/></summary>
                 <marquee width="60%" direction="left" height="40px" scrollamount="18">
-                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
-                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
-                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
-                  Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен. Я силён, я способен, я достоин, я свободен.
-
+                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
+                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
+                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
+                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
+                  
                   Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
                   Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
                   Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
