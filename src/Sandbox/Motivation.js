@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ToDoList from './Todolist';
+import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 
 export class Motivation extends React.Component {
 
@@ -15,6 +16,7 @@ export class Motivation extends React.Component {
                   ⭐ Я люблю себя, хочу для себя лучшего, поэтому...
                 </details> <br />
 
+                <Link to="/tarot">Tarot</Link>
             <ToDoList />
         </div>
     );
