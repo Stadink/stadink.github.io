@@ -266,7 +266,7 @@ export class Counter extends React.Component {
                             <td>{this.getStatus('Self-Inquiry', 0)}</td>
                         </tr>
                         <tr>
-                            <td>Writing</td>
+                            <td><abbr title="One honest sentence mb?">Writing</abbr></td>
                             <td>{this.getStatus('Writing', 9)}</td>
                             <td>{this.getStatus('Writing', 8)}</td>
                             <td>{this.getStatus('Writing', 7)}</td>
