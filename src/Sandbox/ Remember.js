@@ -145,8 +145,8 @@ export class Remember extends React.Component {
               What can I do today to be satisfied with this day ending? <br/>
 
               <input id='Codecademy' checked={this.isDone('Codecademy')} type="checkbox" onChange={()=>{this.handleCheck('Codecademy')}} />👉<a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a>👈 <br/>
-              <input id='SDS' checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> SDS <br/>
-              <input id='Sport' checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> Sport <br/>
+              <input id='SDS' checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> SDS 🧘🏻‍♂️<br/>
+              <input id='Sport' checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> Sport 💪 <br/>
               <input id='Obsidian' checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian <br/>
               <input id='Read' checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read <br/>
               <input id='Anki' checked={this.isDone('Anki')} onChange={()=>{this.handleCheck('Anki')}} type="checkbox"  /> Anki <br/>
