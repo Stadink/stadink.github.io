@@ -18,7 +18,7 @@ export const Footer = () => {
   return (
     <div id="footer">
       <br />
-      <Link to="/">Dashboard</Link>   | 
+      <Link to="/build">Dashboard</Link>   | 
       <Link to="/tarot">Tarot</Link>   | 
       <Link to="/chemistry">Chemistry</Link> |
       <Link to="/stocks">Stocks</Link> |
