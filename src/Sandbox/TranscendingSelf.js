@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtdTlUQ1RUYVVSbHc/view?mc_cid=c752de74b1&mc_eid=1f0a85948e&resourcekey=0-uTMMG1j4dsLEDhJgUV3y7Q";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtSmdadlBqVjFpc2c/view?mc_cid=2c00e82ffb&mc_eid=1f0a85948e&resourcekey=0-15KMKsZdTjV1SxvHG_uRgQ";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     MIND AND PERCEPTION     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     WHAT IS AN EMOTION?     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -69,19 +69,11 @@ export default function TranscendingSelf() {
         </details> */}
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
-        <b>WEEK WORK:</b> <br />
-            1. Observe:<br />
-            How much does your thinking influence or create what you perceive as reality?<br /><br />
-            2. As much as you can, observe the application of interpretation and meaning being
-added to what you perceive.
+        <b>WEEK'S WORK:</b> <br />
+            1. Watch how much you are controlled by circumstances and by your own reactions.<br />
+            2. Watch how much you manipulate circumstances and your reactions.<br />
+            3. Watch how much you are controlled by your efforts to control circumstances and your reactions.
             <br /><br />
-
-            Since these happen so fast and you are not used to recognizing them, this may take
-some work and you may have to isolate one experience at a time and try to break it
-down until you can discern what about it was your interpretation and what was the
-meaning you gave it. After doing several of these, you should be able to see the activity
-of interpretation and meaning more quickly. Try to reach the point were you can do it
-"live," as the perception is happening.<br /><br />
 
             Day Seven: Writing exercise on this week's work <br /><br />
 
