@@ -145,7 +145,7 @@ a {
   grid-area: Motivation;
   max-height: 300;
   border:1px solid rgb(255, 255, 255);
-  min-width: 180xp;
+  min-width: 180px;
 }
 
 .Clock { 
@@ -167,7 +167,7 @@ a {
   font-size: 30px;
   text-align: center;
   margin-bottom: 0px;
-  min-width: 150px;
+  max-width: 150px;
   max-height: 150px;
 }
 
