@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtSmdadlBqVjFpc2c/view?mc_cid=2c00e82ffb&mc_eid=1f0a85948e&resourcekey=0-15KMKsZdTjV1SxvHG_uRgQ";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtaTU0WkllOU4yZlE/view?mc_cid=24344b87a6&mc_eid=1f0a85948e&resourcekey=0-j9QLDc1w-tIJHiHyGSUo2w";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     WHAT IS AN EMOTION?     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     BOTTOM LINES     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
