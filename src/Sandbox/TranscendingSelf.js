@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtaTU0WkllOU4yZlE/view?mc_cid=24344b87a6&mc_eid=1f0a85948e&resourcekey=0-j9QLDc1w-tIJHiHyGSUo2w";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtcllTYTU0bmZ1LXM/view?mc_cid=e7a2355f01&mc_eid=1f0a85948e&resourcekey=0-2gbxfl05rxhYiSw85VS8xg";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     BOTTOM LINES     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     SELF SURVIVAL     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,14 +70,18 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK'S WORK:</b> <br />
-            1. Watch how much you are controlled by circumstances and by your own reactions.<br />
-            2. Watch how much you manipulate circumstances and your reactions.<br />
-            3. Watch how much you are controlled by your efforts to control circumstances and your reactions.
-            <br /><br />
+        1. Experience the principle of self-survival in everything you experience - <br />what you think, feel, do.<br /><br />
+        This is not easy. It takes work. Begin with what is obvious to you, some selfish act that is
+        clearly done to protect or serve your ego, or the physical act of getting out of the way of
+        a moving car. Recognize how this is self-survival. Then work your way up to noticing
+        once again that your thoughts and emotions are manipulations. Uncover what it is you
+        are maintaining, and that through this act you are persisting as your self in some way.
 
-            Day Seven: Writing exercise on this week's work <br /><br />
+        Then begin to tackle everything, from nice behavior and seemingly altruistic acts to
+        petty and insignificant thoughts, feelings, or actions. See how these relate to your self.
+        Really experience it, don't just rely on intellectual connections.<br /><br />
 
-
+        2. Do your writing assignment.
             <br /><br />
 
     </div>
