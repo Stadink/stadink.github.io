@@ -142,7 +142,7 @@ export class Counter extends React.Component {
     render() {
         return (
             <div> 
-                <details onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
+                <details  id="TableDiv" onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
                     <summary>Day #<u id="DayNum">{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b> <br/><br/>
 

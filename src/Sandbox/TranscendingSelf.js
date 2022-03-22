@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtcllTYTU0bmZ1LXM/view?mc_cid=e7a2355f01&mc_eid=1f0a85948e&resourcekey=0-2gbxfl05rxhYiSw85VS8xg";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtS1ZGM1V1M1IyOFU/view?mc_cid=8a3031151e&mc_eid=1f0a85948e&resourcekey=0-YY9cUB8APENtT0ItgNBDig";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     SELF SURVIVAL     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     COMPLETION     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,18 +70,13 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK'S WORK:</b> <br />
-        1. Experience the principle of self-survival in everything you experience - <br />what you think, feel, do.<br /><br />
-        This is not easy. It takes work. Begin with what is obvious to you, some selfish act that is
-        clearly done to protect or serve your ego, or the physical act of getting out of the way of
-        a moving car. Recognize how this is self-survival. Then work your way up to noticing
-        once again that your thoughts and emotions are manipulations. Uncover what it is you
-        are maintaining, and that through this act you are persisting as your self in some way.
+        1. Do the exercise above until you develop some facility in completing things.<br /><br />
 
-        Then begin to tackle everything, from nice behavior and seemingly altruistic acts to
-        petty and insignificant thoughts, feelings, or actions. See how these relate to your self.
-        Really experience it, don't just rely on intellectual connections.<br /><br />
+        2. Practice completing your relation to people and events in your life.<br />
+        Stay conscious of what's happening when you complete something, and even when you fail to complete
+        something.<br /><br />
 
-        2. Do your writing assignment.
+        3. Do your writing assignment.
             <br /><br />
 
     </div>
