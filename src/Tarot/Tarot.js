@@ -53,17 +53,33 @@ export default function Tarot() {
       }
     }
 
-    // const randomColor = () => {
-    //     var color = '#';
-    //     var letters = '0123456789ABCDEF';
-        
-    //     for (var i = 0; i < 6; i++) {
-    //         color += letters[Math.floor(Math.random() * 16)];
-    //     }
-    //     console.log(color);
-    //     // document.body.style.backgroundColor = color;
-    //     document.getElementById("Tarot").style.backgroundColor = color;
+    // const saveColor = () => {
+    //   const docRef = doc(db, 'Colors', 'Tarot');
+    //   let payload;
+  
+    //   switch(dbName) {
+    //     case "ideas":
+    //       payload = {'idea: this.state.text, timestamp: serverTimestamp(), hide: 0'};
+    //       await setDoc(docRef, payload);
+    //       break;
+    //     case "toDo":
+    //       payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
+    //       await setDoc(docRef, payload);
+    //       break;
+    //     case 'dayNote':
+    //       this.addDayNote();
+    //       break;
+    //   }
+    //   this.setState({text: ''});
+    //   this.setState({placeholder: 'Saved! Anything else?'});
+      
+    //   document.querySelector('#notepad').value = "";
+    //   document.querySelector('#notepad').placeholder = "Saved! Anything else?";
     // }
+
+    const setColor = () => {
+      document.body.style.backgroundColor = '#9A9CA7';
+    }
 
 
   return (
@@ -76,10 +92,12 @@ export default function Tarot() {
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
         </details>
         <br /><br /><br /><br />
-        {/* <button onClick={() => randomColor()}>Random color</button> */}
         <br />
         <br />
-
+        <button id="colorButton" onClick={ () => setColor()}>⠀</button>
+          <button><u id="colorName">#9A9CA7 </u></button>
+        <button onClick={() => newCard()}>💾</button>
+        {/* <button>💾</button> */}
     </div> 
   );
 }

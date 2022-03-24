@@ -12,7 +12,8 @@ export const Footer = () => {
         }
         console.log(color);
         document.body.style.backgroundColor = color;
-        // document.getElementById(selector).style.backgroundColor = color;
+        document.getElementById("colorButton").style.backgroundColor = '#9A9CA7' // color;
+        document.getElementById("colorName").innerText = color;
     }
 
   return (
