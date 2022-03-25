@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, setDoc, getDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
+import React, { setState, useState, useEffect } from 'react';
+import { collection, onSnapshot, setDoc, arrayUnion, updateDoc, getDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
 import db from '../Sandbox/firebase';
 import tarot from '../Tarot/tarot.json';
 
 
 export default function Tarot() {
 
-    const [data, setData] = useState([{ card: "Loading...", id: "initial" }]);
+    const [data, setData] = useState([{ colors: ["Loading..."]}]);
 
-    const collectionRef = collection(db, "Tarot");
+    const collectionRef = collection(db, "Colors");
   
-    const q = query(collectionRef, orderBy("timestamp", "desc"));
+    const q = query(collectionRef);
 
     useEffect(() => 
         onSnapshot(q, (snapshot) =>
@@ -53,32 +53,21 @@ export default function Tarot() {
       }
     }
 
-    // const saveColor = () => {
-    //   const docRef = doc(db, 'Colors', 'Tarot');
-    //   let payload;
-  
-    //   switch(dbName) {
-    //     case "ideas":
-    //       payload = {'idea: this.state.text, timestamp: serverTimestamp(), hide: 0'};
-    //       await setDoc(docRef, payload);
-    //       break;
-    //     case "toDo":
-    //       payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
-    //       await setDoc(docRef, payload);
-    //       break;
-    //     case 'dayNote':
-    //       this.addDayNote();
-    //       break;
-    //   }
-    //   this.setState({text: ''});
-    //   this.setState({placeholder: 'Saved! Anything else?'});
-      
-    //   document.querySelector('#notepad').value = "";
-    //   document.querySelector('#notepad').placeholder = "Saved! Anything else?";
-    // }
 
-    const setColor = () => {
-      document.body.style.backgroundColor = '#9A9CA7';
+    const setColor = (color) => {
+      document.body.style.backgroundColor = color;
+    }
+
+    const saveColor = async () => {
+      const docRef = doc(db, 'Colors', 'Tarot');
+      const color = document.getElementById('colorName').innerText;
+      let payload = {colors: arrayUnion(color)};
+      
+      // console.log(data[0].colors);
+      // setState({colors: data[0].colors});
+      // console.log(this.state.colors)
+      // console.log(data.colors)
+      await updateDoc(docRef, payload);
     }
 
 
@@ -94,10 +83,13 @@ export default function Tarot() {
         <br /><br /><br /><br />
         <br />
         <br />
-        <button id="colorButton" onClick={ () => setColor()}>⠀</button>
+        {   
+            data['0'].colors.map((color, index) => (
+              <button onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
+            ))
+        }
           <button><u id="colorName">#9A9CA7 </u></button>
-        <button onClick={() => newCard()}>💾</button>
-        {/* <button>💾</button> */}
+        <button onClick={() => saveColor()}>💾</button>
     </div> 
   );
 }
