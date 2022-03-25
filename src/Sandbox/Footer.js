@@ -12,7 +12,7 @@ export const Footer = () => {
         }
         console.log(color);
         document.body.style.backgroundColor = color;
-        document.getElementById("colorName").innerText = color;
+        // document.getElementById("colorName").innerText = color;
     }
     
 

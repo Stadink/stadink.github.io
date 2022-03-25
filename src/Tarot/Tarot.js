@@ -60,7 +60,8 @@ export default function Tarot() {
 
     const saveColor = async () => {
       const docRef = doc(db, 'Colors', 'Tarot');
-      const color = document.getElementById('colorName').innerText;
+      // const color = document.getElementById('colorName').innerText;
+      const color = document.body.style.backgroundColor ;
       let payload = {colors: arrayUnion(color)};
       
       // console.log(data[0].colors);
@@ -88,7 +89,7 @@ export default function Tarot() {
               <button onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
             ))
         }
-          <button><u id="colorName">#9A9CA7 </u></button>
+          {/* <button><u id="colorName">#9A9CA7 </u></button> */}
         <button onClick={() => saveColor()}>💾</button>
     </div> 
   );
