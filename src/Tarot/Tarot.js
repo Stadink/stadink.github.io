@@ -19,6 +19,12 @@ export default function Tarot() {
         []
     );
 
+    useEffect(
+      () => {
+          newCard();
+      }
+  )
+
     const newCard = async () => {
         const random = Math.floor(Math.random() * tarot.length + 1);
         console.log('random num is: ' + random);

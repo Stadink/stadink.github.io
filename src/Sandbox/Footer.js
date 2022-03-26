@@ -1,5 +1,7 @@
 // Whatever, idk
 import { Link } from "react-router-dom";
+import React, { setState, useState, useEffect } from 'react';
+
 
 export const Footer = () => {
 
@@ -14,6 +16,12 @@ export const Footer = () => {
         document.body.style.backgroundColor = color;
         // document.getElementById("colorName").innerText = color;
     }
+
+    useEffect(
+        () => {
+            randomColor();
+        }
+    )
     
 
   return (
