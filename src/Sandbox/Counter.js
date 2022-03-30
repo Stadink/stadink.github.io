@@ -91,6 +91,8 @@ export class Counter extends React.Component {
             console.log(`Data ${i}: ` + JSON.stringify(data))
             if(JSON.stringify(data) !== undefined) {
                 stuffDone.push(data.done);
+            } else {
+                stuffDone.push([]);
             }
         }
         console.log(`StuffDone: ${JSON.stringify(stuffDone)}`)
