@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtS1ZGM1V1M1IyOFU/view?mc_cid=8a3031151e&mc_eid=1f0a85948e&resourcekey=0-YY9cUB8APENtT0ItgNBDig";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtN0xwZlNTY20xMUU/view?mc_cid=c628049e12&mc_eid=1f0a85948e&resourcekey=0-Y-1JEd-nB1TdIbYLPgFY7g";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     COMPLETION     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     THE DISTINCTION BETWEEN SELF AND OTHER     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,13 +70,16 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK'S WORK:</b> <br />
-        1. Do the exercise above until you develop some facility in completing things.<br /><br />
+        1. Observe the relationship between yourself and other (all that is not you). Pay
+attention to the specific ways you think about and relate to other. Hold in the
+background the question: What do I accomplish with that? Why?<br /><br />
 
-        2. Practice completing your relation to people and events in your life.<br />
-        Stay conscious of what's happening when you complete something, and even when you fail to complete
-        something.<br /><br />
+        2. See if you can recognize how your self is as defined by what it's not as it is by what it
+is.<br /><br />
 
-        3. Do your writing assignment.
+        3. From time to time, dwell on the fact that you do not seem to be the creator of reality --
+or even of your own existence -- and how this influences your experience of yourself,
+your capacity, and your relationship to life (other).
             <br /><br />
 
     </div>

@@ -331,7 +331,8 @@ table, th, td {
   background-color: black;
   margin-top: 3px;
 
-  /* position: fixed;
+  /* position:absolute;
   bottom: 0;
   width: 100%; */
+  /* height: 2.5rem;    */
 }
