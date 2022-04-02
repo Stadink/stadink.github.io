@@ -46,6 +46,7 @@ export default function Tarot() {
         card = card.replace('12', 'Knight');
         card = card.replace('13', 'Queen');
         card = card.replace('14', 'King');
+        card = card.replace('01', 'Ace');
 
         card = card.includes('10') ? card : card.replace('0', '');
         card = card.replace('Hanged_Man', 'TheHangedMan');
@@ -56,6 +57,8 @@ export default function Tarot() {
         card = card.replace('Chariot', 'TheChariot');
         card = card.replace('Hermit', 'TheHermit');
         card = card.replace('Tower', 'TheTower');
+        card = card.replace('Devil', 'TheDevil');
+        card = card.replace('Star', 'TheStar');
 
         card = card.replace('SwordsKnight', 'KnightOfSwords');
 
@@ -68,7 +71,8 @@ export default function Tarot() {
         cardSearch = cardSearch.replace('Queen', '');
         cardSearch = cardSearch.replace('Page', '');
 
-        cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join(" ")
+        cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join("&nbsp;")
+        console.log('cardSearch is: ' + cardSearch)
       
 
         document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${card}</a>`;
