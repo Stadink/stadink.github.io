@@ -48,6 +48,7 @@ export default function Tarot() {
         card = card.replace('Emperor', 'TheEmperor');
         card = card.replace('Chariot', 'TheChariot');
         card = card.replace('11', 'Page');
+        card = card.replace('12', 'Knight');
         card = card.replace('13', 'Queen');
         card = card.replace('14', 'King');
 
