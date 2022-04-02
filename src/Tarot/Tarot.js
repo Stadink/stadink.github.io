@@ -37,10 +37,14 @@ export default function Tarot() {
         const meaning = cardInfo.data().meaning;
         console.log('meaning is: ' + meaning)
 
-        card = card.replace('0', '');
         card = card.replace('Pents', 'Coins');
-        card = card.replace(/[1-9][0-9]_g/, '');
-        card = card.replace(/[0-9]_g/, '');
+        card = card.replace(/[1-9][0-9]_/, '');
+        card = card.replace(/[0-9]_/, '');
+        card = card.replace('0', '');
+        card = card.replace('Hanged_Man', 'TheHangedMan');
+        card = card.replace('Hierophant', 'TheHierophant');
+        card = card.replace('World', 'TheWorld');
+        card = card.replace('High_Priestess', 'HighPriesess');
 
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
         document.getElementById('card').innerHTML = card;
