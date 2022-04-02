@@ -56,10 +56,11 @@ export default function Tarot() {
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
 
         let cardSearch = card.replace(/[0-9]/, '');
-        cardSearch = card.replace('King', '');
-        cardSearch = card.replace('Knight', '');
-        cardSearch = card.replace('Queen', '');
-        cardSearch = card.replace('Page', '');
+
+        cardSearch = cardSearch.replace('King', '');
+        cardSearch = cardSearch.replace('Knight', '');
+        cardSearch = cardSearch.replace('Queen', '');
+        cardSearch = cardSearch.replace('Page', '');
 
         document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${card}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
