@@ -62,7 +62,7 @@ export default function Tarot() {
 
         card = card.replace('SwordsKnight', 'KnightOfSwords');
 
-        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
+        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${card}.jpg`;
 
         let cardSearch = card.replace(/[0-9]/, '');
 
