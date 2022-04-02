@@ -336,3 +336,7 @@ table, th, td {
   width: 100%; */
   /* height: 2.5rem;    */
 }
+
+#cardImg {
+  max-height: 521px;
+}

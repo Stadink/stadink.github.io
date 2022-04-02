@@ -32,12 +32,17 @@ export default function Tarot() {
         const docRef = doc(db, "Tarot", random.toString());
         const cardInfo = await getDoc(docRef);
 
-        const card = cardInfo.data().card;
+        let card = cardInfo.data().card;
         console.log('card is: ' + card)
         const meaning = cardInfo.data().meaning;
         console.log('meaning is: ' + meaning)
 
-        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${card}.jpg`;
+        card = card.replace('0', '');
+        card = card.replace('Pents', 'Coins');
+        card = card.replace(/[1-9][0-9]_g/, '');
+        card = card.replace(/[0-9]_g/, '');
+
+        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
         document.getElementById('card').innerHTML = card;
         document.getElementById('meaningTarot').innerHTML = meaning;
     }
