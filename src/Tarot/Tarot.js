@@ -52,8 +52,8 @@ export default function Tarot() {
         card = card.replace('TheHanged_Man', 'TheHangedMan');
         // card = card.replace('Hierophant', 'TheHierophant');
         // card = card.replace('World', 'TheWorld');
-        card = card.replace('TheHigh_Priesess', 'HighPriesess');
-        card = card.replace('TheWheel_of_Fortune', 'WheelofFortune');
+        card = card.replace('TheHigh_Priestess', 'HighPriesess');
+        card = card.replace('TheWheel_of_Fortune', 'WheelOfFortune');
         card = card.replace('TheJustice', 'Justice');
         card = card.replace('TheJudgement', 'Judgement');
         card = card.replace('TheDeath', 'Death');
