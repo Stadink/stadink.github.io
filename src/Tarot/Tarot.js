@@ -6,7 +6,7 @@ import tarot from '../Tarot/tarot.json';
 
 export default function Tarot() {
 
-    const [data, setData] = useState([{ colors: ["Loading..."]}]);
+    const [data, setData] = useState([{ colors: ["Loading..."], chkbox: false }]);
 
     const collectionRef = collection(db, "Colors");
   
@@ -33,6 +33,7 @@ export default function Tarot() {
         const cardInfo = await getDoc(docRef);
 
         let card = cardInfo.data().card;
+        let cardOld = card;
         console.log('card is: ' + card)
         const meaning = cardInfo.data().meaning;
         console.log('meaning is: ' + meaning)
@@ -70,7 +71,12 @@ export default function Tarot() {
 
         card = card.replace('SwordsKnight', 'KnightOfSwords');
 
-        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${card}.jpg`;
+        let oldStyle = document.getElementById("old").checked
+        if (oldStyle) {
+          document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${cardOld}.jpg`;
+        } else {
+            document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${card}.jpg`;
+        }
 
         let cardSearch = card.replace(/[0-9]/, '');
 
@@ -134,6 +140,11 @@ export default function Tarot() {
         </details>
         <br /><br /><br /><br />
         <br />
+          <form>
+            <input checked id="nft" name="contact" value="email" type="radio"></input>
+            <input id="old" name="contact" value="phone"type="radio"></input>
+          </form>
+
         <br />
         {   
             data['0'].colors.map((color, index) => (
