@@ -340,3 +340,7 @@ table, th, td {
 #cardImg {
   max-height: 521px;
 }
+
+#cardLink {
+  color: black;
+}

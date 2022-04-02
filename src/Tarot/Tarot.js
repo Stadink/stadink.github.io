@@ -51,9 +51,14 @@ export default function Tarot() {
         card = card.replace('12', 'Knight');
         card = card.replace('13', 'Queen');
         card = card.replace('14', 'King');
+        card = card.replace('SwordsKnight', 'KnightOfSwords');
+        card = card.replace('SwordsKnight', 'KnightOfSwords');
 
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
-        document.getElementById('card').innerHTML = card;
+
+        let cardSearch = card.replace(/[0-9]/, '');
+
+        document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${card}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
     }
 
