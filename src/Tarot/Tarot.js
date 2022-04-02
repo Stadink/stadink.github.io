@@ -38,19 +38,25 @@ export default function Tarot() {
         console.log('meaning is: ' + meaning)
 
         card = card.replace('Pents', 'Coins');
+
         card = card.replace(/[1-9][0-9]_/, '');
         card = card.replace(/[0-9]_/, '');
-        card = card.replace('0', '');
+
+        card = card.replace('11', 'Page');
+        card = card.replace('12', 'Knight');
+        card = card.replace('13', 'Queen');
+        card = card.replace('14', 'King');
+
+        card = card.includes('10') ? card : card.replace('0', '');
         card = card.replace('Hanged_Man', 'TheHangedMan');
         card = card.replace('Hierophant', 'TheHierophant');
         card = card.replace('World', 'TheWorld');
         card = card.replace('High_Priestess', 'HighPriesess');
         card = card.replace('Emperor', 'TheEmperor');
         card = card.replace('Chariot', 'TheChariot');
-        card = card.replace('11', 'Page');
-        card = card.replace('12', 'Knight');
-        card = card.replace('13', 'Queen');
-        card = card.replace('14', 'King');
+        card = card.replace('Hermit', 'TheHermit');
+        card = card.replace('Tower', 'TheTower');
+
         card = card.replace('SwordsKnight', 'KnightOfSwords');
 
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
@@ -61,6 +67,9 @@ export default function Tarot() {
         cardSearch = cardSearch.replace('Knight', '');
         cardSearch = cardSearch.replace('Queen', '');
         cardSearch = cardSearch.replace('Page', '');
+
+        cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join(" ")
+      
 
         document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${card}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
