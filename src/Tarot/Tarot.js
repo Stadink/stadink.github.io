@@ -60,6 +60,7 @@ export default function Tarot() {
         card = card.replace('TheTemperance', 'Temperance');
         card = card.replace('TheStrength', 'Strength');
         card = card.replace('CupsQueen', 'queenscups');
+        card = card.replace('WandsKnight', 'KnightWands');
         // card = card.replace('Hermit', 'TheHermit');
         // card = card.replace('Tower', 'TheTower');
         // card = card.replace('Devil', 'TheDevil');
