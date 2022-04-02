@@ -45,6 +45,11 @@ export default function Tarot() {
         card = card.replace('Hierophant', 'TheHierophant');
         card = card.replace('World', 'TheWorld');
         card = card.replace('High_Priestess', 'HighPriesess');
+        card = card.replace('Emperor', 'TheEmperor');
+        card = card.replace('Chariot', 'TheChariot');
+        card = card.replace('11', 'Page');
+        card = card.replace('13', 'Queen');
+        card = card.replace('14', 'King');
 
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/imgs/${card}.png`;
         document.getElementById('card').innerHTML = card;
