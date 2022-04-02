@@ -39,8 +39,8 @@ export default function Tarot() {
 
         card = card.replace('Pents', 'Coins');
 
-        card = card.replace(/[1-9][0-9]_/, '');
-        card = card.replace(/[0-9]_/, '');
+        card = card.replace(/[1-9][0-9]_/, 'The');
+        card = card.replace(/[0-9]_/, 'The');
 
         card = card.replace('11', 'Page');
         card = card.replace('12', 'Knight');
@@ -49,16 +49,23 @@ export default function Tarot() {
         card = card.replace('01', 'Ace');
 
         card = card.includes('10') ? card : card.replace('0', '');
-        card = card.replace('Hanged_Man', 'TheHangedMan');
-        card = card.replace('Hierophant', 'TheHierophant');
-        card = card.replace('World', 'TheWorld');
-        card = card.replace('High_Priestess', 'HighPriesess');
-        card = card.replace('Emperor', 'TheEmperor');
-        card = card.replace('Chariot', 'TheChariot');
-        card = card.replace('Hermit', 'TheHermit');
-        card = card.replace('Tower', 'TheTower');
-        card = card.replace('Devil', 'TheDevil');
-        card = card.replace('Star', 'TheStar');
+        card = card.replace('TheHanged_Man', 'TheHangedMan');
+        // card = card.replace('Hierophant', 'TheHierophant');
+        // card = card.replace('World', 'TheWorld');
+        card = card.replace('TheHigh_Priesess', 'HighPriesess');
+        card = card.replace('TheWheel_of_Fortune', 'WheelofFortune');
+        card = card.replace('TheJustice', 'Justice');
+        card = card.replace('TheJudgement', 'Judgement');
+        card = card.replace('TheDeath', 'Death');
+        card = card.replace('TheTemperance', 'Temperance');
+        card = card.replace('TheStrength', 'Strength');
+        card = card.replace('CupsQueen', 'queenscups');
+        // card = card.replace('Hermit', 'TheHermit');
+        // card = card.replace('Tower', 'TheTower');
+        // card = card.replace('Devil', 'TheDevil');
+        // card = card.replace('Star', 'TheStar');
+        // card = card.replace('Sun', 'TheSun');
+        // card = card.replace('Empress', 'TheEmpress');
 
         card = card.replace('SwordsKnight', 'KnightOfSwords');
 
