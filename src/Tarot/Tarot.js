@@ -3,6 +3,8 @@ import { collection, onSnapshot, setDoc, arrayUnion, updateDoc, getDoc, doc, que
 import db from '../Sandbox/firebase';
 import tarot from '../Tarot/tarot.json';
 import { Buttons } from '../Sandbox/Buttons';
+// import Toggle from 'react-native-toggle-element';
+import ToggleTheme from "react-toggle-theme";
 
 
 export default function Tarot() {
@@ -11,6 +13,9 @@ export default function Tarot() {
     const [mode, setMode] = useState('new');
     const [getOldCard, setOldCard] = useState('');
     const [getNewCard, setNewCard] = useState('');
+
+    const [toggleValue, setToggleValue] = useState(false);
+    const [currentTheme, setCurrentTheme] = useState("light");
 
     const collectionRef = collection(db, "Colors");
   
@@ -80,7 +85,8 @@ export default function Tarot() {
         setNewCard(card);
         console.log('New card state is: ' + getNewCard);
 
-        let oldStyle = document.getElementById("old").checked
+        // let oldStyle = document.getElementById("old").checked
+        let oldStyle = currentTheme === "dark"
         if (oldStyle) {
           document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${cardOld}.jpg`;
         } else {
@@ -156,6 +162,27 @@ export default function Tarot() {
       }
     }
 
+    const toggleMode = () => {
+      // if (mode === 'old') {
+      //   setMode('new')
+      // } else {
+      //   setMode('old')
+      // }
+      // // mode === 'old' ? setMode('new') : setMode('old');
+
+      // console.log('mode is: ' + mode)
+
+      if (currentTheme === 'light') {
+        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${getOldCard}.jpg`;
+      } else {
+          document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${getNewCard}.jpg`;
+      }
+    }
+
+    const wtf = () => {
+      toggleMode();
+    }
+
 
   return (
     <div id='Tarot'><br />
@@ -177,12 +204,17 @@ export default function Tarot() {
         </details>
         <br /><br />
 
-          <form>
+          {/* <form>
             <input checked={mode === "new"} onClick={() => changeMode('new')} id="nft" name="contact" value="email" type="radio"></input>
             <input checked={mode === "old"} onClick={() => changeMode('old')} id="old" name="contact" value="phone"type="radio"></input>
-          </form>
+          </form> */}
 
-        <br />
+          {/* <Toggle value={toggleValue} onPress={(val) => setToggleValue(val)} /> */}
+          <div onClick={() => toggleMode()}>
+            <ToggleTheme selectedTheme={currentTheme} onChange={setCurrentTheme}/>
+          </div>
+
+        <br /><br />
         {   
             data['0'].colors.map((color, index) => (
               <button onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
