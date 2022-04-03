@@ -89,7 +89,7 @@ export default function Tarot() {
         console.log('cardSearch is: ' + cardSearch)
       
 
-        document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${card}</a>`;
+        document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${'💲 Market 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
     }
 
@@ -131,15 +131,15 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br />
+        <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br /><br />
         {/* <button class='button' onClick={() => newCard()}>new</button> */}
-        <h1 id="card">idk</h1>
         <details open>
           <summary>▼</summary> <br />
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
+          <br /><br />
+          <h3 id="card">idk</h3>
         </details>
-        <br /><br /><br /><br />
-        <br />
+        <br /><br />
           <form>
             <input checked id="nft" name="contact" value="email" type="radio"></input>
             <input id="old" name="contact" value="phone"type="radio"></input>
