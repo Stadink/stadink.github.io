@@ -2,6 +2,7 @@ import React, { setState, useState, useEffect } from 'react';
 import { collection, onSnapshot, setDoc, arrayUnion, updateDoc, getDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
 import db from '../Sandbox/firebase';
 import tarot from '../Tarot/tarot.json';
+import { Buttons } from '../Sandbox/Buttons';
 
 
 export default function Tarot() {
@@ -128,12 +129,24 @@ export default function Tarot() {
       await updateDoc(docRef, payload);
     }
 
+    const openSpoiler = () => {
+      document.getElementById('spoiler').open = 'true';
+    }
+
 
   return (
     <div id='Tarot'><br />
         <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br /><br />
         {/* <button class='button' onClick={() => newCard()}>new</button> */}
-        <details open>
+        {/* <Buttons /> */}
+
+        <div id="answerButtons">
+          <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
+          <button id="notArtButton" class="button button2">Not Art</button>
+        </div>
+
+
+        <details id="spoiler">
           <summary>▼</summary> <br />
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
           <br /><br />
