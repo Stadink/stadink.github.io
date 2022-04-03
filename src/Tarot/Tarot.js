@@ -7,7 +7,10 @@ import { Buttons } from '../Sandbox/Buttons';
 
 export default function Tarot() {
 
-    const [data, setData] = useState([{ colors: ["Loading..."], chkbox: false }]);
+    const [data, setData] = useState([{ colors: ["Loading..."]}]);
+    const [mode, setMode] = useState('old');
+    const [getOldCard, setOldCard] = useState('');
+    const [getNewCard, setNewCard] = useState('');
 
     const collectionRef = collection(db, "Colors");
   
@@ -23,8 +26,9 @@ export default function Tarot() {
     useEffect(
       () => {
           newCard();
-      }
-  )
+          // document.getElementById('cardImg').click()
+      }, []
+    )
 
     const newCard = async () => {
         const random = Math.floor(Math.random() * tarot.length + 1);
@@ -35,7 +39,8 @@ export default function Tarot() {
 
         let card = cardInfo.data().card;
         let cardOld = card;
-        console.log('card is: ' + card)
+        setOldCard(card);
+        console.log('old card state is: ' + getOldCard)
         const meaning = cardInfo.data().meaning;
         console.log('meaning is: ' + meaning)
 
@@ -72,6 +77,9 @@ export default function Tarot() {
 
         card = card.replace('SwordsKnight', 'KnightOfSwords');
 
+        setNewCard(card);
+        console.log('New card state is: ' + getNewCard);
+
         let oldStyle = document.getElementById("old").checked
         if (oldStyle) {
           document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${cardOld}.jpg`;
@@ -88,6 +96,8 @@ export default function Tarot() {
 
         cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join("&nbsp;")
         console.log('cardSearch is: ' + cardSearch)
+        // console.log('this.chkbox is: ' + this.state.chkbox)
+        console.log('mode is: ' + mode)
       
 
         document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${'💲 Market 🔍'}</a>`;
@@ -133,6 +143,19 @@ export default function Tarot() {
       document.getElementById('spoiler').open = 'true';
     }
 
+    const changeMode = (mode) => {
+      setMode(mode)
+
+      console.log('old card state is: ' + getOldCard)
+      console.log('new card state is: ' + getNewCard)
+      
+      if (mode === 'old') {
+        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${getOldCard}.jpg`;
+      } else {
+          document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${getNewCard}.jpg`;
+      }
+    }
+
 
   return (
     <div id='Tarot'><br />
@@ -153,9 +176,10 @@ export default function Tarot() {
           <h3 id="card">idk</h3>
         </details>
         <br /><br />
+
           <form>
-            <input checked id="nft" name="contact" value="email" type="radio"></input>
-            <input id="old" name="contact" value="phone"type="radio"></input>
+            <input checked={mode === "new"} onClick={() => changeMode('new')} id="nft" name="contact" value="email" type="radio"></input>
+            <input checked={mode === "old"} onClick={() => changeMode('old')} id="old" name="contact" value="phone"type="radio"></input>
           </form>
 
         <br />
