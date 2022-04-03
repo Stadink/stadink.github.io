@@ -8,7 +8,7 @@ import { Buttons } from '../Sandbox/Buttons';
 export default function Tarot() {
 
     const [data, setData] = useState([{ colors: ["Loading..."]}]);
-    const [mode, setMode] = useState('old');
+    const [mode, setMode] = useState('new');
     const [getOldCard, setOldCard] = useState('');
     const [getNewCard, setNewCard] = useState('');
 
@@ -159,7 +159,7 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/4_Emperor.jpg' alt="tarot" /> <br /><br />
+        <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/tarotBack.jpg' alt="tarot" /> <br /><br />
         {/* <button class='button' onClick={() => newCard()}>new</button> */}
         {/* <Buttons /> */}
 
