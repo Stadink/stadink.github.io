@@ -211,7 +211,8 @@ export default function Tarot() {
 
           {/* <Toggle value={toggleValue} onPress={(val) => setToggleValue(val)} /> */}
           <div onClick={() => toggleMode()}>
-            <ToggleTheme selectedTheme={currentTheme} onChange={setCurrentTheme}/>
+            <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
+            <input type="checkbox" id="checkboxTogglerLol" />
           </div>
 
         <br /><br />
