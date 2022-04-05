@@ -54,13 +54,13 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtN0xwZlNTY20xMUU/view?mc_cid=c628049e12&mc_eid=1f0a85948e&resourcekey=0-Y-1JEd-nB1TdIbYLPgFY7g";
+        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtVEZxN2JhRzJBNjA/view?mc_cid=97ff99288b&mc_eid=1f0a85948e&resourcekey=0-4cPU3xdjsbluhjrTDiYd3w";
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     THE DISTINCTION BETWEEN SELF AND OTHER     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     THE MYTH OF LUCIFER     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -74,12 +74,12 @@ export default function TranscendingSelf() {
 attention to the specific ways you think about and relate to other. Hold in the
 background the question: What do I accomplish with that? Why?<br /><br />
 
-        2. See if you can recognize how your self is as defined by what it's not as it is by what it
+        {/* 2. See if you can recognize how your self is as defined by what it's not as it is by what it
 is.<br /><br />
 
         3. From time to time, dwell on the fact that you do not seem to be the creator of reality --
 or even of your own existence -- and how this influences your experience of yourself,
-your capacity, and your relationship to life (other).
+your capacity, and your relationship to life (other). */}
             <br /><br />
 
     </div>
