@@ -13,7 +13,7 @@ export class Goals extends React.Component {
   render() {
     return (
         <div style={{'border' : '1px solid white', 'margin-left' : '10px'}} id="Goals">
-            <h1><u>Goals</u></h1>
+            <h1><u>Goals</u>🎯</h1>
 
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >💲⚙️💱  while 🧘‍♂️</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Go to USA 🇺🇸</h2><br />
