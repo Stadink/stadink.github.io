@@ -52,7 +52,7 @@ function App() {
           <Route path="/">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
-              <Contact />
+              <Contact /> 
               <Clock />
             </header>
             <Tarot />

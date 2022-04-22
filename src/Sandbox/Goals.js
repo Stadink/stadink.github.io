@@ -18,6 +18,7 @@ export class Goals extends React.Component {
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >💲⚙️💱  while 🧘‍♂️</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Go to USA 🇺🇸</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Get a black belt 🥋</h2><br />
+            <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Build a digital brain 👾</h2><br />
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Get a Ph.D in AI</h2><br />
 
             <input type="checkbox"></input> <h2 style={{'display': 'inline'}} >Get Enlightened 👁️</h2><br />
