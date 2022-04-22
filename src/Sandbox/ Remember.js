@@ -4,7 +4,8 @@ import db from './firebase';
 import { TS } from './TS';
 import TranscendingSelf from './TranscendingSelf';
 import Ideas from './Ideas';
-import { Timer } from './Timer';
+import { Affirmation } from './Affirmation';
+import { SelfEnquiry } from './SelfEnquiry'
 
 
 export class Remember extends React.Component {
@@ -153,38 +154,12 @@ export class Remember extends React.Component {
 
               <details>
                 <summary><input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼ <br/></summary>
-                <marquee width="60%" direction="left" height="40px" scrollamount="18">
-                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
-                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
-                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
-                I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
-                  
-                  Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
-                  Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
-                  Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. Я кузнец своих нейронных путей. 
-
-                  Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. 
-                  Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. 
-                  Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. Я люблю себя и принимаю таким, какой я есть. 
-
-                  I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. 
-                  I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. I choose to empower myself. 
-
-
-                  I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others.
-                  I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others.
-                  I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others. I am completely independent of the good or the bad opinions of others.
-
-                  Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. 
-                  Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. Всё будет хорошо. 
-                </marquee>
-                <Timer />
+                <Affirmation/>
               </details>
 
               <details>
                 <summary><input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry ▼  <br/></summary>
-                Who am I? What am I? <br/>
-                <input type="text" id="WhoIamInput"></input> <br/>
+                <SelfEnquiry/>
               </details>
               <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  /><abbr title="~Honest externalization, so anyway... 🤔">Writing</abbr><br/>
               <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/>
@@ -200,8 +175,8 @@ export class Remember extends React.Component {
 
   componentDidMount() {
     this.getItemsDone();
-    document.addEventListener("keydown", (e) => 
-        e.code === "Enter" && alert('yeah well, but who is aware of ' + document.getElementById('WhoIamInput').value));
+    // document.addEventListener("keydown", (e) => 
+    //     e.code === "Enter" && alert('yeah well, but who is aware of ' + document.getElementById('WhoIamInput').value));
     // this.wtf()
     // setInterval(() => {
     //   this.wtf() // can I leave this like this for sync or should I just // ok I guess this is necesasry lol
