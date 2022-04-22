@@ -23,7 +23,7 @@ export class Affirmation extends React.Component {
         const affirmations = docSnapshot.data();
         console.log('Get list is: ' + JSON.stringify(affirmations.List))
 
-        this.setState( {List: affirmations.List.toString()})
+        this.setState( {List: affirmations.List})
         return affirmations.List;
     }
 
@@ -41,10 +41,20 @@ export class Affirmation extends React.Component {
         document.querySelector('#AffirmationInput').placeholder = 'Saved! Any more?';
     }
 
+    getAffirmations() {
+        return this.state.List.toString();
+    }
+
     getRandomAffirmations() {
-        // const list = await this.getList();
-        // return JSON.stringify(list)
-        return this.state.List;
+        const affirmations = this.state.List;
+        const length = affirmations.length
+        const randomNum = Math.floor(Math.random() * length)
+        const randomNum2 = Math.floor(Math.random() * length) + 1
+
+        const randomAffirmation = affirmations[randomNum] + ', '
+
+        console.log(randomAffirmation.repeat(randomNum2))
+        return randomAffirmation.repeat(randomNum2)
     }
 
 
@@ -52,6 +62,7 @@ export class Affirmation extends React.Component {
     return (
         <div id="Affirmation">
           <marquee width="60%" direction="left" height="40px" scrollamount="18">
+                {this.getAffirmations()}
                 {this.getRandomAffirmations()}
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
@@ -80,10 +91,11 @@ export class Affirmation extends React.Component {
             <Timer />
 
             <form onSubmit={(e) => this.saveAffirmation(e)}>
-                <button onClick={() => this.getList()}>Get List</button>
                 <input type='text' id='AffirmationInput'></input>
                 <button>save</button>
             </form>
+
+            <button onClick={() => this.getRandomAffirmations()}>Get Random</button>
         </div>
     );
   }
