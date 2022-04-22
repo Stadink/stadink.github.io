@@ -42,25 +42,26 @@ export default function TranscendingSelf() {
 
     const getWeekLesson = async () => {
         // const docRef = doc(db, 'Transcending Self', `Week #${getWeekNumber()}`);
-        const docRef = doc(db, 'Transcending Self', `Lessons`);
+        const docRef = doc(db, 'Transcending Self', `Lesson`);
         const docSnapshot = await getDoc(docRef)
-        const data = docSnapshot.data();
-        // const data = await docSnapshot.data();
+        // const data = docSnapshot.data();
+        const data = await docSnapshot.data();
         // console.log('data is: ' + JSON.stringify(data))
-        console.log('data is: ' + JSON.stringify(data.Lesson))
-        // setData({lesson: 'idk'})
+        console.log('data is: ' + JSON.stringify(data))
+        setData({lesson: 'idk'})
         // return data.id;
-        return JSON.stringify(data.Lesson)
+        return JSON.stringify(data.Title)
     }
 
     const getURL = () => { 
         const URL = "https://drive.google.com/file/d/0ByAPpaltspWtVEZxN2JhRzJBNjA/view?mc_cid=97ff99288b&mc_eid=1f0a85948e&resourcekey=0-4cPU3xdjsbluhjrTDiYd3w";
+        console.log('TS data is' + JSON.stringify(data))
         return URL
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     THE MYTH OF LUCIFER     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={data[0].URL} target="_blank">     {data[0].Title}     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>
@@ -70,9 +71,11 @@ export default function TranscendingSelf() {
 
         {/* {data.map(item => (<h2>{item[`Day #${getDayNumber()}`]}</h2> ))} */}
         <b>WEEK'S WORK:</b> <br />
-        1. Observe the relationship between yourself and other (all that is not you). Pay
-attention to the specific ways you think about and relate to other. Hold in the
-background the question: What do I accomplish with that? Why?<br /><br />
+        1. {data[0].task1} <br/><br/>
+        2. {data[0].task2} <br/><br/>
+
+
+        3. Do your writing assignment.
 
         {/* 2. See if you can recognize how your self is as defined by what it's not as it is by what it
 is.<br /><br />
