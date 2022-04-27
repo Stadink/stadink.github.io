@@ -73,9 +73,10 @@ export default function TranscendingSelf() {
         <b>WEEK'S WORK:</b> <br />
         1. {data[0].task1} <br/><br/>
         2. {data[0].task2} <br/><br/>
+        3. {data[0].task3} <br/><br/>
+        4. {data[0].task4} <br/><br/>
 
-
-        3. Do your writing assignment.
+        5. Do your writing assignment.
 
         {/* 2. See if you can recognize how your self is as defined by what it's not as it is by what it
 is.<br /><br />
