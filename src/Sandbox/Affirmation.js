@@ -42,7 +42,9 @@ export class Affirmation extends React.Component {
     }
 
     getAffirmations() {
-        return this.state.List.toString();
+        const affirmations = this.state.List;
+        affirmations.sort( () => .5 - Math.random() );
+        return affirmations.toString();
     }
 
     getRandomAffirmations() {
@@ -92,7 +94,7 @@ export class Affirmation extends React.Component {
 
             <form onSubmit={(e) => this.saveAffirmation(e)}>
                 <input type='text' id='AffirmationInput'></input>
-                <button>save</button>
+                <button onClick={(e) => this.saveAffirmation(e)}>save</button>
             </form>
 
             <button onClick={() => this.getRandomAffirmations()}>Get Random</button>

@@ -21,7 +21,7 @@ export const Dreams = () => {
   );
 
     const randomKeyword = () => {
-        console.log('data 0 is: ' + JSON.stringify(data))
+        // console.log('data 0 is: ' + JSON.stringify(data))
         // // console.log(data[0].Keywords[1]);
         const randomNum = Math.floor(Math.random() * data.length);
         const word = data[randomNum].id
@@ -30,28 +30,31 @@ export const Dreams = () => {
         // return 'idk';
     }
 
-    const saveKeyword = async (keyword) => {
+    const saveKeyword = async (e) => {
+      e.preventDefault();
+
+      const keyword = document.querySelector('#keyword').value;
+
       const docRef = doc(db, 'Dreams', 'Keywords');
       let payload = {Keywords: arrayUnion(keyword )};
       await updateDoc(docRef, payload);
 
-
-      // const keywordExists = data[0].Keywords.includes(keyword)
-      // console.log(`${keyword} is in Keywords: ` + keywordExists)
       const timeNow = moment().toString();
+      const keywordExists = JSON.stringify(data).includes(keyword)
 
-      // I fucking hate 'programming' or whatever is that shit that I'm doing right now is
-      // I'm very ineffective at doing that
-      // My emotions get in the way big time. 
-      // Aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-
-      // if (!keywordExists) {
+      if (!keywordExists) {
         let payload2 = {count: 1, dates: [timeNow]};
         const docRef2 = doc(db, 'Dreams', keyword);
         await setDoc(docRef2, payload2);
-
+  
         document.querySelector('#keyword').value = "";
         document.querySelector('#keyword').placeholder = "Saved! Another one?";    
+      } else {
+        await incrementCount(keyword);
+
+        document.querySelector('#keyword').value = "";
+        document.querySelector('#keyword').placeholder = "count++, Anything else?";    
+      }
     }
 
     const setNewRandomKeyword = () => {
@@ -64,6 +67,7 @@ export const Dreams = () => {
       const docRef = doc(db, 'Dreams', keyword);
 
       const docSnapshot = await getDoc(docRef)
+      console.log('docSnapshot.data is: ' + (JSON.stringify(docSnapshot.data())))
       const currentCount = await docSnapshot.data().count
       await console.log('CurrentCount is: ' + currentCount)
 
@@ -82,8 +86,11 @@ export const Dreams = () => {
 
 
       <br /><br />
-      <input id="keyword" type="text" placeholder="Add keyword" onSubmit={() => saveKeyword()}/> <button type='submit' onClick={() => saveKeyword(document.getElementById('keyword').value)}>💾</button> <br /><br />
-      list of keywords: 
+      <form onSubmit={(e) => saveKeyword(e)}>
+       <input id="keyword" type="text" placeholder="Add keyword"/> 
+       <button type='submit' onClick={(e) => saveKeyword(e)}>💾</button> <br /><br />
+      </form>
+      list of keywords:
 
         {   
             // Display sorted by id

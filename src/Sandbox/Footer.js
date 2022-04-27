@@ -33,6 +33,7 @@ export const Footer = () => {
       <Link to="/stocks">Stocks</Link> |
       <Link to="/whatEats">WhatEats</Link> |
       <Link to="/dreams">Dreams</Link> |
+      <Link to="/art">Art</Link> |
       <br />
       <br />
       <button onClick={() => randomColor()}>Random color</button>

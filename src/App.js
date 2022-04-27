@@ -15,6 +15,7 @@ import { Stocks } from "./Sandbox/Stocks";
 import ColorPicker from "./Sandbox/ColorPicker";
 import { Dreams } from "./Sandbox/Dreams";
 import { WhatEats } from "./Sandbox/WhatEats";
+import { Art } from './Sandbox/Art'
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
 
           <Route path="/dreams">
             <Dreams />
+          </Route>
+
+          <Route path="/art">
+            <Art />
           </Route>
 
           <Route path="/whatEats">
