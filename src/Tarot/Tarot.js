@@ -107,7 +107,32 @@ export default function Tarot() {
       
 
         document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${'💲 Market 🔍'}</a>`;
+        document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
+    }
+
+    const nameParser = (card, cardSearch) => {
+        const split = card.split(/([0-9]+)/)
+        console.log('split is: ' + split)
+
+        let type = split[0]
+        type = type.replace('Pents', 'Coins');
+
+        let num = split[1]
+
+        num = num.replace('11', 'Page');
+        num = num.replace('12', 'Knight');
+        num = num.replace('13', 'Queen');
+        num = num.replace('14', 'King');
+        num = num.replace('01', 'Ace');
+
+        num = num.includes('10') ? num : num.replace('0', '');
+
+        if(type === ''){
+          return cardSearch
+        } else {
+          return num + ' of ' + type
+        }
     }
 
     const editMeaning = () => {
@@ -214,6 +239,10 @@ export default function Tarot() {
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
             <input type="checkbox" id="checkboxTogglerLol" />
           </div>
+
+            <br/>
+            <a id="googleSearch" href="https://www.google.com/search?q=test" target="_blank">Google</a>
+
 
         <br /><br />
         {   

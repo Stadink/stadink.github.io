@@ -97,7 +97,14 @@ export class Notepad extends React.Component {
         <button onClick={() => {this.getDayNote(this.state.day - 1);this.setState({ day: this.state.day - 1}) }}>→</button><br />
         {/* {this.getTimeRemaining()+this.state.day} */}
 
-        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> <br />
+        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> 
+        
+        <input type='radio'></input> 
+        <input type='radio'></input>
+        
+        <br />
+
+
           <div onChange={this.setDatabaseName.bind(this)}>
             <input type="radio" id="idea" name="fav_language" value="ideas"/>
             <label for="idea">💡</label>
