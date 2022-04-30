@@ -12,6 +12,7 @@ import ToggleTheme from "react-toggle-theme";
 export default function Tarot() {
 
     const [data, setData] = useState([{ colors: ["Loading..."]}]);
+    const [starred, setStarred] = useState([{ starred: []}]);
     const [mode, setMode] = useState('new');
     const [getOldCard, setOldCard] = useState('');
     const [getNewCard, setNewCard] = useState('');
@@ -33,6 +34,7 @@ export default function Tarot() {
     useEffect(
       () => {
           newCard();
+          getStarred();
           // document.getElementById('cardImg').click()
       }, []
     )
@@ -187,6 +189,40 @@ export default function Tarot() {
     }
 
 
+    const getStarred = async () => {
+      const docRef = doc(db, 'Tarot', 'Starred');
+      const docSnapshot = await getDoc(docRef);
+
+      const list = JSON.stringify(docSnapshot.data())
+      // const list = docSnapshot.data();
+
+      setStarred(list);
+      console.log("docSnapshot.data is: " + list);
+
+      console.log('starred is: ' + JSON.stringify(starred));
+
+      return starred
+    }
+
+    const isStarred = (id) => {
+      if (starred.includes(id)) {
+        return '⭐'
+      } else {
+        return 'ㅤ '
+      }
+    }
+
+    const addStarred = async () => {
+      let pic = document.getElementById('cardImg').src
+      pic = pic.replace('https://willthisdofor.art/tarot/pics/', '');
+      pic = pic.replace('.jpg', '');
+      console.log('pic is: ' + pic)
+
+      const docRef = doc(db, 'Tarot', 'Starred');
+      const payload = {List: arrayUnion(pic)};
+      await updateDoc(docRef, payload);
+    }
+
   return (
     <div id='Tarot'><br />
         <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/tarotBack.jpg' alt="tarot" /> <br /><br />
@@ -203,10 +239,11 @@ export default function Tarot() {
           <br /><br />
           <h3 id="card">idk</h3>
 
-          <FormControl as="select" onChange={(e) => newCard(e.target.value)}>
+          <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select" onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
-                return <option key={id} value={e.id}>{e.card}</option>;
+                return <option key={id} value={e.id}>{isStarred(e.card)}{e.card}</option>;
             })} </FormControl>
+          <button onClick={() => addStarred() }>⭐</button>
 
         </details>
         <br /><br />
@@ -218,6 +255,7 @@ export default function Tarot() {
 
             <br/>
             <a id="googleSearch" href="https://www.google.com/search?q=test" target="_blank">Google</a>
+            
 
 
         <br /><br />
