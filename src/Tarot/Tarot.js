@@ -1,7 +1,9 @@
 import React, { setState, useState, useEffect } from 'react';
 import { collection, onSnapshot, setDoc, arrayUnion, updateDoc, getDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
 import db from '../Sandbox/firebase';
-import tarot from '../Tarot/tarot.json';
+// import tarot from '../Tarot/tarot.json';
+import tarot from '../Tarot/tarot.jsx';
+import { FormControl } from 'react-bootstrap';
 import { Buttons } from '../Sandbox/Buttons';
 // import Toggle from 'react-native-toggle-element';
 import ToggleTheme from "react-toggle-theme";
@@ -15,7 +17,7 @@ export default function Tarot() {
     const [getNewCard, setNewCard] = useState('');
 
     const [toggleValue, setToggleValue] = useState(false);
-    const [currentTheme, setCurrentTheme] = useState("light");
+    const [currentTheme, setCurrentTheme] = useState("dark");
 
     const collectionRef = collection(db, "Colors");
   
@@ -35,11 +37,15 @@ export default function Tarot() {
       }, []
     )
 
-    const newCard = async () => {
-        const random = Math.floor(Math.random() * tarot.length + 1);
-        console.log('random num is: ' + random);
 
-        const docRef = doc(db, "Tarot", random.toString());
+    const newCard = async (num) => {
+        if (num === undefined) {
+          const random = Math.floor(Math.random() * 78 + 1);
+          num = random
+        }
+        console.log('num is: ' + num);
+
+        const docRef = doc(db, "Tarot", num.toString());
         const cardInfo = await getDoc(docRef);
 
         let card = cardInfo.data().card;
@@ -64,7 +70,7 @@ export default function Tarot() {
         card = card.replace('TheHanged_Man', 'TheHangedMan');
         // card = card.replace('Hierophant', 'TheHierophant');
         // card = card.replace('World', 'TheWorld');
-        card = card.replace('TheHigh_Priestess', 'HighPriesess');
+        card = card.replace('TheHigh_Priestess', 'HighPriestess');
         card = card.replace('TheWheel_of_Fortune', 'WheelOfFortune');
         card = card.replace('TheJustice', 'Justice');
         card = card.replace('TheJudgement', 'Judgement');
@@ -85,7 +91,6 @@ export default function Tarot() {
         setNewCard(card);
         console.log('New card state is: ' + getNewCard);
 
-        // let oldStyle = document.getElementById("old").checked
         let oldStyle = currentTheme === "dark"
         if (oldStyle) {
           document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${cardOld}.jpg`;
@@ -102,16 +107,17 @@ export default function Tarot() {
 
         cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join("&nbsp;")
         console.log('cardSearch is: ' + cardSearch)
-        // console.log('this.chkbox is: ' + this.state.chkbox)
         console.log('mode is: ' + mode)
       
 
-        document.getElementById('card').innerHTML = `<a id="cardLink" href=https://crypto.com/nft/marketplace?search=${cardSearch} target="_blank">${'💲 Market 🔍'}</a>`;
+        document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market 🔍'}</a>`;
         document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
     }
 
-    const nameParser = (card, cardSearch) => {
+
+
+    const nameParser = (card, cardSearch, market) => {
         const split = card.split(/([0-9]+)/)
         console.log('split is: ' + split)
 
@@ -129,6 +135,8 @@ export default function Tarot() {
         num = num.includes('10') ? num : num.replace('0', '');
 
         if(type === ''){
+          cardSearch = market ? cardSearch.replace('The&nbsp;', ''): cardSearch;
+          console.log('cardSearch is: ' + cardSearch)
           return cardSearch
         } else {
           return num + ' of ' + type
@@ -159,14 +167,9 @@ export default function Tarot() {
 
     const saveColor = async () => {
       const docRef = doc(db, 'Colors', 'Tarot');
-      // const color = document.getElementById('colorName').innerText;
       const color = document.body.style.backgroundColor ;
       let payload = {colors: arrayUnion(color)};
       
-      // console.log(data[0].colors);
-      // setState({colors: data[0].colors});
-      // console.log(this.state.colors)
-      // console.log(data.colors)
       await updateDoc(docRef, payload);
     }
 
@@ -174,29 +177,8 @@ export default function Tarot() {
       document.getElementById('spoiler').open = 'true';
     }
 
-    const changeMode = (mode) => {
-      setMode(mode)
-
-      console.log('old card state is: ' + getOldCard)
-      console.log('new card state is: ' + getNewCard)
-      
-      if (mode === 'old') {
-        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${getOldCard}.jpg`;
-      } else {
-          document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${getNewCard}.jpg`;
-      }
-    }
 
     const toggleMode = () => {
-      // if (mode === 'old') {
-      //   setMode('new')
-      // } else {
-      //   setMode('old')
-      // }
-      // // mode === 'old' ? setMode('new') : setMode('old');
-
-      // console.log('mode is: ' + mode)
-
       if (currentTheme === 'light') {
         document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${getOldCard}.jpg`;
       } else {
@@ -204,16 +186,10 @@ export default function Tarot() {
       }
     }
 
-    const wtf = () => {
-      toggleMode();
-    }
-
 
   return (
     <div id='Tarot'><br />
         <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/tarotBack.jpg' alt="tarot" /> <br /><br />
-        {/* <button class='button' onClick={() => newCard()}>new</button> */}
-        {/* <Buttons /> */}
 
         <div id="answerButtons">
           <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
@@ -226,15 +202,15 @@ export default function Tarot() {
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
           <br /><br />
           <h3 id="card">idk</h3>
+
+          <FormControl as="select" onChange={(e) => newCard(e.target.value)}>
+                {tarot.cards && tarot.cards.map((e, id) => {
+                return <option key={id} value={e.id}>{e.card}</option>;
+            })} </FormControl>
+
         </details>
         <br /><br />
 
-          {/* <form>
-            <input checked={mode === "new"} onClick={() => changeMode('new')} id="nft" name="contact" value="email" type="radio"></input>
-            <input checked={mode === "old"} onClick={() => changeMode('old')} id="old" name="contact" value="phone"type="radio"></input>
-          </form> */}
-
-          {/* <Toggle value={toggleValue} onPress={(val) => setToggleValue(val)} /> */}
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
             <input type="checkbox" id="checkboxTogglerLol" />
@@ -250,7 +226,7 @@ export default function Tarot() {
               <button onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
             ))
         }
-          {/* <button><u id="colorName">#9A9CA7 </u></button> */}
+
         <button onClick={() => saveColor()}>💾</button>
     </div> 
   );
