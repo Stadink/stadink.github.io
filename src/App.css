@@ -357,3 +357,7 @@ table, th, td {
 #cardLink {
   color: black;
 }
+
+#colorPalette {
+  padding-top: 10px;
+}

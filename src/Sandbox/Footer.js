@@ -1,7 +1,7 @@
 // Whatever, idk
 import { Link } from "react-router-dom";
 import React, { setState, useState, useEffect } from 'react';
-
+import ColorPalette from "./ColorPalette";
 
 export const Footer = () => {
 
@@ -26,6 +26,7 @@ export const Footer = () => {
 
   return (
     <div id="footer">
+      <ColorPalette />
       <br />
       <Link to="/build">Dashboard</Link>   | 
       <Link to="/tarot">Tarot</Link>   | 

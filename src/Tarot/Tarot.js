@@ -7,11 +7,11 @@ import { FormControl } from 'react-bootstrap';
 import { Buttons } from '../Sandbox/Buttons';
 // import Toggle from 'react-native-toggle-element';
 import ToggleTheme from "react-toggle-theme";
+import ColorPalette from '../Sandbox/ColorPalette';
 
 
 export default function Tarot() {
 
-    const [data, setData] = useState([{ colors: ["Loading..."]}]);
     const [starred, setStarred] = useState([{ starred: []}]);
     const [currentPic, setCurrentPic] = useState([{ pic: ''}]);
     const [currentCardNum, setCurrentCardNum] = useState([{ currentCardNum: ''}]);
@@ -21,17 +21,6 @@ export default function Tarot() {
 
     const [toggleValue, setToggleValue] = useState(false);
     const [currentTheme, setCurrentTheme] = useState("dark");
-
-    const collectionRef = collection(db, "Colors");
-  
-    const q = query(collectionRef);
-
-    useEffect(() => 
-        onSnapshot(q, (snapshot) =>
-            setData(snapshot.docs.map(doc => doc.data()))
-            ),
-        []
-    );
 
     useEffect(
       () => {
@@ -176,19 +165,6 @@ export default function Tarot() {
       await updateDoc(docRef, payload);
     }
 
-
-    const setColor = (color) => {
-      document.body.style.backgroundColor = color;
-    }
-
-    const saveColor = async () => {
-      const docRef = doc(db, 'Colors', 'Tarot');
-      const color = document.body.style.backgroundColor ;
-      let payload = {colors: arrayUnion(color)};
-      
-      await updateDoc(docRef, payload);
-    }
-
     const openSpoiler = () => {
       document.getElementById('spoiler').open = 'true';
     }
@@ -285,17 +261,7 @@ export default function Tarot() {
 
             <br/>
             <a id="googleSearch" href="https://www.google.com/search?q=test" target="_blank">Google</a>
-            
-
-
         <br /><br />
-        {   
-            data['0'].colors.map((color, index) => (
-              <button onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
-            ))
-        }
-
-        <button onClick={() => saveColor()}>💾</button>
     </div> 
   );
 }
