@@ -14,6 +14,7 @@ export default function Tarot() {
     const [data, setData] = useState([{ colors: ["Loading..."]}]);
     const [starred, setStarred] = useState([{ starred: []}]);
     const [currentPic, setCurrentPic] = useState([{ pic: ''}]);
+    const [currentCardNum, setCurrentCardNum] = useState([{ currentCardNum: ''}]);
     const [mode, setMode] = useState('new');
     const [getOldCard, setOldCard] = useState('');
     const [getNewCard, setNewCard] = useState('');
@@ -55,6 +56,7 @@ export default function Tarot() {
         let cardOld = card;
         setOldCard(card);
         setCurrentPic(card);
+        setCurrentCardNum(num);
         console.log('old card state is: ' + getOldCard)
         const meaning = cardInfo.data().meaning;
         console.log('meaning is: ' + meaning)
@@ -161,7 +163,17 @@ export default function Tarot() {
         meaning.style['text-decoration']='none';
         meaning.style.fontWeight = 'bold';
         saveButton.innerHTML = '✏️'
+        saveMeaning();
       }
+    }
+
+    const saveMeaning = async () => {
+      const docRef = doc(db, "Tarot", currentCardNum.toString());
+
+      const meaning = document.getElementById("meaningTarot").innerHTML;
+
+      const payload = { meaning: meaning}
+      await updateDoc(docRef, payload);
     }
 
 
