@@ -213,14 +213,26 @@ export default function Tarot() {
     }
 
     const addStarred = async () => {
-      let pic = document.getElementById('cardImg').src
-      pic = pic.replace('https://willthisdofor.art/tarot/pics/', '');
-      pic = pic.replace('.jpg', '');
+      const pic = getCurrentPic();
       console.log('pic is: ' + pic)
 
       const docRef = doc(db, 'Tarot', 'Starred');
       const payload = {List: arrayUnion(pic)};
       await updateDoc(docRef, payload);
+    }
+
+    const getCurrentPic = () => {
+      let img = document.getElementById('cardImg')
+      let pic = img === null ? '' : img.src
+      pic = pic.replace('https://willthisdofor.art/tarot/pics/', '');
+      pic = pic.replace('.jpg', '');
+
+      return pic
+    }
+
+    const isOptionCurrentPic = (option) => {
+      const current = getCurrentPic();
+      return current === option;
     }
 
   return (
@@ -239,9 +251,9 @@ export default function Tarot() {
           <br /><br />
           <h3 id="card">idk</h3>
 
-          <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select" onChange={(e) => newCard(e.target.value)}>
+          <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select"  onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
-                return <option key={id} value={e.id}>{isStarred(e.card)}{e.card}</option>;
+                return <option selected={isOptionCurrentPic(e.card)} key={id} value={e.id}>{isStarred(e.card)}{e.card}</option>;
             })} </FormControl>
           <button onClick={() => addStarred() }>⭐</button>
 
