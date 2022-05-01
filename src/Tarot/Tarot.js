@@ -239,7 +239,7 @@ export default function Tarot() {
           <br /><br />
           <h3 id="card">idk</h3>
 
-          <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select" onChange={(e) => newCard(e.target.value)}>
+          <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select" value='SELECT' onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
                 return <option key={id} value={e.id}>{isStarred(e.card)}{e.card}</option>;
             })} </FormControl>
