@@ -11,6 +11,7 @@ import {
 } from "@firebase/firestore";
 import db from "../Sandbox/firebase";
 import moment from "moment";
+import { DreamsNotepad } from "./DreamsNotepad";
 
 export const Dreams = () => {
   const [data, setData] = useState([{ Keywords: ["Loading..."], id: ["idk"] }]);
@@ -113,7 +114,10 @@ export const Dreams = () => {
         // ⬜ Display sorted by id
         data.map((item) => (
           <li>
-            {item.id} <button onClick={() => incrementCount(item.id)}>+</button>
+            <details style={{ display: 'inline-block'}}>
+              <summary>{item.id}<button onClick={() => incrementCount(item.id)}>+</button></summary>
+              <DreamsNotepad keyword={item.id}/>
+            </details>
           </li>
         ))
       }

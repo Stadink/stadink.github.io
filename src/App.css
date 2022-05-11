@@ -361,3 +361,8 @@ table, th, td {
 #colorPalette {
   padding-top: 10px;
 }
+
+#toDoList { 
+  text-align: left;
+  margin: 50px;
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export class Goals extends React.Component {
-    // handleIdea() {
+    // handleGoal mb..? or not, too extra? idk() {
     //     const newTime = new Date()
 
     //     let idea = prompt("What idea did this genius brain generate?", "oh i'm so flattered, the idea is...");
