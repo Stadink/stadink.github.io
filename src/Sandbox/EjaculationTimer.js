@@ -7,9 +7,11 @@ import axios from "axios";
 export class EjaculationTimer extends React.Component {
   constructor(props) {
     super(props);
+
     axios.get('http://willthisdofor.art/api/getTime.php').then((response) => {
       let time = JSON.stringify(response.data)
-      time = time.replace("GMT 0100", "GMT+0100")
+      time = time.replace("GMT 0200", "GMT+0200")
+      console.log('TIME IS: ' + time)
       this.setState( {lastTime: time})
     });
 
@@ -17,6 +19,7 @@ export class EjaculationTimer extends React.Component {
       lastTime: "2021-10-26 10:06",
       reload: 'idkz whatever'
     };
+
     this.reset = this.reset.bind(this);
   }
 
@@ -24,6 +27,8 @@ export class EjaculationTimer extends React.Component {
     var nowMoment = moment(new Date()); //todays date
     var last = this.state.lastTime; // another date
     var d = moment.duration(nowMoment.diff(last));
+
+    console.log('D is: ' + d)
 
     let days = d.days();
     let hours = d.hours();
@@ -36,7 +41,7 @@ export class EjaculationTimer extends React.Component {
     var secondsPassed = days + hours + minutes === 0 ?  seconds + ' seconds ' : '';
 
     const timePassed = daysPassed + hoursPassed + minutesPassed + secondsPassed;
-
+    console.log('time passed is: ' + timePassed)
     return timePassed
   }
 
@@ -71,7 +76,6 @@ export class EjaculationTimer extends React.Component {
     const oneSecond = 1000;
     setInterval(() => {
       this.incrementSeconds()
-
     }, oneSecond);
   }
 }
