@@ -29,20 +29,6 @@ export class DreamsNotepad extends React.Component {
     const docRef = doc(db, dbName, keyword);
     let payload;
 
-    // switch(dbName) {
-    //   case "ideas":
-    //     payload = {idea: this.state.text, timestamp: serverTimestamp(), hide: 0};
-    //     await setDoc(docRef, payload);
-    //     break;
-    //   case "toDo":
-    //     payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
-    //     await setDoc(docRef, payload);
-    //     break;
-    //   case 'keywordNote':
-    //     this.addkeywordNote();
-    //     break;
-    // }
-
     payload = {note: this.state.text};
     await updateDoc(docRef, payload);
 
