@@ -13,6 +13,7 @@ export class DreamsNotepad extends React.Component {
   }
 
   getText() {
+    console.log('Dates: ' + this.props.dates)
     return this.state.placeholder;
   }
 
@@ -20,29 +21,38 @@ export class DreamsNotepad extends React.Component {
     this.setState({text: event.target.value});
   }
   
-  async handleNew() {
-    const dbName = this.state.dbName;
-    const docRef = doc(db, dbName, moment().toString());
+  async handleNew(keyword) {
+    alert('It saved but I need to learn more react I guess')
+    // oh and it also can fuck up the saved notes but idk
+
+    const dbName = 'Dreams';
+    const docRef = doc(db, dbName, keyword);
     let payload;
 
-    switch(dbName) {
-      case "ideas":
-        payload = {idea: this.state.text, timestamp: serverTimestamp(), hide: 0};
-        await setDoc(docRef, payload);
-        break;
-      case "toDo":
-        payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
-        await setDoc(docRef, payload);
-        break;
-      case 'dayNote':
-        this.addDayNote();
-        break;
-    }
+    // switch(dbName) {
+    //   case "ideas":
+    //     payload = {idea: this.state.text, timestamp: serverTimestamp(), hide: 0};
+    //     await setDoc(docRef, payload);
+    //     break;
+    //   case "toDo":
+    //     payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
+    //     await setDoc(docRef, payload);
+    //     break;
+    //   case 'keywordNote':
+    //     this.addkeywordNote();
+    //     break;
+    // }
+
+    payload = {note: this.state.text};
+    await updateDoc(docRef, payload);
+
     this.setState({text: ''});
     this.setState({placeholder: 'Saved! Anything else?'});
+    this.setProps({note: 'Saved! Anything else?'});
     
     document.querySelector('#notepad').value = "";
     document.querySelector('#notepad').placeholder = "Saved! Anything else?";
+    alert('It saved but I need to learn more react I guess')
   }
 
   setDatabaseName(event) {
@@ -60,7 +70,7 @@ export class DreamsNotepad extends React.Component {
     return days
   }
 
-  async addDayNote() {
+  async addkeywordNote() {
     const docRef = doc(db, 'Days', `#${this.getTimeRemaining()}`);
     let payload;
 
@@ -69,33 +79,42 @@ export class DreamsNotepad extends React.Component {
     await updateDoc(docRef, payload);
   }
 
-  async getKeywordNotes(day) {
-    document.getElementById('DayNum').innerHTML = this.getTimeRemaining()+day;
-    const docRef = doc(db, 'Days', `#${this.getTimeRemaining()+day}`);
-    console.log('Daily note from Day #' + (this.getTimeRemaining()+day));
+  async getKeywordNote(keyword) {
+    const docRef = doc(db, 'Dreams', keyword);
+    // console.log('Daily note from Day #' + (this.getTimeRemaining()+day));
     // console.log('Type is' + typeof (this.getTimeRemaining()+day));
     const docSnapshot = await getDoc(docRef)
     const data = docSnapshot.data();
-    let dayNote;
+    let keywordNote;
     if(data !== undefined) {
-      dayNote = data.note;
+      keywordNote = data.note;
     }
 
-    console.log('Day note is: ' + dayNote);
-    dayNote = dayNote === undefined ? '🤔' : dayNote;
+    console.log('Keyword note is: ' + keywordNote);
+    keywordNote = keywordNote === undefined ? '🤷‍♂️' : keywordNote;
 
     this.setState({placeholder: ''});
-    this.setState({text: dayNote});
-    document.querySelector('#notepad').value = dayNote;
+    this.setState({text: keywordNote});
+    // document.querySelector('#notepad').value = keywordNote;
     // document.querySelector("//th[contains(.,'8496')]").innerHtml = 'Nice';
+    return keywordNote;
   }
 
   render() {
     return (
       <div id="notepadSection">
-        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> <br />
-        {this.state.props}
-        <button className="button" onClick={this.handleNew}>💾</button>
+        {/* Keyword count number + dates in spoiler */}
+        <details>
+          <summary><b>count:</b> {this.props.count}</summary>
+          dates: {[this.props.dates]}
+        </details>
+
+        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} >
+          {this.props.note}
+          {/* {this.props.keyword} */}
+        </textarea> <br />
+
+        <button className="button" onClick={() => this.handleNew(this.props.keyword)}>💾</button>
       </div>
     );
   }

@@ -91,6 +91,8 @@ export const Dreams = () => {
       <h1>
         Did you dream of <u id="randomKeyword">{randomKeyword()}</u> ?{" "}
       </h1>
+
+      
       <button onClick={() => setNewRandomKeyword()}>Next</button>
       <button
         onClick={() =>
@@ -109,18 +111,20 @@ export const Dreams = () => {
         <br />
         <br />
       </form>
-      list of keywords:
+      <b>Keywords:</b>
+      <ol>
       {
         // ⬜ Display sorted by id
-        data.map((item) => (
+        data.map((keyword) => (
           <li>
-            <details style={{ display: 'inline-block'}}>
-              <summary>{item.id}<button onClick={() => incrementCount(item.id)}>+</button></summary>
-              <DreamsNotepad keyword={item.id}/>
-            </details>
+              <details style={{ display: 'inline-block'}}>
+                <summary>{keyword.id} <button onClick={() => incrementCount(keyword.id)}>+</button></summary>
+                <DreamsNotepad dates={[keyword.dates]} count={keyword.count} keyword={keyword.id} note={keyword.note}/>
+              </details>
           </li>
         ))
       }
+      </ol>
       {/* {
               data['0'].Keywords.map((keyword, index) => (
                 <div>
