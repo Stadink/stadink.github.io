@@ -51,7 +51,7 @@ export class Affirmation extends React.Component {
         const affirmations = this.state.List;
         const length = affirmations.length
         const randomNum = Math.floor(Math.random() * length)
-        const randomNum2 = Math.floor(Math.random() * length) + 1
+        const randomNum2 = Math.floor(Math.random() * length / 2) + 1
 
         const randomAffirmation = affirmations[randomNum] + ', '
 

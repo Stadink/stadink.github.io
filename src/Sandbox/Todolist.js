@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { collection, onSnapshot, setDoc, updateDoc, doc, query, orderBy, where, serverTimestamp } from '@firebase/firestore';
 import db from './firebase';
+// import { Radio, RadioGroup, useRadioState } from "reakit/Radio";
 
 const toDoList = ['Make auto-toggle', 'Scrape ladirna.cz plants & add to Anki'];
 
@@ -9,7 +10,9 @@ export default function ToDoList() {
   const [toDos, setTodo] = useState([{ toDoItem: "Loading...", done: 0, id: "initial" }]);
   const [done, setDoneTodos] = useState([{ toDoItem: "Loading...", done: 1, id: "initial" }]);
 
-  const toDosCollectionRef = collection(db, "toDo");
+  const [table, setTable] = useState('toDo');
+
+  const toDosCollectionRef = collection(db, table);
 
   const qTodo = query(toDosCollectionRef, orderBy("timestamp", "desc"));
   const qDone = query(toDosCollectionRef, where("done", ">", 0), orderBy("done", "desc"));
@@ -47,10 +50,34 @@ export default function ToDoList() {
     updateDoc(docRef, { hide: 1 });
   }
 
+  const getToDo2 = async () => {
+    setTable('toDo2')
+    onSnapshot(qTodo, (snapshotTodo) =>
+        setTodo(snapshotTodo.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      )
+    console.log('well todos set I guess well')
+  }
+
+  const getToDo1 = async () => {
+    setTable('toDo')
+    onSnapshot(qTodo, (snapshotTodo) =>
+        setTodo(snapshotTodo.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      )
+    console.log('well todos set I guess well')
+  }
+
   return (
     <div id='toDoList'>
       <details open>
       <summary><h2>✅ <b><u>To-do list:</u></b></h2></summary>
+
+      <input checked id="toDo2" onClick={getToDo1} type='radio'></input> 
+      {table === 'toDo2' ? 'Backlog' : 'To-do'}
+      <input checked id="toDo1" onClick={() => getToDo2()} type='radio'></input> 
+
+      {/* Radio */}
+
+{/* {this.state.table} */}
 
         {
           toDos.map(item => (

@@ -48,7 +48,7 @@ export const Dreams = () => {
     await updateDoc(docRef, payload);
 
     const timeNow = moment().toString();
-    const keywordExists = JSON.stringify(data).includes(keyword);
+    const keywordExists = JSON.stringify(data).includes(keyword); // THIS WAY TO CHECK IT CAUSES BUGS
 
     if (!keywordExists) {
       let payload2 = { count: 1, dates: [timeNow] };

@@ -23,8 +23,10 @@ export class Notepad extends React.Component {
   async handleNew() {
     const dbName = this.state.dbName;
     const docRef = doc(db, dbName, moment().toString());
+    const docRef2 = doc(db, 'toDo2', moment().toString());
     let payload;
 
+    // eslint-disable-next-line default-case
     switch(dbName) {
       case "ideas":
         payload = {idea: this.state.text, timestamp: serverTimestamp(), hide: 0};
@@ -33,6 +35,10 @@ export class Notepad extends React.Component {
       case "toDo":
         payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
         await setDoc(docRef, payload);
+        break;
+      case "on":
+        payload = {toDoItem: this.state.text, done: 0, timestamp: serverTimestamp()};
+        await setDoc(docRef2, payload);
         break;
       case 'dayNote':
         this.addDayNote();
@@ -90,6 +96,11 @@ export class Notepad extends React.Component {
     // document.querySelector("//th[contains(.,'8496')]").innerHtml = 'Nice';
   }
 
+  getVisibility() {
+    const displayOption = this.state.dbName === 'toDo' ? 'visible' : 'hidden';
+    return displayOption;
+  }
+
   render() {
     return (
       <div id="notepadSection">
@@ -99,8 +110,7 @@ export class Notepad extends React.Component {
 
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> 
         
-        <input type='radio'></input> 
-        <input type='radio'></input>
+
         
         <br />
 
@@ -111,7 +121,11 @@ export class Notepad extends React.Component {
 
             <input type="radio" id="toDo" name="fav_language" value="toDo"/>
             <label for="toDo">✅</label>
-{/* 
+
+          <input id="toDo2" style={{visibility: this.getVisibility()}} type='radio'></input> 
+          <input id="toDo1" style={{visibility: this.getVisibility()}} type='radio'></input> 
+
+          {/* 
             <input type="radio" id="starred" name="fav_language" value="starred"/>
             <label for="starred">⭐</label> */}
 
@@ -120,7 +134,6 @@ export class Notepad extends React.Component {
           </div>
         <button className="button" onClick={this.handleNew}>Add</button>
       </div>
-        
     );
   }
 }
