@@ -91,9 +91,9 @@ export default function ToDoList() {
       <details open>
       <summary><h2>✅ <b><u>To-do list:</u></b></h2></summary>
 
-      <input checked id="toDo2" onClick={getToDo1} type='radio'></input> 
+      <input checked={ table === 'toDo'} id="toDo2" onClick={getToDo1} type='radio'></input> 
       {table === 'toDo2' ? 'Backlog' : 'To-do'}
-      <input checked id="toDo1" onClick={getToDo2} type='radio'></input> 
+      <input checked={ table === 'toDo2'} id="toDo1" onClick={getToDo2} type='radio'></input> 
 
       {/* Radio */}
 
