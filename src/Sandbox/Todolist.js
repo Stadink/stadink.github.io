@@ -37,7 +37,7 @@ export default function ToDoList() {
 
   const setDone = async (id, toDoItem) => {
     // console.log(id)
-    const docRef = doc(db, "toDo", id);
+    const docRef = doc(db, table, id);
 
     const payload = {toDoItem: toDoItem, timestampDone: serverTimestamp(), done: 1, hide: 0};
 
@@ -46,7 +46,7 @@ export default function ToDoList() {
 
   const hideDoneItem = async (toDoItem) => {
     console.log(toDoItem.id)
-    const docRef = doc(db, "toDo", toDoItem.id);
+    const docRef = doc(db, table, toDoItem.id);
     updateDoc(docRef, { hide: 1 });
   }
 
@@ -61,6 +61,11 @@ export default function ToDoList() {
 
     console.log('well todos set I guess well')
     await console.log('ToDos are: ' + JSON.stringify(toDos))
+
+    const qDone = query(toDosCollectionRef, where("done", ">", 0), orderBy("done", "desc"));
+    await onSnapshot(qDone, (snapshotDone) =>
+      setDoneTodos(snapshotDone.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    )
   }
 
   const getToDo1 = async () => {
@@ -74,6 +79,11 @@ export default function ToDoList() {
       )
     console.log('well todos set I guess well')
     console.log('ToDos are: ' + JSON.stringify(toDos))
+
+    const qDone = query(toDosCollectionRef, where("done", ">", 0), orderBy("done", "desc"));
+    await onSnapshot(qDone, (snapshotDone) =>
+      setDoneTodos(snapshotDone.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    )
   }
 
   return (
