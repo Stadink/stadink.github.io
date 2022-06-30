@@ -51,19 +51,29 @@ export default function ToDoList() {
   }
 
   const getToDo2 = async () => {
-    setTable('toDo2')
-    onSnapshot(qTodo, (snapshotTodo) =>
-        setTodo(snapshotTodo.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    await setTable('toDo2')
+    const toDosCollectionRef = collection(db, 'toDo2');
+    const qTodo = query(toDosCollectionRef, orderBy("timestamp", "desc"));
+
+   await onSnapshot(qTodo, (snapshotTodo) =>
+         setTodo(snapshotTodo.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       )
+
     console.log('well todos set I guess well')
+    await console.log('ToDos are: ' + JSON.stringify(toDos))
   }
 
   const getToDo1 = async () => {
     setTable('toDo')
-    onSnapshot(qTodo, (snapshotTodo) =>
+
+    const toDosCollectionRef = collection(db, 'toDo');
+    const qTodo = query(toDosCollectionRef, orderBy("timestamp", "desc"));
+
+    await onSnapshot(qTodo, (snapshotTodo) =>
         setTodo(snapshotTodo.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       )
     console.log('well todos set I guess well')
+    console.log('ToDos are: ' + JSON.stringify(toDos))
   }
 
   return (
@@ -73,7 +83,7 @@ export default function ToDoList() {
 
       <input checked id="toDo2" onClick={getToDo1} type='radio'></input> 
       {table === 'toDo2' ? 'Backlog' : 'To-do'}
-      <input checked id="toDo1" onClick={() => getToDo2()} type='radio'></input> 
+      <input checked id="toDo1" onClick={getToDo2} type='radio'></input> 
 
       {/* Radio */}
 
