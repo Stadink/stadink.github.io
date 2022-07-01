@@ -20,6 +20,9 @@ export const Dreams = () => {
 
   const q = query(collectionRef);
 
+  const [keyword, setKeyword] = useState('-');
+  const [note, setNote] = useState('-');
+
   useEffect(
     () =>
       onSnapshot(q, (snapshot) =>
@@ -34,6 +37,8 @@ export const Dreams = () => {
     const randomNum = Math.floor(Math.random() * data.length);
     const word = data[randomNum].id;
     // document.getElementById('randomKeyword').innerHTML = word;
+    // setKeyword(word)
+    // setNote(data[randomNum].)
     return word;
     // return 'idk';
   };
@@ -85,13 +90,43 @@ export const Dreams = () => {
     await updateDoc(docRef, payload);
   };
 
+  // const getNote = async () => {
+  //   const docRef = doc(db, "Dreams", keyword);
+  //   const docSnapshot = await getDoc(docRef);
+  //   const note = await docSnapshot.data().note;
+  //   setNote('aaa wtf')
+
+  //   return 'fuck';
+  // }
+
+  const getNote = () => {
+
+    const randomNum = Math.floor(Math.random() * data.length);
+    const word = data[randomNum].id
+
+    return JSON.stringify(data);
+  }
+
+  const getNotepad = () => {
+    return <DreamsNotepad dates={[keyword]} count={keyword} keyword={keyword} note={randomKeyword()}/>
+  }
+
+  const stripSpaces = (keyword) => {
+    const stripped = keyword.toString().replace(/\s/g, '')
+    return stripped
+  }
+
   return (
     <div id="dreams">
       <br />
-      <h1>
-        Did you dream of <u id="randomKeyword">{randomKeyword()}</u> ?{" "}
-      </h1>
 
+      <details style={{ display: 'inline-block'}}>
+        <summary>    <h1>    Did you dream of <u onClick={() => getNote()} id="randomKeyword">{randomKeyword()}</u> ?{" "}</h1></summary>
+        {/* {JSON.stringify(data)} */}
+        {getNotepad()}
+      </details>
+
+      <br />
       
       <button onClick={() => setNewRandomKeyword()}>Next</button>
       <button
@@ -117,7 +152,7 @@ export const Dreams = () => {
         // ⬜ Display sorted by id
         data.map((keyword) => (
           <li>
-              <details style={{ display: 'inline-block'}}>
+              <details id={stripSpaces(keyword.id)} style={{ display: 'inline-block'}}>
                 <summary>{keyword.id} <button onClick={() => incrementCount(keyword.id)}>+</button></summary>
                 <DreamsNotepad dates={[keyword.dates]} count={keyword.count} keyword={keyword.id} note={keyword.note}/>
               </details>

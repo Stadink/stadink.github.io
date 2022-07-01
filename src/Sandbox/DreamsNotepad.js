@@ -7,7 +7,7 @@ import moment from 'moment';
 export class DreamsNotepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {placeholder: 'Any details?', text: ' ', keyword: ''};
+    this.state = {placeholder: 'Any details?', text: this.props.note, keyword: ''};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -22,7 +22,7 @@ export class DreamsNotepad extends React.Component {
   }
   
   async handleNew(keyword) {
-    alert('It saved but I need to learn more react I guess')
+    // alert('It saved but I need to learn more react I guess')
     // oh and it also can fuck up the saved notes but idk
 
     const dbName = 'Dreams';
@@ -34,11 +34,12 @@ export class DreamsNotepad extends React.Component {
 
     this.setState({text: ''});
     this.setState({placeholder: 'Saved! Anything else?'});
-    this.setProps({note: 'Saved! Anything else?'});
+    // this.setProps({note: 'Saved! Anything else?'});
     
-    document.querySelector('#notepad').value = "";
-    document.querySelector('#notepad').placeholder = "Saved! Anything else?";
-    alert('It saved but I need to learn more react I guess')
+    document.querySelector('#' + keyword.replace(/\s/g, '') + 'Button').innerHTML = "saved ✅";
+    document.querySelector('#' + keyword.replace(/\s/g, '') + 'Button').style.background = "green";
+    // document.querySelector('#' + keyword).placeholder = "Saved! Anything else?";
+    // alert('It saved but I need to learn more react I guess')
   }
 
   setDatabaseName(event) {
@@ -86,6 +87,10 @@ export class DreamsNotepad extends React.Component {
     return keywordNote;
   }
 
+  stripSpaces(keyword) {
+    return keyword.toString().replace(/\s/g, '')
+  }
+
   render() {
     return (
       <div id="notepadSection">
@@ -100,7 +105,7 @@ export class DreamsNotepad extends React.Component {
           {/* {this.props.keyword} */}
         </textarea> <br />
 
-        <button className="button" onClick={() => this.handleNew(this.props.keyword)}>💾</button>
+        <button id={this.stripSpaces(this.props.keyword) + 'Button'} className="button" onClick={() => this.handleNew(this.props.keyword)}>💾</button>
       </div>
     );
   }
