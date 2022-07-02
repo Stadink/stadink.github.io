@@ -74,7 +74,9 @@ export const Dreams = () => {
   const setNewRandomKeyword = () => {
     // const randomNum = Math.floor(Math.random() * data[0].Keywords.length);
     // const word = data[0].Keywords[randomNum]
-    document.getElementById("randomKeyword").innerHTML = randomKeyword();
+    const tempKeyword = randomKeyword()
+    // document.getElementById("randomKeyword").innerHTML = tempKeyword;
+    setKeyword(tempKeyword)
   };
 
   const incrementCount = async (keyword) => {
@@ -104,11 +106,15 @@ export const Dreams = () => {
     const randomNum = Math.floor(Math.random() * data.length);
     const word = data[randomNum].id
 
+    setNote(randomNum)
+    console.log('getNote num is: ' + randomNum)
     return JSON.stringify(data);
   }
 
   const getNotepad = () => {
-    return <DreamsNotepad dates={[keyword]} count={keyword} keyword={keyword} note={randomKeyword()}/>
+    // getNote();
+    // const noteTemp = getNote()
+    return <DreamsNotepad dates={[keyword]} count={keyword} keyword={keyword} note={keyword}/>
   }
 
   const stripSpaces = (keyword) => {
@@ -120,10 +126,10 @@ export const Dreams = () => {
     <div id="dreams">
       <br />
 
-      <details style={{ display: 'inline-block'}}>
-        <summary>    <h1>    Did you dream of <u onClick={() => getNote()} id="randomKeyword">{randomKeyword()}</u> ?{" "}</h1></summary>
+      <details onClick={() => getNote()} style={{ display: 'inline-block'}}>
+        <summary>    <h1>    Did you dream of <u id="randomKeyword">{randomKeyword()}</u> ?{" "}</h1></summary>
         {/* {JSON.stringify(data)} */}
-        {getNotepad()}
+        <DreamsNotepad dates={[keyword]} count={keyword} keyword={keyword} note={keyword}/>
       </details>
 
       <br />
@@ -154,7 +160,7 @@ export const Dreams = () => {
           <li>
               <details id={stripSpaces(keyword.id)} style={{ display: 'inline-block'}}>
                 <summary>{keyword.id} <button onClick={() => incrementCount(keyword.id)}>+</button></summary>
-                <DreamsNotepad dates={[keyword.dates]} count={keyword.count} keyword={keyword.id} note={keyword.note}/>
+                <DreamsNotepad dates={keyword.dates} count={keyword.count} keyword={keyword.id} note={keyword.note}/>
               </details>
           </li>
         ))

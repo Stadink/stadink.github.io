@@ -97,7 +97,7 @@ export class DreamsNotepad extends React.Component {
         {/* Keyword count number + dates in spoiler */}
         <details>
           <summary><b>count:</b> {this.props.count}</summary>
-          dates: {[this.props.dates]}
+          dates: {this.props.dates}
         </details>
 
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} >
