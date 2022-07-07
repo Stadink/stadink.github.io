@@ -22,7 +22,7 @@ export class DailyStoic extends React.Component {
           <h3><a href='https://drive.google.com/file/d/1bSVYqgLkd8sqTTOELpLv4nE9XMvQ1TKz/view' target="_blank">{DS[this.getDayOfYear()].lesson}</a></h3>          
           
           <details>
-            <summary>{DS[this.getDayOfYear()].quote}</summary>
+            <summary><i>{DS[this.getDayOfYear()].quote}</i></summary>
             <br/>
             {DS[this.getDayOfYear()].chapter}
           </details>
