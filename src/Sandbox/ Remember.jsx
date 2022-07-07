@@ -6,6 +6,7 @@ import TranscendingSelf from './TranscendingSelf';
 import Ideas from './Ideas';
 import { Affirmation } from './Affirmation';
 import { SelfEnquiry } from './SelfEnquiry'
+import { DailyStoic } from './DailyStoic';
 
 
 export class Remember extends React.Component {
@@ -158,14 +159,15 @@ export class Remember extends React.Component {
                 <summary><input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry ▼  <br/></summary>
                 <SelfEnquiry/>
               </details>
-              <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  /><abbr title="~Honest externalization, so anyway... 🤔">Writing</abbr><br/>
+              <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  /><abbr title="~Honest externalization, so anyway... 🤔">Writing </abbr> <a style={{textDecoration: 'none'}} href="https://10fastfingers.com/typing-test/english" target="_blank">👨🏻‍💻</a><br/>
               <input id='Read' checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read 📕<br/>
 
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
 
-
             <TranscendingSelf />
+            <br/>
+            <DailyStoic />
             <Ideas />
         </div>
     );
