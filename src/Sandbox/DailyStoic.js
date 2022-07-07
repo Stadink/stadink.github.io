@@ -20,7 +20,13 @@ export class DailyStoic extends React.Component {
     return (
         <div id="dailyStoic" style={{'border' : '1px solid white'}}>
           <h3><a href='https://drive.google.com/file/d/1bSVYqgLkd8sqTTOELpLv4nE9XMvQ1TKz/view' target="_blank">{DS[this.getDayOfYear()].lesson}</a></h3>          
-          {DS[this.getDayOfYear()].quote}
+          
+          <details>
+            <summary>{DS[this.getDayOfYear()].quote}</summary>
+            <br/>
+            {DS[this.getDayOfYear()].chapter}
+          </details>
+
           <br/><br/>
         </div>
     );
