@@ -16,7 +16,8 @@ export class Motivation extends React.Component {
                 </details> <br />
                 <a style={{textDecoration: 'none'}} href="https://calendar.google.com/calendar/u/0/r" target="_blank">🗓️ </a>| 
                 <a style={{textDecoration: 'none'}} href="https://jedvaita.com/articles/" target="_blank"> 👁 </a>|
-                <a style={{textDecoration: 'none'}} href="https://www.linkedin.com/learning/?u=102813596" target="_blank"> 👨🏻‍💻</a>
+                <a style={{textDecoration: 'none'}} href="https://www.linkedin.com/learning/?u=102813596" target="_blank"> 👨🏻‍💻</a> |
+                <a style={{textDecoration: 'none'}} href="http://obsidian.willthisdofor.art/" target="_blank"> 👾</a>
         </div>
     );
   }
