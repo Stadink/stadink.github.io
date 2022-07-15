@@ -1,15 +1,32 @@
 import React from 'react';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import db from './firebase';
+
 
 export class SelfEnquiry extends React.Component {
-    doSomething(e) {
-        alert('yeah well, but who is aware of ' + document.getElementById('WhoIamInput').value)
+
+    async saveIdea(e) {
         e.preventDefault();
+
+        const ideaInput = document.querySelector('#WhoIamInput');
+        const meIdeaItem = ideaInput.value;
+
+        console.log(meIdeaItem)
+
+        const docRef = doc(db, 'Self-Inquiry', 'ideas')
+        let payload = {items: arrayUnion(meIdeaItem)};
+        await updateDoc(docRef, payload)
+
+        alert('yeah well, but who is aware of ' + meIdeaItem)
+
+        ideaInput.value = '';
+        ideaInput.placeholder = 'Saved! Any more?';
     }
 
   render() {
     return (
         <div id="selfEnquiry">
-            <form onSubmit={(e) => this.doSomething(e)}>
+            <form onSubmit={(e) => this.saveIdea(e)}>
                 Who am I? What am I? <br/>
                 <input type="text" id="WhoIamInput"></input> <br/>            
             </form>

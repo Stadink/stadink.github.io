@@ -28,7 +28,7 @@ export class EjaculationTimer extends React.Component {
     var last = this.state.lastTime; // another date
     var d = moment.duration(nowMoment.diff(last));
 
-    console.log('D is: ' + d)
+    // console.log('D is: ' + d)
 
     let days = d.days();
     let hours = d.hours();
@@ -41,7 +41,7 @@ export class EjaculationTimer extends React.Component {
     var secondsPassed = days + hours + minutes === 0 ?  seconds + ' seconds ' : '';
 
     const timePassed = daysPassed + hoursPassed + minutesPassed + secondsPassed;
-    console.log('time passed is: ' + timePassed)
+    // console.log('time passed is: ' + timePassed)
     return timePassed
   }
 
