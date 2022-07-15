@@ -5,7 +5,7 @@ import db from './firebase';
 
 export class SelfEnquiry extends React.Component {
 
-    async isaveIdea(e) {
+    async saveIdea(e) {
         e.preventDefault();
 
         const ideaInput = document.querySelector('#WhoIamInput');
@@ -21,6 +21,8 @@ export class SelfEnquiry extends React.Component {
 
         ideaInput.value = '';
         ideaInput.placeholder = 'Saved! Any more?';
+
+        e.preventDefault();
     }
 
   render() {
