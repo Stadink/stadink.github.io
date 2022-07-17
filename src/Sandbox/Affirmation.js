@@ -44,7 +44,7 @@ export class Affirmation extends React.Component {
     getAffirmations() {
         const affirmations = this.state.List;
         affirmations.sort( () => .5 - Math.random() );
-        return affirmations.toString();
+        return affirmations.join(', ').toString();
     }
 
     getRandomAffirmations() {
@@ -64,7 +64,7 @@ export class Affirmation extends React.Component {
     return (
         <div id="Affirmation">
           <marquee width="60%" direction="left" height="40px" scrollamount="18">
-                {this.getAffirmations()}
+                {this.getAffirmations()}, 
                 {this.getRandomAffirmations()}
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.

@@ -16,6 +16,7 @@ import ColorPicker from "./Sandbox/ColorPicker";
 import { Dreams } from "./Sandbox/Dreams";
 import { WhatEats } from "./Sandbox/WhatEats";
 import { Art } from './Sandbox/Art'
+import { ClockMinutes } from "./Sandbox/ClockMinutes";
 
 function App() {
   return (
@@ -58,7 +59,10 @@ function App() {
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
               <Contact /> 
-              <Clock />
+              <details>
+                <summary><ClockMinutes /></summary>
+                <Clock />
+              </details>
             </header>
             <Tarot />
           </Route>
