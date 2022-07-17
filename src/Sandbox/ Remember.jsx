@@ -7,6 +7,7 @@ import Ideas from './Ideas';
 import { Affirmation } from './Affirmation';
 import { SelfEnquiry } from './SelfEnquiry'
 import { DailyStoic } from './DailyStoic';
+import { Contemplation } from './Contemplation';
 
 
 export class Remember extends React.Component {
@@ -150,11 +151,14 @@ export class Remember extends React.Component {
               </details>
 
               <input id='SDS' checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> SDS 🧘🏻‍♂️<br/>
-              <input id='Obsidian' checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian <br/>
+              <input id='Obsidian' checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian 🎲<br/>
               <input id='Sport' checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> Sport 💪 <br/>
               <input id='Codecademy' checked={this.isDone('Codecademy')} type="checkbox" onChange={()=>{this.handleCheck('Codecademy')}} />👉<a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a>👈 <br/>
               <input id='Anki' checked={this.isDone('Anki')} onChange={()=>{this.handleCheck('Anki')}} type="checkbox"  /> Anki <br/>
-              <input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/>
+              <details>
+                <summary><input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/></summary>
+                <Contemplation/>
+              </details>
               <details>
                 <summary><input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry ▼  <br/></summary>
                 <SelfEnquiry/>

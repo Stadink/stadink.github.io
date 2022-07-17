@@ -29,8 +29,8 @@ export class SelfEnquiry extends React.Component {
     return (
         <div id="selfEnquiry">
             <form onSubmit={(e) => this.saveIdea(e)}>
-                Who am I? What am I? <br/>
-                <input type="text" id="WhoIamInput"></input> <br/>            
+                <h1 style={{'margin-bottom': '0px'}}>I am</h1>
+                <input type="text" id="WhoIamInput"></input> <br/> <br/>      
             </form>
         </div>
     );
