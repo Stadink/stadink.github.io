@@ -7,7 +7,8 @@ import moment from 'moment';
 export class DreamsNotepad extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {placeholder: 'Any details?', text: this.props.note, keyword: ''};
+    const dates = this.props.dates === undefined ? [] : this.props.dates;
+    this.state = {placeholder: 'Any details?', text: this.props.note, keyword: '', dates: dates};
     this.handleNew = this.handleNew.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -97,7 +98,12 @@ export class DreamsNotepad extends React.Component {
         {/* Keyword count number + dates in spoiler */}
         <details>
           <summary><b>count:</b> {this.props.count}</summary>
-          dates: {this.props.dates}
+          dates:
+          { 
+            this.state.dates.map(date => {
+              return <div>{date}</div>
+            })
+          }
         </details>
 
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} >
