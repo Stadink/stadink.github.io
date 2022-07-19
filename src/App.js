@@ -19,6 +19,11 @@ import { Art } from './Sandbox/Art'
 import { ClockMinutes } from "./Sandbox/ClockMinutes";
 
 function App() {
+  
+  function copyToClipboard() {
+    navigator.clipboard.writeText('\n**Day #asdfasdf**\n\n\n---\n\n');
+  }
+
   return (
     <Router>
       <div className="App">
@@ -59,10 +64,7 @@ function App() {
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
               <Contact /> 
-              <details>
-                <summary><ClockMinutes /></summary>
-                <Clock />
-              </details>
+              <ClockMinutes />
             </header>
             <Tarot />
           </Route>
