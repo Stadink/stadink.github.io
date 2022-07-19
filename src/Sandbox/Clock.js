@@ -14,10 +14,10 @@ export class Clock extends React.Component {
     const oneSecond = 1000;
     setInterval(() => {
       this.setState({ date: new Date() });
-      if(document.hidden) 
-        document.title = 'Get back here mofo'
-      else 
-        document.title = this.state.date
+      // if(document.hidden) 
+      //   document.title = 'Get back here mofo'
+      // else 
+      //   document.title = this.state.date
     }, oneSecond);
   }
 }
