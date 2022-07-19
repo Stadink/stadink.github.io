@@ -12,16 +12,20 @@ export class Contemplation extends React.Component {
         this.state = { 
           question: this.getRandom(),
         };
+
+        this.getRandom = this.getRandom.bind(this);
     }
 
 
-    // function to randomly return one of the following: 'whoOrWhatAmI' or 'whatIsBeing'
+    // function to randomly set one of the following: 'whoOrWhatAmI' or 'whatIsBeing' as the state.question and return it
     getRandom() {
         const random = Math.floor(Math.random() * 2);
         if (random === 0) {
-            return 'Who am I? What am I?';
+            const question1 = 'Who am I? What am I?';
+            this.setState({question: 'Who am I? What am I?'}) ;
         } else {
-            return 'What is Being?';
+            const question2 = 'What is Being?';
+            this.setState({question: 'What is Being?'}) ;
         }
     }
 
@@ -55,10 +59,14 @@ export class Contemplation extends React.Component {
     return (
         <div id="selfEnquiry">
             <form onSubmit={(e) => this.saveIdea(e)}>
-                <h1 style={{'margin-bottom': '10px'}}>{this.state.question}</h1>
+                <h1 style={{'margin-bottom': '10px'}} onClick={() => { this.getRandom() }}>{this.state.question}</h1>
                 <input type="text" id="ContemplationInsight"></input> <br/> <br/> <br/>             
             </form>
         </div>
     );
+  }
+
+  componentDidMount() {
+    this.getRandom()
   }
 }
