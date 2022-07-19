@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { ConsciousnessRating } from './ConsciousnessRating';
 
 export class Motivation extends React.Component {
 
@@ -20,6 +21,8 @@ export class Motivation extends React.Component {
                 <a style={{textDecoration: 'none'}} href="http://obsidian.willthisdofor.art/" target="_blank"> 👾 </a> |
                 <a style={{textDecoration: 'none'}} href="https://integralguide.com/" target="_blank"> 🤔 </a> |
                 <a style={{textDecoration: 'none'}} href="https://docs.google.com/spreadsheets/d/1Ojd8S1bBl5xzPVybeOSa9Lr5OArqGH86j0JdyuRwrp8/edit#gid=0" target="_blank"> 📋 </a>
+
+                <ConsciousnessRating />
         </div>
     );
   }
