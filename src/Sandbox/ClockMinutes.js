@@ -56,7 +56,7 @@ export class ClockMinutes extends React.Component {
   render() {
      return <div><br/>
               <details onClick={()=>this.copyToClipboard()}>
-                <summary>{this.state.date}</summary>
+                <summary id='minuteNumber'>{this.state.date}</summary>
                 <Clock />
               </details>
           </div> 
