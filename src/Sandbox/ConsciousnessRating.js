@@ -68,7 +68,8 @@ export class ConsciousnessRating extends React.Component {
   }
 
   handleEvent = async (event) => {
-    if (event.type === "mousedown") {
+    console.log('handleEvent is: ' + event)
+    if (event.type === "onpointerdown") {
            this.setState({ message: "Mouse Down"});
        } else {
            this.setState({ message: "Mouse Up"});
@@ -80,7 +81,7 @@ export class ConsciousnessRating extends React.Component {
     return (
         <div id="consciousnessRating">
           <div class="slidecontainer"> <br/>
-            <input onMouseUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
+            <input onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
               <details>
                 <summary><p>Consciousness rating: <span id="demo">{this.state.value} </span>  </p></summary>
                 <img src='https://willthisdofor.art/ConsciousnessRating.png'/>
