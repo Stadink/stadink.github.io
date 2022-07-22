@@ -89,7 +89,7 @@ export default function ToDoList() {
   return (
     <div id='toDoList'>
       <details open>
-      <summary><h2>✅ <b><u>To-do list:</u></b></h2></summary>
+      <summary class="clickable"><h2>✅ <b><u>To-do list:</u></b></h2></summary>
       <span class='toDoSection' onClick={getToDo1} style={ table === 'toDo' ? {'text-decoration': 'underline', 'font-weight': 'bold'} : {'text-decoration': 'none', 'font-weight': 'normal'}}>To-do</span> | ‎ 
       <span class='toDoSection' onClick={getToDo2} style={ table === 'toDo2' ? {'text-decoration': 'underline', 'font-weight': 'bold'} : {'text-decoration': 'none', 'font-weight': 'normal'}}>Backlog  ‎ </span> <br />
 

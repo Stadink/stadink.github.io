@@ -6,17 +6,82 @@ export class ConsciousnessRating extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: 50,
+      value: 350,
       comment: '',
       allNumbers: this.getAllNumbers(),
+      allRatings: 'wtf',
     };
     this.updateValue = this.updateValue.bind(this);
     this.getAverage();
   }
 
+  async getAllRatings() {
+      const docRef = doc(db, 'ConsciousnessRating', 'All')
+      const docSnapshot = await getDoc(docRef)
+      const allRatings = docSnapshot.data();
+      
+      console.log('Get ratings is: ' + JSON.stringify(allRatings))
+
+      this.setState( {allRatings: JSON.stringify(allRatings)})
+  }
+
   updateValue() {
     var slider = document.getElementById("myRange");
     this.setState({value: slider.value});
+
+    const color = this.getSliderColor();
+    this.setSliderColor(color);
+
+    const backgroundColor = this.getSliderBackgroundColor();
+    this.setSliderBackgroundColor(backgroundColor)
+  }
+
+  getSliderColor() {
+    let color;
+    const value = this.state.value;
+    if (value < 1000) {
+      color = 'violet';
+    } 
+     if (value < 600) {
+      color = 'blue';
+    } 
+     if (value < 400) {
+      color = 'green';
+    } 
+     if (value < 250) {
+      color = 'yellow';
+    } 
+     if (value < 150) {
+      color = 'orange';
+    } 
+     if (value < 75) {
+      color = 'red';
+    }
+    return color;
+  }
+
+  getSliderBackgroundColor() {
+    let color;
+    const value = this.state.value;
+    if (value < 1000) {
+      color = '#dcc1fe';
+    } 
+     if (value < 600) {
+      color = '#b4cffd';
+    } 
+     if (value < 400) {
+      color = '#affeb3';
+    } 
+     if (value < 250) {
+      color = '#fafeb2';
+    } 
+     if (value < 150) {
+      color = '#fac798';
+    } 
+     if (value < 75) {
+      color = '#fda19c';
+    }
+    return color;
   }
 
   async getAllNumbers() {
@@ -35,7 +100,7 @@ export class ConsciousnessRating extends React.Component {
     const all = this.state.allNumbers;
     let sum = 0;
 
-    for(let i = 1; i <+ 10; i++) {
+    for(let i = 1; i <= 10; i++) {
       sum += parseInt(all[all.length - i])
     }
 
@@ -77,17 +142,56 @@ export class ConsciousnessRating extends React.Component {
        }
    };
 
+   getRatings() {
+    // { 
+    //   this.state.dates.map(date => {
+    //     return <div>{date}</div>
+    //   })
+    // }
+    console.log(this.state.allRatings.length)
+    return this.state.allRatings;
+   }
+
+   setSliderColor(color) {
+    document.getElementById("myRange").style.setProperty('--sliderColor', color);
+   }
+
+   setSliderBackgroundColor(color) {
+    document.getElementById("myRange").style.setProperty('--sliderBackgroundColor', color);
+   }
+
   render() {
     return (
         <div id="consciousnessRating">
           <div class="slidecontainer"> <br/>
             <input onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
               <details>
-                <summary><p>Consciousness rating: <span id="demo">{this.state.value} </span>  </p></summary>
-                <img src='https://willthisdofor.art/ConsciousnessRating.png'/>
+                <summary class="clickable"><p>Consciousness rating: <span id="demo">{this.state.value} </span>  </p></summary>
+                <img id="consciousnessMap" src='https://willthisdofor.art/ConsciousnessRating.png'/>
+                <details>
+                  <summary>History</summary>
+                  <br/>
+                  {this.getRatings()} {/* // Can I do it with function like that? Maybe change to jsx? */}
+                  <button onClick={()=>this.getRatings()}>console log</button>
+                  {/* { 
+                    this.state.allRatings.map(entry => {
+                      return <div>{entry}</div>
+                    })
+                  } */}
+                </details>
               </details>
           </div>
         </div>
     );
+  }
+
+  componentDidMount() {
+    this.getAllRatings();
+    this.getAverage();
+
+    const color = this.getSliderColor();
+    this.setSliderColor(color);
+    const backgroundColor = this.getSliderBackgroundColor();
+    this.setSliderBackgroundColor(backgroundColor);
   }
 }

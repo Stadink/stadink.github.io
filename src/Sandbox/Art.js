@@ -30,6 +30,8 @@ export class Art extends React.Component {
   render() {
     return (
         <div id="Art">
+            <h1><a href="https://willthisdofor.art" target="blank">willthisdofor.art</a></h1>
+
             <form id="new_document_attachment" method="post">
                 <div class="actions"><input type="submit" name="commit" value="Submit" /></div>
                 <input type="file" id="document_attachment_doc" onChange={this.handleChange} />

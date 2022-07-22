@@ -97,7 +97,7 @@ export class Affirmation extends React.Component {
                 <button onClick={(e) => this.saveAffirmation(e)}>save</button>
             </form>
 
-            <button onClick={() => this.getRandomAffirmations()}>Get Random</button>
+            {/* <button onClick={() => this.getRandomAffirmations()}>Get Random</button> */}
         </div>
     );
   }
