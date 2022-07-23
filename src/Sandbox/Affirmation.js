@@ -9,6 +9,8 @@ export class Affirmation extends React.Component {
     
         this.state = { 
           List: ['fuck!'],
+          randomAffirmation: 'idk',
+          randomAffirmations: 'aaaaaa',
         };
 
         this.getList = this.getList.bind(this);
@@ -47,17 +49,37 @@ export class Affirmation extends React.Component {
         return affirmations.join(', ').toString();
     }
 
-    getRandomAffirmations() {
-        const affirmations = this.state.List;
-        const length = affirmations.length
-        const randomNum = Math.floor(Math.random() * length)
-        const randomNum2 = Math.floor(Math.random() * length / 2) + 1
+    setRandomAffirmation() {
+      const affirmations = this.state.List;
+      const length = affirmations.length
+      const randomNum = Math.floor(Math.random() * length)
 
-        const randomAffirmation = affirmations[randomNum] + ', '
-
-        console.log(randomAffirmation.repeat(randomNum2))
-        return randomAffirmation.repeat(randomNum2)
+      const randomAffirmation = affirmations[randomNum]
+      // this.setState( {randomAffirmation: randomAffirmation } ) // WHY THE FUCK DOESN'T THIS WORK??????????
+      return randomAffirmation
     }
+
+    getRandomAffirmation() {
+      const currentRandomAffirmation = document.getElementById('randomAffirmations').innerHTML;
+      const single = currentRandomAffirmation.split(',')[0]
+
+      navigator.clipboard.writeText(single);
+      console.log(single)
+      return single
+    }
+
+
+    getRandomAffirmations() {
+      const affirmations = this.state.List;
+      const length = affirmations.length
+      const randomNum2 = Math.floor(Math.random() * length / 2) + 1
+
+      const randomAffirmation = this.setRandomAffirmation() + ', '
+      // const randomAffirmation = this.state.randomAffirmation + ', '
+      console.log(randomAffirmation.repeat(randomNum2))
+
+      return randomAffirmation.repeat(randomNum2)
+  }
 
 
   render() {
@@ -65,7 +87,7 @@ export class Affirmation extends React.Component {
         <div id="Affirmation">
           <marquee width="60%" direction="left" height="40px" scrollamount="18">
                 {this.getAffirmations()}, 
-                {this.getRandomAffirmations()}
+                <span id="randomAffirmations">{this.getRandomAffirmations()}</span>
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
                 I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free. I am powerful, I am capable, I am worthy, I am free.
@@ -97,6 +119,9 @@ export class Affirmation extends React.Component {
                 <button onClick={(e) => this.saveAffirmation(e)}>save</button>
             </form>
 
+            {/* {this.getRandomAffirmation()} */}
+            <button class="cursorCopy" onClick={()=> this.getRandomAffirmation() }>current Daily</button> <br/><br/>
+
             {/* <button onClick={() => this.getRandomAffirmations()}>Get Random</button> */}
         </div>
     );
@@ -104,6 +129,7 @@ export class Affirmation extends React.Component {
 
   componentDidMount() {
       this.getList();
+      // this.getRandomAffirmations()
     // this.setState( {List: this.getList()})
   }
 }

@@ -8,10 +8,11 @@ export class ConsciousnessRating extends React.Component {
     this.state = {
       value: 350,
       comment: '',
-      allNumbers: this.getAllNumbers(),
+      allNumbers: 'aaa fucking none' ,
       allRatings: 'wtf',
     };
     this.updateValue = this.updateValue.bind(this);
+    this.getAllNumbers()
     this.getAverage();
   }
 
@@ -92,8 +93,8 @@ export class ConsciousnessRating extends React.Component {
     console.log('GetAllNumbers is: ' + JSON.stringify(all['History']))
 
     this.setState({ allNumbers: all['History'] })
+    this.getAverage();
 
-    this.getAverage()
   }
 
   getAverage() {
@@ -188,6 +189,7 @@ export class ConsciousnessRating extends React.Component {
 
   componentDidMount() {
     this.getAllRatings();
+    // this.getAverage()
     this.getAverage();
 
     const color = this.getSliderColor();
