@@ -104,7 +104,7 @@ export default function ToDoList() {
         {
           toDos.map(item => (
             // <div><input type="checkbox" onChange={setDone.bind(this)} value={ item.toDoItem }/> { item.toDoItem } </div>
-            <h3><input type="checkbox" onClick={() => setDone(item.id, item.toDoItem)} /> { item.toDoItem } </h3>
+            <h3 class="clickable"><input class="cursorAim"type="checkbox" onClick={() => setDone(item.id, item.toDoItem)} /> <span class="cursorDefault">{item.toDoItem}</span></h3>
           ))
         } 
         
@@ -113,10 +113,10 @@ export default function ToDoList() {
         <br />
 
       <details>
-        <summary>Done ▼</summary>
+        <summary class="clickable">Done ▼</summary>
         {
           done.map(item => (
-            item.hide == 1 ? null : <div><input type="checkbox" checked/> { item.toDoItem } <button onClick={() => hideDoneItem(item)}>×</button> </div>
+            item.hide == 1 ? null : <div><input type="checkbox" checked/>  <span class="clickable">{item.toDoItem }</span> <button onClick={() => hideDoneItem(item)}>×</button> </div>
           ))
         }
       </details> <br />

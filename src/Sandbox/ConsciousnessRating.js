@@ -39,7 +39,7 @@ export class ConsciousnessRating extends React.Component {
   getSliderColor() {
     let color;
     const value = this.state.value;
-    if (value < 1000) {
+    if (value <= 1000) {
       color = 'violet';
     } 
      if (value < 600) {
@@ -63,7 +63,7 @@ export class ConsciousnessRating extends React.Component {
   getSliderBackgroundColor() {
     let color;
     const value = this.state.value;
-    if (value < 1000) {
+    if (value <= 1000) {
       color = '#dcc1fe';
     } 
      if (value < 600) {
@@ -164,12 +164,13 @@ export class ConsciousnessRating extends React.Component {
     return (
         <div id="consciousnessRating">
           <div class="slidecontainer"> <br/>
-            <input onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
+            <input class="clickable" onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
               <details>
                 <summary class="clickable"><p>Consciousness rating: <span id="demo">{this.state.value} </span>  </p></summary>
                 <img id="consciousnessMap" src='https://willthisdofor.art/ConsciousnessRating.png'/>
+                <br/><br/>
                 <details>
-                  <summary>History</summary>
+                  <summary class="clickable">History</summary>
                   <br/>
                   {this.getRatings()} {/* // Can I do it with function like that? Maybe change to jsx? */}
                   <button onClick={()=>this.getRatings()}>console log</button>

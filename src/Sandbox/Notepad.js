@@ -115,22 +115,22 @@ export class Notepad extends React.Component {
         <br />
 
 
-          <div onChange={this.setDatabaseName.bind(this)}>
-            <input type="radio" id="idea" name="fav_language" value="ideas"/>
-            <label for="idea">💡</label>
+          <div class="cursorAim" onChange={this.setDatabaseName.bind(this)}>
+            <input class="clickable" type="radio" id="idea" name="fav_language" value="ideas"/>
+            <label class="clickable" for="idea">💡</label>
 
-            <input type="radio" id="toDo" name="fav_language" value="toDo"/>
-            <label for="toDo">✅</label>
+            <input class="clickable" type="radio" id="toDo" name="fav_language" value="toDo"/>
+            <label class="clickable" for="toDo">✅</label>
 
-          <input id="toDo2" style={{visibility: this.getVisibility()}} type='radio'></input> 
-          <input id="toDo1" style={{visibility: this.getVisibility()}} type='radio'></input> 
+          <input class="clickable" id="toDo2" style={{visibility: this.getVisibility()}} type='radio'></input> 
+          <input class="clickable" id="toDo1" style={{visibility: this.getVisibility()}} type='radio'></input> 
 
           {/* 
             <input type="radio" id="starred" name="fav_language" value="starred"/>
             <label for="starred">⭐</label> */}
 
-            <input onClick={() => this.getDayNote(0)} type="radio" id="starred" name="fav_language" value="dayNote"/>
-            <label for="starred">📝</label><br/>
+            <input class="clickable" onClick={() => this.getDayNote(0)} type="radio" id="starred" name="fav_language" value="dayNote"/>
+            <label class="clickable" for="starred">📝</label><br/>
           </div>
         <button className="button" onClick={this.handleNew}>Add</button>
       </div>

@@ -33,7 +33,7 @@ const collectionRef = collection(db, "Colors");
     <div id='colorPalette'>
         {   
             colors['0'].colors.map((color, index) => (
-              <button onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
+              <button class="clickable" onClick={() => setColor(color)} style={{backgroundColor: color}} key={index}>⠀</button>
             ))
         }
 

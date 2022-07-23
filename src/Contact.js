@@ -43,7 +43,7 @@ export class Contact extends React.Component {
       <input 
         type="password" 
         placeholder="Password" />
-      <input type="submit" />
+      <input class="clickable" type="submit" />
     </form>
   )
   

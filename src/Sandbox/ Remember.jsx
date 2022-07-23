@@ -146,25 +146,25 @@ export class Remember extends React.Component {
               {/* {this.checkbox('Affirmation')}<br/> // Why won't it work? */}
 
               <details>
-                <summary><input id='Affirmation' checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼ <br/></summary>
+                <summary class="clickable"><input id='Affirmation' class="cursorAim" checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼<br/></summary>
                 <Affirmation/>
               </details>
 
-              <input id='SDS' checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> SDS 🧘🏻‍♂️<br/>
-              <input id='Obsidian' checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian 🎲<br/>
-              <input id='Sport' checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> <a href="https://obsidian.willthisdofor.art/Publish/My+tai+chi+set" target="blank">Sport 💪</a> <br/>
-              <input id='Codecademy' checked={this.isDone('Codecademy')} type="checkbox" onChange={()=>{this.handleCheck('Codecademy')}} />👉<a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a>👈 <br/>
-              <input id='Anki' checked={this.isDone('Anki')} onChange={()=>{this.handleCheck('Anki')}} type="checkbox"  /> Anki <br/>
+              <input id='SDS' class="cursorAim" checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> <span class="cursorProgress">SDS 🧘🏻‍♂️</span><br/>
+              <input id='Obsidian' class="cursorAim" checked={this.isDone('Obsidian')} onChange={()=>{this.handleCheck('Obsidian')}} type="checkbox"  /> 10 mins of random Obsidian 🎲<br/>
+              <input id='Sport' class="cursorAim" checked={this.isDone('Sport')} onChange={()=>{this.handleCheck('Sport')}} type="checkbox"  /> <a href="https://obsidian.willthisdofor.art/Publish/My+tai+chi+set" target="blank">Sport 💪</a> <br/>
+              <input id='Codecademy' class="cursorAim" checked={this.isDone('Codecademy')} type="checkbox" onChange={()=>{this.handleCheck('Codecademy')}} />👉<a href='https://www.codecademy.com/learn' target="_blank">Codecademy</a>👈 <br/>
+              <input id='Anki' class="cursorAim" checked={this.isDone('Anki')} onChange={()=>{this.handleCheck('Anki')}} type="checkbox"  /> Anki <br/>
               <details>
-                <summary><input id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/></summary>
+                <summary class="clickable"><input class="cursorAim" id='Contemplation' checked={this.isDone('Contemplation')} onChange={()=>{this.handleCheck('Contemplation')}} type="checkbox"  /> Contemplation ↓<br/></summary>
                 <Contemplation/>
               </details>
               <details>
-                <summary><input id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry ▼  <br/></summary>
+                <summary class="clickable"><input class="cursorAim" id='SelfInquiry' checked={this.isDone('Self-Inquiry')} onChange={()=>{this.handleCheck('Self-Inquiry')}} type="checkbox"  /> Self-Inquiry ▼  <br/></summary>
                 <SelfEnquiry/>
               </details>
-              <input id='Writing' checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  /><abbr title="~Honest externalization, so anyway... 🤔">Writing </abbr> <a style={{textDecoration: 'none'}} href="https://10fastfingers.com/typing-test/english" target="_blank">👨🏻‍💻</a><br/>
-              <input id='Read' checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read 📕<br/>
+              <input id='Writing' class="cursorAim" checked={this.isDone('Writing')} onChange={()=>{this.handleCheck('Writing')}} type="checkbox"  /><abbr title="~Honest externalization, so anyway... 🤔">Writing </abbr> <a style={{textDecoration: 'none'}} href="https://10fastfingers.com/typing-test/english" target="_blank">👨🏻‍💻</a><br/>
+              <input id='Read' class="cursorAim" checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read 📕<br/>
 
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />

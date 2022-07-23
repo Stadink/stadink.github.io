@@ -390,6 +390,27 @@ table, th, td {
   cursor: pointer;
 }
 
+.cursorAim {
+  cursor: cell;
+}
+
+.cursorCopy {
+  cursor: copy;
+}
+
+.cursorDefault {
+  /* cursor: 'arrow'; */
+  cursor: 'initial'
+}
+
+.cursorCopy {
+  cursor: copy;
+}
+
+.cursorProgress {
+  cursor: progress;
+}
+
 a.button1{
   display:inline-block;
   padding:0.35em 1.2em;
