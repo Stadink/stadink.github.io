@@ -13,7 +13,7 @@ export class ConsciousnessRating extends React.Component {
     };
     this.updateValue = this.updateValue.bind(this);
     this.getAllNumbers()
-    this.getAverage();
+    // this.getAverage();
   }
 
   async getAllRatings() {
@@ -107,6 +107,11 @@ export class ConsciousnessRating extends React.Component {
 
     const average = Math.round(sum / 10);
     this.setState({value: average})
+
+    const color = this.getSliderColor();
+    this.setSliderColor(color);
+    const backgroundColor = this.getSliderBackgroundColor();
+    this.setSliderBackgroundColor(backgroundColor);
   }
 
   async saveToDb() {
@@ -167,7 +172,7 @@ export class ConsciousnessRating extends React.Component {
           <div class="slidecontainer"> <br/>
             <input class="clickable" onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
               <details>
-                <summary class="clickable"><p>Consciousness rating: <span id="demo">{this.state.value} </span>  </p></summary>
+                <summary class="clickable"><p>Consciousness rating: <span id="demo">{isNaN(this.state.value) ? 'Loading...' : this.state.value} </span>  </p></summary>
                 <img id="consciousnessMap" src='https://willthisdofor.art/ConsciousnessRating.png'/>
                 <br/><br/>
                 <details>
@@ -192,9 +197,9 @@ export class ConsciousnessRating extends React.Component {
     // this.getAverage()
     this.getAverage();
 
-    const color = this.getSliderColor();
-    this.setSliderColor(color);
-    const backgroundColor = this.getSliderBackgroundColor();
-    this.setSliderBackgroundColor(backgroundColor);
+    // const color = this.getSliderColor();
+    // this.setSliderColor(color);
+    // const backgroundColor = this.getSliderBackgroundColor();
+    // this.setSliderBackgroundColor(backgroundColor);
   }
 }
