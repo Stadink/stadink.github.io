@@ -103,7 +103,13 @@ export class Counter extends React.Component {
 
 
     copyToClipboard() {
-        navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
+        // navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
+        // const currentMinute = document.getElementById('minuteNumber').innerHTML();
+        let currentMinute;
+        if(document.getElementById('minuteNumber') !== null){
+            currentMinute = document.getElementById('minuteNumber').innerHTML;
+        }
+        navigator.clipboard.writeText(currentMinute);
     }
 
     fillValues() {
@@ -118,12 +124,12 @@ export class Counter extends React.Component {
             return '⬜'
         }
         if(this.state.stuffDone[day].toString().includes(task)) {
-            return '✅';
+            return <span class="cursorProgress">✅</span>;
         } else {
             if(day == 0){
                 return '⬜';
             } else {
-                return '❌';
+                return <span class="cursorAim">❌</span>;
             }
         }
     }
@@ -134,6 +140,7 @@ export class Counter extends React.Component {
         if(document.getElementById('DayNum') !== null){
             daySelected = document.getElementById('DayNum').innerHTML;
         }
+
         if (daySelected === day.toString()) {
             return <u><b><i>{day}</i></b></u>;
         } else {
@@ -141,26 +148,59 @@ export class Counter extends React.Component {
         }
     }
 
+    async getDayNote(day) {
+        document.getElementById('DayNum').innerHTML = this.getTimeRemaining()+day;
+        const docRef = doc(db, 'Days', `#${this.getTimeRemaining()+day}`);
+        console.log('Daily note from Day #' + (this.getTimeRemaining()+day));
+        // console.log('Type is' + typeof (this.getTimeRemaining()+day));
+        const docSnapshot = await getDoc(docRef)
+        const data = docSnapshot.data();
+        let dayNote;
+        if(data !== undefined) {
+            dayNote = data.note;
+          }
+      
+          console.log('Day note is: ' + dayNote);
+          dayNote = dayNote === undefined ? '🤔' : dayNote;
+
+          document.querySelector('#notepad').value = dayNote;
+        }
+
+        makeNotepadBigger() {
+            let width = document.querySelector('#notepad').style.width;
+            let height = document.querySelector('#notepad').style.height;
+            console.log('w`idth is: ' + document.querySelector('#notepad').style.width );
+            console.log('height is: ' + height);
+        if (width !== '750px') {
+            document.querySelector('#notepad').style.height = '400px';
+            document.querySelector('#notepad').style.width = '750px';
+        } else {
+            document.querySelector('#notepad').style.height = '300px';
+            document.querySelector('#notepad').style.width = '350px';
+        
+        }
+    }
+
     render() {
         return (
             <div> 
-                <details  id="TableDiv" onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
-                    <summary>⏳Day #<u id="DayNum">{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
+                <details id="TableDiv" onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
+                    <summary class="clickable" onClick={()=>this.makeNotepadBigger()}>⏳Day #<u id="DayNum">{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b> <br/><br/>
 
                     <table  id="table">
                         <tr>
                             <th></th>
-                            <th>{ this.getDayNumber(9) }</th>
-                            <th>{ this.getDayNumber(8) }</th>
-                            <th>{ this.getDayNumber(7) }</th>
-                            <th>{ this.getDayNumber(6) }</th>
-                            <th>{ this.getDayNumber(5) }</th>
-                            <th>{ this.getDayNumber(4) }</th>
-                            <th>{ this.getDayNumber(3) }</th>
-                            <th>{ this.getDayNumber(2) }</th>
-                            <th>{ this.getDayNumber(1) }</th>
-                            <th>{ this.getDayNumber(0) }</th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(9)}>{ this.getDayNumber(9) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(8)}>{ this.getDayNumber(8) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(7)}>{ this.getDayNumber(7) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(6)}>{ this.getDayNumber(6) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(5)}>{ this.getDayNumber(5) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(4)}>{ this.getDayNumber(4) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(3)}>{ this.getDayNumber(3) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(2)}>{ this.getDayNumber(2) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(1)}>{ this.getDayNumber(1) }</span></th>
+                            <th><span class="clickable" onClick={() => this.getDayNote(0)}>{ this.getDayNumber(0) }</span></th>
                         </tr>
                         <tr>
                             <td>Codecademy</td>
@@ -294,8 +334,6 @@ export class Counter extends React.Component {
                                 <td>{this.getStatus('Contemplation', 0)}</td>
                             </tr>
                     </table>
-                {/* <button>←</button>
-                <button>→</button> */}
                 </details>
             </div>
         );

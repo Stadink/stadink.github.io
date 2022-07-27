@@ -101,11 +101,26 @@ export class Notepad extends React.Component {
     return displayOption;
   }
 
+  makeBigger() {
+    let width = document.querySelector('#notepad').style.width;
+    let height = document.querySelector('#notepad').style.height;
+    console.log('width is: ' + document.querySelector('#notepad').style.width );
+    console.log('height is: ' + height);
+    if (width !== '750px') {
+      document.querySelector('#notepad').style.height = '400px';
+      document.querySelector('#notepad').style.width = '750px';
+    } else {
+      document.querySelector('#notepad').style.height = '300px';
+      document.querySelector('#notepad').style.width = '350px';
+    }
+  }
+
   render() {
     return (
       <div id="notepadSection">
         <button onClick={() => {this.getDayNote(this.state.day + 1);this.setState({ day: this.state.day + 1}) }}>←</button>
         <button onClick={() => {this.getDayNote(this.state.day - 1);this.setState({ day: this.state.day - 1}) }}>→</button><br />
+        {/* <button onClick={()=> this.makeBigger()}>&#x26F6;</button> <br /> */}
         {/* {this.getTimeRemaining()+this.state.day} */}
 
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> 
