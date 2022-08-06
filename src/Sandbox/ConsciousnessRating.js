@@ -9,7 +9,7 @@ export class ConsciousnessRating extends React.Component {
       value: 350,
       comment: '',
       allNumbers: 'aaa fucking none' ,
-      allRatings: 'wtf',
+      allRatings: ['wtf'],
     };
     this.updateValue = this.updateValue.bind(this);
     this.getAllNumbers()
@@ -23,7 +23,7 @@ export class ConsciousnessRating extends React.Component {
       
       console.log('Get ratings is: ' + JSON.stringify(allRatings))
 
-      this.setState( {allRatings: JSON.stringify(allRatings)})
+      this.setState( {allRatings: allRatings})
   }
 
   updateValue() {
@@ -154,7 +154,7 @@ export class ConsciousnessRating extends React.Component {
     //     return <div>{date}</div>
     //   })
     // }
-    console.log(this.state.allRatings.length)
+    console.log(this.state.allRatings)
     return this.state.allRatings;
    }
 
@@ -178,7 +178,15 @@ export class ConsciousnessRating extends React.Component {
                 <details>
                   <summary class="clickable">History</summary>
                   <br/>
-                  {this.getRatings()} {/* // Can I do it with function like that? Maybe change to jsx? */}
+                  {/* {this.getRatings()} // Can I do it with function like that? Maybe change to jsx? */}
+
+                  Ratings:
+                  {/* { 
+                    this.state.allRatings.map(rating => {
+                      return <div>{rating}</div>
+                    })
+                  } */}
+
                   <button onClick={()=>this.getRatings()}>console log</button>
                   {/* { 
                     this.state.allRatings.map(entry => {

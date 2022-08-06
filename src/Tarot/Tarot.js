@@ -105,7 +105,7 @@ export default function Tarot() {
         console.log('mode is: ' + mode)
       
 
-        document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market 🔍'}</a>`;
+        document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market'}</a>`;
         document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
     }
@@ -243,7 +243,9 @@ export default function Tarot() {
           <summary>▼</summary> <br />
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
           <br /><br />
-          <h3 id="card">idk</h3>
+          <a id="card">idk</a> |&nbsp;
+          <a id="googleSearch" href="https://www.google.com/search?q=test" target="_blank">Google</a> <br/> <br/>
+
 
           <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select"  onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
@@ -260,7 +262,6 @@ export default function Tarot() {
           </div>
 
             <br/>
-            <a id="googleSearch" href="https://www.google.com/search?q=test" target="_blank">Google</a>
         <br /><br />
     </div> 
   );
