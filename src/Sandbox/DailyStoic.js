@@ -21,7 +21,7 @@ export class DailyStoic extends React.Component {
         <div id="dailyStoic" style={{'border' : '1px solid white'}}>
           <h3><a href='https://drive.google.com/file/d/1bSVYqgLkd8sqTTOELpLv4nE9XMvQ1TKz/view' target="_blank">{DS[this.getDayOfYear()].lesson}</a></h3>          
           
-          <details>
+          <details class='clickable'>
             <summary><i>{DS[this.getDayOfYear()].quote}</i></summary>
             <br/>
             {DS[this.getDayOfYear()].chapter}

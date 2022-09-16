@@ -65,7 +65,7 @@ export class Success extends React.Component {
             </form>
                 {/* {this.getRandomInfo()}  */}
                 {this.state.randomInfo}
-                <br /><br />
+                <br /><br /><br />
                 {/* <button onClick={()=>{this.randomInfo()}}>random info</button> */}
         </div>
     );

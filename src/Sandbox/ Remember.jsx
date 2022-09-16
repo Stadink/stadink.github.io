@@ -168,11 +168,12 @@ export class Remember extends React.Component {
               <input id='Read' class="cursorAim" checked={this.isDone('Read')} onChange={()=>{this.handleCheck('Read')}} type="checkbox"  /> Read 📕<br/>
 
               <button onClick={() => {this.reset()}}>reset</button>
-            </details> <br />
+            </details>
             <Success />
-            <TranscendingSelf />
-            <br/>
             <DailyStoic />
+            <br/>
+            <TranscendingSelf />
+
             <Ideas />
         </div>
     );

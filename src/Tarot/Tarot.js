@@ -88,9 +88,9 @@ export default function Tarot() {
 
         let oldStyle = currentTheme === "dark"
         if (oldStyle) {
-          document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${cardOld}.jpg`;
+          document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/pics/${cardOld}.jpg`;
         } else {
-            document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${card}.jpg`;
+            document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${card}.jpg`;
         }
 
         let cardSearch = card.replace(/[0-9]/, '');
@@ -172,9 +172,9 @@ export default function Tarot() {
 
     const toggleMode = () => {
       if (currentTheme === 'light') {
-        document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/pics/${getOldCard}.jpg`;
+        document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/pics/${getOldCard}.jpg`;
       } else {
-          document.getElementById('cardImg').src = `https://willthisdofor.art/tarot/NFT/min/${getNewCard}.jpg`;
+          document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
       }
     }
 
@@ -216,7 +216,7 @@ export default function Tarot() {
     const getCurrentPic = () => {
       let img = document.getElementById('cardImg')
       let pic = img === null ? '' : img.src
-      pic = pic.replace('https://willthisdofor.art/tarot/pics/', '');
+      pic = pic.replace('http://the-cosmic-joke.com/tarot/pics/', '');
       pic = pic.replace('.jpg', '');
 
 
@@ -231,7 +231,7 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => newCard()} src='https://willthisdofor.art/tarot/pics/tarotBack.jpg' alt="tarot" /> <br /><br />
+        <img id='cardImg' onClick={() => newCard()} src='http://the-cosmic-joke.com/tarot/pics/tarotBack.jpg' alt="tarot" /> <br /><br />
 
         <div id="answerButtons">
           <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
