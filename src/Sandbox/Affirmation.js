@@ -65,6 +65,7 @@ export class Affirmation extends React.Component {
 
       navigator.clipboard.writeText(single);
       console.log(single)
+      alert(single)
       return single
     }
 
@@ -116,11 +117,11 @@ export class Affirmation extends React.Component {
 
             <form onSubmit={(e) => this.saveAffirmation(e)}>
                 <input type='text' id='AffirmationInput'></input>
-                <button onClick={(e) => this.saveAffirmation(e)}>save</button>
+                <button class="clickable" onClick={(e) => this.saveAffirmation(e)}>save</button>
             </form>
 
             {/* {this.getRandomAffirmation()} */}
-            <button class="cursorCopy" onClick={()=> this.getRandomAffirmation() }>current Daily</button> <br/><br/>
+            <button class="clickable" onClick={()=> this.getRandomAffirmation() }>current Daily</button> <br/><br/>
 
             {/* <button onClick={() => this.getRandomAffirmations()}>Get Random</button> */}
         </div>

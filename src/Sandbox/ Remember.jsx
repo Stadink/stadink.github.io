@@ -8,6 +8,7 @@ import { Affirmation } from './Affirmation';
 import { SelfEnquiry } from './SelfEnquiry'
 import { DailyStoic } from './DailyStoic';
 import { Contemplation } from './Contemplation';
+import { Success } from './Success';
 
 
 export class Remember extends React.Component {
@@ -168,7 +169,7 @@ export class Remember extends React.Component {
 
               <button onClick={() => {this.reset()}}>reset</button>
             </details> <br />
-
+            <Success />
             <TranscendingSelf />
             <br/>
             <DailyStoic />
