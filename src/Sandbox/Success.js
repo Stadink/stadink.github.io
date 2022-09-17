@@ -1,6 +1,7 @@
 import React from 'react';
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import db from './firebase';
+import SuccessPrinciples from './SuccessPrinciples.json'
 
 
 export class Success extends React.Component {
@@ -11,12 +12,30 @@ export class Success extends React.Component {
           List: ['fuck!'],
           randomInfo: 'idk',
           randomAffirmations: 'aaaaaa',
+          randomChapter: 42
         };
 
         this.getList = this.getList.bind(this);
         this.randomInfo = this.randomInfo.bind(this);
         this.setState( {List: this.getList()})
 
+      }
+
+      randomChapterNumber() {
+        const randomNumber = Math.floor(Math.random() * 63);
+        this.setState( {randomChapter: randomNumber})
+      }
+
+      randomSuccessPrinciple() {
+        const chapterNum = this.state.randomChapter - 1
+        return SuccessPrinciples[chapterNum].Title
+      }
+
+      getBookUrl() {
+        const chapterNum = this.state.randomChapter - 1
+        const pageNum = SuccessPrinciples[chapterNum].page
+        const pageShifted = parseInt(pageNum) + 23;
+        return `https://the-cosmic-joke.com/SuccessPrinciples.pdf#page=${pageShifted}`
       }
 
     async getList() {
@@ -60,7 +79,9 @@ export class Success extends React.Component {
     return (
         <div id="Success">
             <form onSubmit={(e) => this.saveIdea(e)}>
-                <h1 style={{'margin-bottom': '0px'}}><a href="https://the-cosmic-joke.com/SuccessPrinciples.pdf#page=10" target="_blank">Success info:</a></h1>
+                <h2 style={{'margin-bottom': '0px'}}><a href={this.getBookUrl()} target="_blank">{this.state.randomChapter}.&nbsp;{this.randomSuccessPrinciple()}</a></h2>
+                <br/>
+                
                 <input type="text" id="SuccessInfo"></input> <br/> <br/>      
             </form>
                 {/* {this.getRandomInfo()}  */}
@@ -74,5 +95,6 @@ export class Success extends React.Component {
   componentDidMount() {
         this.getList();
         this.randomInfo();
+        this.randomChapterNumber();
     }
 }
