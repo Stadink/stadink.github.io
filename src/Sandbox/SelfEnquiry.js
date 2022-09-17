@@ -4,6 +4,15 @@ import db from './firebase';
 
 
 export class SelfEnquiry extends React.Component {
+    constructor(props) {
+        super(props);
+    
+        this.state = { 
+          option: 'I am',
+        };
+
+        this.switchOption = this.switchOption.bind(this);
+      }
 
     async saveIdea(e) {
         e.preventDefault();
@@ -14,7 +23,15 @@ export class SelfEnquiry extends React.Component {
         console.log(meIdeaItem)
 
         const docRef = doc(db, 'Self-Inquiry', 'ideas')
-        let payload = {items: arrayUnion(meIdeaItem)};
+        const option = this.state.option;
+        let payload = {};
+        if(option === 'I am') {
+            payload = {Iam: arrayUnion(meIdeaItem)};
+        } else if (option === 'I'){
+            payload = {I: arrayUnion(meIdeaItem)};
+        } else if (option === 'Я'){
+            payload = {Я: arrayUnion(meIdeaItem)};
+        }
         await updateDoc(docRef, payload)
 
         alert('yeah well, but who is aware of ' + meIdeaItem)
@@ -25,11 +42,21 @@ export class SelfEnquiry extends React.Component {
         e.preventDefault();
     }
 
+    switchOption() {
+        if (this.state.option === 'I am') {
+            this.setState( {option: 'I'})
+        } else if (this.state.option === 'I') {
+            this.setState( {option: 'Я'})
+        } else if (this.state.option === 'Я') {
+            this.setState( {option: 'I am'})
+        }
+    }
+
   render() {
     return (
         <div id="selfEnquiry">
             <form onSubmit={(e) => this.saveIdea(e)}>
-                <h1 style={{'margin-bottom': '0px'}}>I am</h1>
+                <h1 class='clickable' style={{'margin-bottom': '0px'}} onClick={() => this.switchOption()}>{this.state.option}</h1>
                 <input type="text" id="WhoIamInput"></input> <br/> <br/>      
             </form>
         </div>
