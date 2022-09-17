@@ -139,11 +139,12 @@ export class Remember extends React.Component {
     return (
         <div id="Remember">
           <details open>
-            <summary>◭ 💯%</summary>
-              ⭐ Switch to thoughts in English <br/><br/>
+            <summary class='clickable'>◭ 💯%</summary>
+              <Success />
+              {/* ⭐ Switch to thoughts in English <br/><br/>
 
-              What can I do today to be satisfied with this day ending? <br/>
-              
+              What can I do today to be satisfied with this day ending? <br/> */}
+              <h1>🎯</h1>
               {/* {this.checkbox('Affirmation')}<br/> // Why won't it work? */}
 
               <details>
@@ -169,7 +170,6 @@ export class Remember extends React.Component {
 
               <button onClick={() => {this.reset()}}>reset</button>
             </details>
-            <Success />
             <DailyStoic />
             <br/>
             <TranscendingSelf />

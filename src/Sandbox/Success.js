@@ -60,12 +60,12 @@ export class Success extends React.Component {
     return (
         <div id="Success">
             <form onSubmit={(e) => this.saveIdea(e)}>
-                <h1 style={{'margin-bottom': '0px'}}>Success info:</h1>
+                <h1 style={{'margin-bottom': '0px'}}><a href="https://the-cosmic-joke.com/SuccessPrinciples.pdf#page=10" target="_blank">Success info:</a></h1>
                 <input type="text" id="SuccessInfo"></input> <br/> <br/>      
             </form>
                 {/* {this.getRandomInfo()}  */}
                 {this.state.randomInfo}
-                <br /><br /><br />
+                {/* <br /><br /><br /> */}
                 {/* <button onClick={()=>{this.randomInfo()}}>random info</button> */}
         </div>
     );
