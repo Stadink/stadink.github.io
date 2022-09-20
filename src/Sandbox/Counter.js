@@ -6,7 +6,7 @@ import React, { useState, useEffect } from 'react';
 export class Counter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { stuffDone: [] };
+        this.state = { stuffDone: [], daysWrote: [] };
       }
       
     getTimeRemaining(){
@@ -83,6 +83,7 @@ export class Counter extends React.Component {
 
     async get10DayDone() {
         let stuffDone = [];
+        let daysWrote = [];
         for(let i = 0; i < 10; i++) {
             const docRef = doc(db, 'Days', `#${this.getTimeRemaining() + i }`);
             const docSnapshot = await getDoc(docRef)
@@ -94,9 +95,18 @@ export class Counter extends React.Component {
             } else {
                 stuffDone.push([]);
             }
+
+            if(JSON.stringify(data) !== undefined) {
+                let wroteToday = data.note === undefined ? 'no' : 'yes'
+                // console.log('Data.note is: ' + data.note)
+                daysWrote.push(wroteToday);
+            } else {
+                daysWrote.push([]);
+            }
         }
         console.log(`StuffDone: ${JSON.stringify(stuffDone)}`)
         this.setState({stuffDone: stuffDone})
+        this.setState({daysWrote: daysWrote})
         return '4';
     }
 
@@ -134,6 +144,12 @@ export class Counter extends React.Component {
         }
     }
 
+    getDayNoteStatus(offset) {
+        if (this.state.daysWrote[offset] === 'yes') {
+            return 'wroteToday'
+        }
+    }
+
     getDayNumber(offset) {
         const day = this.getTimeRemaining() + offset;
         let daySelected;;
@@ -142,9 +158,9 @@ export class Counter extends React.Component {
         }
 
         if (daySelected === day.toString()) {
-            return <u><b><i>{day}</i></b></u>;
+            return <span class={this.getDayNoteStatus(offset)}><u><b><i>{day}</i></b></u></span>;
         } else {
-            return day;
+            return <span class={this.getDayNoteStatus(offset)}>{day}</span>;
         }
     }
 

@@ -477,3 +477,6 @@ input[type='range']::-webkit-slider-runnable-track {
   /* box-shadow: -80px 0 0 80px #43e5f7; */
 }
 
+.wroteToday {
+  color: rgb(131, 255, 131);
+}

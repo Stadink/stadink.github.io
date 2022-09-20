@@ -13,7 +13,7 @@ import React, { useState, useEffect } from 'react';
 export class Calendar extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { stuffDone: [] };
+        this.state = { stuffDone: [], daysWrote: [] };
       }
       
     getTimeRemaining(){
@@ -144,7 +144,7 @@ export class Calendar extends React.Component {
         if (daySelected === day.toString()) {
             return <u><b><i>{day}</i></b></u>;
         } else {
-            return day;
+            return <span class="wroteToday">day</span>;
         }
     }
 
@@ -154,11 +154,12 @@ export class Calendar extends React.Component {
                 <details  id="TableDiv" onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
                     <summary>⏳Day #<u id="DayNum">{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b> <br/><br/>
-
+                        EXCUSE ME WTF???
+                        this code is not used anymore, instead it's in Counter
                     <table  id="table">
                         <tr>
                             <th></th>
-                            <th>{ this.getDayNumber(9) }</th>
+                            <th> { this.getDayNumber(9) }</th>
                             <th>{ this.getDayNumber(8) }</th>
                             <th>{ this.getDayNumber(7) }</th>
                             <th>{ this.getDayNumber(6) }</th>

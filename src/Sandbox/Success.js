@@ -9,9 +9,8 @@ export class Success extends React.Component {
         super(props);
     
         this.state = { 
-          List: ['fuck!'],
-          randomInfo: 'idk',
-          randomAffirmations: 'aaaaaa',
+          List: ['infos'],
+          randomInfo: 'Do your thing',
           randomChapter: 42
         };
 
@@ -22,7 +21,7 @@ export class Success extends React.Component {
       }
 
       randomChapterNumber() {
-        const randomNumber = Math.floor(Math.random() * 63);
+        const randomNumber = Math.floor(Math.random() * SuccessPrinciples.length);
         this.setState( {randomChapter: randomNumber})
       }
 
@@ -85,7 +84,7 @@ export class Success extends React.Component {
                 <input type="text" id="SuccessInfo"></input> <br/> <br/>      
             </form>
                 {/* {this.getRandomInfo()}  */}
-                {this.state.randomInfo}
+                <span class='clickable' onClick={ () => this.randomInfo()}>{this.state.randomInfo}</span>
                 {/* <br /><br /><br /> */}
                 {/* <button onClick={()=>{this.randomInfo()}}>random info</button> */}
         </div>
