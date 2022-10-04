@@ -106,7 +106,7 @@ export class DreamsNotepad extends React.Component {
           }
         </details>
 
-        <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} >
+        <textarea style={{'height': '400px', 'width': '750px'}} id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} >
           {this.props.note}
           {/* {this.props.keyword} */}
         </textarea> <br />
