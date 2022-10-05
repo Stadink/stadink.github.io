@@ -62,6 +62,7 @@ export class Remember extends React.Component {
   // }
 
   async handleCheck(item){
+    document.getElementById('Affirmation').checked = true;
     this.setState(prevState => ({
       checked: [...prevState.checked, item]
     }))
@@ -148,8 +149,10 @@ export class Remember extends React.Component {
               {/* {this.checkbox('Affirmation')}<br/> // Why won't it work? */}
 
               <details>
-                <summary class="clickable"><input id='Affirmation' class="cursorAim" checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼<br/></summary>
-                <Affirmation/>
+                <summary class="clickable" onClick={()=>{this.handleCheck('Affirmation')}}><input id='Affirmation' class="cursorAim" checked={this.isDone('Affirmation')} onChange={()=>{this.handleCheck('Affirmation')}} type="checkbox"  /> Affirmation ▼<br/></summary>
+                <div >
+                  <Affirmation/>
+                </div>
               </details>
 
               <input id='SDS' class="cursorAim" checked={this.isDone('SDS')} onChange={()=>{this.handleCheck('SDS')}} type="checkbox"  /> <span class="cursorProgress">SDS 🧘🏻‍♂️</span><br/>
