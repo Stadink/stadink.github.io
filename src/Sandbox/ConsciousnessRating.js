@@ -173,7 +173,8 @@ export class ConsciousnessRating extends React.Component {
             <input class="clickable" onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
               <details>
                 <summary class="clickable"><p>Consciousness rating: <span id="demo">{isNaN(this.state.value) ? 'Loading...' : this.state.value} </span>  </p></summary>
-                <img id="consciousnessMap" src='https://the-cosmic-joke.com/ConsciousnessRating.png'/>
+                {/* <img id="consciousnessMap" src='https://the-cosmic-joke.com/ConsciousnessRating.png'/> */}
+                <img id="consciousnessMap" src='https://external-preview.redd.it/Z_WEBW8ro1FUtN64ksfzeNM-jR4mp4OdebucYgk8eSA.jpg?auto=webp&s=0e1a0909adf703e4bb4fc6b51bb170c490a6a062'/>
                 <br/><br/>
                 <details>
                   <summary class="clickable">History</summary>

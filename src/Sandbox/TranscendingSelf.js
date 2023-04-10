@@ -19,7 +19,7 @@ export default function TranscendingSelf() {
     );
 
     const getWeekNumber = () => {
-        const total = Date.parse(new Date()) - Date.parse('Oct 19, 2021');
+        const total = Date.parse(new Date()) - Date.parse('Nov 25, 2022');
         const days = Math.floor(1 + (total/(1000*60*60*24*7)) );
         // console.log('days is: ' + total/1000/60/60/24/7)
         console.log(days)
@@ -54,14 +54,18 @@ export default function TranscendingSelf() {
     }
 
     const getURL = () => { 
-        const URL = "https://drive.google.com/file/d/0ByAPpaltspWtVEZxN2JhRzJBNjA/view?mc_cid=97ff99288b&mc_eid=1f0a85948e&resourcekey=0-4cPU3xdjsbluhjrTDiYd3w";
-        console.log('TS data is' + JSON.stringify(data))
-        return URL
+        const URL = data[0].Title !== undefined ? data[0].Title : 'mkay' ;
+
+        const urlLower = URL.toLowerCase()
+        const urlFinal = urlLower.replaceAll(' ', '-')
+        const websiteUrl = 'https://chenghsin.com/courses/life-lessons/lessons/'
+
+        return websiteUrl + urlFinal
     }
 
   return (
     <div id='TranscendingSelf' style={{'border' : '1px solid white'}}>
-        <h3>Week #{getWeekNumber()}: <a href={data[0].URL} target="_blank">     {data[0].Title}     </a> </h3> 
+        <h3>Week #{getWeekNumber()}: <a href={getURL()} target="_blank">     {data[0].Title}     </a> </h3> 
 
         {/* <details>
             <summary><b><u>Day {getDayNumber()}:</u></b></summary>

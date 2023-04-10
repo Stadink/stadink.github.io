@@ -15,7 +15,8 @@ import { Stocks } from "./Sandbox/Stocks";
 import ColorPicker from "./Sandbox/ColorPicker";
 import { Dreams } from "./Sandbox/Dreams";
 import { WhatEats } from "./Sandbox/WhatEats";
-import { Art } from './Sandbox/Art'
+import { Art } from './Sandbox/Art';
+import { New } from './Sandbox/New';
 import { ClockMinutes } from "./Sandbox/ClockMinutes";
 
 function App() {
@@ -54,6 +55,10 @@ function App() {
 
           <Route path="/art">
             <Art />
+          </Route>
+
+          <Route path="/new">
+            <New />
           </Route>
 
           <Route path="/whatEats">

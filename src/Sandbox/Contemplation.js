@@ -47,7 +47,7 @@ export class Contemplation extends React.Component {
         }
         await updateDoc(docRef, payload)
 
-        alert('yeah well, but what is ' + meIdeaItem)
+        alert(`yeah well, but who is aware of ${meIdeaItem} ❓`);
 
         ideaInput.value = '';
         ideaInput.placeholder = `Saved! But why ${meIdeaItem}?`;

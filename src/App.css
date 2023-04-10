@@ -446,7 +446,7 @@ a.button1:hover{
 }
 
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1900px) {
   #consciousnessMap {
     max-height: 570px;
   }
@@ -460,7 +460,10 @@ input[type='range']::-webkit-slider-runnable-track {
 } */
 
 #myRange {
-  background-color: var(--sliderBackgroundColor);
+  /* background-color: var(--sliderBackgroundColor); */
+  /* background: linear-gradient(to left, violet, blue, green, yellow, orange, red); */
+  background: linear-gradient(to right, red 0%, orange 13%, yellow 20%, green 30%, blue 50%, violet 66%);
+  border: 0.5px solid black;
 }
 
 #myRange::-webkit-slider-thumb {

@@ -34,7 +34,7 @@ export class SelfEnquiry extends React.Component {
         }
         await updateDoc(docRef, payload)
 
-        alert('yeah well, but who is aware of ' + meIdeaItem)
+        alert(`yeah well, but who is aware of ${meIdeaItem} ❓`);
 
         ideaInput.value = '';
         ideaInput.placeholder = 'Saved! Any more?';
