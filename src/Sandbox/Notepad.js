@@ -2,6 +2,7 @@ import { collection, onSnapshot, getDoc, setDoc, doc, serverTimestamp, updateDoc
 import React, { useEffect, useState } from 'react';
 import db from './firebase';
 import moment from 'moment';
+import { ConsciousnessRating } from './ConsciousnessRating';
 
 
 export class Notepad extends React.Component {
@@ -120,8 +121,8 @@ export class Notepad extends React.Component {
       <div id="notepadSection">
         <button onClick={() => {this.getDayNote(this.state.day + 1);this.setState({ day: this.state.day + 1}) }}>←</button>
         <button onClick={() => {this.getDayNote(this.state.day - 1);this.setState({ day: this.state.day - 1}) }}>→</button><br />
-        {/* <button onClick={()=> this.makeBigger()}>&#x26F6;</button> <br /> */}
-        {/* {this.getTimeRemaining()+this.state.day} */}
+
+        <ConsciousnessRating />
 
         <textarea id="notepad" contenteditable="true" autocomplete="off" placeholder={this.getText()} onChange={this.handleChange} /> 
         

@@ -24,7 +24,10 @@ export class New extends Component {
     return (
       // Define the component's markup and JSX here
       <div>
-        Whatever
+        Whatever 
+        <h1>🗡</h1>
+        <h1>🕳</h1>
+        <h1>Whose breath?</h1>
         {/* Add child components or elements here */}
       </div>
     );
