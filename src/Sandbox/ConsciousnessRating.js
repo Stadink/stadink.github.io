@@ -174,6 +174,42 @@ export class ConsciousnessRating extends React.Component {
               <details>
                 <summary class="clickable"><p>Consciousness rating: <span id="demo">{isNaN(this.state.value) ? 'Loading...' : this.state.value} </span>  </p></summary>
                 {/* <img id="consciousnessMap" src='https://the-cosmic-joke.com/ConsciousnessRating.png'/> */}
+
+                <div style={{ textAlign: 'left', marginLeft: '50px' }}>
+                  <div style={{ color: 'red'}}>
+                    <b>Shame</b>: Humiliation, Worthlessness, Powerlessness<br />
+                    <b>Guilt</b>: Blame, Remorse, Repentance<br />
+                    <b>Apathy</b>: Despair, Hopelessness, Abandonment<br />
+                  </div>
+                  <div style={{ color: 'orange'}}>
+                    <b>Grief</b>: Sorrow, Regret, Disappointment<br />
+                    <b>Fear</b>: Anxiety, Insecurity, Unease<br />
+                    <b>Desire</b>: Craving, Longing, Yearning<br />
+                  </div>
+                  <div style={{ color: 'yellow'}}>
+                    <b>Anger</b>: Hatred, Resentment, Envy<br />
+                    <b>Pride</b>: Arrogance, Superiority, Conceit<br />
+                    <b>Courage</b>: Confidence, Empowerment, Assertion<br />
+                  </div>
+                  <div style={{ color: 'green'}}>
+                    <b>Neutrality</b>: Objectivity, Openness, Impartiality<br />
+                    <b>Willingness</b>: Optimism, Eagerness, Enthusiasm<br />
+                    <b>Acceptance</b>: Forgiveness, Understanding, Tolerance<br />
+                  </div>
+                  <div style={{ color: 'blue'}}>
+                    <b>Reason</b>: Logic, Rationality, Intelligence<br />
+                    <b>Love</b>: Compassion, Empathy, Kindness<br />
+                    <b>Joy</b>: Satisfaction, Gratitude, Euphoria<br />
+                  </div>
+                  <div style={{ color: 'violet'}}>
+                    <b>Peace</b>: Serenity, Tranquility, Harmony<br />
+                    <b>Enlightenment</b>: Bliss, Ecstasy, Nirvana<br />
+                  </div>
+                </div>
+
+                <br/>
+
+
                 <img id="consciousnessMap" src='https://external-preview.redd.it/Z_WEBW8ro1FUtN64ksfzeNM-jR4mp4OdebucYgk8eSA.jpg?auto=webp&s=0e1a0909adf703e4bb4fc6b51bb170c490a6a062'/>
                 <br/><br/>
                 <details>
