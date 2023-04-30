@@ -1,6 +1,7 @@
 import React from 'react';
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import db from './firebase';
+import GPT from './GPT';
 
 export class ConsciousnessRating extends React.Component {
   constructor(props) {
@@ -35,6 +36,13 @@ export class ConsciousnessRating extends React.Component {
 
     const backgroundColor = this.getSliderBackgroundColor();
     this.setSliderBackgroundColor(backgroundColor)
+  }
+
+  setSliderValue(num) {
+    this.setState({value: num}, () => {
+      const color = this.getSliderColor()
+      this.setSliderColor(color)
+    });
   }
 
   getSliderColor() {
@@ -170,42 +178,47 @@ export class ConsciousnessRating extends React.Component {
     return (
         <div id="consciousnessRating">
           <div class="slidecontainer"> <br/>
-            <input class="clickable" onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} class="slider" />
+            <input class="clickable" class="slider" onPointerUp={ this.handleEvent } onChange={this.updateValue} id="myRange" type="range" min="20" max="1000" value={this.state.value} />
               <details>
                 <summary class="clickable"><p>Consciousness rating: <span id="demo">{isNaN(this.state.value) ? 'Loading...' : this.state.value} </span>  </p></summary>
                 {/* <img id="consciousnessMap" src='https://the-cosmic-joke.com/ConsciousnessRating.png'/> */}
 
-                <div style={{ textAlign: 'left', marginLeft: '50px' }}>
-                  <div style={{ color: 'red'}}>
+
+                {/* MAKE ONCLICK SET SLIDER VALUE */}
+                {/* MAKE SLIDER UNDERLINE LEVEL-LINE */}
+                <div style={{ textAlign: 'left', marginLeft: '50px' }} className='clickable'>
+                  <div style={{ color: 'red'}} onClick={() => this.setSliderValue(30)}>
                     <b>Shame</b>: Humiliation, Worthlessness, Powerlessness<br />
                     <b>Guilt</b>: Blame, Remorse, Repentance<br />
                     <b>Apathy</b>: Despair, Hopelessness, Abandonment<br />
                   </div>
-                  <div style={{ color: 'orange'}}>
+                  <div style={{ color: 'orange'}} onClick={() => this.setSliderValue(100)}>
                     <b>Grief</b>: Sorrow, Regret, Disappointment<br />
                     <b>Fear</b>: Anxiety, Insecurity, Unease<br />
                     <b>Desire</b>: Craving, Longing, Yearning<br />
                   </div>
-                  <div style={{ color: 'yellow'}}>
+                  <div style={{ color: 'yellow'}} onClick={() => this.setSliderValue(175)}>
                     <b>Anger</b>: Hatred, Resentment, Envy<br />
                     <b>Pride</b>: Arrogance, Superiority, Conceit<br />
                     <b>Courage</b>: Confidence, Empowerment, Assertion<br />
                   </div>
-                  <div style={{ color: 'green'}}>
+                  <div style={{ color: 'green'}} onClick={() => this.setSliderValue(310)}>
                     <b>Neutrality</b>: Objectivity, Openness, Impartiality<br />
                     <b>Willingness</b>: Optimism, Eagerness, Enthusiasm<br />
                     <b>Acceptance</b>: Forgiveness, Understanding, Tolerance<br />
                   </div>
-                  <div style={{ color: 'blue'}}>
+                  <div style={{ color: 'blue'}} onClick={() => this.setSliderValue(500)}>
                     <b>Reason</b>: Logic, Rationality, Intelligence<br />
                     <b>Love</b>: Compassion, Empathy, Kindness<br />
                     <b>Joy</b>: Satisfaction, Gratitude, Euphoria<br />
                   </div>
-                  <div style={{ color: 'violet'}}>
+                  <div style={{ color: 'violet'}} onClick={() => this.setSliderValue(700)}>
                     <b>Peace</b>: Serenity, Tranquility, Harmony<br />
                     <b>Enlightenment</b>: Bliss, Ecstasy, Nirvana<br />
                   </div>
                 </div>
+
+                <GPT />
 
                 <br/>
 
