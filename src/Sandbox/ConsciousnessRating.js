@@ -8,6 +8,7 @@ export class ConsciousnessRating extends React.Component {
     super(props);
     this.state = {
       value: 350,
+      word: [],
       comment: '',
       allNumbers: 'aaa fucking none' ,
       allRatings: ['wtf'],
@@ -123,7 +124,7 @@ export class ConsciousnessRating extends React.Component {
   }
 
   async saveToDb() {
-    let comment = prompt(`Why ${this.state.value} tho?`, 'Well...');
+    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, 'Well...');
     if (comment != null) {
       this.setState({comment: comment});
 
@@ -167,14 +168,136 @@ export class ConsciousnessRating extends React.Component {
    }
 
    setSliderColor(color) {
-    document.getElementById("myRange").style.setProperty('--sliderColor', color);
-   }
+    const element = document.getElementById("myRange") ?? undefined;
+    element?.style.setProperty('--sliderColor', color);
+  }
+  
+  setSliderBackgroundColor(color) {
+    const element = document.getElementById("myRange") ?? undefined;
+    element?.style.setProperty('--sliderBackgroundColor', color);
+  }
 
-   setSliderBackgroundColor(color) {
-    document.getElementById("myRange").style.setProperty('--sliderBackgroundColor', color);
-   }
+   handleWordClick(word) {
+    this.setState({ word });
+  }
+
+  // getColor(value) {
+  //   // Define color ranges for different values
+  //   const colors = [
+  //     'red', 'red', 'red',
+  //     'orange', 'orange', 'orange',
+  //     'yellow', 'yellow', 'yellow',
+  //     'green', 'green', 'green',
+  //     'blue', 'blue', 'blue',
+  //     'violet', 'violet'
+  //   ];
+  //   // Calculate index based on value
+  //   const index = Math.min(Math.floor(value / 50), colors.length - 1);
+  //   return colors[index];
+  // }
+
+  handleClick(emotion, clickedWord) {
+    let word = this.state.word.slice();
+    word.push(emotion + ': ' + clickedWord);
+    this.setState({ word });
+    let vibeNum = this.getVibe(emotion)
+    this.setSliderValue(vibeNum)
+  }
+
+  getVibe(word) {
+    switch(word) {
+      case 'Shame':
+        return 20
+      case 'Guilt':
+        return 30
+      case 'Apathy':
+        return 50
+      case 'Grief':
+        return 75
+      case 'Fear':
+        return 100
+      case 'Desire':
+        return 125
+      case 'Anger':
+        return 150;
+      case 'Pride':
+        return 175;
+      case 'Courage':
+        return 200;
+      case 'Neutrality':
+        return 250;
+      case 'Willingness':
+        return 310;
+      case 'Acceptance':
+        return 350;
+      case 'Reason':
+        return 400;
+      case 'Love':
+        return 500;
+      case 'Joy':
+        return 540;
+      case 'Peace':
+        return 600;
+      case 'Enlightenment':
+        return 700;
+    default:
+      return 500;
+    }
+  }
+
+  getColor(emotion) {
+    switch (emotion) {
+      case 'Shame':
+      case 'Guilt':
+      case 'Apathy':
+        return 'red';
+      case 'Grief':
+      case 'Fear':
+      case 'Desire':
+        return 'orange';
+      case 'Anger':
+      case 'Pride':
+      case 'Courage':
+        return 'yellow';
+      case 'Neutrality':
+      case 'Willingness':
+      case 'Acceptance':
+        return 'green';
+      case 'Reason':
+      case 'Love':
+      case 'Joy':
+        return 'blue';
+      case 'Peace':
+      case 'Enlightenment':
+        return 'violet';
+    
+     default:
+      console.log('whatever')
+    }
+  }
+
 
   render() {
+    const emotions = {
+      Shame: ['Humiliation', 'Worthlessness', 'Powerlessness'],
+      Guilt: ['Blame', 'Remorse', 'Repentance'],
+      Apathy: ['Despair', 'Hopelessness', 'Abandonment'],
+      Grief: ['Sorrow', 'Regret', 'Disappointment'],
+      Fear: ['Anxiety', 'Insecurity', 'Unease'],
+      Desire: ['Craving', 'Longing', 'Yearning'],
+      Anger: ['Hatred', 'Resentment', 'Envy'],
+      Pride: ['Arrogance', 'Superiority', 'Conceit'],
+      Courage: ['Confidence', 'Empowerment', 'Assertion'],
+      Neutrality: ['Objectivity', 'Openness', 'Impartiality'],
+      Willingness: ['Optimism', 'Eagerness', 'Enthusiasm'],
+      Acceptance: ['Forgiveness', 'Understanding', 'Tolerance'],
+      Reason: ['Logic', 'Rationality', 'Intelligence'],
+      Love: ['Compassion', 'Empathy', 'Kindness'],
+      Joy: ['Satisfaction', 'Gratitude', 'Euphoria'],
+      Peace: ['Serenity', 'Tranquility', 'Harmony'],
+      Enlightenment: ['Bliss', 'Ecstasy', 'Nirvana'],
+    };
+
     return (
         <div id="consciousnessRating">
           <div class="slidecontainer"> <br/>
@@ -186,36 +309,27 @@ export class ConsciousnessRating extends React.Component {
 
                 {/* MAKE ONCLICK SET SLIDER VALUE */}
                 {/* MAKE SLIDER UNDERLINE LEVEL-LINE */}
-                <div style={{ textAlign: 'left', marginLeft: '50px' }} className='clickable'>
-                  <div style={{ color: 'red'}} onClick={() => this.setSliderValue(30)}>
-                    <b>Shame</b>: Humiliation, Worthlessness, Powerlessness<br />
-                    <b>Guilt</b>: Blame, Remorse, Repentance<br />
-                    <b>Apathy</b>: Despair, Hopelessness, Abandonment<br />
-                  </div>
-                  <div style={{ color: 'orange'}} onClick={() => this.setSliderValue(100)}>
-                    <b>Grief</b>: Sorrow, Regret, Disappointment<br />
-                    <b>Fear</b>: Anxiety, Insecurity, Unease<br />
-                    <b>Desire</b>: Craving, Longing, Yearning<br />
-                  </div>
-                  <div style={{ color: 'yellow'}} onClick={() => this.setSliderValue(175)}>
-                    <b>Anger</b>: Hatred, Resentment, Envy<br />
-                    <b>Pride</b>: Arrogance, Superiority, Conceit<br />
-                    <b>Courage</b>: Confidence, Empowerment, Assertion<br />
-                  </div>
-                  <div style={{ color: 'green'}} onClick={() => this.setSliderValue(310)}>
-                    <b>Neutrality</b>: Objectivity, Openness, Impartiality<br />
-                    <b>Willingness</b>: Optimism, Eagerness, Enthusiasm<br />
-                    <b>Acceptance</b>: Forgiveness, Understanding, Tolerance<br />
-                  </div>
-                  <div style={{ color: 'blue'}} onClick={() => this.setSliderValue(500)}>
-                    <b>Reason</b>: Logic, Rationality, Intelligence<br />
-                    <b>Love</b>: Compassion, Empathy, Kindness<br />
-                    <b>Joy</b>: Satisfaction, Gratitude, Euphoria<br />
-                  </div>
-                  <div style={{ color: 'violet'}} onClick={() => this.setSliderValue(700)}>
-                    <b>Peace</b>: Serenity, Tranquility, Harmony<br />
-                    <b>Enlightenment</b>: Bliss, Ecstasy, Nirvana<br />
-                  </div>
+                <div style={{ textAlign: 'left', marginLeft: '50px' }}>
+                  {Object.entries(emotions).map(([emotion, words]) => (
+                    <div key={emotion}>
+                      <span class='clickable' style={{color: this.getColor(emotion)}} onClick={() => this.handleClick(emotion, emotion)}> <b>{emotion}</b>: </span>
+                      <div style={{ display: 'inline' }}>
+                        {words.map((word) => (
+                          <span class='clickable' style={{color: this.getColor(emotion)}} key={word} onClick={() => this.handleClick(emotion, word)}>
+                            {word},&nbsp;
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                  {/* <div>
+                    <h2>Clicked Words:</h2>
+                    <ul>
+                      {this.state.word.map((word, index) => (
+                        <li key={index}>{word}</li>
+                      ))}
+                    </ul>
+                  </div> */}
                 </div>
 
                 <GPT />

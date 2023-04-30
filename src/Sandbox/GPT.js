@@ -25,20 +25,7 @@ export default function GPT() {
       });
   };
 
-  const checkStatus = (url, setStatus) => {
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          setStatus('online');
-        } else {
-          setStatus('offline');
-        }
-      })
-      .catch(error => {
-        setStatus('offline');
-      });
-  };
-
+  // this is beautiful code... And I am peaceful.
   useEffect(() => {
     const eventSource = new EventSource(url);
 
