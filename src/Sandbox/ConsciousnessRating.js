@@ -329,17 +329,9 @@ export class ConsciousnessRating extends React.Component {
                       </div>
                     </div>
                   ))}
-                  {/* <div>
-                    <h2>Clicked Words:</h2>
-                    <ul>
-                      {this.state.word.map((word, index) => (
-                        <li key={index}>{word}</li>
-                      ))}
-                    </ul>
-                  </div> */}
                 </div>
 
-                <GPT />
+                <GPT words={this.state.word}/>
 
                 <br/>
 

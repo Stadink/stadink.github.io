@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import StatusCircle from './status/StatusCircle';
 
-export default function GPT() {
+export default function GPT( {words} ) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
-  const [status, setStatus] = useState('unknown');
-
-  const url = 'http://localhost:8080/status';
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,32 +22,16 @@ export default function GPT() {
       });
   };
 
-  // this is beautiful code... And I am peaceful.
   useEffect(() => {
-    const eventSource = new EventSource(url);
-
-    eventSource.onopen = () => {
-      setStatus('online');
-    };
-
-    eventSource.onerror = () => {
-      setStatus('offline');
-    };
-
-    eventSource.addEventListener('status', event => {
-        const data = JSON.parse(event.data);
-        setStatus(data.status);
-    });
-
-    return () => {
-      eventSource.close();
-    };
-  }, [url]);
+    let clean = JSON.stringify(words)
+    
+    setPrompt(`what is ${clean}?`);
+  }, [words]);
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <StatusCircle status={status}/>
+        <StatusCircle />
         <input
           type="text"
           value={prompt}

@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const { Configuration, OpenAIApi } = require("openai");
 
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
@@ -33,13 +33,18 @@ app.post("/chat", async (req, res) => {
   const { prompt } = req.body;
 
   // Generate a response with ChatGPT
-  const completion = await openai.createCompletion({
-    model: "text-davinci-002",
-    prompt: prompt,
-    max_tokens: 50
-  });
-  res.send(completion.data.choices[0].text);
-  console.log(completion.data.choices[0].text)
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [{"role": "user", "content": prompt}],
+      max_tokens: 100
+    });
+    res.send(completion.data.choices[0].message.content);
+    console.log(completion.data.choices[0].message.content)
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error generating response");
+  }
 });
 
 // Start the server

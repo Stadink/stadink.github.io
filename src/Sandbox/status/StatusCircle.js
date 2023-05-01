@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './StatusCircle.css';
 
-const StatusCircle = ({ status }) => {
+const StatusCircle = () => {
+  const [status, setStatus] = useState('unknown');
+  const url = 'http://localhost:8080/status';
+
   let circleClass = '';
   switch (status) {
     case 'online':
@@ -16,6 +19,27 @@ const StatusCircle = ({ status }) => {
     default:
       circleClass = 'gray';
   }
+
+  useEffect(() => {
+    const eventSource = new EventSource(url);
+
+    eventSource.onopen = () => {
+      setStatus('online');
+    };
+
+    eventSource.onerror = () => {
+      setStatus('offline');
+    };
+
+    eventSource.addEventListener('status', event => {
+        const data = JSON.parse(event.data);
+        setStatus(data.status);
+    });
+
+    return () => {
+      eventSource.close();
+    };
+  }, [url]);
 
   return (
     <div className={`status-circle ${circleClass}`}></div>
