@@ -124,7 +124,7 @@ export class ConsciousnessRating extends React.Component {
   }
 
   async saveToDb() {
-    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, `Well... ${this.state.word} because: `);
+    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, `Well... ${this.state.word} because `);
     if (comment != null) {
       this.setState({comment: comment});
 
@@ -197,11 +197,18 @@ export class ConsciousnessRating extends React.Component {
   // }
 
   handleClick(emotion, clickedWord) {
+    const newWord = emotion + ': ' + clickedWord;
     let word = this.state.word.slice();
-    word.push(emotion + ': ' + clickedWord);
+  
+    if (word.includes(newWord)) {
+      word = word.filter((w) => w !== newWord);
+    } else {
+      word.push(newWord);
+    }
+  
     this.setState({ word });
-    let vibeNum = this.getVibe(emotion)
-    this.setSliderValue(vibeNum)
+    const vibeNum = this.getVibe(emotion);
+    this.setSliderValue(vibeNum);
   }
 
   getVibe(word) {
@@ -312,10 +319,10 @@ export class ConsciousnessRating extends React.Component {
                 <div style={{ textAlign: 'left', marginLeft: '50px' }}>
                   {Object.entries(emotions).map(([emotion, words]) => (
                     <div key={emotion}>
-                      <span class='clickable' style={{color: this.getColor(emotion)}} onClick={() => this.handleClick(emotion, emotion)}> <b>{emotion}</b>: </span>
+                      <span class='clickable' style={{color: this.getColor(emotion), textDecoration: JSON.stringify(this.state.word).includes(`${emotion}: ${emotion}`) ? 'underline' : 'none' }} onClick={() => this.handleClick(emotion, emotion)}> <b>{emotion}</b>: </span>
                       <div style={{ display: 'inline' }}>
                         {words.map((word) => (
-                          <span class='clickable' style={{color: this.getColor(emotion)}} key={word} onClick={() => this.handleClick(emotion, word)}>
+                          <span class='clickable' style={{color: this.getColor(emotion), textDecoration: JSON.stringify(this.state.word).includes(word) ? 'underline' : 'none'}} key={word} onClick={() => this.handleClick(emotion, word)}>
                             {word},&nbsp;
                           </span>
                         ))}
