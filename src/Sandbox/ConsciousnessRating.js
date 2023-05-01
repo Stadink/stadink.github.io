@@ -124,7 +124,7 @@ export class ConsciousnessRating extends React.Component {
   }
 
   async saveToDb() {
-    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, 'Well...');
+    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, `Well... ${this.state.word} because: `);
     if (comment != null) {
       this.setState({comment: comment});
 
