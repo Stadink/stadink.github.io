@@ -28,9 +28,11 @@ export default function GPT( {words} ) {
   };
 
   useEffect(() => {
-    let clean = JSON.stringify(words)
-    
-    setPrompt(`what is ${clean}?`);
+    const emotions = words.length > 0 ? words.map(str => {
+      const splitWords = str.split(":");
+      return splitWords.length > 1 ? splitWords[1].trim() : "";
+    }) : ["___ "];
+    setPrompt(`what is ${emotions.join(", ")}?`);
   }, [words]);
 
   return (
