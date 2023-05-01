@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import StatusCircle from './status/StatusCircle';
+import Spinner from './spinner/Spinner';
 
 export default function GPT( {words} ) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
 
     // Send a request to the server with the prompt
     axios
@@ -16,9 +19,11 @@ export default function GPT( {words} ) {
         // Update the response state with the server's response
         setResponse(res.data);
         console.log(res.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
+        setLoading(false);
       });
   };
 
@@ -39,7 +44,8 @@ export default function GPT( {words} ) {
         />
         <button type="submit">Submit</button>
       </form>
-      <p>{response}</p>
+      {loading && <Spinner />}
+      <p>{!loading && response}</p>
     </div>
   );
 }
