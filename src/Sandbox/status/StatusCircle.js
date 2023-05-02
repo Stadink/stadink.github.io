@@ -3,8 +3,8 @@ import './StatusCircle.css';
 
 const StatusCircle = () => {
   const [status, setStatus] = useState('unknown');
-  const url = 'example.com/status';
-//   const url = 'https://server-e4273.web.app/status';
+//   const url = 'example.com/status';
+  const url = 'https://server-e4273.web.app/status';
 
   let circleClass = '';
   switch (status) {
