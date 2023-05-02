@@ -137,6 +137,7 @@ export class Notepad extends React.Component {
 
             <input class="clickable" type="radio" id="toDo" name="fav_language" value="toDo"/>
             <label class="clickable" for="toDo">✅</label>
+            <label class="clickable" for="toDo">🤖</label>
 
           <input class="clickable" id="toDo2" style={{visibility: this.getVisibility()}} type='radio'></input> 
           <input class="clickable" id="toDo1" style={{visibility: this.getVisibility()}} type='radio'></input> 

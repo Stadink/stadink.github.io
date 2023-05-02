@@ -14,7 +14,7 @@ export default function GPT( {words} ) {
 
     // Send a request to the server with the prompt
     axios
-      .post("http://localhost:8080/chat", { prompt })
+      .post("https://server-e4273.web.app/chat", { prompt })
       .then((res) => {
         // Update the response state with the server's response
         setResponse(res.data);
