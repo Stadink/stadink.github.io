@@ -22,10 +22,15 @@ app.get('/status', (req, res) => {
     'Connection': 'keep-alive'
   });
 
-  setInterval(() => {
-    const data = JSON.stringify({ status: 'online' });
-    res.write(`event: status\ndata: ${data}\n\n`);
-  }, 1000);
+  try {
+    setInterval(() => {
+      const data = JSON.stringify({ status: 'online' });
+      res.write(`event: status\ndata: ${data}\n\n`);
+    }, 1000);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error generating response");
+  }
 });
 
 // Set up the ChatGPT endpoint

@@ -109,8 +109,9 @@ export class Calendar extends React.Component {
 
 
 
-    copyToClipboard() {
-        navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
+    copyToClipboardEgorVersion() {
+        let time = this.getTimeRemaining()
+        navigator.clipboard.writeText('\n**WTF #' + time + '**\n\n\n---\n\n');
     }
 
     fillValues() {
@@ -151,7 +152,7 @@ export class Calendar extends React.Component {
     render() {
         return (
             <div> 
-                <details  id="TableDiv" onClick={() => { this.get10DayAvg(); this.copyToClipboard(); this.get10DayDone() }}>
+                <details  id="TableDiv" onClick={() => { this.get10DayAvg(); this.copyToClipboardEgorVersion(); this.get10DayDone() }}>
                     <summary>⏳Day #<u id="DayNum">{ this.getTimeRemaining()}</u> | PM: {this.checkboxesCrossed()}/10 ▼</summary>
                     10 day avg: <b id='lol'>calculating...</b> <br/><br/>
                         EXCUSE ME WTF???

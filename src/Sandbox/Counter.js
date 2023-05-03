@@ -113,13 +113,8 @@ export class Counter extends React.Component {
 
 
     copyToClipboard() {
-        // navigator.clipboard.writeText('\n**Day #' + this.getTimeRemaining() + '**\n\n\n---\n\n');
-        // const currentMinute = document.getElementById('minuteNumber').innerHTML();
-        let currentMinute;
-        if(document.getElementById('minuteNumber') !== null){
-            currentMinute = document.getElementById('minuteNumber').innerHTML;
-        }
-        navigator.clipboard.writeText(currentMinute);
+        let time = this.getTimeRemaining()
+        navigator.clipboard.writeText('\n**Egor-' + time + '**\n\n\n---\n\n');
     }
 
     fillValues() {
