@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import StatusCircle from './status/StatusCircle';
 import Spinner from './spinner/Spinner';
+import db from './firebase';
+import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
-export default function GPT( {words} ) {
+
+export default function GPT({ words }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,15 +20,32 @@ export default function GPT( {words} ) {
       .post("https://server-e4273.web.app/chat", { prompt })
       .then((res) => {
         // Update the response state with the server's response
-        setResponse(res.data);
-        console.log(res.data);
+        let reply = res.data
+        setResponse(reply);
+        console.log(reply);
         setLoading(false);
+        saveReply(reply)
       })
       .catch((err) => {
         console.error(err);
         setLoading(false);
       });
   };
+
+  const saveReply = async (reply) => {
+    const docRef = doc(db, 'GPT', 'log');
+    const timestamp = new Date().toLocaleString();
+    const unixTime = Math.floor(new Date().getTime() / 1000);
+
+    const payload = {
+      [`${prompt} (${unixTime})`]: {
+        info: reply,
+        time: timestamp
+      }
+    };
+    await updateDoc(docRef, payload);
+  }
+  
 
   useEffect(() => {
     const emotions = words.length > 0 ? words.map(str => {
