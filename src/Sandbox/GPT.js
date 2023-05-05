@@ -38,7 +38,7 @@ export default function GPT({ words }) {
     const unixTime = Math.floor(new Date().getTime() / 1000);
 
     const payload = {
-      [`${prompt} (${unixTime})`]: {
+      [`${prompt} | ${unixTime}`]: {
         info: reply,
         time: timestamp
       }
