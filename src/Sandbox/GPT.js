@@ -18,13 +18,14 @@ export default function GPT({ words }) {
     // Send a request to the server with the prompt
     axios
       .post("https://server-e4273.web.app/chat", { prompt })
+      // .post("http://127.0.0.1:5000/chat", { prompt })
       .then((res) => {
         // Update the response state with the server's response
         let reply = res.data
         setResponse(reply);
         console.log(reply);
         setLoading(false);
-        saveReply(reply)
+        // saveReply(reply)
       })
       .catch((err) => {
         console.error(err);
@@ -32,19 +33,19 @@ export default function GPT({ words }) {
       });
   };
 
-  const saveReply = async (reply) => {
-    const docRef = doc(db, 'GPT', 'log');
-    const timestamp = new Date().toLocaleString();
-    const unixTime = Math.floor(new Date().getTime() / 1000);
+  // const saveReply = async (reply) => {
+  //   const docRef = doc(db, 'GPT', 'log');
+  //   const timestamp = new Date().toLocaleString();
+  //   const unixTime = Math.floor(new Date().getTime() / 1000);
 
-    const payload = {
-      [`${prompt} | ${unixTime}`]: {
-        info: reply,
-        time: timestamp
-      }
-    };
-    await updateDoc(docRef, payload);
-  }
+  //   const payload = {
+  //     [`${prompt} | ${unixTime}`]: {
+  //       info: reply,
+  //       time: timestamp
+  //     }
+  //   };
+  //   await updateDoc(docRef, payload);
+  // }
   
 
   useEffect(() => {
