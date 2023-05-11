@@ -2,9 +2,9 @@
 
 # dependencies
 /node_modules
-/server
 /.pnp
 .pnp.js
+firebase-adminsdk.js
 
 # testing
 /coverage
