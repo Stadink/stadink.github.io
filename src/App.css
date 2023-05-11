@@ -483,3 +483,8 @@ input[type='range']::-webkit-slider-runnable-track {
 .wroteToday {
   color: rgb(131, 255, 131);
 }
+
+#GPT {
+  min-width: 250px; /* Set a minimum width for the input */
+  width: auto; /* Allow the input to expand beyond the minimum width */
+}

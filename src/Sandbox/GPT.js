@@ -6,7 +6,7 @@ import db from './firebase';
 import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 
-export default function GPT({ words }) {
+export default function GPT({ words, question }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,14 +53,15 @@ export default function GPT({ words }) {
       const splitWords = str.split(":");
       return splitWords.length > 1 ? splitWords[1].trim() : "";
     }) : ["___ "];
-    setPrompt(`what is ${emotions.join(", ")}?`);
-  }, [words]);
+    setPrompt(`${question} ${emotions.join(", ")}?`);
+  }, [words, question]);
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <StatusCircle />
         <input
+          id="GPT"
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}

@@ -12,11 +12,18 @@ export class ConsciousnessRating extends React.Component {
       comment: '',
       allNumbers: 'aaa fucking none' ,
       allRatings: ['wtf'],
+      selectedOption: 'what is'
     };
+    this.handleOptionChange = this.handleOptionChange.bind(this);
     this.updateValue = this.updateValue.bind(this);
     this.getAllNumbers()
     // this.getAverage();
   }
+
+  handleOptionChange = (event) => {
+    this.setState({ selectedOption: event.target.value });
+  }
+
 
   async getAllRatings() {
       const docRef = doc(db, 'ConsciousnessRating', 'All')
@@ -283,7 +290,6 @@ export class ConsciousnessRating extends React.Component {
     }
   }
 
-
   render() {
     const emotions = {
       Shame: ['Humiliation', 'Worthlessness', 'Powerlessness'],
@@ -304,6 +310,8 @@ export class ConsciousnessRating extends React.Component {
       Peace: ['Serenity', 'Tranquility', 'Harmony'],
       Enlightenment: ['Bliss', 'Ecstasy', 'Nirvana'],
     };
+
+    let options = ['What is', 'What are the chemicals of', 'idk'];
 
     return (
         <div id="consciousnessRating">
@@ -331,9 +339,16 @@ export class ConsciousnessRating extends React.Component {
                   ))}
                 </div>
 
-                <GPT words={this.state.word}/>
+                <GPT words={this.state.word} question={this.state.selectedOption}/>
+                <select value={this.state.selectedOption} onChange={this.handleOptionChange}>
+                  {options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
 
-                <br/>
+                <br/><br/><br/>
 
 
                 <img id="consciousnessMap" src='https://external-preview.redd.it/Z_WEBW8ro1FUtN64ksfzeNM-jR4mp4OdebucYgk8eSA.jpg?auto=webp&s=0e1a0909adf703e4bb4fc6b51bb170c490a6a062'/>
