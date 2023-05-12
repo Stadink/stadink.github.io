@@ -29,6 +29,26 @@ export default function GPT({ words, question }) {
         setLoading(false);
       });
   };
+
+  const askAgain = () => {
+    setLoading(true);
+
+    // Send a request to the server with the response
+    axios
+      .post("https://server-e4273.web.app/chat", { prompt: response })
+      // .post("http://127.0.0.1:5000/chat", { prompt })
+      .then((res) => {
+        // Update the response state with the server's response
+        let reply = res.data
+        setResponse(reply);
+        console.log(reply);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }
   
   useEffect(() => {
     const emotions = words.length > 0 ? words.map(str => {
@@ -51,7 +71,7 @@ export default function GPT({ words, question }) {
         <button type="submit">Submit</button>
       </form>
       {loading && <Spinner />}
-      <p>{!loading && response}</p>
+      <p>{!loading && <span class='clickable' onClick={()=>{askAgain()}}>{response}</span>}</p>
     </div>
   );
 }
