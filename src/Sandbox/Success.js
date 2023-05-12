@@ -34,7 +34,7 @@ export class Success extends React.Component {
         const chapterNum = this.state.randomChapter - 1
         const pageNum = SuccessPrinciples[chapterNum].page
         const pageShifted = parseInt(pageNum) + 23;
-        return `https://the-cosmic-joke.com/SuccessPrinciples.pdf#page=${pageShifted}`
+        return `https://stadink.github.io/build/SuccessPrinciples.pdf#page=${pageShifted}`
       }
 
     async getList() {
