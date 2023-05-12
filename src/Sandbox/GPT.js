@@ -3,53 +3,33 @@ import axios from "axios";
 import StatusCircle from './status/StatusCircle';
 import Spinner from './spinner/Spinner';
 
-
 export default function GPT({ words, question }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const fetchResponse = async (input) => {
     setLoading(true);
 
-    // Send a request to the server with the prompt
-    axios
-      .post("https://server-e4273.web.app/chat", { prompt })
-      // .post("http://127.0.0.1:5000/chat", { prompt })
-      .then((res) => {
-        // Update the response state with the server's response
-        let reply = res.data
-        setResponse(reply);
-        console.log(reply);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+    try {
+      const res = await axios.post("https://server-e4273.web.app/chat", { prompt: input });
+      setResponse(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchResponse(prompt);
   };
 
   const askAgain = () => {
-    setLoading(true);
-
-    // Send a request to the server with the response
-    axios
-      .post("https://server-e4273.web.app/chat", { prompt: response })
-      // .post("http://127.0.0.1:5000/chat", { prompt })
-      .then((res) => {
-        // Update the response state with the server's response
-        let reply = res.data
-        setResponse(reply);
-        console.log(reply);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
+    fetchResponse(response);
   }
-  
+
   useEffect(() => {
     const emotions = words.length > 0 ? words.map(str => {
       const splitWords = str.split(":");
@@ -71,7 +51,7 @@ export default function GPT({ words, question }) {
         <button type="submit">Submit</button>
       </form>
       {loading && <Spinner />}
-      <p>{!loading && <span class='clickable' onClick={()=>{askAgain()}}>{response}</span>}</p>
+      <p>{!loading && <span className='clickable' onClick={askAgain}>{response}</span>}</p>
     </div>
   );
 }
