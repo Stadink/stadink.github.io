@@ -488,3 +488,8 @@ input[type='range']::-webkit-slider-runnable-track {
   min-width: 250px; /* Set a minimum width for the input */
   width: auto; /* Allow the input to expand beyond the minimum width */
 }
+
+#GPTresponse {
+  text-align: left;
+  margin-left: 15px;
+}

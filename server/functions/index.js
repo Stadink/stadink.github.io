@@ -92,26 +92,52 @@ const saveReply = async (prompt, reply) => {
 }
 
 // Set up the ChatGPT endpoint
-app.post("/chat", async (req, res) => {
-  // Get the prompt from the request
-  const { prompt } = req.body;
+app.get('/chat', async (req, res) => {
+  const { prompt } = req.query;
+
+    // Send the headers for Server-Sent Events
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      "Connection": "keep-alive"
+    });
 
   // Generate a response with ChatGPT
   try {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      stream: false,
-      messages: [{"role": "user", "content": prompt}],
-      max_tokens: 100
+      messages: [{ "role": "user", "content": prompt }],
+      max_tokens: 100,
+      stream: true,
+    }, { responseType: 'stream' });
+
+    completion.data.on('data', data => {
+      const lines = data.toString().split('\n').filter(line => line.trim() !== '');
+      for (const line of lines) {
+        const message = line.replace(/^data: /, '');
+        if (message === '[DONE]') {
+          // Stream finished, send the closing event to the client
+          res.write(`event: close\ndata: {}\n\n`);
+          res.end();
+          return; // Stream finished
+        }
+        try {
+          const parsed = JSON.parse(message);
+          const content = parsed.choices[0].delta.content;
+          console.log(content)
+          // Send the response to the client using Server-Sent Events
+          res.write(`event: message\ndata: ${JSON.stringify({ content })}\n\n`);
+        } catch (error) {
+          console.error('Could not JSON parse stream message', message, error);
+        }
+      }
     });
-    const answer = completion.data.choices[0].message.content
-    res.send(answer);
-    saveReply(prompt, answer)
-    console.log(answer)
+
   } catch (error) {
     console.error(error);
     res.status(500).send("Error generating response");
   }
 });
+
 
 export const api = functions.https.onRequest(app);

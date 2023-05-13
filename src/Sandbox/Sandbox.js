@@ -47,6 +47,7 @@ export class Sandbox extends React.Component {
             <Goals />
             {/* <RandomIdea /> */}
             <h3>🔋 Sexual energy is creative energy 🪫</h3>
+            <h4>No JO till ENB</h4>
             <EjaculationTimer />
           </div>
         </div>

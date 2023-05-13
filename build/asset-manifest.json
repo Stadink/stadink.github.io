@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/build/static/css/main.71f0f185.css",
-    "main.js": "/build/static/js/main.eaff5576.js",
+    "main.css": "/build/static/css/main.3912bf02.css",
+    "main.js": "/build/static/js/main.f6365a07.js",
     "static/js/787.fa006412.chunk.js": "/build/static/js/787.fa006412.chunk.js",
     "static/media/VisionBoard.png": "/build/static/media/VisionBoard.426db91ac7287f7792e9.png",
     "static/media/shrek.png": "/build/static/media/shrek.f3acf6cd59fab6d7b1d2.png",
     "static/media/logo.svg": "/build/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/build/index.html",
-    "main.71f0f185.css.map": "/build/static/css/main.71f0f185.css.map",
-    "main.eaff5576.js.map": "/build/static/js/main.eaff5576.js.map",
+    "main.3912bf02.css.map": "/build/static/css/main.3912bf02.css.map",
+    "main.f6365a07.js.map": "/build/static/js/main.f6365a07.js.map",
     "787.fa006412.chunk.js.map": "/build/static/js/787.fa006412.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.71f0f185.css",
-    "static/js/main.eaff5576.js"
+    "static/css/main.3912bf02.css",
+    "static/js/main.f6365a07.js"
   ]
 }

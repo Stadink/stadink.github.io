@@ -311,7 +311,13 @@ export class ConsciousnessRating extends React.Component {
       Enlightenment: ['Bliss', 'Ecstasy', 'Nirvana'],
     };
 
-    let options = ['What is', 'What are the chemicals of', 'How do I reframe', 'Write a joke about'];
+    let options = [
+      'What is', 
+      'What are the chemicals of', 
+      'How do I reframe', 
+      'Write a joke about',
+      'How do I transcend'
+    ];
 
     return (
         <div id="consciousnessRating">
