@@ -22,12 +22,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-// Set Content-Encoding header to identity to disable compression
-app.use((req, res, next) => {
-  res.set('Content-Encoding', 'identity');
-  next();
-});
-
 // let serverStatus = "unknown";
 app.get("/status", (req, res) => {
   res.writeHead(200, {
@@ -117,6 +111,7 @@ app.get('/chat', async (req, res) => {
       stream: true,
     }, { responseType: 'stream' });
 
+    let answer = '';
     completion.data.on('data', data => {
       const lines = data.toString().split('\n').filter(line => line.trim() !== '');
       for (const line of lines) {
@@ -125,11 +120,15 @@ app.get('/chat', async (req, res) => {
           // Stream finished, send the closing event to the client
           res.write(`event: close\ndata: {}\n\n`);
           res.end();
+          answer = answer.replace('undefined', ''); // temp solution heh
+          answer = answer.replace('undefined', '');
+          saveReply(prompt, answer);
           return; // Stream finished
         }
         try {
           const parsed = JSON.parse(message);
           const content = parsed.choices[0].delta.content;
+          answer += content;
           console.log(content)
           // Send the response to the client using Server-Sent Events
           res.write(`event: message\ndata: ${JSON.stringify({ content })}\n\n`);

@@ -311,12 +311,13 @@ export class ConsciousnessRating extends React.Component {
       Enlightenment: ['Bliss', 'Ecstasy', 'Nirvana'],
     };
 
-    let options = [
+    let questions = [
       'What is', 
       'What are the chemicals of', 
       'How do I reframe', 
       'Write a joke about',
-      'How do I transcend'
+      'How do I transcend',
+      'What are the synonyms of'
     ];
 
     return (
@@ -347,9 +348,9 @@ export class ConsciousnessRating extends React.Component {
 
                 <GPT words={this.state.word} question={this.state.selectedOption}/>
                 <select value={this.state.selectedOption} onChange={this.handleOptionChange}>
-                  {options.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
+                  {questions.map((question) => (
+                    <option key={question} value={question}>
+                      {question}
                     </option>
                   ))}
                 </select>
