@@ -22,6 +22,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+// Set Content-Encoding header to identity to disable compression
+app.use((req, res, next) => {
+  res.set('Content-Encoding', 'identity');
+  next();
+});
+
 // let serverStatus = "unknown";
 app.get("/status", (req, res) => {
   res.writeHead(200, {

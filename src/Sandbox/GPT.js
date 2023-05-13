@@ -8,8 +8,8 @@ export default function GPT({ words, question }) {
   const [loading, setLoading] = useState(false);
 
   const fetchResponse = async (input) => {
-    const evtSource = new EventSource(`http://127.0.0.1:5000/chat?prompt=${input}`);
-    // const evtSource = new EventSource(`https://server-e4273.web.app/chat?prompt=${input}`);
+    // const evtSource = new EventSource(`http://127.0.0.1:5000/chat?prompt=${input}`);
+    const evtSource = new EventSource(`https://server-e4273.web.app/chat?prompt=${input}`);
     evtSource.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
       if (data.content !== undefined) 
