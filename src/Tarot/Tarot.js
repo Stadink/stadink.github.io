@@ -88,7 +88,7 @@ export default function Tarot() {
 
         let oldStyle = currentTheme === "dark"
         if (oldStyle) {
-          document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/pics/${cardOld}.jpg`;
+          document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${cardOld}.jpg`;
         } else {
             document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${card}.jpg`;
         }

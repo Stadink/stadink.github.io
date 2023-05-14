@@ -317,7 +317,9 @@ export class ConsciousnessRating extends React.Component {
       'How do I reframe', 
       'Write a joke about',
       'How do I transcend',
-      'What are the synonyms of'
+      'What are the synonyms of',
+      'How do I shift my experience towards',
+      'How do I shift my experience from',
     ];
 
     return (
