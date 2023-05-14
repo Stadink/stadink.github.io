@@ -257,7 +257,7 @@ export default function Tarot() {
         </details>
         <br /><br />
 
-        {/* <GPT words={'idk'} question={'whatev'}/> */}
+        {/* <GPT words={['idk']} question={'whatev'}/> */}
 
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
