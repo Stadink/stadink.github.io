@@ -89,9 +89,9 @@ export default function Tarot() {
 
         let oldStyle = currentTheme === "dark"
         if (oldStyle) {
-          document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/pics/${cardOld}.jpg`;
+          document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
         } else {
-            document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${card}.jpg`;
+          document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
         }
 
         let cardSearch = card.replace(/[0-9]/, '');
@@ -173,9 +173,11 @@ export default function Tarot() {
 
     const toggleMode = () => {
       if (currentTheme === 'light') {
-        document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/pics/${getOldCard}.jpg`;
+        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
       } else {
-          document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
+          // document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
+        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+
       }
     }
 
@@ -232,7 +234,7 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => newCard()} src='http://the-cosmic-joke.com/tarot/pics/tarotBack.jpg' alt="tarot" /> <br /><br />
+        <img id='cardImg' onClick={() => newCard()} src='https://stadink.github.io/build/TarotPics/back.jpg' alt="tarot" /> <br /><br />
 
         <div id="answerButtons">
           <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
@@ -257,7 +259,7 @@ export default function Tarot() {
         </details>
         <br /><br />
 
-        {/* <GPT words={['idk']} question={'whatev'}/> */}
+        <GPT words={['idk']} question={'whatev'}/>
 
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
