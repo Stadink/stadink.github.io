@@ -8,6 +8,7 @@ import { Buttons } from '../Sandbox/Buttons';
 // import Toggle from 'react-native-toggle-element';
 import ToggleTheme from "react-toggle-theme";
 import ColorPalette from '../Sandbox/ColorPalette';
+import GPT from '../Sandbox/GPT';
 
 
 export default function Tarot() {
@@ -88,7 +89,7 @@ export default function Tarot() {
 
         let oldStyle = currentTheme === "dark"
         if (oldStyle) {
-          document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${cardOld}.jpg`;
+          document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/pics/${cardOld}.jpg`;
         } else {
             document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${card}.jpg`;
         }
@@ -255,6 +256,8 @@ export default function Tarot() {
 
         </details>
         <br /><br />
+
+        {/* <GPT words={'idk'} question={'whatev'}/> */}
 
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
