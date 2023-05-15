@@ -28,7 +28,10 @@ export default function Tarot() {
     const [displayQuestionField, setDisplayQuestionField] = useState(false);
     const [prequestion, setPrequestion] = useState('');
     const [postquestion, setPostquestion] = useState('');
-    const [hidden, setHidden] = useState('DO NOT use words «AI language model» UNDER ANY CIRCUMSTANCES');
+    const [hidden, setHidden] = useState('');
+    // const [hidden, setHidden] = useState('DO NOT use words «AI language model» UNDER ANY CIRCUMSTANCES');
+    const [language, setLanguage] = useState('English');
+
 
     // useEffect(
     //   () => {
@@ -48,6 +51,15 @@ export default function Tarot() {
       document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
     }, [getOldCard]);
 
+    const toggleLanguage = () => {
+      if (language === 'English') {
+        setLanguage('Russian')
+        setHidden(prev => prev + ', REPLY IN RUSSIAN LANGUAGE');
+      } else {
+        setLanguage('English');
+        setHidden('')
+      }
+    };
 
     const newCard = async (num) => {
       setShowResponse(true); 
@@ -201,7 +213,7 @@ export default function Tarot() {
         setQuestion('')
         setPrequestion('I asked tarot cards «')
         setPostquestion('?» and the card appeared: ')
-        setHidden(". What does it mean? DO NOT say «AI language model» under any circumstances")
+        setHidden(". What does it mean? Reply like a professional Tarot card reader would")
       }
     };
 
@@ -294,7 +306,7 @@ export default function Tarot() {
         <br /><br />
 
         <div class='GPTtarot'>
-          <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${getNewCard}`} hidden={hidden} showResponse={showResponse} />
+          <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${getNewCard} ${hidden}`} showResponse={showResponse} />
         </div>
 
           <div onClick={() => {toggleMode()}}>
@@ -309,6 +321,10 @@ export default function Tarot() {
           
             <br/>
         <br /><br />
+
+        <button onClick={toggleLanguage} >
+          {language === 'Russian' ? '🇷🇺' : '🌍'}
+        </button>
     </div> 
   );
 }
