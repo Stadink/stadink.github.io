@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import StatusCircle from './status/StatusCircle';
 import Spinner from './spinner/Spinner';
 
-export default function GPT({ words, question, hidden='' }) {
+export default function GPT({ words, question, hidden='', showResponse=true }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const [displayResponse, setDisplayResponse] = useState(showResponse);
+
+  useEffect(() => {
+    setDisplayResponse(showResponse);
+  }, [showResponse]);
 
   const fetchResponse = async (input) => {
     // const evtSource = new EventSource(`http://127.0.0.1:5000/chat?prompt=${input + hidden}`);
@@ -24,6 +30,7 @@ export default function GPT({ words, question, hidden='' }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setDisplayResponse(true)
     setResponse("")
     setLoading(true);
     fetchResponse(prompt);
@@ -55,7 +62,9 @@ export default function GPT({ words, question, hidden='' }) {
         <button type="submit">Submit</button>
       </form>
       {loading && <Spinner />}
-      <p id='GPTresponse'>{!loading && <span className='clickable' onClick={askAgain}>{response}</span>}</p>
+      {displayResponse && (
+        <p id='GPTresponse'>{!loading && <span className='clickable' onClick={askAgain}>{response}</span>}</p>
+      )}
     </div>
   );
 }

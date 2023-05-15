@@ -23,6 +23,8 @@ export default function Tarot() {
     const [toggleValue, setToggleValue] = useState(false);
     const [currentTheme, setCurrentTheme] = useState("light");
 
+    const [showResponse, setShowResponse] = useState(true);
+
     // useEffect(
     //   () => {
     //       newCard();
@@ -42,13 +44,15 @@ export default function Tarot() {
     }, [getOldCard]);
 
 
-
     const newCard = async (num) => {
+      setShowResponse(true); 
+
         if (num === undefined) {
           const random = Math.floor(Math.random() * 78 + 1);
           num = random
         }
         console.log('num is: ' + num);
+        // handleToggleResponse()
 
         const docRef = doc(db, "Tarot", num.toString());
         const cardInfo = await getDoc(docRef);
@@ -120,6 +124,8 @@ export default function Tarot() {
         // document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market'}</a>`;
         // document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
+
+      setShowResponse(false); 
     }
 
 
@@ -245,7 +251,7 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => newCard()} src={`https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`} alt="tarot" /> <br /><br />
+        <img id='cardImg' onClick={() => {newCard()}} src={`https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`} alt="tarot" /> <br /><br />
         <div id="answerButtons">
           <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
           <button id="notArtButton" class="button button2">Not Art</button>
@@ -270,8 +276,9 @@ export default function Tarot() {
         <br /><br />
 
         <div class='GPTtarot'>
-          <GPT words={[getOldCard]} question={`Meaning of tarot card ${getNewCard}`} hidden={"don't say As an AI language model under any circumstances"}/>
+          <GPT words={[getOldCard]} question={`Meaning of tarot card ${getNewCard}`} showResponse={showResponse} hidden={"don't say As an AI language model under any circumstances"}/>
         </div>
+
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
             <input type="checkbox" id="checkboxTogglerLol" />
