@@ -263,7 +263,7 @@ export default function Tarot() {
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
           <br /><br />
           <a id="card">idk</a> |&nbsp;
-          <a id="googleSearch" href="https://www.google.com/search?q=test" target="_blank">Google</a> <br/> <br/>
+          <a id="googleSearch" href={`https://www.google.com/search?q=${"Tarot card "+getNewCard+" meaning"}`} target="_blank">Google</a> <br/> <br/>
 
 
           <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select"  onChange={(e) => newCard(e.target.value)}>
