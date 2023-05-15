@@ -24,6 +24,11 @@ export default function Tarot() {
     const [currentTheme, setCurrentTheme] = useState("light");
 
     const [showResponse, setShowResponse] = useState(true);
+    const [question, setQuestion] = useState('Meaning of tarot card');
+    const [displayQuestionField, setDisplayQuestionField] = useState(false);
+    const [prequestion, setPrequestion] = useState('');
+    const [postquestion, setPostquestion] = useState('');
+    const [hidden, setHidden] = useState('DO NOT use words «AI language model» UNDER ANY CIRCUMSTANCES');
 
     // useEffect(
     //   () => {
@@ -187,6 +192,18 @@ export default function Tarot() {
       document.getElementById('spoiler').open = 'true';
     }
 
+    const toggleQuestionField = () => {
+      if (displayQuestionField && getOldCard==='back') {
+        newCard();
+        setDisplayQuestionField(false);
+      } else {
+        setDisplayQuestionField(!displayQuestionField);
+        setQuestion('')
+        setPrequestion('I asked tarot cards «')
+        setPostquestion('?» and the card appeared: ')
+        setHidden(". What does it mean? DO NOT say «AI language model» under any circumstances")
+      }
+    };
 
     const toggleMode = () => {
       if (currentTheme === 'light') {
@@ -194,8 +211,9 @@ export default function Tarot() {
       } else {
           // document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
         document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
-
       }
+
+      toggleQuestionField();
     }
 
 
@@ -276,14 +294,19 @@ export default function Tarot() {
         <br /><br />
 
         <div class='GPTtarot'>
-          <GPT words={[getOldCard]} question={`Meaning of tarot card ${getNewCard}`} showResponse={showResponse} hidden={"don't say As an AI language model under any circumstances"}/>
+          <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${getNewCard}`} hidden={hidden} showResponse={showResponse} />
         </div>
 
-          <div onClick={() => toggleMode()}>
-            <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
+          <div onClick={() => {toggleMode()}}>
+            <ToggleTheme onclick={toggleQuestionField} id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
             <input type="checkbox" id="checkboxTogglerLol" />
           </div>
 
+          
+          {displayQuestionField && (<input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />)}
+
+          <button onClick={toggleQuestionField}>❓</button>
+          
             <br/>
         <br /><br />
     </div> 

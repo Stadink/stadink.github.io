@@ -46,7 +46,7 @@ export default function GPT({ words, question, hidden='', showResponse=true }) {
       const splitWords = str.split(":");
       return splitWords.length > 1 ? splitWords[1].trim() : "";
     }) : ["___ "];
-    setPrompt(`${question} ${emotions.join(", ")}?`);
+    setPrompt(`${question} ${emotions.join(", ")}`); // here was a question mark before `, I need to rethink the whole thing...
   }, [words, question]);
 
   return (
