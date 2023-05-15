@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import StatusCircle from './status/StatusCircle';
 import Spinner from './spinner/Spinner';
 
-export default function GPT({ words, question }) {
+export default function GPT({ words, question, hidden='' }) {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchResponse = async (input) => {
-    const evtSource = new EventSource(`http://127.0.0.1:5000/chat?prompt=${input}`);
-    // const evtSource = new EventSource(`https://server-e4273.web.app/chat?prompt=${input}`);
+    // const evtSource = new EventSource(`http://127.0.0.1:5000/chat?prompt=${input + hidden}`);
+    const evtSource = new EventSource(`https://server-e4273.web.app/chat?prompt=${input + hidden}`);
     evtSource.addEventListener('message', (event) => {
       const data = JSON.parse(event.data);
       if (data.content !== undefined) 

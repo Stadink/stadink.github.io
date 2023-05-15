@@ -73,19 +73,19 @@ export default function Tarot() {
         card = card.replace('14', 'King');
         card = card.replace('01', 'Ace');
 
-        card = card.includes('10') ? card : card.replace('0', '');
-        card = card.replace('TheHanged_Man', 'TheHangedMan');
-        // card = card.replace('Hierophant', 'TheHierophant');
-        // card = card.replace('World', 'TheWorld');
-        card = card.replace('TheHigh_Priestess', 'HighPriestess');
-        card = card.replace('TheWheel_of_Fortune', 'WheelOfFortune');
-        card = card.replace('TheJustice', 'Justice');
-        card = card.replace('TheJudgement', 'Judgement');
-        card = card.replace('TheDeath', 'Death');
-        card = card.replace('TheTemperance', 'Temperance');
-        card = card.replace('TheStrength', 'Strength');
-        card = card.replace('CupsQueen', 'queenscups');
-        card = card.replace('WandsKnight', 'KnightWands');
+        // card = card.includes('10') ? card : card.replace('0', '');
+        // card = card.replace('TheHanged_Man', 'TheHangedMan');
+        // // card = card.replace('Hierophant', 'TheHierophant');
+        // // card = card.replace('World', 'TheWorld');
+        // card = card.replace('TheHigh_Priestess', 'HighPriestess');
+        // card = card.replace('TheWheel_of_Fortune', 'WheelOfFortune');
+        // card = card.replace('TheJustice', 'Justice');
+        // card = card.replace('TheJudgement', 'Judgement');
+        // card = card.replace('TheDeath', 'Death');
+        // card = card.replace('TheTemperance', 'Temperance');
+        // card = card.replace('TheStrength', 'Strength');
+        // card = card.replace('CupsQueen', 'queenscups');
+        // card = card.replace('WandsKnight', 'KnightWands');
         // card = card.replace('Hermit', 'TheHermit');
         // card = card.replace('Tower', 'TheTower');
         // card = card.replace('Devil', 'TheDevil');
@@ -93,7 +93,7 @@ export default function Tarot() {
         // card = card.replace('Sun', 'TheSun');
         // card = card.replace('Empress', 'TheEmpress');
 
-        card = card.replace('SwordsKnight', 'KnightOfSwords');
+        // card = card.replace('SwordsKnight', 'KnightOfSwords');
 
         setNewCard(card);
         console.log('New card state is: ' + getNewCard);
@@ -105,20 +105,20 @@ export default function Tarot() {
         //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
         // }
 
-        let cardSearch = card.replace(/[0-9]/, '');
+        // let cardSearch = card.replace(/[0-9]/, '');
 
-        cardSearch = cardSearch.replace('King', '');
-        cardSearch = cardSearch.replace('Knight', '');
-        cardSearch = cardSearch.replace('Queen', '');
-        cardSearch = cardSearch.replace('Page', '');
+        // cardSearch = cardSearch.replace('King', '');
+        // cardSearch = cardSearch.replace('Knight', '');
+        // cardSearch = cardSearch.replace('Queen', '');
+        // cardSearch = cardSearch.replace('Page', '');
 
-        cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join("&nbsp;")
-        console.log('cardSearch is: ' + cardSearch)
-        console.log('mode is: ' + mode)
+        // cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join("&nbsp;")
+        // console.log('cardSearch is: ' + cardSearch)
+        // console.log('mode is: ' + mode)
       
 
-        document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market'}</a>`;
-        document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
+        // document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market'}</a>`;
+        // document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
     }
 
@@ -269,8 +269,9 @@ export default function Tarot() {
         </details>
         <br /><br />
 
-        <GPT words={[getOldCard]} question={`Meaning of tarot card ${getOldCard}`}/>
-
+        <div class='GPTtarot'>
+          <GPT words={[getOldCard]} question={`Meaning of tarot card ${getNewCard}`} hidden={"don't say As an AI language model under any circumstances"}/>
+        </div>
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
             <input type="checkbox" id="checkboxTogglerLol" />
