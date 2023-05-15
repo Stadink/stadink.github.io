@@ -17,19 +17,30 @@ export default function Tarot() {
     const [currentPic, setCurrentPic] = useState([{ pic: ''}]);
     const [currentCardNum, setCurrentCardNum] = useState([{ currentCardNum: ''}]);
     const [mode, setMode] = useState('new');
-    const [getOldCard, setOldCard] = useState('');
+    const [getOldCard, setOldCard] = useState('back');
     const [getNewCard, setNewCard] = useState('');
 
     const [toggleValue, setToggleValue] = useState(false);
-    const [currentTheme, setCurrentTheme] = useState("dark");
+    const [currentTheme, setCurrentTheme] = useState("light");
 
-    useEffect(
-      () => {
-          newCard();
-          getStarred();
-          // document.getElementById('cardImg').click()
-      }, []
-    )
+    // useEffect(
+    //   () => {
+    //       newCard();
+    //       getStarred();
+    //       // document.getElementById('cardImg').click()
+    //   }, []
+    // )
+
+    // useEffect(()=>{
+    //   setCurrentTheme('dark')
+    // })
+
+    // Inside the Tarot component
+    useEffect(() => {
+      // Update the image source when getOldCard changes
+      document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+    }, [getOldCard]);
+
 
 
     const newCard = async (num) => {
@@ -88,11 +99,11 @@ export default function Tarot() {
         console.log('New card state is: ' + getNewCard);
 
         let oldStyle = currentTheme === "dark"
-        if (oldStyle) {
-          document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
-        } else {
-          document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
-        }
+        // if (oldStyle) {
+        //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+        // } else {
+        //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+        // }
 
         let cardSearch = card.replace(/[0-9]/, '');
 
@@ -234,8 +245,7 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => newCard()} src='https://stadink.github.io/build/TarotPics/back.jpg' alt="tarot" /> <br /><br />
-
+        <img id='cardImg' onClick={() => newCard()} src={`https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`} alt="tarot" /> <br /><br />
         <div id="answerButtons">
           <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
           <button id="notArtButton" class="button button2">Not Art</button>
@@ -259,7 +269,7 @@ export default function Tarot() {
         </details>
         <br /><br />
 
-        <GPT words={['idk']} question={'whatev'}/>
+        <GPT words={[getOldCard]} question={`Meaning of tarot card ${getOldCard}`}/>
 
           <div onClick={() => toggleMode()}>
             <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
