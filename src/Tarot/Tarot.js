@@ -24,7 +24,7 @@ export default function Tarot() {
     const [currentTheme, setCurrentTheme] = useState("light");
 
     const [showResponse, setShowResponse] = useState(true);
-    const [question, setQuestion] = useState('Meaning of tarot card');
+    const [question, setQuestion] = useState('Reply like a tarot meaning encyclopedia. What is the meaning of tarot card');
     const [displayQuestionField, setDisplayQuestionField] = useState(false);
     const [prequestion, setPrequestion] = useState('');
     const [postquestion, setPostquestion] = useState('');
@@ -295,7 +295,6 @@ export default function Tarot() {
           <a id="card">idk</a> |&nbsp;
           <a id="googleSearch" href={`https://www.google.com/search?q=${"Tarot card "+getNewCard+" meaning"}`} target="_blank">Google</a> <br/> <br/>
 
-
           <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select"  onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
                 return <option selected={isOptionCurrentPic(e.card)} key={id} value={e.id}>{isStarred(e.card)}{e.card}</option>;
@@ -308,15 +307,10 @@ export default function Tarot() {
         <div class='GPTtarot'>
           <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${getNewCard} ${hidden}`} showResponse={showResponse} />
         </div>
-
-          <div onClick={() => {toggleMode()}}>
-            <ToggleTheme onclick={toggleQuestionField} id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
-            <input type="checkbox" id="checkboxTogglerLol" />
-          </div>
-
           
           {displayQuestionField && (<input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />)}
 
+          <br/>
           <button onClick={toggleQuestionField}>❓</button>
           
             <br/>
@@ -325,6 +319,14 @@ export default function Tarot() {
         <button onClick={toggleLanguage} >
           {language === 'Russian' ? '🇷🇺' : '🌍'}
         </button>
+        <br /><br />
+
+
+        <div onClick={() => {toggleMode()}}>
+          <ToggleTheme onclick={toggleQuestionField} id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
+          <input type="checkbox" id="checkboxTogglerLol" />
+        </div>
+
     </div> 
   );
 }

@@ -51,15 +51,15 @@ export default function GPT({ words, question, hidden='', showResponse=true }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form class="form-group" onSubmit={handleSubmit}>
         <StatusCircle />
-        <input
+        <textarea
           id="GPT"
           type="text"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button id="GPTsubmit" type="submit">Submit</button>
       </form>
       {loading && <Spinner />}
       {displayResponse && (

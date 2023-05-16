@@ -486,7 +486,14 @@ input[type='range']::-webkit-slider-runnable-track {
 
 #GPT {
   min-width: 250px; /* Set a minimum width for the input */
-  width: auto; /* Allow the input to expand beyond the minimum width */
+  max-width: 400px;
+  /* width: auto; Allow the input to expand beyond the minimum width */
+  min-height: 70px;
+  height: auto;
+  flex-grow: 1;
+  margin-right: '10px';
+
+  flex: 1;
 }
 
 #GPTresponse {
@@ -495,7 +502,19 @@ input[type='range']::-webkit-slider-runnable-track {
 }
 
 .GPTtarot #GPTresponse {
-  margin-left: 250px;
-  margin-right: 250px;
+  margin-left: 10vw;
+  margin-right: 10vw;
   /* border: 1px solid white; */
+}
+
+#GPTsubmit {
+  height: 50px;
+  display: inline-flex;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }
