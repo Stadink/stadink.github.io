@@ -219,10 +219,11 @@ export default function Tarot() {
 
     const toggleMode = () => {
       if (currentTheme === 'light') {
-        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
-      } else {
-          // document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
         document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/Thoth/${getOldCard}.png`;
+
+      } else {
+        // document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
+        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
       }
     }
 
