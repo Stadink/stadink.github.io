@@ -48,8 +48,10 @@ export default function Tarot() {
     // Inside the Tarot component
     useEffect(() => {
       // Update the image source when getOldCard changes
-      document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
-    }, [getOldCard]);
+      document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${
+        currentTheme === "dark" ? "Thoth/" : ""
+      }${getOldCard}.${currentTheme === "dark" ? "png" : "jpg"}`;
+    }, [getOldCard, currentTheme]);
 
     const toggleLanguage = () => {
       if (language === 'English') {
@@ -182,14 +184,16 @@ export default function Tarot() {
     };
 
     const toggleMode = () => {
-      if (currentTheme === 'light') {
-        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/Thoth/${getOldCard}.png`;
+      if (currentTheme === 'dark') {
         setHidden(prev => prev + "in Alister Crowley's Thoth tarot");
       } else {
-        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
         setHidden(prev => prev.replace("in Alister Crowley's Thoth tarot", ''));
       }
     }
+
+    useEffect(() => {
+      toggleMode();
+    }, [currentTheme]);
 
 
     const getStarred = async () => {
@@ -287,7 +291,7 @@ export default function Tarot() {
         <br /><br />
 
 
-        <div onClick={() => {toggleMode()}}>
+        <div>
           <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
           <input type="checkbox" id="checkboxTogglerLol" />
         </div>
