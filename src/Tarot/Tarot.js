@@ -57,7 +57,7 @@ export default function Tarot() {
         setHidden(prev => prev + ', REPLY IN RUSSIAN LANGUAGE');
       } else {
         setLanguage('English');
-        setHidden('')
+        setHidden(prev => prev.replace(', REPLY IN RUSSIAN LANGUAGE', ''));
       }
     };
 
@@ -220,10 +220,10 @@ export default function Tarot() {
     const toggleMode = () => {
       if (currentTheme === 'light') {
         document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/Thoth/${getOldCard}.png`;
-
+        setHidden(prev => prev + "in Alister Crowley's Thoth tarot");
       } else {
-        // document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
         document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+        setHidden(prev => prev.replace("in Alister Crowley's Thoth tarot", ''));
       }
     }
 
