@@ -64,8 +64,6 @@ export default function Tarot() {
     };
 
     const newCard = async (num) => {
-      setShowResponse(true); 
-
         if (num === undefined) {
           const random = Math.floor(Math.random() * 78 + 1);
           num = random
@@ -108,6 +106,7 @@ export default function Tarot() {
         // document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
 
+      setShowResponse(true); // it won't work without it 🤷‍♂️
       setShowResponse(false); 
     }
 
