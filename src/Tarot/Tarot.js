@@ -1,13 +1,9 @@
-import React, { setState, useState, useEffect } from 'react';
-import { collection, onSnapshot, setDoc, arrayUnion, updateDoc, getDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
+import React, { useState, useEffect } from 'react';
+import { arrayUnion, updateDoc, getDoc, doc } from '@firebase/firestore';
 import db from '../Sandbox/firebase';
-// import tarot from '../Tarot/tarot.json';
 import tarot from '../Tarot/tarot.jsx';
 import { FormControl } from 'react-bootstrap';
-import { Buttons } from '../Sandbox/Buttons';
-// import Toggle from 'react-native-toggle-element';
 import ToggleTheme from "react-toggle-theme";
-import ColorPalette from '../Sandbox/ColorPalette';
 import GPT from '../Sandbox/GPT';
 
 
@@ -16,11 +12,9 @@ export default function Tarot() {
     const [starred, setStarred] = useState([{ starred: []}]);
     const [currentPic, setCurrentPic] = useState([{ pic: ''}]);
     const [currentCardNum, setCurrentCardNum] = useState([{ currentCardNum: ''}]);
-    const [mode, setMode] = useState('new');
     const [getOldCard, setOldCard] = useState('back');
     const [getNewCard, setNewCard] = useState('');
 
-    const [toggleValue, setToggleValue] = useState(false);
     const [currentTheme, setCurrentTheme] = useState("light");
 
     const [showResponse, setShowResponse] = useState(true);
@@ -29,23 +23,8 @@ export default function Tarot() {
     const [prequestion, setPrequestion] = useState('');
     const [postquestion, setPostquestion] = useState('');
     const [hidden, setHidden] = useState('');
-    // const [hidden, setHidden] = useState('DO NOT use words «AI language model» UNDER ANY CIRCUMSTANCES');
     const [language, setLanguage] = useState('English');
 
-
-    // useEffect(
-    //   () => {
-    //       newCard();
-    //       getStarred();
-    //       // document.getElementById('cardImg').click()
-    //   }, []
-    // )
-
-    // useEffect(()=>{
-    //   setCurrentTheme('dark')
-    // })
-
-    // Inside the Tarot component
     useEffect(() => {
       // Update the image source when getOldCard changes
       document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${
@@ -82,60 +61,10 @@ export default function Tarot() {
 
         setNewCard(card);
 
-        // let oldStyle = currentTheme === "dark"
-
-        // if (currentTheme === "dark") {
-        //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/Thoth/${getOldCard}.png`;
-        // } else {
-        //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
-        // }
-
-        // let cardSearch = card.replace(/[0-9]/, '');
-
-        // cardSearch = cardSearch.replace('King', '');
-        // cardSearch = cardSearch.replace('Knight', '');
-        // cardSearch = cardSearch.replace('Queen', '');
-        // cardSearch = cardSearch.replace('Page', '');
-
-        // cardSearch = cardSearch.match(/[A-Z][a-z]+|[0-9]+/g).join("&nbsp;")
-        // console.log('cardSearch is: ' + cardSearch)
-        // console.log('mode is: ' + mode)
-      
-
-        // document.getElementById('card').innerHTML = `<a id="cardLink" href="https://crypto.com/nft/collection/900b1c3c2d27e6ccd5bde953c42c4e4d?search=${nameParser(cardOld, cardSearch, true)}" target="_blank">${'💲 Market'}</a>`;
-        // document.getElementById('googleSearch').innerHTML = `<a id="cardLink" href="https://www.google.com/search?q=Tarot ${nameParser(cardOld, cardSearch)}" target="_blank">${'Google 🔍'}</a>`;
         document.getElementById('meaningTarot').innerHTML = meaning;
 
       setShowResponse(true); // it won't work without it 🤷‍♂️
       setShowResponse(false); 
-    }
-
-
-
-    const nameParser = (card, cardSearch, market) => {
-        const split = card.split(/([0-9]+)/)
-        console.log('split is: ' + split)
-
-        let type = split[0]
-        type = type.replace('Pents', 'Coins');
-
-        let num = split[1]
-
-        num = num.replace('11', 'Page');
-        num = num.replace('12', 'Knight');
-        num = num.replace('13', 'Queen');
-        num = num.replace('14', 'King');
-        num = num.replace('01', 'Ace');
-
-        num = num.includes('10') ? num : num.replace('0', '');
-
-        if(type === ''){
-          cardSearch = market ? cardSearch.replace('The&nbsp;', ''): cardSearch;
-          console.log('cardSearch is: ' + cardSearch)
-          return cardSearch
-        } else {
-          return num + ' of ' + type
-        }
     }
 
     const editMeaning = () => {
@@ -163,10 +92,6 @@ export default function Tarot() {
 
       const payload = { meaning: meaning}
       await updateDoc(docRef, payload);
-    }
-
-    const openSpoiler = () => {
-      document.getElementById('spoiler').open = 'true';
     }
 
     const toggleQuestionField = () => {
@@ -200,7 +125,6 @@ export default function Tarot() {
       const docSnapshot = await getDoc(docRef);
 
       const list = JSON.stringify(docSnapshot.data())
-      // const list = docSnapshot.data();
 
       setStarred(list);
       console.log("docSnapshot.data is: " + list);
@@ -262,7 +186,7 @@ export default function Tarot() {
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
           <br /><br />
           <a id="card">idk</a> |&nbsp;
-          <a id="googleSearch" href={`https://www.google.com/search?q=${"Tarot card "+getNewCard+" meaning"}`} target="_blank">Google</a> <br/> <br/>
+          <a id="googleSearch" href={`https://www.google.com/search?q=${"Tarot card "+getNewCard+" meaning"}`} target="_blank" rel="noreferrer">Google</a> <br/> <br/>
 
           <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select"  onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
