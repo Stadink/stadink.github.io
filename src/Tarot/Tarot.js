@@ -222,10 +222,8 @@ export default function Tarot() {
         document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
       } else {
           // document.getElementById('cardImg').src = `http://the-cosmic-joke.com/tarot/NFT/min/${getNewCard}.jpg`;
-        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+        document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/Thoth/${getOldCard}.png`;
       }
-
-      toggleQuestionField();
     }
 
 
@@ -322,7 +320,7 @@ export default function Tarot() {
 
 
         <div onClick={() => {toggleMode()}}>
-          <ToggleTheme onclick={toggleQuestionField} id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
+          <ToggleTheme id="checkboxTogglerLol" selectedTheme={currentTheme} onChange={setCurrentTheme}/>
           <input type="checkbox" id="checkboxTogglerLol" />
         </div>
 
