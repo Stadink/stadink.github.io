@@ -510,6 +510,34 @@ input[type='range']::-webkit-slider-runnable-track {
 #GPTsubmit {
   height: 50px;
   display: inline-flex;
+  margin-left: 5px;
+}
+
+.GPTsubmit {
+  display: inline-block;
+  padding: 10px 10px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  color: #fff;
+  background-color: #ccc;
+  border: 0.1px solid white;
+  transition: background-color 0.3s ease;
+}
+
+.GPTsubmit:hover {
+  background-color: #999;
+}
+
+.GPTsubmit:active {
+  background-color: #777;
+}
+
+.GPTsubmit:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {

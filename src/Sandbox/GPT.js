@@ -59,7 +59,7 @@ export default function GPT({ words, question, hidden='', showResponse=true }) {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
         />
-        <button id="GPTsubmit" type="submit">Submit</button>
+        <button id="GPTsubmit" class="GPTsubmit" type="submit">🪄</button>
       </form>
       {loading && <Spinner />}
       {displayResponse && (

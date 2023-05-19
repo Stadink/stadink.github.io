@@ -205,7 +205,7 @@ export default function Tarot() {
     }
 
     const toggleQuestionField = () => {
-      if (displayQuestionField && getOldCard==='back') {
+      if (displayQuestionField) {
         newCard();
         setDisplayQuestionField(false);
       } else {
@@ -282,10 +282,10 @@ export default function Tarot() {
   return (
     <div id='Tarot'><br />
         <img id='cardImg' onClick={() => {newCard()}} src={`https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`} alt="tarot" /> <br /><br />
-        <div id="answerButtons">
+        {/* <div id="answerButtons">
           <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
           <button id="notArtButton" class="button button2">Not Art</button>
-        </div>
+        </div> */}
 
 
         <details id="spoiler">
@@ -308,9 +308,8 @@ export default function Tarot() {
           <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${getNewCard} ${hidden}`} showResponse={showResponse} />
         </div>
           
-          {displayQuestionField && (<input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />)}
-
           <br/>
+          {displayQuestionField && (<input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} />)}
           <button onClick={toggleQuestionField}>❓</button>
           
             <br/>
