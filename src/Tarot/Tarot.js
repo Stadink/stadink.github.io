@@ -69,59 +69,23 @@ export default function Tarot() {
           num = random
         }
         console.log('num is: ' + num);
-        // handleToggleResponse()
 
         const docRef = doc(db, "Tarot", num.toString());
         const cardInfo = await getDoc(docRef);
 
         let card = cardInfo.data().card;
-        let cardOld = card;
+
         setOldCard(card);
         setCurrentPic(card);
         setCurrentCardNum(num);
-        console.log('old card state is: ' + getOldCard)
         const meaning = cardInfo.data().meaning;
-        console.log('meaning is: ' + meaning)
-
-        card = card.replace('Pents', 'Coins');
-
-        card = card.replace(/[1-9][0-9]_/, 'The');
-        card = card.replace(/[0-9]_/, 'The');
-
-        card = card.replace('11', 'Page');
-        card = card.replace('12', 'Knight');
-        card = card.replace('13', 'Queen');
-        card = card.replace('14', 'King');
-        card = card.replace('01', 'Ace');
-
-        // card = card.includes('10') ? card : card.replace('0', '');
-        // card = card.replace('TheHanged_Man', 'TheHangedMan');
-        // // card = card.replace('Hierophant', 'TheHierophant');
-        // // card = card.replace('World', 'TheWorld');
-        // card = card.replace('TheHigh_Priestess', 'HighPriestess');
-        // card = card.replace('TheWheel_of_Fortune', 'WheelOfFortune');
-        // card = card.replace('TheJustice', 'Justice');
-        // card = card.replace('TheJudgement', 'Judgement');
-        // card = card.replace('TheDeath', 'Death');
-        // card = card.replace('TheTemperance', 'Temperance');
-        // card = card.replace('TheStrength', 'Strength');
-        // card = card.replace('CupsQueen', 'queenscups');
-        // card = card.replace('WandsKnight', 'KnightWands');
-        // card = card.replace('Hermit', 'TheHermit');
-        // card = card.replace('Tower', 'TheTower');
-        // card = card.replace('Devil', 'TheDevil');
-        // card = card.replace('Star', 'TheStar');
-        // card = card.replace('Sun', 'TheSun');
-        // card = card.replace('Empress', 'TheEmpress');
-
-        // card = card.replace('SwordsKnight', 'KnightOfSwords');
 
         setNewCard(card);
-        console.log('New card state is: ' + getNewCard);
 
-        let oldStyle = currentTheme === "dark"
-        // if (oldStyle) {
-        //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
+        // let oldStyle = currentTheme === "dark"
+
+        // if (currentTheme === "dark") {
+        //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/Thoth/${getOldCard}.png`;
         // } else {
         //   document.getElementById('cardImg').src = `https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`;
         // }
@@ -280,13 +244,16 @@ export default function Tarot() {
 
   return (
     <div id='Tarot'><br />
-        <img id='cardImg' onClick={() => {newCard()}} src={`https://stadink.github.io/build/TarotPics/${getOldCard}.jpg`} alt="tarot" /> <br /><br />
-        {/* <div id="answerButtons">
-          <button onClick={openSpoiler} id="artButton" class="button button1">Art</button>
-          <button id="notArtButton" class="button button2">Not Art</button>
-        </div> */}
-
-
+      <img
+        id="cardImg"
+        onClick={() => {
+          newCard();
+        }}
+        src={`https://stadink.github.io/build/TarotPics/${
+          currentTheme === "dark" ? "Thoth/" : ""
+        }${getOldCard}.${currentTheme === "dark" ? "png" : "jpg"}`}
+        alt="tarot"
+      />
         <details id="spoiler">
           <summary>▼</summary> <br />
           <h2 id="meaningTarot" contenteditable="false">idk</h2> <button id="saveButton" onClick={ () => { editMeaning() }}>✏️</button>
