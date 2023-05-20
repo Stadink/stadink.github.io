@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { arrayUnion, updateDoc, getDoc, doc } from '@firebase/firestore';
 import db from '../Sandbox/firebase';
 import tarot from '../Tarot/tarot.jsx';
+import tarotJson from '../Tarot/tarot.json';
 import { FormControl } from 'react-bootstrap';
 import ToggleTheme from "react-toggle-theme";
 import GPT from '../Sandbox/GPT';
@@ -14,6 +15,7 @@ export default function Tarot() {
     const [currentCardNum, setCurrentCardNum] = useState([{ currentCardNum: ''}]);
     const [getOldCard, setOldCard] = useState('back');
     const [getNewCard, setNewCard] = useState('');
+    const [cardName, setCardName] = useState('');
 
     const [currentTheme, setCurrentTheme] = useState("light");
 
@@ -60,6 +62,8 @@ export default function Tarot() {
         const meaning = cardInfo.data().meaning;
 
         setNewCard(card);
+        let cardName = tarotJson[num-1].name
+        setCardName(cardName)
 
         document.getElementById('meaningTarot').innerHTML = meaning;
 
@@ -101,7 +105,7 @@ export default function Tarot() {
       } else {
         setDisplayQuestionField(!displayQuestionField);
         setQuestion('')
-        setPrequestion('I asked tarot cards «')
+        setPrequestion(`I asked${currentTheme === 'dark' ? ' Crowley Thoth' : ''} tarot cards «`)
         setPostquestion('?» and the card appeared: ')
         setHidden(". What does it mean? Reply like a professional Tarot card reader would")
       }
@@ -190,7 +194,7 @@ export default function Tarot() {
 
           <FormControl style={{'backgroundColor': '#797979', 'color': 'white'}} as="select"  onChange={(e) => newCard(e.target.value)}>
                 {tarot.cards && tarot.cards.map((e, id) => {
-                return <option selected={isOptionCurrentPic(e.card)} key={id} value={e.id}>{isStarred(e.card)}{e.card}</option>;
+                return <option selected={isOptionCurrentPic(e.card)} key={id} value={e.id}>{isStarred(e.card)}{e.name}</option>;
             })} </FormControl>
           <button onClick={() => addStarred() }>⭐</button>
 
@@ -198,7 +202,7 @@ export default function Tarot() {
         <br /><br />
 
         <div class='GPTtarot'>
-          <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${getNewCard} ${hidden}`} showResponse={showResponse} />
+          <GPT words={[getOldCard]} question={`${prequestion}${question}${postquestion} ${cardName} ${hidden}`} showResponse={showResponse} />
         </div>
           
           <br/>
