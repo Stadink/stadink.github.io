@@ -18,6 +18,7 @@ import { WhatEats } from "./Sandbox/WhatEats";
 import { Art } from './Sandbox/Art';
 import { New } from './Sandbox/New';
 import { ClockMinutes } from "./Sandbox/ClockMinutes";
+import { DailyStoic } from "./Sandbox/DailyStoic";
 
 function App() {
   
@@ -39,6 +40,10 @@ function App() {
         <Switch>
           <Route path="/tarot">
             <Tarot />
+          </Route>
+
+          <Route path="/dailyStoic">
+            <DailyStoic />
           </Route>
 
           <Route path="/chemistry">

@@ -1,5 +1,6 @@
 import React from 'react';
 import DS from './DailyStoic.json'
+import GPT from './GPT';
 
 export class DailyStoic extends React.Component {
   getDayOfYear(date = new Date()) {
@@ -25,6 +26,12 @@ export class DailyStoic extends React.Component {
             <summary><i>{DS[this.getDayOfYear()].quote}</i></summary>
             <br/>
             {DS[this.getDayOfYear()].chapter}
+
+            <hr/>
+
+            <GPT words={['idk']} question={`${DS[this.getDayOfYear()].quote}`} />
+
+
           </details>
 
           <br/><br/>
