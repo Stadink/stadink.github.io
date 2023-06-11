@@ -6,7 +6,7 @@ import { Chemistry } from './Chemistry';
 const colorNames = ['Aquamarine', 'BlueViolet', 'Chartreuse', 'CornflowerBlue', 'Thistle', 'SpringGreen', 'SaddleBrown', 'PapayaWhip', 'MistyRose'];
 
 export default function ColorPicker() {
-  const [color, setColor] = useState('Tomato');
+  const [color, setColor] = useState('MistyRose');
 
  const divStyle = {backgroundColor: color};
 

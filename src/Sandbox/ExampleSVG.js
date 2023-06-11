@@ -1,66 +1,56 @@
+import GPT from "./GPT";
 import MoleculeStructure from "./MoleculeStructure";
+import { useState } from "react";
 
 function ExampleSVG() {
-  const caffeine = "CN1C=NC2=C1C(=O)N(C(=O)N2C)";
-  const aspirin = "CC(=O)Oc1ccccc1C(=O)O";
-  const oxytocin = "CCC(C)C1C(=O)NC(C(=O)NC(C(=O)NC(CSSCC(C(=O)NC(C(=O)N1)CC2=CC=C(C=C2)O)N)C(=O)N3CCCC3C(=O)NC(CC(C)C)C(=O)NCC(=O)N)CC(=O)N)CCC(=O)N";
-  const adrenaline = "CNCC(C1=CC(=C(C=C1)O)O)O";
+    const chemicals = {
+        caffeine: "CN1C=NC2=C1C(=O)N(C(=O)N2C)C",
+        aspirin: "CC(=O)Oc1ccccc1C(=O)O",
+        oxytocin: "CCC(C)C1C(=O)NC(C(=O)NC(C(=O)NC(CSSCC(C(=O)NC(C(=O)N1)CC2=CC=C(C=C2)O)N)C(=O)N3CCCC3C(=O)NC(CC(C)C)C(=O)NCC(=O)N)CC(=O)N)CCC(=O)N",
+        adrenaline: "CNCC(C1=CC(=C(C=C1)O)O)O",
+        dopamine: "C1=CC(=C(C=C1CCN)O)O",
+        testosterone: "C[C@]12CC[C@H]3[C@H]([C@@H]1CC[C@@H]2O)CCC4=CC(=O)CC[C@]34C",
+      };
+
+  const [selectedChemical, setSelectedChemical] = useState(chemicals.caffeine)
+
+  const handleChemicalChange = (event) => {
+    const newOption = event.target.value;
+    setSelectedChemical(chemicals[newOption]);
+  };
   
 
   return (
     <div id="component-example-svg" className="container">
       <section className="hero">
         <div className="hero-body">
-          <p className="title">SVG Rendering</p>
-          <p className="subtitle">You can render molecules using svg.</p>
+          <p className="title">Select</p>
+          <select value={Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)} onChange={handleChemicalChange}>
+            {Object.keys(chemicals).map((chemical) => (
+                <option key={chemical} value={chemical}>
+                    {chemical}
+                </option>
+                ))}
+          </select>
         </div>
       </section>
+
       <div className="columns is-desktop">
+        <a id="chemicalLink" href={`https://www.wikiwand.com/en/${Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)}`} target="_blank">{Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)}</a>
         
-        Caffeine
         <div className="column">
           <MoleculeStructure
             id="structure-example-svg-caffeine"
-            structure={caffeine}
-            width={350}
-            height={300}
-            svgMode
-          />
-        </div>
-
-        Adrenaline
-        <div className="column">
-          <MoleculeStructure
-            id="structure-example-svg-caffeine"
-            structure={adrenaline}
-            width={350}
-            height={300}
-            svgMode
-          />
-        </div>
-
-        Oxytocin
-        <div className="column">
-          <MoleculeStructure
-            id="structure-example-svg-caffeine"
-            structure={oxytocin}
-            width={350}
-            height={300}
-            svgMode
-          />
-        </div>
-
-        Aspirin
-        <div className="column">
-          <MoleculeStructure
-            id="structure-example-svg-aspirin"
-            structure={aspirin}
-            width={350}
-            height={300}
+            structure={selectedChemical}
+            width={450}
+            height={400}
             svgMode
           />
         </div>
       </div>
+
+      <GPT words={['idk']} question={Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)} />
+
     </div>
   );
 }
