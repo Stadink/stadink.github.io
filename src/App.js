@@ -36,6 +36,7 @@ function App() {
           />
           {/* <title>My Title</title> */}
           {/* <link rel="canonical" href="http://mysite.com/example" /> */}
+          <script src="https://unpkg.com/@rdkit/rdkit@2023.3.1-1.0.1/dist/RDKit_minimal.js"></script>
         </Helmet>
         <Switch>
           <Route path="/tarot">

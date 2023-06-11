@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import chemicals from './chemicals.json';
+import ExampleSVG from './ExampleSVG';
 const axios = require('axios');
 
 
@@ -56,6 +57,9 @@ export class Chemistry extends React.Component {
                 </form>
 
                 <button onClick={this.getRandomChemical}>Random</button>
+
+
+                <ExampleSVG />
 
             </div>
         );
