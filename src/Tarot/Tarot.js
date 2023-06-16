@@ -99,7 +99,7 @@ export default function Tarot() {
     }
 
     const toggleQuestionField = () => {
-      if (displayQuestionField) {
+      if (displayQuestionField === true) {
         newCard();
         setDisplayQuestionField(false);
       } else {

@@ -76,15 +76,41 @@ app.get("/testSave", async (req, res) => {
 });
   
 const saveReply = async (prompt, reply) => {
-  const docRef = db.collection('GPT').doc('log');
+  const docRef = db.collection('GPT').doc('sandbox2');
   const date = new Date();
   date.setHours(date.getHours() + 2);
   const timestamp = date.toLocaleString();
-  const unixTime = Math.floor(new Date().getTime() / 1000);
+  const unixTime = new Date().getTime();
+
+  const regexPattern = /«(.*?)»/;
+  const questionMatch = prompt.match(regexPattern);
+  const question = questionMatch ? questionMatch[1] : null;
 
   const payload = {
-    [`${prompt} | ${unixTime}`]: {
-      info: reply, 
+    [`${question}`]: {
+      info: prompt + reply, 
+      time: timestamp
+    }
+  };
+  await docRef.update(payload);
+}
+
+const saveQuestion = async (prompt) => {
+  const unixTime = new Date().getTime()
+
+  const date = new Date();
+  date.setHours(date.getHours() + 2);
+  const timestamp = date.toLocaleString();
+
+  const regexPattern = /«(.*?)»/;
+  const questionMatch = prompt.match(regexPattern);
+  const question = questionMatch ? questionMatch[1] : null;
+
+  const docRef = db.collection('GPT').doc('questionsLog');
+  const answerDocumentRef = db.collection('answers').doc(unixTime.toString())
+  const payload = {
+    [`${unixTime}`]: {
+      question: question,
       time: timestamp
     }
   };
@@ -94,6 +120,7 @@ const saveReply = async (prompt, reply) => {
 // Set up the ChatGPT endpoint
 app.get('/chat', async (req, res) => {
   const { prompt } = req.query;
+  saveQuestion(prompt)
 
     // Send the headers for Server-Sent Events
     res.writeHead(200, {

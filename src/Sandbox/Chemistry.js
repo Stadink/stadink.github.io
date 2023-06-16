@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import chemicals from './chemicals.json';
-import ExampleSVG from './ExampleSVG';
+import ChemicalDisplayer from './ChemicalDisplayer';
 
 export class Chemistry extends React.Component {
     constructor(props) {
@@ -57,7 +57,7 @@ export class Chemistry extends React.Component {
                 <button onClick={this.getRandomChemical}>Random</button>
 
 
-                <ExampleSVG />
+                <ChemicalDisplayer />
 
             </div>
         );
