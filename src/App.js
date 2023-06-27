@@ -77,7 +77,6 @@ function App() {
               <Contact /> 
               <ClockMinutes />
             </header>
-            <Tarot />
           </Route>
         </Switch>
         <Footer />

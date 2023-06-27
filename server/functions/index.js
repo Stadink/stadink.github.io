@@ -75,52 +75,49 @@ app.get("/testSave", async (req, res) => {
   }
 });
   
-const saveReply = async (prompt, reply) => {
-  const docRef = db.collection('GPT').doc('sandbox2');
+const saveReply = async (prompt, reply, timestamp) => {
+  const docRef = db.collection('GPT').doc('questionsLog').collection('answers').doc(timestamp)
   const date = new Date();
   date.setHours(date.getHours() + 2);
-  const timestamp = date.toLocaleString();
-  const unixTime = new Date().getTime();
 
   const regexPattern = /«(.*?)»/;
   const questionMatch = prompt.match(regexPattern);
   const question = questionMatch ? questionMatch[1] : null;
 
   const payload = {
-    [`${question}`]: {
-      info: prompt + reply, 
-      time: timestamp
-    }
+      prompt: prompt, 
+      reply: reply,
   };
-  await docRef.update(payload);
+  await docRef.set(payload, {merge: true});
 }
 
-const saveQuestion = async (prompt) => {
-  const unixTime = new Date().getTime()
+const saveQuestion = async (prompt, timestamp) => {
+  const unixTime = timestamp
 
   const date = new Date();
   date.setHours(date.getHours() + 2);
-  const timestamp = date.toLocaleString();
+  const dateTime = date.toLocaleString();
 
   const regexPattern = /«(.*?)»/;
   const questionMatch = prompt.match(regexPattern);
   const question = questionMatch ? questionMatch[1] : null;
 
   const docRef = db.collection('GPT').doc('questionsLog');
-  const answerDocumentRef = db.collection('answers').doc(unixTime.toString())
+  const answerDocRef = db.collection('GPT').doc('questionsLog').collection('answers').doc(timestamp)
   const payload = {
     [`${unixTime}`]: {
       question: question,
-      time: timestamp
+      time: dateTime
     }
   };
   await docRef.update(payload);
+  await answerDocRef.set({time: dateTime, question: question}, { merge: true })
 }
 
 // Set up the ChatGPT endpoint
 app.get('/chat', async (req, res) => {
-  const { prompt } = req.query;
-  saveQuestion(prompt)
+  const { prompt, timestamp } = req.query;
+  saveQuestion(prompt, timestamp)
 
     // Send the headers for Server-Sent Events
     res.writeHead(200, {
@@ -132,6 +129,7 @@ app.get('/chat', async (req, res) => {
   // Generate a response with ChatGPT
   try {
     const completion = await openai.createChatCompletion({
+      // model: "gpt-4",
       model: "gpt-3.5-turbo",
       messages: [{ "role": "user", "content": prompt }],
       max_tokens: 100,
@@ -149,7 +147,7 @@ app.get('/chat', async (req, res) => {
           res.end();
           answer = answer.replace('undefined', ''); // temp solution heh
           answer = answer.replace('undefined', '');
-          saveReply(prompt, answer);
+          saveReply(prompt, answer, timestamp);
           return; // Stream finished
         }
         try {
