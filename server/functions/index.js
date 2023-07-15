@@ -20,9 +20,11 @@ const openai = new OpenAIApi(configuration);
 // Set up the server
 const app = express();
 app.use(bodyParser.json());
+// Cross-origin resource sharing
 app.use(cors());
 
 // let serverStatus = "unknown";
+// won't work with firebase
 app.get("/status", (req, res) => {
   res.writeHead(200, {
     "Content-Type": "text/event-stream",
@@ -89,6 +91,15 @@ const saveReply = async (prompt, reply, timestamp) => {
       reply: reply,
   };
   await docRef.set(payload, {merge: true});
+}
+
+const saveThemeChanged = async (timestamp) => {
+  const docRef = db.collection('GPT').doc('questionsLog').collection('answers').doc(timestamp)
+  const payload = {
+    themeChanged: true
+  }
+
+  await docRef.update(payload);
 }
 
 const saveQuestion = async (prompt, timestamp) => {
@@ -163,6 +174,38 @@ app.get('/chat', async (req, res) => {
       }
     });
 
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error generating response");
+  }
+});
+
+app.get("/setThemeChanged", async (req, res) => {
+  const { timestamp } = req.query
+  saveThemeChanged(timestamp)
+  res.send('mkay')
+});
+
+app.get("/chatNoStream", async (req, res) => {
+  // Get the prompt from the request
+  const { prompt } = req.query;
+  const timestamp = new Date().getTime().toString(); 
+
+  saveQuestion(`«${prompt}»`, timestamp)
+
+  // Generate a response with ChatGPT
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      stream: false,
+      messages: [{"role": "user", "content": prompt}],
+      max_tokens: 200
+    });
+    const answer = completion.data.choices[0].message.content
+    const response = { answer: answer };
+    res.json(response);
+    saveReply(prompt, answer, timestamp)
+    console.log(answer)
   } catch (error) {
     console.error(error);
     res.status(500).send("Error generating response");
