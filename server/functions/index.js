@@ -102,6 +102,15 @@ const saveThemeChanged = async (timestamp) => {
   await docRef.update(payload);
 }
 
+const saveIP = async (timestamp, ip) => {
+  const docRef = db.collection('GPT').doc('questionsLog').collection('answers').doc(timestamp)
+  const payload = {
+    ip: ip
+  }
+
+  await docRef.update(payload);
+}
+
 const saveQuestion = async (prompt, timestamp) => {
   const unixTime = timestamp
 
@@ -128,7 +137,12 @@ const saveQuestion = async (prompt, timestamp) => {
 // Set up the ChatGPT endpoint
 app.get('/chat', async (req, res) => {
   const { prompt, timestamp } = req.query;
-  saveQuestion(prompt, timestamp)
+  // const ipAddress = req.socket.remoteAddress;
+  // const ipAddresses = req.ip;
+  // const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress;
+  console.log("IP IS: " + ipAddress);
+  saveQuestion(prompt, timestamp);
 
     // Send the headers for Server-Sent Events
     res.writeHead(200, {
@@ -172,6 +186,7 @@ app.get('/chat', async (req, res) => {
           console.error('Could not JSON parse stream message', message, error);
         }
       }
+      saveIP(timestamp, ipAddress);
     });
 
   } catch (error) {
