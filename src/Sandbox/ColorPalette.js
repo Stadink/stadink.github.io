@@ -13,7 +13,7 @@ const collectionRef = collection(db, "Colors");
      onSnapshot(q, (snapshot) =>
          setColors(snapshot.docs.map(doc => doc.data()))
          ),
-     []
+     [q]
  );
 
  const saveColor = async () => {

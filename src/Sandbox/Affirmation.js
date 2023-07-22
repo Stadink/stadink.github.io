@@ -1,7 +1,7 @@
 import React from 'react';
 import { Timer } from './Timer';
 import db from './firebase';
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 export class Affirmation extends React.Component {
     constructor(props) {
@@ -23,7 +23,6 @@ export class Affirmation extends React.Component {
 
         const docSnapshot = await getDoc(docRef)
         const affirmations = docSnapshot.data();
-        console.log('Get list is: ' + JSON.stringify(affirmations.List))
 
         this.setState( {List: affirmations.List})
         return affirmations.List;
@@ -86,6 +85,7 @@ export class Affirmation extends React.Component {
   render() {
     return (
         <div id="Affirmation">
+           {/* eslint-disable-next-line jsx-a11y/no-distracting-elements */}
           <marquee width="60%" direction="left" height="40px" scrollamount="18">
                 {this.getAffirmations()}, 
                 <span id="randomAffirmations">{this.getRandomAffirmations()}</span>

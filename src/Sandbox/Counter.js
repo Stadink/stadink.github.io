@@ -1,6 +1,6 @@
 import db from './firebase';
-import { collection, onSnapshot, setDoc, updateDoc, doc, query, orderBy, serverTimestamp, getDoc } from '@firebase/firestore';
-import React, { useState, useEffect } from 'react';
+import { setDoc, doc, serverTimestamp, getDoc } from '@firebase/firestore';
+import React from 'react';
 
 
 export class Counter extends React.Component {
@@ -41,6 +41,7 @@ export class Counter extends React.Component {
             idk = document.getElementById('SelfInquiry').checked ? itemsDone.push('SelfInquiry') : null;
             idk = document.getElementById('Writing').checked ? itemsDone.push('Writing') : null;
             idk = document.getElementById('Contemplation').checked ? itemsDone.push('Contemplation') : null;
+            console.log(idk) // mda uzh
         }
         return itemsDone;
     }
@@ -114,7 +115,7 @@ export class Counter extends React.Component {
 
     copyToClipboard() {
         let time = this.getTimeRemaining()
-        navigator.clipboard.writeText('\n**Egor-' + time + '**\n\n\n---\n\n');
+        navigator.clipboard.writeText('\n**Egor-[[' + time + ']]**\n\n\n---\n\n');
     }
 
     fillValues() {
@@ -131,7 +132,7 @@ export class Counter extends React.Component {
         if(this.state.stuffDone[day].toString().includes(task)) {
             return <span class="cursorProgress">✅</span>;
         } else {
-            if(day == 0){
+            if(day === 0){
                 return '⬜';
             } else {
                 return <span class="cursorAim">❌</span>;

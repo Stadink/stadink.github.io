@@ -1,7 +1,6 @@
 // Whatever, idk
 import { Link } from "react-router-dom";
-import React, { setState, useState, useEffect } from 'react';
-import ColorPalette from "./ColorPalette";
+import React, { useState, useEffect } from 'react';
 import db from '../Sandbox/firebase';
 import { collection, onSnapshot, arrayUnion, updateDoc, doc, query} from '@firebase/firestore';
 
@@ -16,7 +15,7 @@ export const Footer = () => {
       onSnapshot(q, (snapshot) =>
           setColors(snapshot.docs.map(doc => doc.data()))
           ),
-      []
+      [q]
   );
 
   const randomSavedColor = () => {
@@ -115,7 +114,7 @@ export const Footer = () => {
       <br />
       <br />
       <button onClick={() => randomSavedColor()}>Random color</button> |
-      <a href={'https://www.colorhexa.com/' + rgbToHex(document.body.style.backgroundColor)} target="_blank">{rgbToHex(currentColor)}</a>
+      <a href={'https://www.colorhexa.com/' + rgbToHex(document.body.style.backgroundColor)} target="_blank" rel="noreferrer">{rgbToHex(currentColor)}</a>
     </div>
   );
 };

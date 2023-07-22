@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import data from './data.json'
 
 export class Stocks extends React.Component {
@@ -49,13 +49,13 @@ export class Stocks extends React.Component {
           
           <a    
                 href={'https://www.google.com/search?q='+this.state.company}
-                target="_blank" >{this.state.company}</a> 
+                target="_blank" rel="noreferrer">{this.state.company}</a> 
           
           &nbsp;[ <a    
                 href={'https://www.google.com/search?q='+this.state.symbol}
-                target="_blank" >{this.state.symbol}</a> ] 
+                target="_blank" rel="noreferrer">{this.state.symbol}</a> ] 
           <br />
-          <img onClick={this.setRandomNum} id="stockImg" src={this.state.src} />
+          <img onClick={this.setRandomNum} id="stockImg" src={this.state.src} alt='stock logo'/>
       
           <div id="answerButtons">
             <button onClick={this.setRandomNum} id="artButton" class="button button1">Art</button>

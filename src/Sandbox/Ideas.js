@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, onSnapshot, setDoc, updateDoc, doc, query, orderBy, serverTimestamp } from '@firebase/firestore';
+import { collection, onSnapshot, updateDoc, doc, query, orderBy } from '@firebase/firestore';
 import db from './firebase';
 import { IdeasNotepad } from "./IdeasNotepad";
 
@@ -17,7 +17,7 @@ export default function Ideas() {
     });
 
     return () => unsubscribe(); // Cleanup function to unsubscribe from snapshot listener
-  }, []);
+  }, [q]);
 
   const hideIdea = async (idea) => {
     const docRef = doc(db, "ideas", idea.id);
@@ -75,6 +75,7 @@ export default function Ideas() {
                 key={index}
                 className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}
                 style={{ display: 'inline-block', margin: '0 5px' }}              >
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                   className="page-link clickable"
                   onClick={() => paginate(index + 1)}

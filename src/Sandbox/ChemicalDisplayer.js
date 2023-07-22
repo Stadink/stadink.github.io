@@ -43,7 +43,7 @@ function ChemicalDisplayer() {
       </section>
 
       <div className="columns is-desktop">
-        <a id="chemicalLink" href={`https://www.wikiwand.com/en/${Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)}`} target="_blank">{Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)}</a>
+        <a id="chemicalLink" href={`https://www.wikiwand.com/en/${Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)}`} target="_blank" rel='noreferrer'>{Object.keys(chemicals).find((key) => chemicals[key] === selectedChemical)}</a>
         
         <div className="column">
           <MoleculeStructure

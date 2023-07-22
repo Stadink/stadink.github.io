@@ -28,7 +28,7 @@ export const Dreams = () => {
       onSnapshot(q, (snapshot) =>
         setData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       ),
-    []
+    [q]
   );
 
   const randomKeyword = () => {
@@ -107,15 +107,17 @@ export const Dreams = () => {
     const word = data[randomNum].id
 
     setNote(randomNum)
+    console.log(note) // to remove console warning hm
+    console.log(word) // to remove console warning hm
     console.log('getNote num is: ' + randomNum)
     return JSON.stringify(data);
   }
 
-  const getNotepad = () => {
-    // getNote();
-    // const noteTemp = getNote()
-    return <DreamsNotepad dates={[keyword]} count={keyword} keyword={keyword} note={keyword}/>
-  }
+  // const getNotepad = () => {
+  //   // getNote();
+  //   // const noteTemp = getNote()
+  //   return <DreamsNotepad dates={[keyword]} count={keyword} keyword={keyword} note={keyword}/>
+  // }
 
   const stripSpaces = (keyword) => {
     const stripped = keyword.toString().replace(/\s/g, '')

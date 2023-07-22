@@ -42,7 +42,6 @@ export class Success extends React.Component {
 
         const docSnapshot = await getDoc(docRef)
         const affirmations = docSnapshot.data();
-        console.log('Get list is: ' + JSON.stringify(affirmations.Quotes))
 
         this.setState( {List: affirmations.Quotes})
         return affirmations.Quotes;

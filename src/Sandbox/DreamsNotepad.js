@@ -1,7 +1,6 @@
-import { collection, onSnapshot, getDoc, setDoc, doc, serverTimestamp, updateDoc } from '@firebase/firestore';
-import React, { useEffect, useState } from 'react';
+import { getDoc, doc, serverTimestamp, updateDoc } from '@firebase/firestore';
+import React from 'react';
 import db from './firebase';
-import moment from 'moment';
 
 
 export class DreamsNotepad extends React.Component {

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Sandbox } from './Sandbox/Sandbox';
 import shrek from './Sandbox/shrek.png';
 
@@ -16,7 +15,7 @@ export class Contact extends React.Component {
   authorize(e) {
     const password = e.target.querySelector(
       'input[type="password"]').value;
-    const auth = password == this.state.password;
+    const auth = password === this.state.password;
     if (!auth) {
       console.log('Wrong password, Fuck off ')
       const title = document.querySelector('#title');
@@ -38,14 +37,14 @@ export class Contact extends React.Component {
   }
 
   render() {
-  const login = (
-    <form action="#" onSubmit={this.authorize}>
-      <input 
-        type="password" 
-        placeholder="Password" />
-      <input class="clickable" type="submit" />
-    </form>
-  )
+    const login = (
+      <form action="#" onSubmit={this.authorize}>
+        <input 
+          type="password" 
+          placeholder="Password" />
+        <input class="clickable" type="submit" />
+      </form>
+    )
   
     return (
       <div id="authorization">

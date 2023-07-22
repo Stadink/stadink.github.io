@@ -1,6 +1,5 @@
 import React from 'react';
-import { useState } from 'react';
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, updateDoc, arrayUnion } from 'firebase/firestore';
 import db from './firebase';
 
 
@@ -21,10 +20,8 @@ export class Contemplation extends React.Component {
     getRandom() {
         const random = Math.floor(Math.random() * 2);
         if (random === 0) {
-            const question1 = 'Who am I? What am I?';
             this.setState({question: 'Who am I? What am I?'}) ;
         } else {
-            const question2 = 'What is Being?';
             this.setState({question: 'What is Being?'}) ;
         }
     }

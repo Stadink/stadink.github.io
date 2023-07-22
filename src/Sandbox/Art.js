@@ -37,7 +37,7 @@ export class Art extends React.Component {
                 <input type="file" id="document_attachment_doc" onChange={this.handleChange} />
             </form>
 
-            <img src={this.state.file} id="blah" alt="your image" width="100" height="100" onClick={this.handleChange}/>
+            <img src={this.state.file} id="blah" alt="meme" width="100" height="100" onClick={this.handleChange}/>
         </div>
     );
   }

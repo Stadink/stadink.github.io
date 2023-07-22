@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment'
-import DatabaseAxios from './DatabaseAxios';
 import axios from "axios";
 
 
@@ -56,7 +55,7 @@ export class EjaculationTimer extends React.Component {
     let feedback;
     let data = prompt("Jerked off or had sex? How was it? Satisfied or Disappointed? Good use of energy?", '|10');
     if (data != null) {
-      feedback = data == "" ? "no comment" : data;
+      feedback = data === "" ? "no comment" : data;
 
       fetch('http://willthisdofor.art/api/saveTime.php?time=' + newTime +  '&feedback=' + feedback)
       this.setState( {lastTime: newTime})

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import chemicals from './chemicals.json';
 import ChemicalDisplayer from './ChemicalDisplayer';
 
@@ -39,11 +39,11 @@ export class Chemistry extends React.Component {
     render() {
         return (
             <div id="chemistry">
-                <img id="imgChemical" src={this.state.src}/> <br />
+                <img id="imgChemical" alt='molecule structure' src={this.state.src}/> <br />
 
                 <a id="chemical"
                     href={'https://psychonautwiki.org/wiki/'+this.state.chemical}
-                    target="_blank" >{this.state.chemical}</a> <br />
+                    target="_blank" rel='noreferrer'>{this.state.chemical}</a> <br />
 
                 <form action="#" onSubmit={this.setChemical}>
                     <input 

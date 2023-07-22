@@ -1,5 +1,5 @@
 import React from 'react';
-import { doc, getDoc, setDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import db from './firebase';
 
 export class Clock extends React.Component {
@@ -20,7 +20,6 @@ export class Clock extends React.Component {
 
     const docSnapshot = await getDoc(docRef)
     const affirmations = docSnapshot.data();
-    console.log('Get list is: ' + JSON.stringify(affirmations.List))
 
     this.setState( {affirmations: affirmations.List})
     return affirmations.List;

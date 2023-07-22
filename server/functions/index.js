@@ -141,7 +141,6 @@ app.get('/chat', async (req, res) => {
   // const ipAddresses = req.ip;
   // const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   const ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress;
-  console.log("IP IS: " + ipAddress);
   saveQuestion(prompt, timestamp);
 
     // Send the headers for Server-Sent Events
@@ -186,7 +185,7 @@ app.get('/chat', async (req, res) => {
           console.error('Could not JSON parse stream message', message, error);
         }
       }
-      saveIP(timestamp, ipAddress);
+      // saveIP(timestamp, ipAddress);
     });
 
   } catch (error) {
