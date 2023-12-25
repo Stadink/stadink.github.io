@@ -110,7 +110,8 @@ export const Footer = () => {
       <Link to="/whatEats">WhatEats</Link> |
       <Link to="/dreams">Dreams</Link> |
       <Link to="/art">Art</Link> |
-      <Link to="/new">New</Link>
+      <Link to="/new">New</Link> |
+      <Link to="/loc">LOC</Link>
       <br />
       <br />
       <button onClick={() => randomSavedColor()}>Random color</button> |

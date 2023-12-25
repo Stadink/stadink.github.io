@@ -226,5 +226,25 @@ app.get("/chatNoStream", async (req, res) => {
   }
 });
 
+// Endpoint to receive a number
+app.post("/receiveNumber", async (req, res) => {
+  const { number } = req.body; // Extract the number from the request body
+
+  // Handle the number (e.g., save to database, log, etc.)
+  try {
+    // Reference to the Firestore document where you want to save the number
+    const docRef = db.collection('LOC').doc('1234');
+
+    // Update the number field in the document
+    await docRef.set({ number: number }, { merge: true });
+
+    console.log(`Number saved to Firestore document with ID: 1234`);
+    res.status(200).send(`Number received and saved to document with ID: 1234`);
+  } catch (error) {
+    console.error('Error saving number to Firestore:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 
 export const api = functions.https.onRequest(app);

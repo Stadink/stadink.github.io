@@ -12,6 +12,7 @@ import { Dreams } from "./Sandbox/Dreams";
 import { WhatEats } from "./Sandbox/WhatEats";
 import { Art } from './Sandbox/Art';
 import { New } from './Sandbox/New';
+import { Loc } from './LOC/Loc';
 import { ClockMinutes } from "./Sandbox/ClockMinutes";
 import { DailyStoic } from "./Sandbox/DailyStoic";
 
@@ -53,6 +54,10 @@ function App() {
 
           <Route path="/new">
             <New />
+          </Route>
+
+          <Route path="/loc">
+            <Loc />
           </Route>
 
           <Route path="/whatEats">

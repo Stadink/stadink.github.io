@@ -551,3 +551,14 @@ input[type='range']::-webkit-slider-runnable-track {
 #chemicalLink {
   color: black;
 }
+
+/* 
+.vertical-slider {
+  -webkit-appearance: slider-vertical; /* For WebKit browsers 
+  width: 25px; /* Width of the slider 
+  height: 200px; /* Height you want for the slider 
+  outline: none; /* Removes the blue border in Chrome 
+  transform: rotate(-90deg); /* Rotates the slider to vertical 
+  /* Add other styling as needed 
+}
+ */
