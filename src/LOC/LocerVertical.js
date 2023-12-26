@@ -11,47 +11,157 @@ export class LocerVertical extends React.Component {
       value: 350,
       word: [],
       comment: '',
-      allNumbers: 'aaa fucking none' ,
+      allNumbers: 'aaa fucking none',
       allRatings: ['wtf'],
-      selectedOption: 'what is'
+      selectedOption: 'what is',
+      emotions: {
+        Enlightenment: ['Bliss', 'Ecstasy', 'Nirvana'],
+        Peace: ['Serenity', 'Tranquility', 'Harmony'],
+        Joy: ['Satisfaction', 'Gratitude', 'Euphoria'],
+        Love: ['Compassion', 'Empathy', 'Kindness'],
+        Reason: ['Logic', 'Rationality', 'Intelligence'],
+        Acceptance: ['Forgiveness', 'Understanding', 'Tolerance'],
+        Willingness: ['Optimism', 'Eagerness', 'Enthusiasm'],
+        Neutrality: ['Objectivity', 'Openness', 'Impartiality'],
+        Courage: ['Confidence', 'Empowerment', 'Assertion'],
+        Pride: ['Arrogance', 'Superiority', 'Conceit'],
+        Anger: ['Hatred', 'Resentment', 'Envy'],
+        Desire: ['Craving', 'Longing', 'Yearning'],
+        Fear: ['Anxiety', 'Insecurity', 'Unease'],
+        Grief: ['Sorrow', 'Regret', 'Disappointment'],
+        Apathy: ['Despair', 'Hopelessness', 'Abandonment'],
+        Guilt: ['Blame', 'Remorse', 'Repentance'],
+        Shame: ['Humiliation', 'Worthlessness', 'Powerlessness'],
+      },
+      questions: [
+        'What is', 
+        'What are the chemicals of', 
+        'How do I reframe', 
+        'Write a joke about',
+        'How do I transcend',
+        'What are the synonyms of',
+      'How do I shift my experience towards',
+      'How do I shift my experience from',
+    ]
     };
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.updateValue = this.updateValue.bind(this);
-    // this.getAllNumbers()
-    // this.getAverage();
+    this.setupRealtimeUpdates = this.setupRealtimeUpdates.bind(this);
+    this.getSliderColor = this.getSliderColor.bind(this);
+    this.getSliderBackgroundColor = this.getSliderBackgroundColor.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.getColor = this.getColor.bind(this);
   }
 
-  handleOptionChange = (event) => {
+  handleOptionChange(event) {
     this.setState({ selectedOption: event.target.value });
   }
 
+  handleEvent = async (event) => {
+    if (event.type === "pointerup") {
+        this.saveToDb();
+    }
+};
 
-  async getAllRatings() {
-      const docRef = doc(db, 'ConsciousnessRating', 'All')
-      const docSnapshot = await getDoc(docRef)
-      const allRatings = docSnapshot.data();
-      
-      console.log('Get ratings is: ' + JSON.stringify(allRatings))
-
-      this.setState( {allRatings: allRatings})
+  getTimeRemaining(){
+    const total = Date.parse('May 18, 2045') - Date.parse(new Date());
+    // console.log('NEW DATE IS: ' + new Date());
+    // console.log('Time left lol: ' + total/(1000*60*60*24));
+    const days = Math.floor( total/(1000*60*60*24) );
+    return days
   }
 
-  updateValue() {
-    var slider = document.getElementById("myRange");
-    this.setState({value: slider.value});
+  getTotalMinutes() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const totalMinutes = hours * 60 + minutes;
+
+    return totalMinutes;
+  }
+
+  async saveToDb() {
+    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, `Well... ${this.state.word} because `);
+    if (comment != null) {
+      this.setState({comment: comment});
+
+      const day = this.getTimeRemaining()
+      const minute = this.getTotalMinutes()
+      const rating = this.state.value;
+
+      const consciousnessTimestamp = `${day}-${minute}-${rating}`
+      const docRef = doc(db, 'ConsciousnessRating', 'All')
+      const docRefLog = doc(db, 'ConsciousnessRating', 'Log')
+
+      let payloadHistory = {History: arrayUnion(rating)};
+
+      let obj = {};
+      obj[consciousnessTimestamp] = comment;
+
+      let payload = obj;
+      await updateDoc(docRef, payload)
+      await updateDoc(docRefLog, payloadHistory)
+    }
+  }
+
+  updateValue(event) {
+    const sliderValue = event.target.value;
+    this.setState({ value: sliderValue });
+
+    const emotion = this.getEmotionForValue(sliderValue);
+    if (emotion) {
+      const newWord = `${emotion}: ${emotion}`;
+      this.setState({ word: [newWord] }); // Update to ensure correct format
+    }
 
     const color = this.getSliderColor();
     this.setSliderColor(color);
 
     const backgroundColor = this.getSliderBackgroundColor();
-    this.setSliderBackgroundColor(backgroundColor)
+    this.setSliderBackgroundColor(backgroundColor);
+  }
+
+  getEmotionForValue(value) {
+    // Define the ranges of values associated with each emotion
+    const emotionRanges = {
+      'Shame': { min: 0, max: 29 },
+      'Guilt': { min: 30, max: 49 },
+      'Apathy': { min: 50, max: 74 },
+      'Grief': { min: 75, max: 99 },
+      'Fear': { min: 100, max: 124 },
+      'Desire': { min: 125, max: 149 },
+      'Anger': { min: 150, max: 174 },
+      'Pride': { min: 175, max: 199 },
+      'Courage': { min: 200, max: 249 },
+      'Neutrality': { min: 250, max: 309 },
+      'Willingness': { min: 310, max: 349 },
+      'Acceptance': { min: 350, max: 399 },
+      'Reason': { min: 400, max: 499 },
+      'Love': { min: 500, max: 539 },
+      'Joy': { min: 540, max: 599 },
+      'Peace': { min: 600, max: 699 },
+      'Enlightenment': { min: 700, max: 1000 }
+    };
+    
+    for (const [emotion, range] of Object.entries(emotionRanges)) {
+      if (value >= range.min && value <= range.max) {
+        return emotion;
+      }
+    }
+  
+    return null; // In case the value does not correspond to any emotion
   }
 
   setSliderValue(num) {
-    this.setState({value: num}, () => {
-      const color = this.getSliderColor()
-      this.setSliderColor(color)
+    this.setState({ value: num }, () => {
+      const color = this.getSliderColor();
+      this.setSliderColor(color);
     });
+  }
+
+  setSliderColor(color) {
+    const element = document.getElementById("myRange") ?? undefined;
+    element?.style.setProperty('--sliderColor', color);
   }
 
   getSliderColor() {
@@ -78,6 +188,11 @@ export class LocerVertical extends React.Component {
     return color;
   }
 
+  setSliderBackgroundColor(color) {
+    const element = document.getElementById("myRange") ?? undefined;
+    element?.style.setProperty('--sliderBackgroundColor', color);
+  }
+
   getSliderBackgroundColor() {
     let color;
     const value = this.state.value;
@@ -102,94 +217,32 @@ export class LocerVertical extends React.Component {
     return color;
   }
 
-  async getAllNumbers() {
-    const docRef = doc(db, 'ConsciousnessRating', 'Log')
-    const docSnapshot = await getDoc(docRef)
-    const all = docSnapshot.data();
-
-    console.log('GetAllNumbers is: ' + JSON.stringify(all['History']))
-
-    this.setState({ allNumbers: all['History'] })
-    this.getAverage();
-
-  }
-
-  getAverage() {
-    const all = this.state.allNumbers;
-    let sum = 0;
-
-    for(let i = 1; i <= 10; i++) {
-      sum += parseInt(all[all.length - i])
-    }
-
-    const average = Math.round(sum / 10);
-    this.setState({value: average})
-
-    const color = this.getSliderColor();
-    this.setSliderColor(color);
-    const backgroundColor = this.getSliderBackgroundColor();
-    this.setSliderBackgroundColor(backgroundColor);
-  }
-
-  async saveToDb() {
-    let comment = prompt(`Why ${this.state.value} | ${this.state.word}   tho?`, `Well... ${this.state.word} because `);
-    if (comment != null) {
-      this.setState({comment: comment});
-
-      const day = document.querySelector('#DayNum').textContent;
-      const minute = document.querySelector('#minuteNumber').textContent;
-      const rating = this.state.value;
-
-      const consciousnessTimestamp = `${day}-${minute}-${rating}`
-      const docRef = doc(db, 'ConsciousnessRating', 'All')
-      const docRefLog = doc(db, 'ConsciousnessRating', 'Log')
-
-      let payloadHistory = {History: arrayUnion(rating)};
-
-      let obj = {};
-      obj[consciousnessTimestamp] = comment;
-
-      let payload = obj;
-      await updateDoc(docRef, payload)
-      await updateDoc(docRefLog, payloadHistory)
-    }
-  }
-
-  handleEvent = async (event) => {
-    console.log('handleEvent is: ' + event)
-    if (event.type === "onpointerdown") {
-           this.setState({ message: "Mouse Down"});
-       } else {
-           this.setState({ message: "Mouse Up"});
-           await this.saveToDb();
-       }
-   };
-
-   async setupRealtimeUpdates() {
-    console.log('db is: ', db)
-    console.log('db2 is: ', db2)
+  async setupRealtimeUpdates() {
+    console.log('db is: ', db);
+    console.log('db2 is: ', db2);
     
     const locCollectionRef = collection(db2, 'LOC');
     try {
-        const querySnapshot = await getDocs(locCollectionRef);
-        querySnapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
-        });
+      const querySnapshot = await getDocs(locCollectionRef);
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+      });
     } catch (error) {
-        console.error('Error reading LOC collection:', error);
+      console.error('Error reading LOC collection:', error);
     }
-
-
+  
     const docRef = doc(db2, 'LOC', '1234');
-
-    const docSnapshot = await getDoc(docRef)
-    const allRatings = docSnapshot.data();
-    console.log('doc is: ' + JSON.stringify(allRatings))
   
     this.unsubscribe = onSnapshot(docRef, (doc) => {
       if (doc.exists()) {
         const data = doc.data();
-        this.setState({ value: data.number }); // Update the slider's value
+        const value = data.number; // Assume 'number' is the field with the slider value
+        const emotion = this.getEmotionForValue(value); // Get the emotion for the value
+        const emotionEmotion = `${emotion}: ${emotion}`;
+        this.setState({ value: value, word: [emotionEmotion] }, () => {
+          const color = this.getSliderColor();
+          this.setSliderColor(color);
+        });
       } else {
         console.log('No such document!');
       }
@@ -198,44 +251,10 @@ export class LocerVertical extends React.Component {
     });
   }
 
-   getRatings() {
-    // { 
-    //   this.state.dates.map(date => {
-    //     return <div>{date}</div>
-    //   })
-    // }
-    console.log(this.state.allRatings)
-    return this.state.allRatings;
-   }
-
-   setSliderColor(color) {
-    const element = document.getElementById("myRange") ?? undefined;
-    element?.style.setProperty('--sliderColor', color);
+  componentDidMount() {
+    this.setupRealtimeUpdates();
+    // Add any other initialization code here if needed
   }
-  
-  setSliderBackgroundColor(color) {
-    const element = document.getElementById("myRange") ?? undefined;
-    element?.style.setProperty('--sliderBackgroundColor', color);
-  }
-
-   handleWordClick(word) {
-    this.setState({ word });
-  }
-
-  // getColor(value) {
-  //   // Define color ranges for different values
-  //   const colors = [
-  //     'red', 'red', 'red',
-  //     'orange', 'orange', 'orange',
-  //     'yellow', 'yellow', 'yellow',
-  //     'green', 'green', 'green',
-  //     'blue', 'blue', 'blue',
-  //     'violet', 'violet'
-  //   ];
-  //   // Calculate index based on value
-  //   const index = Math.min(Math.floor(value / 50), colors.length - 1);
-  //   return colors[index];
-  // }
 
   handleClick(emotion, clickedWord) {
     const newWord = emotion + ': ' + clickedWord;
@@ -324,41 +343,13 @@ export class LocerVertical extends React.Component {
     }
   }
 
-  render() {
-    const emotions = {
-      Shame: ['Humiliation', 'Worthlessness', 'Powerlessness'],
-      Guilt: ['Blame', 'Remorse', 'Repentance'],
-      Apathy: ['Despair', 'Hopelessness', 'Abandonment'],
-      Grief: ['Sorrow', 'Regret', 'Disappointment'],
-      Fear: ['Anxiety', 'Insecurity', 'Unease'],
-      Desire: ['Craving', 'Longing', 'Yearning'],
-      Anger: ['Hatred', 'Resentment', 'Envy'],
-      Pride: ['Arrogance', 'Superiority', 'Conceit'],
-      Courage: ['Confidence', 'Empowerment', 'Assertion'],
-      Neutrality: ['Objectivity', 'Openness', 'Impartiality'],
-      Willingness: ['Optimism', 'Eagerness', 'Enthusiasm'],
-      Acceptance: ['Forgiveness', 'Understanding', 'Tolerance'],
-      Reason: ['Logic', 'Rationality', 'Intelligence'],
-      Love: ['Compassion', 'Empathy', 'Kindness'],
-      Joy: ['Satisfaction', 'Gratitude', 'Euphoria'],
-      Peace: ['Serenity', 'Tranquility', 'Harmony'],
-      Enlightenment: ['Bliss', 'Ecstasy', 'Nirvana'],
-    };
 
-    let questions = [
-      'What is', 
-      'What are the chemicals of', 
-      'How do I reframe', 
-      'Write a joke about',
-      'How do I transcend',
-      'What are the synonyms of',
-      'How do I shift my experience towards',
-      'How do I shift my experience from',
-    ];
+  render() {
+    const { emotions, value, word, selectedOption, allRatings } = this.state;
 
     return (
-        <div id="consciousnessRating">
-          <div class="slidecontainer"> <br/>
+      <div id="consciousnessRating">
+        <div className="slidecontainer">
           <input
             className="clickable slider vertical-slider"
             onPointerUp={this.handleEvent}
@@ -367,24 +358,30 @@ export class LocerVertical extends React.Component {
             type="range"
             min="20"
             max="1000"
-            value={this.state.value}
-            orient="vertical" // This is for semantic purposes, but not all browsers support it
+            value={value}
+            orient="vertical"
           />
               <details>
                 <summary class="clickable"><p>Consciousness rating: <span id="demo">{isNaN(this.state.value) ? 'Loading...' : this.state.value} </span>  </p></summary>
                 {/* <img id="consciousnessMap" src='https://the-cosmic-joke.com/ConsciousnessRating.png'/> */}
-
-                <img id="consciousnessMap" alt='hawkins map' src='https://external-preview.redd.it/Z_WEBW8ro1FUtN64ksfzeNM-jR4mp4OdebucYgk8eSA.jpg?auto=webp&s=0e1a0909adf703e4bb4fc6b51bb170c490a6a062'/>
-
                 {/* MAKE ONCLICK SET SLIDER VALUE */}
                 {/* MAKE SLIDER UNDERLINE LEVEL-LINE */}
                 <div style={{ textAlign: 'left', marginLeft: '50px' }}>
                   {Object.entries(emotions).map(([emotion, words]) => (
                     <div key={emotion}>
-                      <span class='clickable' style={{color: this.getColor(emotion), textDecoration: JSON.stringify(this.state.word).includes(`${emotion}: ${emotion}`) ? 'underline' : 'none' }} onClick={() => this.handleClick(emotion, emotion)}> <b>{emotion}</b>: </span>
+                      <span className='clickable'
+                            style={{color: this.getColor(emotion), 
+                                    textDecoration: this.state.word.includes(`${emotion}: ${emotion}`) ? 'underline' : 'none' }}
+                            onClick={() => this.handleClick(emotion, emotion)}> 
+                        <b>{emotion}</b>:
+                      </span>
                       <div style={{ display: 'inline' }}>
                         {words.map((word) => (
-                          <span class='clickable' style={{color: this.getColor(emotion), textDecoration: JSON.stringify(this.state.word).includes(word) ? 'underline' : 'none'}} key={word} onClick={() => this.handleClick(emotion, word)}>
+                          <span className='clickable'
+                                style={{color: this.getColor(emotion), 
+                                        textDecoration: this.state.word.includes(`${emotion}: ${word}`) ? 'underline' : 'none'}}
+                                key={word}
+                                onClick={() => this.handleClick(emotion, word)}>
                             {word},&nbsp;
                           </span>
                         ))}
@@ -393,9 +390,10 @@ export class LocerVertical extends React.Component {
                   ))}
                 </div>
 
+
                 <GPT words={this.state.word} question={this.state.selectedOption}/>
                 <select value={this.state.selectedOption} onChange={this.handleOptionChange}>
-                  {questions.map((question) => (
+                  {this.state.questions.map((question) => (
                     <option key={question} value={question}>
                       {question}
                     </option>
@@ -404,6 +402,7 @@ export class LocerVertical extends React.Component {
 
                 <br/><br/><br/>
 
+                <img id="consciousnessMap" alt='hawkins map' src='https://external-preview.redd.it/Z_WEBW8ro1FUtN64ksfzeNM-jR4mp4OdebucYgk8eSA.jpg?auto=webp&s=0e1a0909adf703e4bb4fc6b51bb170c490a6a062'/>
 
                 <br/><br/>
                 <details>
@@ -426,20 +425,8 @@ export class LocerVertical extends React.Component {
                   } */}
                 </details>
               </details>
-          </div>
         </div>
+      </div>
     );
-  }
-
-  componentDidMount() {
-    // this.getAllRatings();
-    // this.getAverage()
-    // this.getAverage();
-    this.setupRealtimeUpdates();
-
-    // const color = this.getSliderColor();
-    // this.setSliderColor(color);
-    // const backgroundColor = this.getSliderBackgroundColor();
-    // this.setSliderBackgroundColor(backgroundColor);
   }
 }

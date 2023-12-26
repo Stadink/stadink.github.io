@@ -194,6 +194,65 @@ app.get('/chat', async (req, res) => {
   }
 });
 
+app.get('/chat4', async (req, res) => {
+  const { prompt, timestamp } = req.query;
+  // const ipAddress = req.socket.remoteAddress;
+  // const ipAddresses = req.ip;
+  // const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress;
+  saveQuestion(prompt, timestamp);
+
+    // Send the headers for Server-Sent Events
+    res.writeHead(200, {
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      "Connection": "keep-alive"
+    });
+
+  // Generate a response with ChatGPT
+  try {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-4",
+      // model: "gpt-3.5-turbo",
+      messages: [{ "role": "user", "content": prompt }],
+      max_tokens: 100,
+      stream: true,
+    }, { responseType: 'stream' });
+
+    let answer = '';
+    completion.data.on('data', data => {
+      const lines = data.toString().split('\n').filter(line => line.trim() !== '');
+      for (const line of lines) {
+        const message = line.replace(/^data: /, '');
+        if (message === '[DONE]') {
+          // Stream finished, send the closing event to the client
+          res.write(`event: close\ndata: {}\n\n`);
+          res.end();
+          answer = answer.replace('undefined', ''); // temp solution heh
+          answer = answer.replace('undefined', '');
+          saveReply(prompt, answer, timestamp);
+          return; // Stream finished
+        }
+        try {
+          const parsed = JSON.parse(message);
+          const content = parsed.choices[0].delta.content;
+          answer += content;
+          console.log(content)
+          // Send the response to the client using Server-Sent Events
+          res.write(`event: message\ndata: ${JSON.stringify({ content })}\n\n`);
+        } catch (error) {
+          console.error('Could not JSON parse stream message', message, error);
+        }
+      }
+      // saveIP(timestamp, ipAddress);
+    });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Error generating response");
+  }
+});
+
 app.get("/setThemeChanged", async (req, res) => {
   const { timestamp } = req.query
   saveThemeChanged(timestamp)
@@ -226,20 +285,22 @@ app.get("/chatNoStream", async (req, res) => {
   }
 });
 
-// Endpoint to receive a number
 app.post("/receiveNumber", async (req, res) => {
-  const { number } = req.body; // Extract the number from the request body
+  const { number } = req.body;
+  const timestamp = Date.now(); // Unix timestamp
+  const readableTimestamp = new Date(timestamp).toISOString(); // Convert to ISO 8601 format
 
-  // Handle the number (e.g., save to database, log, etc.)
   try {
-    // Reference to the Firestore document where you want to save the number
-    const docRef = db.collection('LOC').doc('1234');
+    // Save the number to the document with ID 1234
+    const docRef1234 = db.collection('LOC').doc('1234');
+    await docRef1234.set({ number: number }, { merge: true });
 
-    // Update the number field in the document
-    await docRef.set({ number: number }, { merge: true });
+    // Append the number with timestamp to the Log document
+    const entriesRef = db.collection('LOC').doc('Log').collection('Entries');
+    await entriesRef.doc(String(timestamp)).set({ number: number, timestamp: readableTimestamp });
 
-    console.log(`Number saved to Firestore document with ID: 1234`);
-    res.status(200).send(`Number received and saved to document with ID: 1234`);
+    console.log(`Number saved to document 1234 and appended to Log`);
+    res.status(200).send(`Number received and saved to document 1234 and appended to Log`);
   } catch (error) {
     console.error('Error saving number to Firestore:', error);
     res.status(500).send('Internal Server Error');
