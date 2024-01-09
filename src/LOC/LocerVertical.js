@@ -40,9 +40,9 @@ export class LocerVertical extends React.Component {
         'Write a joke about',
         'How do I transcend',
         'What are the synonyms of',
-      'How do I shift my experience towards',
-      'How do I shift my experience from',
-    ]
+        'How do I shift my experience towards',
+        'How do I shift my experience from',
+      ]
     };
     this.handleOptionChange = this.handleOptionChange.bind(this);
     this.updateValue = this.updateValue.bind(this);

@@ -111,7 +111,7 @@ const saveIP = async (timestamp, ip) => {
   await docRef.update(payload);
 }
 
-const saveQuestion = async (prompt, timestamp) => {
+const saveQuestion = async (prompt, timestamp, gpt4=false) => {
   const unixTime = timestamp
 
   const date = new Date();
@@ -120,7 +120,10 @@ const saveQuestion = async (prompt, timestamp) => {
 
   const regexPattern = /«(.*?)»/;
   const questionMatch = prompt.match(regexPattern);
-  const question = questionMatch ? questionMatch[1] : null;
+  let question = questionMatch ? questionMatch[1] : null;
+  if (gpt4) {
+    question = '(GPT4) ' + question
+  }
 
   const docRef = db.collection('GPT').doc('questionsLog');
   const answerDocRef = db.collection('GPT').doc('questionsLog').collection('answers').doc(timestamp)
@@ -185,7 +188,7 @@ app.get('/chat', async (req, res) => {
           console.error('Could not JSON parse stream message', message, error);
         }
       }
-      // saveIP(timestamp, ipAddress);
+      saveIP(timestamp, ipAddress);
     });
 
   } catch (error) {
@@ -200,7 +203,7 @@ app.get('/chat4', async (req, res) => {
   // const ipAddresses = req.ip;
   // const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   const ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress;
-  saveQuestion(prompt, timestamp);
+  saveQuestion(prompt, timestamp, true);
 
     // Send the headers for Server-Sent Events
     res.writeHead(200, {
@@ -244,7 +247,7 @@ app.get('/chat4', async (req, res) => {
           console.error('Could not JSON parse stream message', message, error);
         }
       }
-      // saveIP(timestamp, ipAddress);
+      saveIP(timestamp, ipAddress);
     });
 
   } catch (error) {
