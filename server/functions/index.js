@@ -7,6 +7,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 import admin from 'firebase-admin';
 import firebaseConfig from './firebase-adminsdk.js';
+import dashboardApp from './dashboardFunctions.js'
 
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
@@ -310,5 +311,100 @@ app.post("/receiveNumber", async (req, res) => {
   }
 });
 
+// dashboardFunctions.js
+// import express from 'express';
+// import cors from 'cors';
+// import bodyParser from 'body-parser';
+import { MongoClient, ServerApiVersion } from 'mongodb';
+
+// MongoDB client setup
+const mongodbConfig = functions.config().mongodb;
+const uri = mongodbConfig.uri;
+const client = new MongoClient(uri, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
+async function connectToMongoDB() {
+  try {
+    await client.connect();
+    return client.db('Dashboard');
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    throw error;
+  }
+}
+
+// Gratitude Dashboard Function
+const saveGratitudeItem = async (item) => {
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('gratitude');
+
+    // Add timestamp to the item
+    const timestamp = new Date();
+    item.timestamp = timestamp;
+
+    const result = await collection.insertOne(item);
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    return result.insertedId;
+  } catch (error) {
+    console.error('Error saving gratitude item:', error);
+    throw error;
+  }
+};
+
+app.post('/save', async (req, res) => {
+  try {
+    const gratitudeItem = req.body;
+    const insertedId = await saveGratitudeItem(gratitudeItem);
+    res.status(200).send({ message: 'Gratitude item saved successfully', _id: insertedId });
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to save gratitude item', error: error.message });
+  }
+});
+
+// New function to get gratitude items added today
+const getTodaysGratitudeItems = async () => {
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('gratitude');
+
+    // Get start of today
+    const startOfToday = new Date();
+    startOfToday.setHours(0, 0, 0, 0);
+
+    // Get end of today
+    const endOfToday = new Date();
+    endOfToday.setHours(23, 59, 59, 999);
+
+    // Query to find documents where timestamp is within today's date
+    const query = {
+      timestamp: {
+        $gte: startOfToday,
+        $lte: endOfToday
+      }
+    };
+
+    const items = await collection.find(query).sort({timestamp: 1}).toArray();
+    return items;
+  } catch (error) {
+    console.error('Error retrieving today\'s gratitude items:', error);
+    throw error;
+  }
+};
+
+// Endpoint to get all gratitude items from today
+app.get('/gratitude/today', async (req, res) => {
+  try {
+    const items = await getTodaysGratitudeItems();
+    res.status(200).send(items);
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to retrieve today\'s gratitude items', error: error.message });
+  }
+});
 
 export const api = functions.https.onRequest(app);
