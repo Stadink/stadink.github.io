@@ -1,6 +1,7 @@
 import * as functions from "firebase-functions";
 import express from 'express';
 const router = express.Router();
+import { ObjectId } from 'mongodb';
 
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
@@ -99,6 +100,53 @@ router.get('/gratitude/today', async (req, res) => {
     res.status(200).send(items);
   } catch (error) {
     res.status(500).send({ message: 'Failed to retrieve today\'s gratitude items', error: error.message });
+  }
+});
+
+// Gratitude Dashboard Function to save a note
+const saveGratitudeNote = async (_id, note, token) => {
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('gratitude');
+
+    // Update the document with the new note
+    const result = await collection.updateOne(
+      { _id: new ObjectId(_id), token: token }, // ensure that the token matches for security purposes
+      { $set: { note: note } },
+      { upsert: false } // do not create a new document if the id does not exist
+    );
+    
+    if (result.matchedCount === 0) {
+      throw new Error('No matching document found or token mismatch.');
+    }
+
+    console.log(`A document with _id: ${_id} was updated with a new note.`);
+    return result;
+  } catch (error) {
+    console.error('Error saving gratitude note:', error);
+    throw error;
+  }
+};
+
+// Endpoint to save a gratitude note
+router.post('/gratitude/note', async (req, res) => {
+  try {
+    const { _id, note, token } = req.body;
+    console.log('id note token: ', _id, note, token)
+
+    // Validate the input
+    if (!_id || !note || !token) {
+      return res.status(400).send({ message: 'Missing _id, note, or token in request body' });
+    }
+
+    const result = await saveGratitudeNote(_id, note, token);
+    if (result.modifiedCount === 1) {
+      res.status(200).send({ message: 'Gratitude note saved successfully' });
+    } else {
+      res.status(404).send({ message: 'Gratitude note not found or token mismatch' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to save gratitude note', error: error.message });
   }
 });
 
