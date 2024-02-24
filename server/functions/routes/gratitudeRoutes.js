@@ -55,36 +55,50 @@ router.post('/save', async (req, res) => {
   }
 });
 
-// New function to get gratitude items added today
-const getTodaysGratitudeItems = async (token) => {
+const getGratitudeItemsForDate = async (token, date) => {
   try {
     const db = await connectToMongoDB();
     const collection = db.collection('gratitude');
 
-    // Get start of today
-    const startOfToday = new Date();
-    startOfToday.setHours(0, 0, 0, 0);
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
 
-    // Get end of today
-    const endOfToday = new Date();
-    endOfToday.setHours(23, 59, 59, 999);
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
 
-    // Query to find documents where timestamp is within today's date
     const query = {
       timestamp: {
-        $gte: startOfToday,
-        $lte: endOfToday
+        $gte: startOfDay,
+        $lte: endOfDay,
       },
-      token: token
+      token: token,
     };
 
-    const items = await collection.find(query).sort({timestamp: 1}).toArray();
+    const items = await collection.find(query).sort({ timestamp: 1 }).toArray();
     return items;
   } catch (error) {
-    console.error('Error retrieving today\'s gratitude items:', error);
+    console.error('Error retrieving gratitude items for date:', error);
     throw error;
   }
 };
+
+
+router.get('/gratitude/date', async (req, res) => {
+  try {
+    const token = req.query.token;
+    const date = new Date(req.query.date);
+
+    if (!token || !date) {
+      return res.status(400).send({ message: 'Token and date are required' });
+    }
+
+    const items = await getGratitudeItemsForDate(token, date);
+    res.status(200).send(items);
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to retrieve gratitude items for date', error: error.message });
+  }
+});
+
 
 // Endpoint to get all gratitude items with token from today
 router.get('/gratitude/today', async (req, res) => {
@@ -108,6 +122,19 @@ const saveGratitudeNote = async (_id, note, token) => {
   try {
     const db = await connectToMongoDB();
     const collection = db.collection('gratitude');
+
+    // to get rid of save not working if note the same 🤔
+    // // Check if the new note is different from the existing note
+    // const existingDocument = await collection.findOne({ _id: new ObjectId(_id), token: token });
+
+    // if (!existingDocument) {
+    //   throw new Error('No matching document found or token mismatch.');
+    // }
+
+    // if (existingDocument.note === note) {
+    //   console.log(`Note for document with _id: ${_id} is the same. Skipping update.`);
+    //   return { matchedCount: 1, modifiedCount: 0 }; // Consider it a success to match the frontend logic
+    // }
 
     // Update the document with the new note
     const result = await collection.updateOne(
