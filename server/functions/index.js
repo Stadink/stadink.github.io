@@ -3,21 +3,24 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 
 import admin from 'firebase-admin';
 import firebaseConfig from './firebase-adminsdk.js';
 
 import gratitudeRoutes from './routes/gratitudeRoutes.js';
+import dalleRoutes from './routes/dalleRoute.js'
 
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
 const db = admin.firestore(app2);
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+// const configuration = new Configuration({
+//   apiKey: process.env.OPENAI_API_KEY,
+// });
+// const openai = new OpenAIApi(configuration);
+  // const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+  const openai = new OpenAI({apiKey: "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"});
 
 // Set up the server
 const app = express();
@@ -26,6 +29,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(gratitudeRoutes)
+app.use(dalleRoutes)
 
 // let serverStatus = "unknown";
 // won't work with firebase
@@ -141,6 +145,51 @@ const saveQuestion = async (prompt, timestamp, gpt4=false) => {
   await answerDocRef.set({time: dateTime, question: question}, { merge: true })
 }
 
+app.get('/chatNew', async (req, res) => {
+  const { prompt, timestamp } = req.query;
+  const ipAddress = req.header('x-forwarded-for') || req.socket.remoteAddress || 'idk';
+
+  // Send the headers for Server-Sent Events
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive"
+  });
+
+  try {
+    const stream = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ "role": "user", "content": prompt }],
+      max_tokens: 100,
+      stream: true,
+    });
+
+    let fullResponse = "";  // Accumulate the full response
+
+    for await (const part of stream) {
+      if (part.choices && part.choices[0] && part.choices[0].delta && part.choices[0].delta.content) {
+        const content = part.choices[0].delta.content;
+        fullResponse += content;  // Append the content to the full response
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+      }
+    }
+
+    // Once the stream is complete, handle post-processing
+    res.write('event: close\ndata: {}\n\n');
+    res.end();
+
+    // Save the entire conversation after the stream has ended
+    if (fullResponse) {
+      saveReply(prompt, fullResponse, timestamp);
+    }
+    saveIP(timestamp, ipAddress);
+
+  } catch (error) {
+    console.error('Error during chat generation:', error);
+    res.status(500).send("Error generating response");
+  }
+});
+
 // Set up the ChatGPT endpoint
 app.get('/chat', async (req, res) => {
   const { prompt, timestamp } = req.query;
@@ -159,7 +208,7 @@ app.get('/chat', async (req, res) => {
 
   // Generate a response with ChatGPT
   try {
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.openai.chat.completions.create({
       // model: "gpt-4",
       model: "gpt-3.5-turbo",
       messages: [{ "role": "user", "content": prompt }],
