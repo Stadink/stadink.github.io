@@ -1,13 +1,39 @@
 import admin from 'firebase-admin';
 import express from 'express';
+import { filesUpload } from './middleware.js'
+import cors from "cors";
 import OpenAI from "openai";
 import fetch from 'node-fetch';
 import { format } from 'date-fns';
+import dotenv from "dotenv";
 
+dotenv.config()
 const router = express.Router();
-const openai = new OpenAI({apiKey: "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"});
+const openai = new OpenAI({ apiKey: process.env.API_KEY });
 
 router.use(express.json());
+
+// CORS configuration
+const corsOptions = {
+  origin: 'http://localhost:3000',  // This is the URL of your front-end app
+  optionsSuccessStatus: 200         // Some legacy browsers choke on 204
+};
+
+router.use(cors(corsOptions));
+
+router.use(cors());
+
+// router.use(multipartParser({
+//   rawBodyOptions: {
+//       limit: '10mb',  // Adjust the size limit as per your requirements
+//   },
+//   busboyOptions: {
+//       limits: {
+//           files: 1  // Limits the number of files in a single request
+//       }
+//   },
+// }));
+
 
 router.post("/dalle/new", async (req, res) => {
   const { prompt } = req.body;
@@ -81,6 +107,32 @@ router.get("/dalle/files", async (req, res) => {
   }
 });
 
+router.post("/dalle/upload", filesUpload, async (req, res) => {
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).send('No file uploaded.');
+  }
+
+  const file = req.files[0];
+  const bucket = admin.storage().bucket();
+  const now = new Date();
+  const fileName = `dalle/${format(now, 'ddMMyyyy-HHmm')}-${file.originalname}`;
+  const firebaseFile = bucket.file(fileName);
+
+  try {
+    await firebaseFile.save(file.buffer, {
+      metadata: {
+        contentType: file.mimetype
+      }
+    });
+
+    await firebaseFile.makePublic();
+    const publicUrl = firebaseFile.publicUrl();
+    res.status(200).send({ url: publicUrl });
+  } catch (error) {
+    console.error('Failed to upload image:', error);
+    res.status(500).send("Error uploading image");
+  }
+});
 
 
 

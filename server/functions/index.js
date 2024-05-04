@@ -20,7 +20,7 @@ const db = admin.firestore(app2);
 // });
 // const openai = new OpenAIApi(configuration);
   // const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
-  const openai = new OpenAI({apiKey: "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"});
+  const openai = new OpenAI({apiKey: process.env.API_KEY });
 
 // Set up the server
 const app = express();
