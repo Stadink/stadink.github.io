@@ -9,6 +9,7 @@ import admin from 'firebase-admin';
 import firebaseConfig from './firebase-adminsdk.js';
 
 import gratitudeRoutes from './routes/gratitudeRoutes.js';
+import chemicalsRoutes from './routes/chemicalsRoutes.js'
 import dalleRoutes from './routes/dalleRoute.js'
 
 dotenv.config(); 
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use(gratitudeRoutes)
+app.use(chemicalsRoutes)
 app.use(dalleRoutes)
 
 // let serverStatus = "unknown";
