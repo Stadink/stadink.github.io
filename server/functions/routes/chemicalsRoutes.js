@@ -1,5 +1,5 @@
 import express from 'express';
-import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 import * as functions from "firebase-functions";
 
 // Setup your MongoDB connection

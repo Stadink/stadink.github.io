@@ -11,6 +11,7 @@ import firebaseConfig from './firebase-adminsdk.js';
 import gratitudeRoutes from './routes/gratitudeRoutes.js';
 import chemicalsRoutes from './routes/chemicalsRoutes.js'
 import dalleRoutes from './routes/dalleRoute.js'
+import typerRoutes from './routes/typerRoutes.js'
 
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
@@ -32,6 +33,7 @@ app.use(cors());
 app.use(gratitudeRoutes)
 app.use(chemicalsRoutes)
 app.use(dalleRoutes)
+app.use(typerRoutes)
 
 // let serverStatus = "unknown";
 // won't work with firebase
