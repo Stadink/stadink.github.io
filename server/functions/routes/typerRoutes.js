@@ -57,7 +57,7 @@ router.get('/words', async (req, res) => {
 
 // Endpoint to save typing session log
 router.post('/typeLog', async (req, res) => {
-  const { correctWords, correctChars, incorrectChars, timestamp } = req.body;
+  const { correctWords, correctChars, incorrectChars, accuracy, timestamp } = req.body;
   if (correctWords === undefined || correctChars === undefined || incorrectChars === undefined || !timestamp) {
     return res.status(400).send({ message: 'All fields are required' });
   }
@@ -65,7 +65,7 @@ router.post('/typeLog', async (req, res) => {
   try {
     const db = await connectToMongoDB();
     const collection = db.collection('typeLog');
-    const result = await collection.insertOne({ correctWords, correctChars, incorrectChars, timestamp });
+    const result = await collection.insertOne({ correctWords, correctChars, incorrectChars, accuracy, timestamp });
     res.status(201).send({ message: 'Typing session saved successfully', _id: result.insertedId });
   } catch (error) {
     res.status(500).send({ message: 'Failed to save typing session', error: error.message });
