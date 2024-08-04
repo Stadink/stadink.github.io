@@ -26,7 +26,6 @@ async function connectToMongoDB() {
   }
 }
 
-// Gratitude Dashboard Function
 const saveGratitudeItem = async (item) => {
   try {
     const db = await connectToMongoDB();
@@ -36,6 +35,29 @@ const saveGratitudeItem = async (item) => {
     const timestamp = new Date();
     item.timestamp = timestamp;
 
+    // Get the start and end of the day
+    const startOfDay = new Date(timestamp);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(timestamp);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // Find the item with the highest orderIndex for the same day
+    const highestOrderItem = await collection.findOne(
+      {
+        timestamp: { $gte: startOfDay, $lte: endOfDay },
+        token: item.token
+      },
+      {
+        sort: { orderIndex: -1 }
+      }
+    );
+
+    // Set the orderIndex for the new item
+    const newOrderIndex = highestOrderItem ? highestOrderItem.orderIndex + 1 : 1;
+    item.orderIndex = newOrderIndex;
+
+    // Insert the new item
     const result = await collection.insertOne(item);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
     return result.insertedId;
@@ -44,6 +66,7 @@ const saveGratitudeItem = async (item) => {
     throw error;
   }
 };
+
 
 router.post('/save', async (req, res) => {
   try {
@@ -74,7 +97,7 @@ const getGratitudeItemsForDate = async (token, date) => {
       token: token,
     };
 
-    const items = await collection.find(query).sort({ timestamp: 1 }).toArray();
+    const items = await collection.find(query).sort({ orderIndex: 1 }).toArray();
     return items;
   } catch (error) {
     console.error('Error retrieving gratitude items for date:', error);
@@ -176,5 +199,27 @@ router.post('/gratitude/note', async (req, res) => {
     res.status(500).send({ message: 'Failed to save gratitude note', error: error.message });
   }
 });
+
+router.post('/update-order', async (req, res) => {
+  try {
+    const { items, token } = req.body;
+
+    // Update each item with the new orderIndex
+    const db = await connectToMongoDB();
+    const collection = db.collection('gratitude');
+
+    for (const item of items) {
+      await collection.updateOne(
+        { _id: new ObjectId(item._id), token: token },
+        { $set: { orderIndex: item.orderIndex } }
+      );
+    }
+
+    res.status(200).send({ message: 'Order indexes updated successfully' });
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to update order indexes', error: error.message });
+  }
+});
+
 
 export default router;
