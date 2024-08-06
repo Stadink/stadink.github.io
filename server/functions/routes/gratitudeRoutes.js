@@ -221,5 +221,49 @@ router.post('/update-order', async (req, res) => {
   }
 });
 
+const updateGratitudeItemColor = async (_id, colorHighlight, token) => {
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('gratitude');
+
+    const result = await collection.updateOne(
+      { _id: new ObjectId(_id), token: token },
+      { $set: { colorHighlight: colorHighlight } },
+      { upsert: false } // Do not create a new document if the id does not exist
+    );
+
+    if (result.matchedCount === 0) {
+      throw new Error('No matching document found or token mismatch.');
+    }
+
+    console.log(`A document with _id: ${_id} was updated with a new color highlight.`);
+    return result;
+  } catch (error) {
+    console.error('Error updating gratitude item color:', error);
+    throw error;
+  }
+};
+
+router.post('/gratitude/color', async (req, res) => {
+  try {
+    const { _id, colorHighlight, token } = req.body;
+
+    if (!_id || !colorHighlight || !token) {
+      return res.status(400).send({ message: 'Missing _id, colorHighlight, or token in request body' });
+    }
+
+    const result = await updateGratitudeItemColor(_id, colorHighlight, token);
+    if (result.modifiedCount === 1) {
+      res.status(200).send({ message: 'Gratitude item color updated successfully' });
+    } else {
+      res.status(404).send({ message: 'Gratitude item not found or token mismatch' });
+    }
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to update gratitude item color', error: error.message });
+  }
+});
+
+
+
 
 export default router;
