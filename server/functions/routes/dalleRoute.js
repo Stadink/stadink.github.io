@@ -6,6 +6,7 @@ import OpenAI from "openai";
 import fetch from 'node-fetch';
 import { format } from 'date-fns';
 import dotenv from "dotenv";
+import { connectToMongoDB } from './mongoConfig.js'
 
 dotenv.config()
 const router = express.Router();
@@ -133,6 +134,50 @@ router.post("/dalle/upload", filesUpload, async (req, res) => {
     res.status(500).send("Error uploading image");
   }
 });
+
+router.post("/visionBoard/savePrompt", async (req, res) => {
+  try {
+    const item = req.body
+    const insertedId = await savePrompt(item)
+    res.status(200).send({ message: 'Prompt saved', _id: insertedId })
+  } catch (error) {
+    res.status(500).send({message: 'Failed to save prompt', error: error.message})
+  }
+})
+
+const savePrompt = async (item) => {
+  try {
+    const db = await connectToMongoDB()
+    const collection = db.collection('visionBoard')
+
+    const timestamp = new Date()
+    item.timestamp = timestamp
+
+    const result = await collection.insertOne(item)
+    console.log('doc inserted with _id: ', result.insertedId)
+  } catch (error) {
+      console.error("Error saving prompt: ", error)
+      throw error
+  }
+}
+
+router.get('/visionBoard/latestPrompt', async (req, res) => {
+  try {
+    const db = await connectToMongoDB()
+    const collection = db.collection('visionBoard')
+
+    const latestPrompt = await collection.find().sort({ _id: -1 }).limit(1).toArray()
+
+    if (latestPrompt.length === 0) {
+      return res.status(404).send({ message: 'No prompts found' });
+    }
+
+    res.status(200).send(latestPrompt[0])
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to get latest prompt', error: error.message })
+  }
+})
+
 
 
 
