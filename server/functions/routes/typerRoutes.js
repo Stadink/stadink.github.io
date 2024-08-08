@@ -1,30 +1,7 @@
 import express from 'express';
-import { MongoClient, ServerApiVersion } from 'mongodb';
-import * as functions from "firebase-functions";
-
-// Setup your MongoDB connection
-const mongodbConfig = functions.config().mongodb;
-const uri = mongodbConfig.uri;
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+import { connectToMongoDB } from './mongoConfig.js'
 
 const router = express.Router();
-
-// Connect to the MongoDB database
-async function connectToMongoDB() {
-  try {
-    await client.connect();
-    return client.db('Dashboard'); // Use a dedicated DB for words
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    throw error;
-  }
-}
 
 // Endpoint to save a word
 router.post('/words', async (req, res) => {
@@ -69,6 +46,18 @@ router.post('/typeLog', async (req, res) => {
     res.status(201).send({ message: 'Typing session saved successfully', _id: result.insertedId });
   } catch (error) {
     res.status(500).send({ message: 'Failed to save typing session', error: error.message });
+  }
+});
+
+// Endpoint to retrieve all typeLog docs
+router.get('/typeLog', async (req, res) => {
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('typeLog');
+    const words = await collection.find({}).toArray();
+    res.status(200).send(words);
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to retrieve typeLog', error: error.message });
   }
 });
 
