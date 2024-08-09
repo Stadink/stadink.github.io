@@ -12,6 +12,7 @@ import gratitudeRoutes from './routes/gratitudeRoutes.js';
 import chemicalsRoutes from './routes/chemicalsRoutes.js'
 import dalleRoutes from './routes/dalleRoute.js'
 import typerRoutes from './routes/typerRoutes.js'
+import axios from 'axios'
 
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
@@ -34,6 +35,51 @@ app.use(gratitudeRoutes)
 app.use(chemicalsRoutes)
 app.use(dalleRoutes)
 app.use(typerRoutes)
+
+const TIMEZONE = 'Europe/Prague';
+
+export const scheduledNotification = functions.pubsub.schedule('every day 22:30')
+  .timeZone(TIMEZONE) // Set the timezone to your preferred timezone
+  .onRun(async (context) => {
+    // Define your notification data
+    const notificationData = {
+      token: 'd5_xHLKoTIiNTXkOvl8UKV:APA91bEjPcDqZ4nyM_dtitqQFH9nWU6evx57BQnU3tQuOBNxgqwJztWgZ3niMTELozCjMk3KCYQn6o1XLgOpPORBPwK9Kixr_qSMm1fqSUZlC0qt-g3XFl7EqlRTc7KDw_sdosbgF3KO',
+      title: 'Yo',
+      body: 'kick_ass()'
+    };
+
+    // Call the send-notification endpoint
+    try {
+      const response = await axios.post('https://server-e4273.web.app/send-notification', notificationData);
+      console.log('Notification sent successfully:', response.data);
+    } catch (error) {
+      console.error('Error sending notification:', error);
+    }
+
+    return null;
+  });
+
+app.post('/send-notification', (req, res) => {
+  const { token, title, body } = req.body;
+
+  const message = {
+    notification: {
+      title,
+      body,
+    },
+    token: token,
+  };
+
+  admin.messaging().send(message)
+    .then((response) => {
+      console.log('Successfully sent message:', response);
+      res.status(200).send('Notification sent successfully');
+    })
+    .catch((error) => {
+      console.log('Error sending message:', error);
+      res.status(500).send('Error sending notification');
+    });
+});
 
 // let serverStatus = "unknown";
 // won't work with firebase
