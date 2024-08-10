@@ -4,6 +4,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import axios from 'axios'
 
 import admin from 'firebase-admin';
 import firebaseConfig from './firebase-adminsdk.js';
@@ -12,7 +13,7 @@ import gratitudeRoutes from './routes/gratitudeRoutes.js';
 import chemicalsRoutes from './routes/chemicalsRoutes.js'
 import dalleRoutes from './routes/dalleRoute.js'
 import typerRoutes from './routes/typerRoutes.js'
-import axios from 'axios'
+import notificationsRoutes from './routes/notificationsRoutes.js'
 
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
@@ -35,10 +36,11 @@ app.use(gratitudeRoutes)
 app.use(chemicalsRoutes)
 app.use(dalleRoutes)
 app.use(typerRoutes)
+app.use(notificationsRoutes)
 
 const TIMEZONE = 'Europe/Prague';
 
-export const scheduledNotification = functions.pubsub.schedule('every day 22:30')
+export const scheduledNotification = functions.pubsub.schedule('every day 9:30')
   .timeZone(TIMEZONE) // Set the timezone to your preferred timezone
   .onRun(async (context) => {
     // Define your notification data
@@ -77,9 +79,28 @@ app.post('/send-notification', (req, res) => {
     })
     .catch((error) => {
       console.log('Error sending message:', error);
-      res.status(500).send('Error sending notification');
+      res.status(500).send(`Error sending notification: ${error.message}`);
     });
 });
+
+export const scheduledNotification2 = functions.pubsub.schedule('every 15 minutes')
+  .timeZone(TIMEZONE) // Set the timezone to your preferred timezone
+  .onRun(async (context) => {
+    // Define your notification data
+    const token = {
+      token: 'd5_xHLKoTIiNTXkOvl8UKV:APA91bGuGI_H8SJvpEz0I3p8q8sJW5rAcfVF9eICDjEKcQyAun_bdE3DGG-fatNPdcVPZ0FVobUiO_fiCP1y8uj3mp6pA-2reYFSBRLh-IqLTq16dktW8fnaig5jB4GLxhG-Q0YDQwn6',
+    };
+
+    // Call the send-notification endpoint
+    try {
+      const response = await axios.post('https://server-e4273.web.app/send-random-word-notification', token);
+      console.log('Notification sent successfully:', response.data);
+    } catch (error) {
+      console.error('Error sending notification:', error);
+    }
+
+    return null;
+  });
 
 // let serverStatus = "unknown";
 // won't work with firebase
