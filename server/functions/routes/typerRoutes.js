@@ -1,5 +1,6 @@
 import express from 'express';
 import { connectToMongoDB } from './mongoConfig.js'
+import { ObjectId } from 'mongodb';
 
 const router = express.Router();
 
@@ -58,6 +59,33 @@ router.get('/typeLog', async (req, res) => {
     res.status(200).send(words);
   } catch (error) {
     res.status(500).send({ message: 'Failed to retrieve typeLog', error: error.message });
+  }
+});
+
+// PATCH Endpoint to update typing session log with a note
+router.patch('/typeLog/:id', async (req, res) => {
+  const { id } = req.params;
+  const { note } = req.body;
+
+  if (!note) {
+    return res.status(400).send({ message: 'Note is required' });
+  }
+
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('typeLog');
+    const result = await collection.updateOne(
+      { _id: new ObjectId(id) }, // Use ObjectId to match MongoDB's ID format
+      { $set: { note } } // $set operator to update the note field
+    );
+
+    if (result.matchedCount === 0) {
+      return res.status(404).send({ message: 'Typing session not found' });
+    }
+
+    res.status(200).send({ message: 'Typing session updated successfully' });
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to update typing session', error: error.message });
   }
 });
 

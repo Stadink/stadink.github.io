@@ -45,7 +45,7 @@ export const scheduledNotification = functions.pubsub.schedule('every day 9:30')
   .onRun(async (context) => {
     // Define your notification data
     const notificationData = {
-      token: 'd5_xHLKoTIiNTXkOvl8UKV:APA91bEjPcDqZ4nyM_dtitqQFH9nWU6evx57BQnU3tQuOBNxgqwJztWgZ3niMTELozCjMk3KCYQn6o1XLgOpPORBPwK9Kixr_qSMm1fqSUZlC0qt-g3XFl7EqlRTc7KDw_sdosbgF3KO',
+      token: 'd5_xHLKoTIiNTXkOvl8UKV:APA91bGuGI_H8SJvpEz0I3p8q8sJW5rAcfVF9eICDjEKcQyAun_bdE3DGG-fatNPdcVPZ0FVobUiO_fiCP1y8uj3mp6pA-2reYFSBRLh-IqLTq16dktW8fnaig5jB4GLxhG-Q0YDQwn6',
       title: 'Yo',
       body: 'kick_ass()'
     };
