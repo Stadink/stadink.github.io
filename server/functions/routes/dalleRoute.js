@@ -179,6 +179,25 @@ router.get('/visionBoard/latestPrompt', async (req, res) => {
 })
 
 
+router.get('/visionBoard/settings', async (req, res) => {
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('visionBoard');
+
+    // Fetch the settings document with the _id "settings"
+    const settings = await collection.findOne({ _id: "settings" });
+
+    // Check if the settings document exists and has a non-empty URL
+    if (!settings || !settings.url) {
+      return res.status(404).send({ message: 'No settings found' });
+    }
+
+    // Send the settings document as the response
+    res.status(200).send(settings);
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to get settings', error: error.message });
+  }
+});
 
 
 export default router;
