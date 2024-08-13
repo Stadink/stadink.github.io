@@ -199,5 +199,29 @@ router.get('/visionBoard/settings', async (req, res) => {
   }
 });
 
+router.post('/visionBoard/settings', async (req, res) => {
+  const { url } = req.body;
+
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('visionBoard');
+
+    // Update the settings document with the new URL
+    const result = await collection.updateOne(
+      { _id: "settings" },
+      { $set: { url: url } },
+      { upsert: true } // Creates the document if it doesn't exist
+    );
+
+    if (result.modifiedCount === 0 && result.upsertedCount === 0) {
+      return res.status(500).send({ message: 'Failed to update settings' });
+    }
+
+    res.status(200).send({ message: 'Daily picture set successfully' });
+  } catch (error) {
+    res.status(500).send({ message: 'Failed to set daily picture', error: error.message });
+  }
+});
+
 
 export default router;
