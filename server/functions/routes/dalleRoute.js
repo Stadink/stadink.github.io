@@ -46,8 +46,8 @@ router.post("/dalle/new", async (req, res) => {
       n: 1,
       size: "1024x1024"
     });
+
     const imgUrl = response.data[0].url;
-    console.log(imgUrl);
 
     // Fetch the image using node-fetch
     const imageResponse = await fetch(imgUrl);
@@ -75,13 +75,84 @@ router.post("/dalle/new", async (req, res) => {
 
     // Get the public URL of the file
     const publicUrl = file.publicUrl();
+    const url = decodeURIComponent(publicUrl)
 
-    res.status(200).send(publicUrl);
+    // Save the image URL and prompt in MongoDB
+    const db = await connectToMongoDB();
+    const collection = db.collection('visionBoard');
+    await collection.insertOne({ prompt, url: url, timestamp: now });
+
+    res.status(200).send({ url: publicUrl });
   } catch (error) {
     console.error('Failed to generate or save image:', error);
     res.status(500).send("Error generating or saving image");
   }
 });
+
+router.get("/visionBoard/imageWithPrompt", async (req, res) => {
+  const { url } = req.query;
+
+  try {
+    const db = await connectToMongoDB();
+    const collection = db.collection('visionBoard');
+
+    // Find the document with the image name
+    const imageDoc = await collection.findOne({ "url": url });
+
+    if (!imageDoc) {
+      return res.status(404).send({ message: 'Image not found' });
+    }
+
+    res.status(200).send(imageDoc);
+  } catch (error) {
+    console.error('Failed to fetch image with prompt:', error);
+    res.status(500).send("Error fetching image with prompt");
+  }
+});
+
+
+router.get('/visionBoard/promptByImageUrl', async (req, res) => {
+  const { imageUrl } = req.query;
+
+  try {
+    // Extract the timestamp from the image URL
+    const fileName = imageUrl.split('/').pop();  // Get the file name from the URL
+    const [datePart, timePart] = fileName.replace('.png', '').split('-');
+
+    // Convert the extracted parts into a Date object
+    const day = parseInt(datePart.slice(0, 2));
+    const month = parseInt(datePart.slice(2, 4)) - 1; // JavaScript months are 0-indexed
+    const year = parseInt(datePart.slice(4, 8));
+    const hours = parseInt(timePart.slice(0, 2));
+    const minutes = parseInt(timePart.slice(2, 4));
+
+    const imageTimestamp = new Date(year, month, day, hours, minutes);
+
+    // Adjust the search range to account for possible time drift or delays
+    const searchRange = 5 * 60 * 1000; // +/- 5 minutes
+    const lowerBound = new Date(imageTimestamp.getTime() - searchRange);
+    const upperBound = new Date(imageTimestamp.getTime() + searchRange);
+
+    const db = await connectToMongoDB();
+    const collection = db.collection('visionBoard');
+
+    // Find the prompt document where the timestamp is within the search range
+    const matchingPrompt = await collection.findOne({
+      timestamp: { $gte: lowerBound, $lte: upperBound }
+    });
+
+    if (!matchingPrompt) {
+      return res.status(404).send({ message: 'No matching prompt found' });
+    }
+
+    res.status(200).send(matchingPrompt);
+  } catch (error) {
+    console.error('Error fetching prompt by image URL:', error);
+    res.status(500).send({ message: 'Failed to fetch prompt by image URL', error: error.message });
+  }
+});
+
+
 
 // Function to list files in a specific folder in Firebase Storage
 async function listFilesInFolder(folderPath) {

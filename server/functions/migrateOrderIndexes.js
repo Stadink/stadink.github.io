@@ -1,7 +1,5 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import * as functions from "firebase-functions";
-import dotenv from "dotenv";
-import * as fs from 'fs';
 
 // Load config
 const mongodbConfig = functions.config().mongodb;
