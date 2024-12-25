@@ -14,6 +14,7 @@ import chemicalsRoutes from './routes/chemicalsRoutes.js'
 import dalleRoutes from './routes/dalleRoute.js'
 import typerRoutes from './routes/typerRoutes.js'
 import neuroRoutes from './routes/neuroRoutes.js'
+import puffRoutes from './routes/puffRoutes.js'
 import notificationsRoutes from './routes/notificationsRoutes.js'
 
 dotenv.config(); 
@@ -38,6 +39,7 @@ app.use(chemicalsRoutes)
 app.use(dalleRoutes)
 app.use(typerRoutes)
 app.use(neuroRoutes)
+app.use(puffRoutes)
 app.use(notificationsRoutes)
 
 const TIMEZONE = 'Europe/Prague';
