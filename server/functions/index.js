@@ -16,6 +16,7 @@ import typerRoutes from './routes/typerRoutes.js'
 import neuroRoutes from './routes/neuroRoutes.js'
 import puffRoutes from './routes/puffRoutes.js'
 import notificationsRoutes from './routes/notificationsRoutes.js'
+import bdsdsmRoutes from './routes/bdsdsmRoutes.js'
 
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
@@ -26,7 +27,12 @@ const db = admin.firestore(app2);
 // });
 // const openai = new OpenAIApi(configuration);
   // const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
-  const openai = new OpenAI({apiKey: process.env.API_KEY });
+  // const openai = new OpenAI({apiKey: process.env.API_KEY });
+
+  const openai = new OpenAI({
+    baseURL: 'https://api.deepseek.com',
+    apiKey: process.env.API_KEY
+});
 
 // Set up the server
 const app = express();
@@ -41,6 +47,7 @@ app.use(typerRoutes)
 app.use(neuroRoutes)
 app.use(puffRoutes)
 app.use(notificationsRoutes)
+app.use(bdsdsmRoutes)
 
 const TIMEZONE = 'Europe/Prague';
 
@@ -233,7 +240,7 @@ app.get('/chatNew', async (req, res) => {
 
   try {
     const stream = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "deepseek-chat",
       messages: [{ "role": "user", "content": prompt }],
       max_tokens: 100,
       stream: true,
