@@ -19,6 +19,8 @@ import notificationsRoutes from './routes/notificationsRoutes.js'
 import bdsdsmRoutes from './routes/bdsdsmRoutes.js'
 
 import pollyRoutes from './routes/pollyRoutes.js'
+import stripeRouter from './routes/stripeRoutes.js';
+
 
 
 dotenv.config(); 
@@ -52,6 +54,7 @@ app.use(puffRoutes)
 app.use(notificationsRoutes)
 app.use(bdsdsmRoutes)
 app.use(pollyRoutes)
+app.use('/stripe', stripeRouter);
 
 const TIMEZONE = 'Europe/Prague';
 
