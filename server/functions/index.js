@@ -18,6 +18,9 @@ import puffRoutes from './routes/puffRoutes.js'
 import notificationsRoutes from './routes/notificationsRoutes.js'
 import bdsdsmRoutes from './routes/bdsdsmRoutes.js'
 
+import pollyRoutes from './routes/pollyRoutes.js'
+
+
 dotenv.config(); 
 const app2 = admin.initializeApp(firebaseConfig);
 const db = admin.firestore(app2);
@@ -48,6 +51,7 @@ app.use(neuroRoutes)
 app.use(puffRoutes)
 app.use(notificationsRoutes)
 app.use(bdsdsmRoutes)
+app.use(pollyRoutes)
 
 const TIMEZONE = 'Europe/Prague';
 
