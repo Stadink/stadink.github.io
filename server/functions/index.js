@@ -20,6 +20,7 @@ import bdsdsmRoutes from './routes/bdsdsmRoutes.js'
 
 import pollyRoutes from './routes/pollyRoutes.js'
 import stripeRouter from './routes/stripeRoutes.js';
+import tarotRoutes from './routes/tarotRoutes.js'
 
 
 
@@ -54,6 +55,7 @@ app.use(puffRoutes)
 app.use(notificationsRoutes)
 app.use(bdsdsmRoutes)
 app.use(pollyRoutes)
+app.use(tarotRoutes)
 app.use('/stripe', stripeRouter);
 
 const TIMEZONE = 'Europe/Prague';
