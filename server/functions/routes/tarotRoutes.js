@@ -96,9 +96,10 @@ ${text}
         'Authorization': `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
+        // model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
         messages: [
-          { role: 'system', content: 'You are a helpful translation assistant.' },
+          { role: 'system', content: `You are a helpful translation assistant translating a tarot card reading from Hebrew to ${targetLang}.` },
           { role: 'user', content: prompt },
         ],
         max_tokens: 1000,

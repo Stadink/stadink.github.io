@@ -416,7 +416,8 @@ app.get("/chatNoStream", async (req, res) => {
   // Generate a response with ChatGPT
   try {
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
+      // model: "gpt-3.5-turbo",
       stream: false,
       messages: [{"role": "user", "content": prompt}],
       max_tokens: 200
