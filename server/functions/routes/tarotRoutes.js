@@ -2,6 +2,7 @@ import express from 'express';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import * as functions from "firebase-functions";
 import fetch from 'node-fetch';
+import OpenAI from "openai";
 
 const router = express.Router();
 
@@ -14,6 +15,11 @@ const client = new MongoClient(uri, {
     strict: true,
     deprecationErrors: true,
   }
+});
+
+const openai = new OpenAI({
+  baseURL: 'https://api.deepseek.com',
+  apiKey: process.env.API_KEY
 });
 
 async function connectToMongoDB() {
@@ -117,6 +123,41 @@ ${text}
     res.status(200).send({ translation });
   } catch (error) {
     res.status(500).send({ message: 'Translation failed', error: error.message });
+  }
+});
+
+// GET /getHebrewAnswer - Stream a Hebrew tarot answer (200 tokens)
+router.get('/getHebrewAnswer', async (req, res) => {
+  const { prompt, timestamp } = req.query;
+
+  res.writeHead(200, {
+    "Content-Type": "text/event-stream",
+    "Cache-Control": "no-cache",
+    "Connection": "keep-alive"
+  });
+
+  try {
+    const stream = await openai.chat.completions.create({
+      model: "deepseek-chat",
+      messages: [{ "role": "user", "content": prompt }],
+      max_tokens: 200,
+      stream: true,
+    });
+
+    let fullResponse = "";
+    for await (const part of stream) {
+      if (part.choices && part.choices[0] && part.choices[0].delta && part.choices[0].delta.content) {
+        const content = part.choices[0].delta.content;
+        fullResponse += content;
+        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+      }
+    }
+    res.write('event: close\ndata: {}\n\n');
+    res.end();
+    // Optionally, save to MongoDB here if needed
+  } catch (error) {
+    console.error('Error during getHebrewAnswer:', error);
+    res.status(500).send("Error generating response");
   }
 });
 
