@@ -10,7 +10,7 @@ import { connectToMongoDB } from './mongoConfig.js'
 
 dotenv.config()
 const router = express.Router();
-const openai = new OpenAI({ apiKey: process.env.API_KEY });
+const openai = new OpenAI({ apiKey: process.env.API_KEY_DALLE });
 
 router.use(express.json());
 

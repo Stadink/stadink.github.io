@@ -21,6 +21,8 @@ import bdsdsmRoutes from './routes/bdsdsmRoutes.js'
 import pollyRoutes from './routes/pollyRoutes.js'
 import stripeRouter from './routes/stripeRoutes.js';
 
+import miBandRoutes from './routes/miBandRoutes.js';
+
 
 
 dotenv.config(); 
@@ -55,7 +57,7 @@ app.use(notificationsRoutes)
 app.use(bdsdsmRoutes)
 app.use(pollyRoutes)
 app.use('/stripe', stripeRouter);
-
+app.use('/miBand', miBandRoutes);
 const TIMEZONE = 'Europe/Prague';
 
 export const scheduledNotification = functions.pubsub.schedule('every day 9:30')
