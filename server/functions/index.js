@@ -20,6 +20,7 @@ import bdsdsmRoutes from './routes/bdsdsmRoutes.js'
 
 import pollyRoutes from './routes/pollyRoutes.js'
 import stripeRouter from './routes/stripeRoutes.js';
+import tarotRoutes from './routes/tarotRoutes.js'
 
 import miBandRoutes from './routes/miBandRoutes.js';
 
@@ -56,6 +57,7 @@ app.use(puffRoutes)
 app.use(notificationsRoutes)
 app.use(bdsdsmRoutes)
 app.use(pollyRoutes)
+app.use(tarotRoutes)
 app.use('/stripe', stripeRouter);
 app.use('/miBand', miBandRoutes);
 const TIMEZONE = 'Europe/Prague';
@@ -416,7 +418,8 @@ app.get("/chatNoStream", async (req, res) => {
   // Generate a response with ChatGPT
   try {
     const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
+      // model: "gpt-3.5-turbo",
       stream: false,
       messages: [{"role": "user", "content": prompt}],
       max_tokens: 200
